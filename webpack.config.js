@@ -4,15 +4,21 @@ module.exports = {
     filename: __dirname + '/common-ui/bundle.js'
   },
   module: {
-    loaders: [{
-      test: /.jsx?$/,
-      loader: 'jsx-loader?insertPragma=React.DOM&harmony'
-    }]
+    loaders: [
+      {
+        test: /\.jsx$/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react']
+        }
+      }
+    ]
   },
   externals: {
     'react': 'React'
   },
   resolve: {
-    extensions: ['','.js','.jsx']
+    extensions: ['','.js','.jsx'],
+    modulesDirectory: [__dirname + '/node_modules']
   }
 }

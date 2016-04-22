@@ -1,0 +1,16 @@
+{
+  "name": "quizrt-rebuild",
+  "version": "0.0.0",
+  "description": "RT Quiz Game where you can play against one or more players.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/webpack"
+  },
+  "author": "Sagar Patke <sagarpatke@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.13.0"
+  }
+}

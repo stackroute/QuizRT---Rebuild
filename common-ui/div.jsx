@@ -1,4 +1,5 @@
-var RaisedButton = require('material-ui/lib/raised-button')
+import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 var DivComponent = React.createClass({
   render: function() {

@@ -7,18 +7,15 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
-        }
+        },
+        exclude: __dirname + '/node_modules'
       }
     ]
   },
-  externals: {
-    'react': 'React'
-  },
   resolve: {
-    extensions: ['','.js','.jsx'],
-    modulesDirectory: [__dirname + '/node_modules']
+    extensions: ['','.js','.jsx']
   }
 }

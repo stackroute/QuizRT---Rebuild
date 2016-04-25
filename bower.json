@@ -6,16 +6,17 @@
     "Sagar Patke <sagarpatke@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/stackroute/QuizRT-Rebuild",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "common-ui/bower_components",
     "test",
     "tests"
   ],
   "dependencies": {
-    "react": "^15.0.1"
+    "font-roboto": "^0.0.2"
   }
 }

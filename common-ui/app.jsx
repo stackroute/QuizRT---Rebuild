@@ -14,7 +14,7 @@ var muiTheme = getMuiTheme();
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <Card>
-      <CardHeader title="Title" subtitle="Subtitle" addAsExpander={true} showExpandableButton={true} />
+      <CardHeader title="Title" subtitle="Subtitle" actAsExpander={true} showExpandableButton={true} />
       <CardText expandable={true}>
         Card Text.
       </CardText>

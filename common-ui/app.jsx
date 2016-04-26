@@ -29,10 +29,10 @@ export class App extends React.Component {
         <Route path="/tournament" component={TournamentView} />
 
 
-      </Router>
+       </Router>
       </MuiThemeProvider>
     );
   }
 };
-
+ 
 ReactDOM.render(<App />, document.getElementById('content'));

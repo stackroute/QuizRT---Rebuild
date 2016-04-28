@@ -3,22 +3,23 @@ import ReactDOM from 'react-dom';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TopicPage from './div.jsx';
+
+import TournamentsContainer from './TournamentsContainer';
+import BootCheck from './BootCheck';
+
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import {Card, CardHeader, CardText} from 'material-ui/Card';
 
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
-    <Card>
-      <CardHeader title="Title" subtitle="Subtitle" addAsExpander={true} showExpandableButton={true} />
-      <CardText expandable={true}>
-        Card Text.
-      </CardText>
-    </Card>
+
+      <TopicPage />
+
   </MuiThemeProvider>
 );
 

@@ -1,24 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Login from './login';
+import NewPass from './setNewPass';
+import signup from './signup1';
+import VerifyOTP from './verifyOTP';
+import ForgotPass from './forgotPass';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import {Card, CardHeader, CardText} from 'material-ui/Card';
-
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
-    <Card>
-      <CardHeader title="Title" subtitle="Subtitle" actAsExpander={true} showExpandableButton={true} />
-      <CardText expandable={true}>
-        Card Text.
-      </CardText>
-    </Card>
+     <signup />
   </MuiThemeProvider>
 );
 

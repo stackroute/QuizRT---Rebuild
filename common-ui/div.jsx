@@ -24,6 +24,19 @@
    text: "Welcome to the Music Category. Here you will find various sub categories to play quizzes in."
  }
 ];
+
+ var topicsData1 =[ {
+   title: "Sports Category",
+   subtitle: "This is the sports category",
+   text: "Welcome to the Sports Category. Here you will find various sub categories to play quizzes in."
+ },
+ {
+   title: "TV Series Category",
+   subtitle: "This is the tv series category",
+   text: "Welcome to the tv series Category. Here you will find various sub categories to play quizzes in."
+ }
+
+];
 var style={
   float:'right'
 }
@@ -34,20 +47,20 @@ var TopicPage = React.createClass({
     return {allTopics: topicsData};
   },
   filterTopics: function(event){
-    var rows=[];
-    var data = this.state.allTopics;
 
-    data.forEach(function(topic){
-      if(topic.title.indexOf(event.target.value)!==1)
-      {  rows.push(topic);
-         console.log(rows);
-         return;
-      }
+      var outerThis = this;
+       var rows =[];
+       topicsData.forEach(function(topic){
+         if(topic.title.toLowerCase().indexOf(event.target.value.toLowerCase())!==-1)
+            rows.push(topic);
 
-    });
-      this.setState({allTopics:rows});
+       });
+       outerThis.setState({allTopics:rows});
+
+
 
   },
+
   render: function(){
     return(
       <div>
@@ -59,7 +72,7 @@ var TopicPage = React.createClass({
            <IconButton>
            <i className="material-icons">search</i>
            </IconButton>
-           </div>);
+           </div>
       </div>
     );
   }

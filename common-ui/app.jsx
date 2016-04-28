@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TopicPage from './div.jsx';
+import TopicPage from './TopicsPage.jsx';
 
 import TournamentsContainer from './TournamentsContainer';
 import BootCheck from './BootCheck';

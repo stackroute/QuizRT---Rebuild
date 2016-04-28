@@ -7,38 +7,32 @@
 
  var topicsData =[ {
    title: "Sports Category",
+   category:"Sports",
    subtitle: "This is the sports category",
    text: "Welcome to the Sports Category. Here you will find various sub categories to play quizzes in."
  },
  {
-   title: "TV Series Category",
+   title: "Celebrities Category",
+   category:"Celebrities",
    subtitle: "This is the tv series category",
    text: "Welcome to the tv series Category. Here you will find various sub categories to play quizzes in."
  },
  {
    title: "History Category",
+   category:"History",
    subtitle: "This is the history category",
    text: "Welcome to the history Category. Here you will find various sub categories to play quizzes in."
  },
  {
    title: "Music Category",
+   category:"Music",
    subtitle: "This is the music category",
    text: "Welcome to the Music Category. Here you will find various sub categories to play quizzes in."
  }
 ];
 
- var topicsData1 =[ {
-   title: "Sports Category",
-   subtitle: "This is the sports category",
-   text: "Welcome to the Sports Category. Here you will find various sub categories to play quizzes in."
- },
- {
-   title: "TV Series Category",
-   subtitle: "This is the tv series category",
-   text: "Welcome to the tv series Category. Here you will find various sub categories to play quizzes in."
- }
 
-];
+
 
 var searchBarDiv = {
   width:"100%",
@@ -66,6 +60,7 @@ var TopicPage = React.createClass({
 
        });
        outerThis.setState({allTopics:rows});
+       
 
 
 

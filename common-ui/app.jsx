@@ -31,7 +31,8 @@ var muiTheme = getMuiTheme();
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
-      <SubCard tournament={tournamentData}/>
+      <TopicPage/>
+
 
   </MuiThemeProvider>
 );

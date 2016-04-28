@@ -8,17 +8,12 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-
+import ProfileHero from './header/leftnav'
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
-    <Card>
-      <CardHeader title="Title" subtitle="Subtitle" actAsExpander={true} showExpandableButton={true} />
-      <CardText expandable={true}>
-        Card Text.
-      </CardText>
-    </Card>
+  	<ProfileHero />
   </MuiThemeProvider>
 );
 

@@ -34,17 +34,9 @@ var SubTopicCard = React.createClass({
 
     <div>
     <CardActions >
-
-
-
-
-
-      <RaisedButton label="+Fav"  primary={true} />
+        <RaisedButton label="+Fav"  primary={true} />
         <RaisedButton label="Play" secondary={true} />
-
-
-
-    </CardActions>
+  </CardActions>
     </div>
     </Card>
 

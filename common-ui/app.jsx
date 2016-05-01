@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
+<<<<<<< HEAD
  import Login from './login';
 import NewPass from './setNewPass';
 import signup from './signup1';
@@ -8,6 +9,9 @@ import VerifyOTP from './verifyOTP';
 import ForgotPass from './forgotPass';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+=======
+
+>>>>>>> Login Navigation
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import LoginView from './views/LoginView';
@@ -27,6 +31,7 @@ export class App extends React.Component {
           <Route path="/topics" component={TopicsView} />
           <Route path="/tournament" component={TournamentView} />
 
+<<<<<<< HEAD
 
         </Router>
       </MuiThemeProvider>
@@ -53,6 +58,29 @@ const App = () => (
      <signup />
   </MuiThemeProvider>
 );
+=======
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import LoginView from './views/LoginView';
+import SignupView from './views/SignupView';
+
+const DashboardView = () => <div>This is the dashboard.</div>
+
+export class App extends React.Component {
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <Router history={hashHistory}>
+        <Route path="/login" component={LoginView} />
+        <Route path="/signup" component={SignupView} />
+        <Route path="/dashboard" component={DashboardView} />
+      </Router>
+      </MuiThemeProvider>
+    );
+  }
+};
+>>>>>>> Login Navigation
 
 >>>>>>> Login First Commit
 ReactDOM.render(<App />, document.getElementById('content'));

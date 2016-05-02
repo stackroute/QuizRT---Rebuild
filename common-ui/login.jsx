@@ -26,9 +26,15 @@ var third = {
 
 }
 
+
+
 var Login = React.createClass({
   render: function() {
     return (
+      <div class = "container-fluid">
+      <div class="row">
+          <div class="col-xs-12 col-sm-8  col-md-6 col-lg-4">
+
 			<div style = {first}>
         <h1 style={third}>quizRT</h1>
 				<p style ={third}>Login here to play the game</p>
@@ -43,6 +49,9 @@ var Login = React.createClass({
         <RaisedButton label = "Login With Facebook" secondary = {true} style = {style} /><br/>
         <RaisedButton label = "Login With Google" secondary = {true} style = {style} /><br/>
     	</div>
+   </div>
+  </div>
+</div>
     );
   }
 });

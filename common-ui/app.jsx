@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login';
 import NewPass from './setNewPass';
-import signup from './signup1';
+import Sign from './signup';
 import VerifyOTP from './verifyOTP';
 import ForgotPass from './forgotPass';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -15,7 +15,7 @@ var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
-     <signup />
+     <Login/>
   </MuiThemeProvider>
 );
 

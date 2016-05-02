@@ -23,12 +23,18 @@ var RecentTabs= React.createClass({
   },
 
   render: function () {
+    // var rows = [];
+    // this.props.data.forEach(function(activity)){
+    //   rows.push(<Recentcard activity={activity}/>)
+    // }
     return(
       <Tabs>
       <Tab label="Recent Activity" >
-        <Recentcard />
-        <Recentcard />
-        <Recentcard />
+        <Recentcard/>
+        <Recentcard/>
+        <Recentcard/>
+        <Recentcard/>
+        <Recentcard/>
       </Tab>
       <Tab label="Personal Info" >
       <div style={styles}>

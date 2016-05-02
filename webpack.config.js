@@ -12,10 +12,12 @@ module.exports = {
           presets: ['es2015', 'react']
         },
         exclude: __dirname + '/node_modules'
-      }
+      },
+   
+       { test: /\.css$/, loader: "style-loader!css-loader" },
     ]
   },
   resolve: {
-    extensions: ['','.js','.jsx']
+    extensions: ['','.js','.jsx','.scss']
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
-<<<<<<< HEAD
+ 
  import Login from './login';
 import NewPass from './setNewPass';
 import Sign from './signup';
@@ -14,16 +14,14 @@ injectTapEventPlugin();
 import LoginView from './views/LoginView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
-<<<<<<< HEAD
-=======
-import {Router, Route, hashHistory} from 'react-router';
+ import {Router, Route, hashHistory} from 'react-router';
 import LoginForm from './views/LoginView';
 import ForgotPswd from './views/LoginView/forgotPswd';
 import VerifyOTP from './views/LoginView/verifyOTP';
 import SetNewPswd from './views/LoginView/setNewPswd';
 import Badges from './views/Badges/Badges';
 injectTapEventPlugin();
->>>>>>> Error Correction
+
 
 
 const DashboardView = () => <div>This is the dashboard.</div>
@@ -31,7 +29,7 @@ export class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-<<<<<<< HEAD
+
 
         <Router history={hashHistory}>
           <Route path="/" component={LoginView} />
@@ -44,7 +42,7 @@ export class App extends React.Component {
 
       </Router>
 
-=======
+
         <Router history={hashHistory}>
           <Route path="/dashboard" component={DashboardView} />
           <Route path="/" component={LoginView} />
@@ -56,10 +54,10 @@ export class App extends React.Component {
           <Route path = '/setNewPswd' component = {SetNewPswd} />
           <Route path = '/verifyOTP' component = {VerifyOTP} />
         </Router>
->>>>>>> Error Correction
+
       </MuiThemeProvider>
     );
   }
 
- 
+
 ReactDOM.render(<App />, document.getElementById('content'));

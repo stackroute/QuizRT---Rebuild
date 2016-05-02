@@ -19,38 +19,7 @@ injectTapEventPlugin();
 // import Recentcard from './recent_activity/recentcard';
 import RecentPage from './recent_activity/recentpage';
 
-var data=[
-  {
-    title:"Rohith",
-    subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
-  },
-  {
-    title:"Shikar",
-    subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
-  },
-  {
-    title:"Anshul",
-    subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
-  },
-  {
-    title:"Komali",
-    subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
-  },
-  {
-    title:"Deepak",
-    subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
-  },
-  {
-    title:"Bhavar",
-    subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
-  },
-];
+
 
 var muiTheme = getMuiTheme();
 
@@ -62,4 +31,4 @@ const App = () => (
   </MuiThemeProvider>
 );
 
-ReactDOM.render(<App data={data}/>, document.getElementById('content'));
+ReactDOM.render(<App />, document.getElementById('content'));

@@ -4,54 +4,32 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
 
-var style = {
-
-  margin: 12,
-  marginLeft:0,
-  width: 256
-};
-var first = {
- margin:'auto',
- width:300
-
-};
-
-var second = {
-
-	marginRight :0,
-
-};
-var third = {
-	textAlign :'center',
-
-}
-
 
 
 var Login = React.createClass({
   render: function() {
     return (
-      <div class = "container-fluid">
-      <div class="row">
-          <div class="col-xs-12 col-sm-8  col-md-6 col-lg-4">
+      <div className = "container-fluid">
+      <div className="row">
+          <div className="col-xs-12">
 
-			<div style = {first}>
-        <h1 style={third}>quizRT</h1>
-				<p style ={third}>Login here to play the game</p>
+
+        <h1>quizRT</h1>
+				<p>Login here to play the game</p>
     	  <TextField hintText = "Email Field"	floatingLabelText = "Email"	type = "text" /><br/>
         <TextField hintText = "Password Field" floatingLabelText = "Password" type = "password" /><br/><br/>
         <Checkbox label = "Remember Me" /><br/><br/>
 
-        <RaisedButton label = "Login" primary = {true} style = {style} /><br/>
+        <RaisedButton label = "Login" primary = {true} /><br/>
 
-        <p style={second} ><a href="#" >Forgot Password</a></p>
-				<p style={third}>OR</p>
-        <RaisedButton label = "Login With Facebook" secondary = {true} style = {style} /><br/>
-        <RaisedButton label = "Login With Google" secondary = {true} style = {style} /><br/>
+        <p><a href="#" >Forgot Password</a></p>
+				<p>OR</p>
+        <RaisedButton label = "Login With Facebook" secondary = {true}/><br/>
+        <RaisedButton label = "Login With Google" secondary = {true}/><br/>
     	</div>
    </div>
   </div>
-</div>
+
     );
   }
 });

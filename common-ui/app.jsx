@@ -5,10 +5,18 @@ import TournamentContainer from './TournamentContainer'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import TopicPage from './TopicsPage/TopicsPage';
+
+//import TournamentsContainer from './Tournament/TournamentsContainer';
+//import SubCard  from './TopicsPage/SubCategoryCard';
+import TournamentsSubContainer from './TournamentsSubContainer';
+
+
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+<<<<<<< Updated upstream
 var topicsData =[{
   title: "Cricket",
   subtitle: "Let's play a cricket quiz",
@@ -143,12 +151,71 @@ var tournamentData =[{
 
  ];
 
+=======
+var tournamentData =[{
+  title: "Sports Quiz",
+  AvatarURL: './images/tournamentAvatar.jpg',
+  URL: './images/sports-balls.jpg',
+  OverlayTitle: 'Sports Battle 101',
+  OverlaySubtitle: 'Let the sports battle begin.',
+  TabContent:{
+  description: "This is a sports quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various sports and games.",
+  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
+  prizes: "Rs. 2000"
+}
+},
+{
+  title: "Music Quiz",
+  AvatarURL: './images/muavtar.png',
+  URL: './images/mumain.jpg',
+  OverlayTitle: 'Musical feast',
+  OverlaySubtitle: 'Let us enjoy the music.',
+  TabContent:{
+  description: "This is a music quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
+  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
+  prizes: "Rs. 2000"
+}
+},
+{
+  title: "Monuments Quiz",
+  AvatarURL: './images/monavtar.jpg',
+  URL: './images/monmain.jpeg',
+  OverlayTitle: 'Great monuments',
+  OverlaySubtitle: 'Let us explore the monuments.',
+  TabContent:{
+  description: "This is a monuments quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
+  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
+  prizes: "Rs. 2000"
+}
+},
+{
+  title: "Celeb Quiz",
+  AvatarURL: './images/celavtar.jpg',
+  URL: './images/celmain.jpg',
+  OverlayTitle: 'Celebreties',
+  OverlaySubtitle: 'Let us play quiz on celebs.',
+  TabContent:{
+  description: "This is a celebrety quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
+  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
+  prizes: "Rs. 2000"
+}
+}
+];
+>>>>>>> Stashed changes
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
+<<<<<<< Updated upstream
         <TournamentContainer topis={tournamentData}/>
+=======
+
+    <TournamentsSubContainer tournament={tournamentData}/>
+
+
+
+>>>>>>> Stashed changes
   </MuiThemeProvider>
 );
 

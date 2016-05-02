@@ -3,6 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import {orange500} from 'material-ui/styles/colors';
 
+<<<<<<< Updated upstream
 var style1= {
 
   background:'#c6ecc6'
@@ -10,6 +11,15 @@ var style1= {
 var cardDivStyle={
    width:"20%",
    float:"left",
+=======
+// var style1= {
+//
+//   background:'#c6ecc6'
+// }
+var cardDivStyle={
+   width:"20%",
+   float:'left',
+>>>>>>> Stashed changes
    height:"20%",
    padding:10,
    margin:10
@@ -32,12 +42,25 @@ var SubTopicCard = React.createClass({
       <img src={this.props.topic.img} />
     </CardMedia>
 
+<<<<<<< Updated upstream
     <div>
     <CardActions >
         <RaisedButton label="+Fav"  primary={true} />
         <RaisedButton label="Play" secondary={true} />
   </CardActions>
     </div>
+=======
+
+    <CardActions >
+
+      <RaisedButton label="+Fav"  primary={true} />
+        <RaisedButton label="Play" secondary={true} />
+
+
+
+    </CardActions>
+
+>>>>>>> Stashed changes
     </Card>
 
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton'
-import Table from '../../components/Table'
 const style = {
   width:'100%',
   margin:12

@@ -17,7 +17,6 @@ export class App extends React.Component {
         <Route path="/signup" component={SignUP} />
         <Route path="/quiz" component={Quiz} />
         <Route path="/" component={Result} />
-
       </Router>
       </MuiThemeProvider>
     );

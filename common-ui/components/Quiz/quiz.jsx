@@ -12,8 +12,6 @@ deepOrange300,
 pink400,
 purple500,
 } from 'material-ui/styles/colors';
-import ProgressBar from './progressBar'
-import Timer from './timer';
 
 
 const style = {

@@ -1,11 +1,9 @@
 import React from 'react';
-
-import QuizPlay from './quiz';
-
+import Timer from './timer';
 export default class Quiz extends React.Component{
   render(){
     return(
-      <QuizPlay />
+      <Timer />
     )
   }
 };

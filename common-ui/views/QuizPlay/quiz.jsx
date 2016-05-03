@@ -4,6 +4,8 @@ import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
+import Timer from '../../components/Timer';
+import ProgressBar from '../../components/ProgressBar';
 import {
 blue300,
 indigo900,
@@ -12,8 +14,6 @@ deepOrange300,
 pink400,
 purple500,
 } from 'material-ui/styles/colors';
-import ProgressBar from './progressBar'
-import Timer from './timer';
 
 
 const style = {

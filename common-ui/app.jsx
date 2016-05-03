@@ -35,6 +35,7 @@ export class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
+<<<<<<< HEAD
         <Router history={hashHistory}>
           <Route path="/dashboard" component={DashboardView} />
           <Route path="/" component={LoginView} />
@@ -46,6 +47,13 @@ export class App extends React.Component {
           <Route path = '/setNewPswd' component = {SetNewPswd} />
           <Route path = '/verifyOTP' component = {VerifyOTP} />
         </Router>
+=======
+      <Router history={hashHistory}>
+        <Route path="/signup" component={SignUP} />
+        <Route path="/quiz" component={Quiz} />
+        <Route path="/" component={Result} />
+      </Router>
+>>>>>>> 7e03cac... Refactor
       </MuiThemeProvider>
     );
   }

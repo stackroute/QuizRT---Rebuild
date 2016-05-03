@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CategoryPage from './layouts/TopicsPage/CategoryPage';
 
-import TournamentsContainer from './layouts/Tournament/TournamentsContainer';
+import TournamentsContainer from './layouts/Tournament/index';
 import SubCard  from './layouts/TopicsPage/SubCategoryCard';
 
 
@@ -22,7 +22,7 @@ const App = () => (
 
   <MuiThemeProvider muiTheme={muiTheme}>
 
-      <CategoryPage />
+      <TournamentsContainer />
 
 </MuiThemeProvider>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -13,9 +14,23 @@ import VerifyOTP from './views/LoginView/verifyOTP';
 import SetNewPswd from './views/LoginView/setNewPswd';
 import Badges from './views/Badges/Badges';
 injectTapEventPlugin();
+=======
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-const DashboardView = () => <div>This is the dashboard.</div>
+import Config from './views/QuizPlay'
+var muiTheme = getMuiTheme();
+>>>>>>> 450f09f... Cleaned and refactored code
 
+const App = () => (
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <Config />
+  </MuiThemeProvider>
+);
+
+<<<<<<< HEAD
 export class App extends React.Component {
   render() {
     return (
@@ -37,4 +52,7 @@ export class App extends React.Component {
 };
 
 
+=======
+
+>>>>>>> 450f09f... Cleaned and refactored code
 ReactDOM.render(<App />, document.getElementById('content'));

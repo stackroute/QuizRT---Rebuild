@@ -40,6 +40,7 @@ const badge={
 var Recentcard = React.createClass({
   render: function() {
     return (
+      <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
       <Paper style={style} zDepth={2}>
       <Card>
         <CardHeader style={card}
@@ -61,6 +62,7 @@ var Recentcard = React.createClass({
         </CardActions>
       </Card>
       </Paper>
+    </div>
     );
   }
 });

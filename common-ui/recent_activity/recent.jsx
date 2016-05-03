@@ -64,7 +64,7 @@ var RecentTabs= React.createClass({
             hintText="abc@example.com"
             floatingLabelText="Email ID"
             /><br />
-            <DatePicker hintText="Date of Birth" mode="landscape" />
+            <DatePicker hintText="Date of Birth" />
             <TextField
             hintText="Contact Number"
             floatingLabelText="Enter 10-digit mobile number"

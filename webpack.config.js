@@ -15,15 +15,9 @@ module.exports = {
           presets: ['es2015', 'react']
 
         },
+        exclude: __dirname + '/node_modules'
 
-
-      },
-
-       { test: /\.css$/, loader: "style-loader!css-loader" }
-
-
-
-
+      }
     ]
   },
   externals: {
@@ -35,6 +29,6 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
   ],
   resolve: {
-    extensions: ['','.js','.jsx','.scss']
+    extensions: ['','.js','.jsx']
   }
 }

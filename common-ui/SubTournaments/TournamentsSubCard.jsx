@@ -19,6 +19,9 @@ const styleCard ={
   margin:10,
   float:'left'
 }
+var title1={
+    "font-size":"80"
+}
 const styleImg={
   height:"200px"
 }
@@ -36,7 +39,7 @@ const btnFontColor ={
     <div>
     <CardHeader
       title={this.props.tournament.title}
-
+      titleStyle ={title1}
       avatar={this.props.tournament.AvatarURL}
     />
 

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 //import SubTopicContainer from './SubTopics/SubTopicContainer';
 //import TournamentContainer from './TournamentContainer'
 
+import { Router, Route, hashHistory } from 'react-router';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import TopicPage from './TopicsPage/TopicsPage';
@@ -15,6 +17,7 @@ import TournamentsSubContainer from './SubTournaments/TournamentsSubContainer';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
 
 var topicsData =[{
   title: "Cricket",
@@ -195,4 +198,25 @@ const App = () => (
   </MuiThemeProvider>
 );
 
+// import LoginView from './views/LoginView';
+// import SignupView from './views/SignupView';
+// import ResultView from './views/ResultView';
+//
+// const DashboardView = () => <div>This is the dashboard.</div>
+//
+// export class App extends React.Component {
+//   render() {
+//     return (
+//       <MuiThemeProvider muiTheme={getMuiTheme()}>
+//       <Router history={hashHistory}>
+//         <Route path="/login" component={LoginView} />
+//         <Route path="/signup" component={SignupView} />
+//         <Route path="/dashboard" component={DashboardView} />
+//         <Route path="/abc" component={ResultView} />
+//       </Router>
+//       </MuiThemeProvider>
+//     );
+//   }
+// };
+// >>>>>>> 6fb14040edd7d4b56883d89a51ff97fc1cac643a
 ReactDOM.render(<App />, document.getElementById('content'));

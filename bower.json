@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "font-roboto": "^0.0.2"
+    "font-roboto": "^0.0.2",
+    "bootstrap-css": "^3.3.6"
   }
 }

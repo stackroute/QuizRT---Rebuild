@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SubTopicContainer from './SubTopics/SubTopicContainer';
+//import SubTopicContainer from './SubTopics/SubTopicContainer';
 //import TournamentContainer from './TournamentContainer'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -9,7 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //import TournamentsContainer from './Tournament/TournamentsContainer';
 //import SubCard  from './TopicsPage/SubCategoryCard';
-//import TournamentsSubContainer from './TournamentsSubContainer';
+import TournamentsSubContainer from './SubTournaments/TournamentsSubContainer';
 
 
 
@@ -133,8 +133,8 @@ var topicsData =[{
 var tournamentData =[
   {
     title: "Sports Quiz",
-  AvatarURL: './images/tournamentAvatar.jpg',
-  URL: './images/sports-balls.jpg',
+  AvatarURL: './SubTournaments/images/tournamentAvatar.jpg',
+  URL: './SubTournaments/images/sports-balls.jpg',
   OverlayTitle: 'Sports Battle 101',
   OverlaySubtitle: 'Let the sports battle begin.',
   TabContent:{
@@ -145,8 +145,8 @@ var tournamentData =[
 },
 {
   title: "Music Quiz",
-  AvatarURL: './images/muavtar.png',
-  URL: './images/mumain.jpg',
+  AvatarURL: './SubTournaments/images/muavtar.png',
+  URL: './SubTournaments/images/mumain.jpg',
   OverlayTitle: 'Musical feast',
   OverlaySubtitle: 'Let us enjoy the music.',
   TabContent:{
@@ -157,8 +157,8 @@ var tournamentData =[
 },
 {
   title: "Monuments Quiz",
-  AvatarURL: './images/monavtar.jpg',
-  URL: './images/monmain.jpeg',
+  AvatarURL: './SubTournaments/images/monavtar.jpg',
+  URL: './SubTournaments/images/monmain.jpeg',
   OverlayTitle: 'Great monuments',
   OverlaySubtitle: 'Let us explore the monuments.',
   TabContent:{
@@ -169,8 +169,8 @@ var tournamentData =[
 },
 {
   title: "Celeb Quiz",
-  AvatarURL: './images/celavtar.jpg',
-  URL: './images/celmain.jpg',
+  AvatarURL: './SubTournaments/images/celavtar.jpg',
+  URL: './SubTournaments/images/celmain.jpg',
   OverlayTitle: 'Celebreties',
   OverlaySubtitle: 'Let us play quiz on celebs.',
   TabContent:{
@@ -187,7 +187,7 @@ const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
 
-<SubTopicContainer topics={topicsData}/>
+<TournamentsSubContainer tournament={tournamentData}/>
 
 
 

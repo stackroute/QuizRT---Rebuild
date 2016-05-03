@@ -6,16 +6,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 
-import SwipeableTabs from './Tournament/SwipeTabs';
+import SwipeableTabs from './SwipeTabs';
 import SwipeableViews from 'react-swipeable-views';
 
 
 
 const styleCard ={
-  width:"47%",
-  height:"35%",
+  width:"80%",
+  //height:"35%",
   //margin:'auto',
-  padding:10,
+  //padding:10,
   margin:10,
   float:'left'
 }
@@ -24,7 +24,9 @@ const styleImg={
 }
 
 const btnFontColor ={
-  "background-color": "red"
+  //"background-color": "red"
+  margin:'auto',
+  width:"50%"
 }
 
  var TournamentsSubCard = React.createClass({
@@ -48,13 +50,14 @@ const btnFontColor ={
     <SwipeableTabs TabContent={this.props.tournament.TabContent} />
 
 
-    <div>
-    <CardActions>
 
+    <CardActions>
+      <div className="col-xs col-md col-lg col-sm">
       <RaisedButton label="Register" secondary={true} style={btnFontColor}  />
-      <RaisedButton label="Play" primary ={true}   />
+      <RaisedButton label="Play" primary ={true}  style={btnFontColor} />
+      </div>
     </CardActions>
-    </div>
+
   </Card>
 
 );

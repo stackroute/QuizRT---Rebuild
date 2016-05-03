@@ -18,11 +18,17 @@ var TournamentsSubContainer = React.createClass({
   render: function(){
     var allTheSubTopics = [];
     this.props.tournament.forEach(function(tournament){
-      allTheSubTopics.push(<TournamentsSubCard tournament={tournament} key={tournament.title}/>)
+      allTheSubTopics.push(
+        <div className="col-xs-12 col-lg-4 col-md-6 col-sm-6">
+        <TournamentsSubCard tournament={tournament} key={tournament.title}/>
+        </div>
+      );
     })
     return(
-      <div>
+      <div className="container-fluid">
+      <div className="row">
       {allTheSubTopics}
+      </div>
       </div>
     );
   }
@@ -30,4 +36,4 @@ var TournamentsSubContainer = React.createClass({
 });
 
 
-export default TournamentsSubContainer;
+module.exports = TournamentsSubContainer;

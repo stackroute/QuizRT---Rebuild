@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
  
+import { Router, Route, hashHistory } from 'react-router';
+
  import Login from './login';
 import NewPass from './setNewPass';
 import Sign from './signup';
 import VerifyOTP from './verifyOTP';
 import ForgotPass from './forgotPass';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
+
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
  import injectTapEventPlugin from 'react-tap-event-plugin';

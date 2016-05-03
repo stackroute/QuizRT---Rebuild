@@ -12,6 +12,32 @@ import ActionPowersettingsnew from 'material-ui/svg-icons/action/power-settings-
 import ActionAccountbox from 'material-ui/svg-icons/action/account-box';
 import ActionTurnedin from 'material-ui/svg-icons/action/turned-in';
 
+<<<<<<< HEAD
+=======
+const avatarstyle={
+  backgroundSize:'cover',
+  marginTop:10,
+  height:50,
+  width:50,
+};
+
+const style1={
+  marginTop:0,
+};
+
+const iconstyle={
+  verticalAlign:'center',
+};
+
+const style={
+  textAlign: 'center',
+};
+
+const imgstyle={
+  height:'auto',
+  width:'auto',
+};
+>>>>>>> dashboard commit
 
 var ProfileHero = React.createClass({
   getInitialState: function () {
@@ -38,10 +64,21 @@ var ProfileHero = React.createClass({
         onTitleTouchTap={this.handleTouchTap}
         onLeftIconButtonTouchTap={this.handleToggle}
         iconElementRight={
+<<<<<<< HEAD
           <div>
             <FlatButton label="Topics" />
             <FlatButton label="Tournaments" />
             <Avatar src="img/photo.jpg"/>
+=======
+          <div style={iconstyle}>
+            <IconButton
+              iconClassName="muidocs-icon-communication-voicemail"
+            />
+            <IconButton
+              iconClassName="muidocs-icon-communication-phone"
+            />
+            <Avatar src="img/photo.jpg" style={avatarstyle}/>
+>>>>>>> dashboard commit
           </div>
           }
       />

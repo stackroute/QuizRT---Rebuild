@@ -20,116 +20,116 @@ const Styles = {
 var topicsData =[{
   title: "Cricket",
   subtitle: "Let's play a cricket quiz",
-  avatarimg: './layouts/SubTopics/imgs/avtar.jpg',
-  img: './layouts/SubTopics/imgs/main.jpg',
+  avatarimg: './views/SubTopics/imgs/avtar.jpg',
+  img: './views/SubTopics/imgs/main.jpg',
   category: "Sports"
 
 },
 {
   title: "Chess",
   subtitle: "Let's play a chess quiz",
-  avatarimg: './layouts/SubTopics/imgs/chavtar.jpg',
-  img: './layouts/SubTopics/imgs/chesmain.jpg',
+  avatarimg: './views/SubTopics/imgs/chavtar.jpg',
+  img: './views/SubTopics/imgs/chesmain.jpg',
   category: "Sports"
 
 },
 {
   title: "Football",
   subtitle: "Let's play a football quiz",
-  avatarimg: './layouts/SubTopics/imgs/foavtar.jpeg',
-  img: './layouts/SubTopics/imgs/footmain.jpg',
+  avatarimg: './views/SubTopics/imgs/foavtar.jpeg',
+  img: './views/SubTopics/imgs/footmain.jpg',
   category: "Sports"
 },
 {
   title: "Hockey",
   subtitle: "Let's play a hockey quiz",
-  avatarimg: './layouts/SubTopics/imgs/hoavtar.jpg',
-  img: './layouts/SubTopics/imgs/homain.jpg',
+  avatarimg: './views/SubTopics/imgs/hoavtar.jpg',
+  img: './views/SubTopics/imgs/homain.jpg',
   category: "Sports"
 },
 {
   title: "IndianHistory",
   subtitle: "Let's play history quiz",
-  avatarimg: './layouts/SubTopics/imgs/hisavtar.jpg',
-  img: './layouts/SubTopics/imgs/hismain.jpg',
+  avatarimg: './views/SubTopics/imgs/hisavtar.jpg',
+  img: './views/SubTopics/imgs/hismain.jpg',
   category: "History"
 },
 {
   title: "Monuments",
   subtitle: "Let's play a history quiz",
-  avatarimg: './layouts/SubTopics/imgs/monavtar.jpg',
-  img: './layouts/SubTopics/imgs/monmain.jpg',
+  avatarimg: './views/SubTopics/imgs/monavtar.jpg',
+  img: './views/SubTopics/imgs/monmain.jpg',
   category: "History"
 },
 {
   title: "GraetLeaders",
   subtitle: "Let's play a history quiz",
-  avatarimg: './layouts/SubTopics/imgs/leavtar.jpg',
-  img: './layouts/SubTopics/imgs/lemain.png',
+  avatarimg: './views/SubTopics/imgs/leavtar.jpg',
+  img: './views/SubTopics/imgs/lemain.png',
   category: "History"
 },
 {
   title: "WorldWars",
   subtitle: "Let's play a history quiz",
-  avatarimg: './layouts/SubTopics/imgs/waravtar.jpg',
-  img: './layouts/SubTopics/imgs/warmain.jpg',
+  avatarimg: './views/SubTopics/imgs/waravtar.jpg',
+  img: './views/SubTopics/imgs/warmain.jpg',
   category: "History"
 },
 
 {
   title: "TvCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarimg: './layouts/SubTopics/imgs/tvavtar.jpg',
-  img: './layouts/SubTopics/imgs/tvmain.jpg',
+  avatarimg: './views/SubTopics/imgs/tvavtar.jpg',
+  img: './views/SubTopics/imgs/tvmain.jpg',
   category: "Celebrities"
 },
 {
   title: "HollywoodCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarimg: './layouts/SubTopics/imgs/hlavtar.jpg',
-  img: './layouts/SubTopics/imgs/hlmain.jpg',
+  avatarimg: './views/SubTopics/imgs/hlavtar.jpg',
+  img: './views/SubTopics/imgs/hlmain.jpg',
   category: "Celebrities"
 },
 {
   title: "IndianCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarimg: './layouts/SubTopics/imgs/inavtar.jpg',
-  img: './layouts/SubTopics/imgs/inmain.jpg',
+  avatarimg: './views/SubTopics/imgs/inavtar.jpg',
+  img: './views/SubTopics/imgs/inmain.jpg',
   category: "Celebrities"
 },
 {
   title: "PoliticalCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarimg: './layouts/layouts/SubTopics/imgs/poavtar.jpg',
-  img: './layouts/SubTopics/imgs/plmain.jpg',
+  avatarimg: './views/layouts/SubTopics/imgs/poavtar.jpg',
+  img: './views/SubTopics/imgs/plmain.jpg',
   category: "Celebrities"
 },
 {
   title: "Instruments",
   subtitle: "Let's play a music quiz",
-  avatarimg: './layouts/SubTopics/imgs/miavtar.jpg',
-  img: './layouts/SubTopics/imgs/mimain.gif',
+  avatarimg: './views/SubTopics/imgs/miavtar.jpg',
+  img: './views/SubTopics/imgs/mimain.gif',
   category: "Music"
 },
 {
   title: "Albums",
   subtitle: "Let's play a music quiz",
-  avatarimg: './layouts/SubTopics/imgs/maavtar.jpg',
-  img: './layouts/SubTopics/imgs/mamain.jpg',
+  avatarimg: './views/SubTopics/imgs/maavtar.jpg',
+  img: './views/SubTopics/imgs/mamain.jpg',
   category: "Music"
 },
 {
   title: "Singers",
   subtitle: "Let's play a music quiz",
-  avatarimg: './layouts/SubTopics/imgs/siavtar.jpg',
-  img: './layouts/SubTopics/imgs/simain.jpg',
+  avatarimg: './views/SubTopics/imgs/siavtar.jpg',
+  img: './views/SubTopics/imgs/simain.jpg',
   category: "Music"
 },
 {
   title: "Directors",
   subtitle: "Let's play a music quiz",
-  avatarimg: './layouts/SubTopics/imgs/mdavtar.jpg',
-  img: './layouts/SubTopics/imgs/mdmain.jpg',
+  avatarimg: './views/SubTopics/imgs/mdavtar.jpg',
+  img: './views/SubTopics/imgs/mdmain.jpg',
   category: "Music"
 }
 ];

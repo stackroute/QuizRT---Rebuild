@@ -1,31 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Router, Route, hashHistory } from 'react-router';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import CategoryPage from './layouts/TopicsPage/CategoryPage';
-
-import TournamentsContainer from './layouts/Tournament/index';
-import SubCard  from './layouts/TopicsPage/SubCategoryCard';
-
-
-
-
-
+ 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import LoginView from './views/LoginView';
+import SignupView from './views/SignupView';
+import TournamentView from './views/Tournament';
+import TopicsView from './views/TopicsPage';
+//import ResultView from './views/ResultView';
 
-var muiTheme = getMuiTheme();
+const DashboardView = () => <div>This is the dashboard.</div>
 
-const App = () => (
+export class App extends React.Component {
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <Router history={hashHistory}>
+        <Route path="/" component={LoginView} />
+        <Route path="/login" component={LoginView} />
+        <Route path="/signup" component={SignupView} />
+        <Route path="/tournament" component={TournamentView} />
+        <Route path="/topics" component={TopicsView} />
 
-  <MuiThemeProvider muiTheme={muiTheme}>
-
-      <TournamentsContainer />
-
-</MuiThemeProvider>
-
-);
+      </Router>
+      </MuiThemeProvider>
+    );
+  }
+};
 
 ReactDOM.render(<App />, document.getElementById('content'));

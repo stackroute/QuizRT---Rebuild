@@ -1,4 +1,7 @@
+var webpack = require('webpack');
+
 module.exports = {
+  devtool: 'eval',
   entry: __dirname + '/common-ui/app.jsx',
   output: {
     filename: __dirname + '/common-ui/bundle.js'
@@ -10,13 +13,27 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
+
         },
-        exclude: __dirname + '/node_modules'
+
+
       },
-   
-       { test: /\.css$/, loader: "style-loader!css-loader" },
+
+       { test: /\.css$/, loader: "style-loader!css-loader" }
+
+
+
+
     ]
   },
+  externals: {
+    "React": "React"
+  },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    /*new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),*/
+    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
+  ],
   resolve: {
     extensions: ['','.js','.jsx','.scss']
   }

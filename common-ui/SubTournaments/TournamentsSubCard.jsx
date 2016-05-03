@@ -20,7 +20,7 @@ const styleCard ={
   float:'left'
 }
 var title1={
-    "font-size":"80"
+    "font-size":"25"
 }
 const styleImg={
   height:"200px"

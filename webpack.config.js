@@ -14,7 +14,7 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         },
-        exclude: /(node_modules|bower_components)/
+        exclude: __dirname +'/node_modules'
       }
     ]
   },

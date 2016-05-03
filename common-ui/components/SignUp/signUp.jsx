@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -53,7 +53,9 @@ export default class Test extends React.Component{
                 </div>
               </div>
             </div>
+            <Link to='/quiz'>
             <RaisedButton label="Sign-Up with Facebook" primary={true} style={style} />
+            </Link>
             <RaisedButton label="Sign-Up with google" primary={true} style={style} />
             <RaisedButton label="Create account" style={style} />
             </div>

@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 //Sample Data to be passed. Put it inside the parent container of this.
 // var topicsData =[{
 //   title: "Cricket",
@@ -116,14 +116,14 @@
 // ];
 
 
-import React from 'react';
-=======
+//import React from 'react';
+
 
 import React from 'react';
 //import SubTopicCard from './SubTopicCard';
 //import SubTopicCard2 from './SubTopicCard2';
 //import SubTopicCard3 from './SubTopicCard3';
->>>>>>> Stashed changes
+
 import SubTopicCard from './SubTopicCard';
 
 var SubTopicContainer = React.createClass({
@@ -131,21 +131,26 @@ var SubTopicContainer = React.createClass({
   render: function(){
       var allTheTopics = [];
       this.props.topics.forEach(function(topic){
-<<<<<<< Updated upstream
-        allTheTopics.push(<SubTopicCard topic={topic}/>);
-=======
-        allTheTopics.push(<SubTopicCard topic={topic} key={topic.title}/>);
->>>>>>> Stashed changes
+
+
+
+        allTheTopics.push(
+          <div className="col-xs-12 col-lg-4 col-md-6 col-sm-6">
+          <SubTopicCard topic={topic} key={topic.title}/>
+          </div>
+        );
+
       })
     return(
 
-        <div>
+        <div className="container-fluid">
+          <div className="row">
         {allTheTopics}
-<<<<<<< Updated upstream
+
         </div>
-=======
+
          </div>
->>>>>>> Stashed changes
+
 
 
     );

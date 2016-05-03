@@ -3,28 +3,51 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import {orange500} from 'material-ui/styles/colors';
 
-<<<<<<< Updated upstream
+
 var style1= {
 
   background:'#c6ecc6'
 }
-var cardDivStyle={
-   width:"20%",
-   float:"left",
-=======
+//var cardDivStyle={
+  // width:"20%",
+   //float:"left",
+
 // var style1= {
 //
 //   background:'#c6ecc6'
 // }
 var cardDivStyle={
-   width:"20%",
+   width:"80%",
    float:'left',
->>>>>>> Stashed changes
-   height:"20%",
+
    padding:10,
    margin:10
 
 }
+
+var title1={
+    "font-size":"25"
+}
+var title2={
+  "font-size":"16"
+}
+var title3={
+     
+    width:"80%",
+    margin:'auto'
+}
+var title4={
+     width:"50%",
+
+     margin:'auto'
+   }
+var title5={
+    //"padding-left":"20"
+    //float:'left'
+    "margin-right":"20",
+    "background-color":"red"
+}
+
 var SubTopicCard = React.createClass({
   render: function(){
     return(
@@ -34,33 +57,29 @@ var SubTopicCard = React.createClass({
 
     <CardHeader
       title={this.props.topic.title}
+      titleStyle ={title1}
       subtitle={this.props.topic.subtitle}
+      subtitleStyle ={title2}
       avatar={this.props.topic.avatarImg}
     />
 
-    <CardMedia>
+    <CardMedia style={title3}>
       <img src={this.props.topic.img} />
     </CardMedia>
 
-<<<<<<< Updated upstream
-    <div>
+
     <CardActions >
-        <RaisedButton label="+Fav"  primary={true} />
-        <RaisedButton label="Play" secondary={true} />
+
+        <div className="col-xs col-md col-lg col-sm">
+        <RaisedButton label="+Fav" primary={true} style={title4}   />
+        <RaisedButton label="Play" style={title4} secondary={true}  />
+        </div>
   </CardActions>
-    </div>
-=======
-
-    <CardActions >
-
-      <RaisedButton label="+Fav"  primary={true} />
-        <RaisedButton label="Play" secondary={true} />
 
 
 
-    </CardActions>
 
->>>>>>> Stashed changes
+
     </Card>
 
   );

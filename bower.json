@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "font-roboto": "^0.0.2",
-    "bootstrap-css": "^3.3.6"
+    "bootstrap-css": "^3.3.6",
+    "flexboxgrid": "^6.3.0"
   }
 }

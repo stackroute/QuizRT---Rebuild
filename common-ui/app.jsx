@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import SubTopicContainer from './SubTopics/SubTopicContainer';
-import TournamentContainer from './TournamentContainer'
+import SubTopicContainer from './SubTopics/SubTopicContainer';
+//import TournamentContainer from './TournamentContainer'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -9,14 +9,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //import TournamentsContainer from './Tournament/TournamentsContainer';
 //import SubCard  from './TopicsPage/SubCategoryCard';
-import TournamentsSubContainer from './TournamentsSubContainer';
+//import TournamentsSubContainer from './TournamentsSubContainer';
 
 
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-<<<<<<< Updated upstream
 var topicsData =[{
   title: "Cricket",
   subtitle: "Let's play a cricket quiz",
@@ -35,14 +34,14 @@ var topicsData =[{
 },
 {
   title: "Football",
-  subtitle: "Let's play a football quiz",
+  subtitle: "Let's play a football",
   avatarImg: './SubTopics/imgs/foavtar.jpeg',
   img: './SubTopics/imgs/footmain.jpg',
   category: "Sports"
 },
 {
   title: "Hockey",
-  subtitle: "Let's play a hockey quiz",
+  subtitle: "Let's play a hockey",
   avatarImg: './SubTopics/imgs/hoavtar.jpg',
   img: './SubTopics/imgs/homain.jpg',
   category: "Sports"
@@ -131,29 +130,9 @@ var topicsData =[{
   category: "Music"
 }
 ];
-
-var tournamentData =[{
-  title: "Music",
-  AvatarURL: '.imgs1/muavtar.jpg',
-  URL:'./imgs1/mumain.jpg',
-  OverlayTitle: "Musicquiz",
-  OverlaySubtitle: "Let's play a quiz on music",
-  TabContent:{
-
-  description: "Music is found in every known culture, past and present, varying widely between times and places. Since all people of the world, including the most isolated tribal groups, have a form of music, it may be concluded that music is likely to have been present in the ancestral population prior to the dispersal of humans around the world.",
-  rules:"Rules to be followed",
-  prizes:"Someprizes"
-  
-  },
-  category: "Music"
-
-},
-
- ];
-
-=======
-var tournamentData =[{
-  title: "Sports Quiz",
+var tournamentData =[
+  {
+    title: "Sports Quiz",
   AvatarURL: './images/tournamentAvatar.jpg',
   URL: './images/sports-balls.jpg',
   OverlayTitle: 'Sports Battle 101',
@@ -201,21 +180,18 @@ var tournamentData =[{
 }
 }
 ];
->>>>>>> Stashed changes
+
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
-<<<<<<< Updated upstream
-        <TournamentContainer topis={tournamentData}/>
-=======
 
-    <TournamentsSubContainer tournament={tournamentData}/>
+<SubTopicContainer topics={topicsData}/>
 
 
 
->>>>>>> Stashed changes
+
   </MuiThemeProvider>
 );
 

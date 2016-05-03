@@ -24,6 +24,10 @@ const style1={
   marginTop:0,
 };
 
+const iconstyle={
+  verticalAlign:'center',
+};
+
 const style={
   textAlign: 'center',
 };
@@ -58,7 +62,7 @@ var ProfileHero = React.createClass({
         onTitleTouchTap={this.handleTouchTap}
         onLeftIconButtonTouchTap={this.handleToggle}
         iconElementRight={
-          <div>
+          <div style={iconstyle}>
             <IconButton
               iconClassName="muidocs-icon-communication-voicemail"
             />

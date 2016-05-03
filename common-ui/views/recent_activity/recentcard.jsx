@@ -34,7 +34,7 @@ const badge={
   height: 250,
   width: "50%",
   maxWidth:"70%",
-  minWidth: "40%",
+  minWidth: "50%",
 };
 
 var Recentcard = React.createClass({

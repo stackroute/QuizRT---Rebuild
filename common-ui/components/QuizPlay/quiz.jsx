@@ -12,8 +12,8 @@ deepOrange300,
 pink400,
 purple500,
 } from 'material-ui/styles/colors';
-var ProgressBar = require('./progressBar')
-var Timer = require('./timer')
+import ProgressBar from './progressBar'
+import Timer from './timer';
 
 
 const style = {
@@ -29,8 +29,8 @@ const space = {
 const style1 = {
   marginBottom:50
 }
-var Test = React.createClass({
-  render:function(){
+export default class Quiz extends React.Component{
+  render (){
   return (
   <div>
     <div className='container-fluid'>
@@ -57,7 +57,6 @@ var Test = React.createClass({
         <div className='row end-xs'>
         <List>
           <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-
           </ListItem>
         </List>
         </div>
@@ -96,5 +95,4 @@ var Test = React.createClass({
   </div>
   );
   }
-})
-module.exports = Test;
+};

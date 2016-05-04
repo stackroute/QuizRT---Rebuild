@@ -11,8 +11,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //import TournamentsContainer from './Tournament/TournamentsContainer';
 //import SubCard  from './TopicsPage/SubCategoryCard';
-import TournamentsSubContainer from './SubTournaments/TournamentsSubContainer';
-
+//import TournamentsSubContainer from './SubTournaments/TournamentsSubContainer';
+import BadgesContainer from './BadgesContainer';
 
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -64,7 +64,7 @@ var topicsData =[{
   category: "History"
 },
 {
-  title: "GraetLeaders",
+  title: "GreatLeaders",
   subtitle: "Let's play a history quiz",
   avatarImg: './SubTopics/imgs/leavtar.jpg',
   img: './SubTopics/imgs/lemain.png',
@@ -85,8 +85,8 @@ var topicsData =[{
   category: "Celebreties"
 },
 {
-  title: "HollywoodCelebs",
-  subtitle: "Let's play a celeb quiz",
+  title: "Hollywood",
+  subtitle: "Let's play celeb quiz",
   avatarImg: './SubTopics/imgs/hlavtar.jpg',
   img: './SubTopics/imgs/hlmain.jpg',
   category: "Celebreties"
@@ -184,13 +184,54 @@ var tournamentData =[
 }
 ];
 
+var badgeData =[
+  {
+    title: "Badge1",
+    img:"imgb/1.jpg"
+},
+{
+title: "Badge2",
+img:"imgb/3.jpg"
+},
+{
+  title: "Badge3",
+  img:"imgb/1.jpg"
+},
+{
+  title: "Badge4",
+  img:"imgb/1.jpg"
+},
+{
+  title: "Badge5",
+  img:"imgb/1.jpg"
+},
+{
+  title: "Badge6",
+  img:"imgb/1.jpg"
+},
+{
+  title: "Badge7",
+  img:"imgb/1.jpg"
+},
+{
+  title: "Badge8",
+  img:"imgb/1.jpg"
+}
+];
+
+
+
+
+
+
+
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
 
-<TournamentsSubContainer tournament={tournamentData}/>
+<BadgesContainer badge={badgeData}/>
 
 
 
@@ -198,25 +239,5 @@ const App = () => (
   </MuiThemeProvider>
 );
 
-// import LoginView from './views/LoginView';
-// import SignupView from './views/SignupView';
-// import ResultView from './views/ResultView';
-//
-// const DashboardView = () => <div>This is the dashboard.</div>
-//
-// export class App extends React.Component {
-//   render() {
-//     return (
-//       <MuiThemeProvider muiTheme={getMuiTheme()}>
-//       <Router history={hashHistory}>
-//         <Route path="/login" component={LoginView} />
-//         <Route path="/signup" component={SignupView} />
-//         <Route path="/dashboard" component={DashboardView} />
-//         <Route path="/abc" component={ResultView} />
-//       </Router>
-//       </MuiThemeProvider>
-//     );
-//   }
-// };
-// >>>>>>> 6fb14040edd7d4b56883d89a51ff97fc1cac643a
+
 ReactDOM.render(<App />, document.getElementById('content'));

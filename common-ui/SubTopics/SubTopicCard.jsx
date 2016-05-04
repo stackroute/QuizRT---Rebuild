@@ -26,10 +26,10 @@ var cardDivStyle={
 }
 
 var title1={
-    "font-size":"25"
+    "font-size":"100%"
 }
 var title2={
-  "font-size":"16"
+  "font-size":"95%"
 }
 var title3={
 
@@ -41,12 +41,12 @@ var title4={
 
      margin:'auto'
    }
-//var title5={
-    //"padding-left":"20"
-    //float:'left'
-  //  "margin-right":"20",
-    //"background-color":"red"
-}
+// var title5={
+//     //"padding-left":"20"
+//     //float:'left'
+//     "margin-right":"20",
+//     "background-color":"red"
+// }
 
 var SubTopicCard = React.createClass({
   render: function(){

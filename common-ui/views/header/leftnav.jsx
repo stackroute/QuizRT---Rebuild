@@ -71,12 +71,6 @@ var ProfileHero = React.createClass({
             <Avatar src="img/photo.jpg"/>
 =======
           <div style={iconstyle}>
-            <IconButton
-              iconClassName="muidocs-icon-communication-voicemail"
-            />
-            <IconButton
-              iconClassName="muidocs-icon-communication-phone"
-            />
             <Avatar src="img/photo.jpg" style={avatarstyle}/>
 >>>>>>> dashboard commit
           </div>

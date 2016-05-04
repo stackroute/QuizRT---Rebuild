@@ -5,7 +5,7 @@ var SubTopicsContainer = React.createClass({
   render: function(){
     return(
       <div>
-        <SubTopicContainer />
+      <SubTopicContainer />
       </div>
     );
   }

@@ -19,7 +19,8 @@ const stylebtn={
 const card={
   textAlign:'left',
   fontSize: 20,
-  marginLeft:20
+  marginLeft:20,
+  width:'80%',
 };
 var tournamentData =[
   {
@@ -70,7 +71,7 @@ var TournamentSection = React.createClass({
             <RaisedButton label="See More >>" style={stylebtn}/>
           </CardActions>
             <CardHeader style={card}
-               title="TOURNAMENTS"
+               title="Tournaments"
             />
             <TournamentsSubContainer tournament={tournamentData}/>
 

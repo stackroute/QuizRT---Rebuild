@@ -11,15 +11,15 @@ injectTapEventPlugin();
 
 
 // import RecentPage from './views/recent_activity/index';
-// import Dashboard from './views/dashboard/dashboard';
-import TopicSection from './views/dashboard/mostpopular';
+import Dashboard from './views/dashboard/dashboard';
+// import TopicSection from './views/dashboard/mostpopular';
 
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
-      <TopicSection />
+      <Dashboard />
 
   </MuiThemeProvider>
 );

@@ -20,8 +20,8 @@ var style = {
       <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">
          <h1>Set New Password</h1>
-      <TextField hintText = "Enter new Password" floatingLabelText = "Pswd " style = {style}/><br/>
-      <TextField hintText = "Re-Enter your password" floatingLabelText = "Pswd" style = {style}/><br/><br/><br/>
+      <TextField hintText = "Password" floatingLabelText = "Enter new Password " style = {style}/><br/>
+      <TextField hintText = "Password" floatingLabelText = "Re-Enter" style = {style}/><br/><br/><br/>
       <RaisedButton label = "Submit" primary = {true} style = {style} /><br/><br/>
 
     	</div>

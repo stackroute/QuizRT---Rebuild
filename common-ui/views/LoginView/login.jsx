@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
-import Dialog from 'material-ui/Dialog';
+import {Link} from 'react-router';
 
 
 
@@ -28,8 +28,9 @@ export default class LoginForm extends React.Component{
         <Checkbox label = "Remember Me" /><br/><br/>
 
         <RaisedButton label = "Login" primary = {true} style = {styles}/><br/>
-
-        <p><a href="#" >Forgot Password</a></p>
+        <Link to ='/forgotPswd'>
+        <p>Forgot Password</p>
+        </Link>
 				<p>OR</p>
         <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles}/><br/><br/>
         <RaisedButton label = "Login With Google" secondary = {true} style = {styles}/><br/><br/>

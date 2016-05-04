@@ -63,12 +63,6 @@ var ProfileHero = React.createClass({
         onLeftIconButtonTouchTap={this.handleToggle}
         iconElementRight={
           <div style={iconstyle}>
-            <IconButton
-              iconClassName="muidocs-icon-communication-voicemail"
-            />
-            <IconButton
-              iconClassName="muidocs-icon-communication-phone"
-            />
             <Avatar src="img/photo.jpg" style={avatarstyle}/>
           </div>
           }

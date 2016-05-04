@@ -11,9 +11,8 @@ var SubTopicContainer = React.createClass({
       var allTheTopics = [];
       this.props.topic.forEach(function(topic){
         allTheTopics.push(
-            <div  className="col-xs-12 col-lg-3 col-md-4 col-sm-6">
-
-            <SubTopicCard topic={topic} key={topic.title} />
+            <div className="col-lg-3 col-xs-12 col-md-3 col-sm-3">
+            <SubTopicCard topic={topic} key={topic.title}/>
             </div>
 
 

@@ -23,48 +23,34 @@ const card={
   width:'80%',
 };
 
-var topicsData =[{
-  title: "Cricket",
-  subtitle: "Let's play a cricket quiz",
-  avatarImg: './views/SubTopics/imgs/avtar.jpg',
-  img: './views/SubTopics/imgs/main.jpg',
-  category: "Sports"
-
-},
+var topicsData =[
 {
-  title: "IndianHistory",
-  subtitle: "Let's play history quiz",
-  avatarImg: './views/SubTopics/imgs/hisavtar.jpg',
-  img: './views/SubTopics/imgs/hismain.jpg',
-  category: "History"
-},
-{
-  title: "TvCelebs",
+  title: "IndianCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarImg: './views/SubTopics/imgs/tvavtar.jpg',
-  img: './views/SubTopics/imgs/tvmain.jpg',
+  avatarImg: './views/SubTopics/imgs/inavtar.jpg',
+  img: './views/SubTopics/imgs/inmain.jpg',
   category: "Celebreties"
 },
 {
-  title: "Instruments",
+  title: "Singers",
   subtitle: "Let's play a music quiz",
-  avatarImg: './views/SubTopics/imgs/miavtar.jpg',
-  img: './views/SubTopics/imgs/mimain.gif',
+  avatarImg: './views/SubTopics/imgs/siavtar.jpg',
+  img: './views/SubTopics/imgs/simain.jpg',
   category: "Music"
 }
 ];
 
-var MostPopularSection = React.createClass({
+var MyFavoriteSection = React.createClass({
   render: function () {
     return (
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
           <CardActions>
-            <RaisedButton label="See More >>" style={stylebtn}/>
+            <RaisedButton label="Add More >>" style={stylebtn}/>
           </CardActions>
             <CardHeader style={card}
-               title="Most Popular Topics"
+               title="My Favorite Topics"
             />
             <SubTopicContainer topic ={topicsData} />
 
@@ -75,4 +61,4 @@ var MostPopularSection = React.createClass({
   }
 });
 
-module.exports= MostPopularSection;
+module.exports= MyFavoriteSection;

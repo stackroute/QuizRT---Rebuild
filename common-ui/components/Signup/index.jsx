@@ -10,4 +10,8 @@ export default class Signup extends React.Component {
       <SignupForm />
     );
   }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> new commit

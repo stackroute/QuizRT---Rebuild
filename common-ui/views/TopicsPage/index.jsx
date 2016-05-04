@@ -48,6 +48,9 @@ const style = {
 
   }
 };
+const styleText ={
+  'text-align':'center'
+}
 
 
 var TopicPage = React.createClass({
@@ -70,12 +73,7 @@ var TopicPage = React.createClass({
     return(
       <div>
         <LeftNav />
-        <div >
-          <TextField
-            hintText="Search for Categories" hintStyle={style.underline} onChange={this.filterTopics}
-            style={searchBarDiv}
-            />
-        </div>
+        <h1 style={styleText}>Topics</h1>
         <TopicsContainer topics={this.state.allTopics} />
       </div>
     );

@@ -1,10 +1,7 @@
 import React from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
-import {List, ListItem} from 'material-ui/List';
-
-
-
+import FlatButton from 'material-ui/FlatButton';
 
 //Styles.
 const Styles = {
@@ -134,13 +131,17 @@ var topicsData =[{
 }
 ];
 
+const styleMoreButton ={
+  float:'right'
+}
 
-var TopicCard = React.createClass({
+var NewTopicCard = React.createClass({
 
   getInitialState: function(){
     return {subtopics: []}
   },
-  onExpandChange: function(){
+
+  componentWillMount:function(){
     var outerThis =this;
     var topics=[];
     topicsData.forEach(function(subtopic){
@@ -151,31 +152,23 @@ var TopicCard = React.createClass({
   },
 
   render: function(){
+
     return(
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-xs col-md col-lg col-sm">
-            <Card onExpandChange={this.onExpandChange}  >
-              <CardHeader titleStyle={Styles.CardHeaderStyle} subtitleStyle={Styles.SubtitleStyle}
-                title={this.props.topic.title}
-                 subtitle={this.props.topic.subtitle}
+                <div className="container-fluid">
+                <h2>{this.props.topic.title}
 
-                  actAsExpander={true} showExpandableButton={true} />
-              <CardText expandable={true}>
+                </h2>
 
 
+                  <SubTopicContainer topics={this.state.subtopics} />
+                  <FlatButton label="More" secondary={true} style={styleMoreButton}></FlatButton>
+
+                </div>
 
 
-                <SubTopicContainer topics={this.state.subtopics} />
-
-              </CardText>
-            </Card>
-          </div>
-        </div>
-      </div>
     );
   }
 
 });
 
-module.exports = TopicCard;
+module.exports = NewTopicCard;

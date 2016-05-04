@@ -5,7 +5,7 @@ import { Router, Route, hashHistory } from 'react-router';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
- 
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -13,7 +13,8 @@ import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
-//import ResultView from './views/ResultView';
+
+
 
 const DashboardView = () => <div>This is the dashboard.</div>
 
@@ -23,10 +24,10 @@ export class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
         <Route path="/" component={LoginView} />
-        <Route path="/login" component={LoginView} />
         <Route path="/signup" component={SignupView} />
-        <Route path="/tournament" component={TournamentView} />
         <Route path="/topics" component={TopicsView} />
+        <Route path="/tournament" component={TournamentView} />
+
 
       </Router>
       </MuiThemeProvider>

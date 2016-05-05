@@ -16,6 +16,7 @@ import TopicsView from './views/TopicsPage';
 
 
 
+
 const DashboardView = () => <div>This is the dashboard.</div>
 
 export class App extends React.Component {
@@ -23,10 +24,11 @@ export class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
-        <Route path="/" component={LoginView} />
+        <Route path="/" component={TopicsView} />
         <Route path="/signup" component={SignupView} />
         <Route path="/topics" component={TopicsView} />
         <Route path="/tournament" component={TournamentView} />
+
 
 
       </Router>
@@ -35,4 +37,4 @@ export class App extends React.Component {
   }
 };
 
-ReactDOM.render(<App />, document.getElementById('content1'));
+ReactDOM.render(<App />, document.getElementById('content'));

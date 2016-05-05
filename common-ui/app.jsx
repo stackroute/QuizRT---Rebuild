@@ -11,10 +11,14 @@ injectTapEventPlugin();
 
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
+<<<<<<< HEAD
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
 
 
+
+
+import ResultView from './views/ResultView';
 
 
 const DashboardView = () => <div>This is the dashboard.</div>
@@ -24,6 +28,7 @@ export class App extends React.Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
+ 
         <Route path="/" component={TopicsView} />
         <Route path="/signup" component={SignupView} />
         <Route path="/topics" component={TopicsView} />
@@ -31,10 +36,19 @@ export class App extends React.Component {
 
 
 
+
+        <Route path="/login" component={LoginView} />
+
+        <Route path="/dashboard" component={DashboardView} />
+        <Route path="/result" component={ResultView} />
+
       </Router>
       </MuiThemeProvider>
     );
   }
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6fb14040edd7d4b56883d89a51ff97fc1cac643a
 ReactDOM.render(<App />, document.getElementById('content'));

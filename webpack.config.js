@@ -13,8 +13,11 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
+
         },
+
         exclude: /(node_modules|bower_components)/
+
       }
     ]
   },

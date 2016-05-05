@@ -8,6 +8,7 @@ import ForgotPswd from './views/LoginView/forgotPswd';
 import VerifyOTP from './views/LoginView/verifyOTP';
 import SetNewPswd from './views/LoginView/setNewPswd';
 
+
 export class App extends React.Component{
   render(){
     return(
@@ -22,5 +23,6 @@ export class App extends React.Component{
 );
 }
 };
+
 
 ReactDOM.render(<App />, document.getElementById('content'));

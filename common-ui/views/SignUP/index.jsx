@@ -1,10 +1,10 @@
 import React from 'react';
-import SignUP from '../../components/SignUP';
+import Signup from '../../components/SignUp';
 
 export default class Sign extends React.Component{
   render (){
     return(
-      <SignUP />
+      <Signup />
     );
   }
 };

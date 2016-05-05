@@ -1,23 +1,11 @@
 import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
   from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
-
-const styles = {
-  propContainer: {
-    width: 200,
-    overflow: 'hidden',
-    margin: '20px auto 0',
-  },
-  propToggleHeader: {
-    margin: '20px auto 10px',
-  },
-};
+import Paper from 'material-ui/Paper';
 
 const tableData = [
   {
-    name: 'John Smith',
+    name: 'smith',
     status: 1,
   },
   {
@@ -58,7 +46,7 @@ export default class TableExampleComplex extends React.Component {
   render() {
     return (
       <div>
-        <Table height={'300px'} fixedHeader={true} fixedFooter={true} >
+        <Table height={'300px'} >
           <TableHeader>
 
             <TableRow>
@@ -67,23 +55,27 @@ export default class TableExampleComplex extends React.Component {
               <TableHeaderColumn tooltip="Rank">Rank</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody showRowHover={this.state.showRowHover} stripedRows={this.state.stripedRows}   >
+          <TableBody >
           {tableData.map( (row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} >
               <TableRowColumn>{index}</TableRowColumn>
               <TableRowColumn>{row.name}</TableRowColumn>
               <TableRowColumn>{row.status}</TableRowColumn>
             </TableRow>
             ))}
           </TableBody>
-          <TableFooter adjustForCheckbox={this.state.showCheckboxes} >
-            <TableRow>
-              <TableRowColumn>ID</TableRowColumn>
-              <TableRowColumn>Name</TableRowColumn>
-              <TableRowColumn>Rank</TableRowColumn>
-            </TableRow>
-          </TableFooter>
         </Table>
+        <Paper zDepth={5}>
+          <Table>
+            <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Address</TableHeaderColumn>
+              <TableHeaderColumn>City</TableHeaderColumn>
+            </TableRow>
+            </TableHeader>
+          </Table>
+        </Paper>
         </div>
     );
   }

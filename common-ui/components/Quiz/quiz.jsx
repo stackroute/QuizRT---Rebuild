@@ -40,7 +40,6 @@ export default class Quiz extends React.Component{
       </div>
     </div>
     <hr/>
-    <ProgressBar />
     <div className='row' style={space} >
       <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
         <List>
@@ -49,7 +48,7 @@ export default class Quiz extends React.Component{
         </List>
       </div>
       <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-        <div className='row center-xs'><Timer /></div>
+        <div className='row center-xs'></div>
       </div>
       <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
         <div className='row end-xs'>

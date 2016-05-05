@@ -37,6 +37,13 @@
       "subtitle": "This is the sports category",
       "text": "Welcome to the Sports category. Here you will find various sub categories to play quizzes in.",
       "id": 6
+    },
+    {
+      "title": "Sub Vehicles",
+      "category": "semi",
+      "subtitle": "This is the vehicles category",
+      "text": "Welcome to the Vehicles category. Here you will find various sub categories to play quizzes in.",
+      "id": 7
     }
   ],
   "Topics": [

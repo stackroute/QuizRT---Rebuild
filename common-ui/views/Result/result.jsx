@@ -3,7 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Table from '../../components/Table'
 const style = {
   width:'100%',
-  margin:12
+  marginBottom:12,
+  marginTop:12
 }
 export default class Result extends React.Component{
   render(){

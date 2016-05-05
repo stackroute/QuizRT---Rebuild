@@ -19,7 +19,6 @@ export default class Result extends React.Component{
         </div>
         <div className='row'>
           <div className='col-lg-4 col-lg-offset-4'>
-          <Table />
           </div>
         </div>
         <div className='row'>

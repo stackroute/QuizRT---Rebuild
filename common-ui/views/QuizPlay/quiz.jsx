@@ -4,8 +4,10 @@ import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
-import Timer from '../../components/Timer';
-import ProgressBar from '../../components/ProgressBar';
+// import Timer from '../../components/Timer';
+//import ProgressBar from '../../components/ProgressBar';
+import ProgressBar from './progressBar';
+import Timer from './timer';
 import {
 blue300,
 indigo900,
@@ -42,7 +44,7 @@ export default class Quiz extends React.Component{
       </div>
     </div>
     <hr/>
-    <ProgressBar />
+    <ProgressBar seconds={30} height={15} />
     <div className='row' style={space} >
       <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
         <List>
@@ -51,7 +53,7 @@ export default class Quiz extends React.Component{
         </List>
       </div>
       <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-        <div className='row center-xs'><Timer /></div>
+        <div className='row center-xs'><Timer seconds={30} /></div>
       </div>
       <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
         <div className='row end-xs'>
@@ -71,7 +73,7 @@ export default class Quiz extends React.Component{
     </div>
     <div className='row' >
       <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style}/>
+          <RaisedButton label='Kolkata' primary={true} style={style} />
       </div>
       <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
           <RaisedButton label='Kolkata' primary={true} style={style} />

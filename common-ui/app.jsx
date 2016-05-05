@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+<<<<<<< HEAD
 import LoginView from './views/LoginView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
@@ -31,6 +32,16 @@ const App = () => (
 );
 
 <<<<<<< HEAD
+=======
+import { Router, Route, hashHistory} from 'react-router';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import SignUP from './views/SignUP';
+import Quiz from './views/QuizPlay';
+import Result from './views/Result';
+import Pro from './pro';
+injectTapEventPlugin();
+>>>>>>> 7811a1c... commit the changes
 export class App extends React.Component {
   render() {
     return (
@@ -51,7 +62,7 @@ export class App extends React.Component {
       <Router history={hashHistory}>
         <Route path="/signup" component={SignUP} />
         <Route path="/quiz" component={Quiz} />
-        <Route path="/" component={Result} />
+        <Route path="/result" component={Result} />
       </Router>
 >>>>>>> 7e03cac... Refactor
       </MuiThemeProvider>

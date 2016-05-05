@@ -2,14 +2,11 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import TournamentsSubContainer from '../../SubTournaments/TournamentsSubContainer';
+import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
 const style = {
-  height: '40%',
-  width: '98%',
   margin: 20,
   textAlign: 'center',
-  display: 'inline-block',
 };
 
 const stylebtn={
@@ -20,7 +17,6 @@ const card={
   textAlign:'left',
   fontSize: 20,
   marginLeft:20,
-  width:'80%',
 };
 var tournamentData =[
   {
@@ -49,8 +45,8 @@ var tournamentData =[
 },
 {
   title: "Monuments Quiz",
-  AvatarURL: './SubTournaments/images/monavtar.jpg',
-  URL: './SubTournaments/images/monmain.jpeg',
+  AvatarURL: '../SubTournaments/images/monavtar.jpg',
+  URL: '../SubTournaments/images/monmain.jpeg',
   OverlayTitle: 'Great monuments',
   OverlaySubtitle: 'Let us explore the monuments.',
   TabContent:{

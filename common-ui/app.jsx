@@ -58,4 +58,4 @@ export class App extends React.Component{
 >>>>>>> new commit
 };
 
-ReactDOM.render(<App />, document.getElementById('content'));
+ReactDOM.render(<App />, document.getElementById('content1'));

@@ -7,8 +7,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SignUP from './views/SignUP';
 import Quiz from './views/QuizPlay';
 import Result from './views/Result';
-import Pro from './pro';
 injectTapEventPlugin();
+import TournamentView from './views/Tournament';
+import TopicsView from './views/TopicsPage';
 export class App extends React.Component {
   render() {
     return (
@@ -17,9 +18,12 @@ export class App extends React.Component {
         <Route path="/signup" component={SignUP} />
         <Route path="/quiz" component={Quiz} />
         <Route path="/result" component={Result} />
+        <Route path="/" component={TopicsView} />
+        <Route path="/tournament" component={TournamentView} />
       </Router>
       </MuiThemeProvider>
     );
   }
 };
+
 ReactDOM.render(<App />, document.getElementById('content'));

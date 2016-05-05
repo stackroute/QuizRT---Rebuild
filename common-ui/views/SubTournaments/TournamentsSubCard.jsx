@@ -16,14 +16,13 @@ const styleCard ={
   float:'left'
 }
 var title1={
-    "font-size":"25"
+  "font-size":"25"
 }
 const styleImg={
   height:"200px"
 }
 
 const btnFontColor ={
-  //"background-color": "red"
   margin:'auto',
   width:"50%"
 }

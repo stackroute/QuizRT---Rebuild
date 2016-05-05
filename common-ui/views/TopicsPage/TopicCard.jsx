@@ -9,7 +9,7 @@ import {List, ListItem} from 'material-ui/List';
 //Styles.
 const Styles = {
   CardHeaderStyle:{
-    "font-size":30
+    "font-size":22
   },
   SubtitleStyle:{
     "font-size":15
@@ -48,7 +48,7 @@ var topicsData =[{
   category: "Sports"
 },
 {
-  title: "IndianHistory",
+  title: "Indian History",
   subtitle: "Let's play history quiz",
   avatarimg: './views/SubTopics/imgs/hisavtar.jpg',
   img: './views/SubTopics/imgs/hismain.jpg',
@@ -62,14 +62,14 @@ var topicsData =[{
   category: "History"
 },
 {
-  title: "GraetLeaders",
+  title: "Great Leaders",
   subtitle: "Let's play a history quiz",
   avatarimg: './views/SubTopics/imgs/leavtar.jpg',
   img: './views/SubTopics/imgs/lemain.png',
   category: "History"
 },
 {
-  title: "WorldWars",
+  title: "World Wars",
   subtitle: "Let's play a history quiz",
   avatarimg: './views/SubTopics/imgs/waravtar.jpg',
   img: './views/SubTopics/imgs/warmain.jpg',
@@ -77,30 +77,30 @@ var topicsData =[{
 },
 
 {
-  title: "TvCelebs",
+  title: "Tv Celebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: './views/SubTopics/imgs/tvavtar.jpg',
   img: './views/SubTopics/imgs/tvmain.jpg',
   category: "Celebrities"
 },
 {
-  title: "HollywoodCelebs",
+  title: "Hollywood Celebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: './views/SubTopics/imgs/hlavtar.jpg',
   img: './views/SubTopics/imgs/hlmain.jpg',
   category: "Celebrities"
 },
 {
-  title: "IndianCelebs",
+  title: "Indian Celebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: './views/SubTopics/imgs/inavtar.jpg',
   img: './views/SubTopics/imgs/inmain.jpg',
   category: "Celebrities"
 },
 {
-  title: "PoliticalCelebs",
+  title: "Political Celebs",
   subtitle: "Let's play a celeb quiz",
-  avatarimg: './views/layouts/SubTopics/imgs/poavtar.jpg',
+  avatarimg: './views/SubTopics/imgs/poavtar.jpg',
   img: './views/SubTopics/imgs/plmain.jpg',
   category: "Celebrities"
 },
@@ -156,8 +156,15 @@ var TopicCard = React.createClass({
         <div className="row">
           <div className="col-xs col-md col-lg col-sm">
             <Card onExpandChange={this.onExpandChange}  >
-              <CardHeader titleStyle={Styles.CardHeaderStyle} subtitleStyle={Styles.SubtitleStyle} title={this.props.topic.title} subtitle={this.props.topic.subtitle} actAsExpander={true} showExpandableButton={true} />
+              <CardHeader titleStyle={Styles.CardHeaderStyle} subtitleStyle={Styles.SubtitleStyle}
+                title={this.props.topic.title}
+                 subtitle={this.props.topic.subtitle}
+
+                  actAsExpander={true} showExpandableButton={true} />
               <CardText expandable={true}>
+
+
+
 
                 <SubTopicContainer topics={this.state.subtopics} />
 

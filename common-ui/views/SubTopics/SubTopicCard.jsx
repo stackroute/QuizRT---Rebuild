@@ -4,26 +4,35 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {orange500} from 'material-ui/styles/colors';
 
 const TitleStyle={
-  "font-size":"25px"
+  "font-size":"1em",
+  width:"100%",
+  "font-weight":"1em"
+
 }
 const SubtitleStyle={
-  "font-size":"20px"
+  "font-size":"0.8em",
+  width:"100%"
 }
 var style1= {
 
-  width:"90%",
-  height:"20%",
-  float:'left',
-  margin:10
+  width:"100%",
 
+  float:'left',
+  margin:"5px"
+
+}
+var imgStyle={
+  height:"50%",
+  width:"80%",
+  margin:"auto"
 }
 const CardHeaderStyle = {
   width:"100%"
 }
 const BtnStyle ={
-  width:"50%",
+  width:"50%"
 
-  margin:'auto'
+
 }
 
 var SubTopicCard = React.createClass({
@@ -37,13 +46,13 @@ var SubTopicCard = React.createClass({
 
       titleStyle={TitleStyle}
       subtitle={this.props.topic.subtitle}
+      avatar={this.props.topic.avatarimg}
+      subtitleStyle={SubtitleStyle}
 
-      subtitleStyle={CardHeaderStyle}
-      avatar={this.props.topic.avatarImg}
     />
 
-    <CardMedia>
-      <img src={this.props.topic.img} />
+    <CardMedia style={imgStyle}>
+      <img src={this.props.topic.img}  />
     </CardMedia>
 
 
@@ -53,16 +62,10 @@ var SubTopicCard = React.createClass({
 
         <RaisedButton label="Play" secondary={true} style={BtnStyle} />
         </div>
-
-
-
-    </CardActions>
+     </CardActions>
 
     </Card>
-
-
-
-  );
+   );
 }
 });
 

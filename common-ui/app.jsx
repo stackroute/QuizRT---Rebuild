@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import SubTopicContainer from './SubTopics/SubTopicContainer';
-//import TournamentContainer from './TournamentContainer'
+//import SubTopicContainer from './views/SubTopics/SubTopicContainer';
+//import TournamentContainer from './views/TournamentContainer'
 
 import { Router, Route, hashHistory } from 'react-router';
 
@@ -11,8 +11,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //import TournamentsContainer from './Tournament/TournamentsContainer';
 //import SubCard  from './TopicsPage/SubCategoryCard';
-//import TournamentsSubContainer from './SubTournaments/TournamentsSubContainer';
-import BadgesContainer from './BadgesContainer';
+import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
 
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -22,122 +21,122 @@ injectTapEventPlugin();
 var topicsData =[{
   title: "Cricket",
   subtitle: "Let's play a cricket quiz",
-  avatarImg: './SubTopics/imgs/avtar.jpg',
-  img: './SubTopics/imgs/main.jpg',
+  avatarImg: './img/topic/avtar.jpg',
+  img: './img/topic/main.jpg',
   category: "Sports"
 
 },
 {
   title: "Chess",
   subtitle: "Let's play a chess quiz",
-  avatarImg: './SubTopics/imgs/chavtar.jpg',
-  img: './SubTopics/imgs/chesmain.jpg',
+  avatarImg: './img/topic/chavtar.jpg',
+  img: './img/topic/chesmain.jpg',
   category: "Sports"
 
 },
 {
   title: "Football",
   subtitle: "Let's play a football",
-  avatarImg: './SubTopics/imgs/foavtar.jpeg',
-  img: './SubTopics/imgs/footmain.jpg',
+  avatarImg: './img/topic/foavtar.jpeg',
+  img: './img/topic/footmain.jpg',
   category: "Sports"
 },
 {
   title: "Hockey",
   subtitle: "Let's play a hockey",
-  avatarImg: './SubTopics/imgs/hoavtar.jpg',
-  img: './SubTopics/imgs/homain.jpg',
+  avatarImg: './img/topic/hoavtar.jpg',
+  img: './img/topic/homain.jpg',
   category: "Sports"
 },
 {
   title: "IndianHistory",
   subtitle: "Let's play history quiz",
-  avatarImg: './SubTopics/imgs/hisavtar.jpg',
-  img: './SubTopics/imgs/hismain.jpg',
+  avatarImg: './img/topic/hisavtar.jpg',
+  img: './img/topic/hismain.jpg',
   category: "History"
 },
 {
   title: "Monuments",
   subtitle: "Let's play a history quiz",
-  avatarImg: './SubTopics/imgs/monavtar.jpg',
-  img: './SubTopics/imgs/monmain.jpg',
+  avatarImg: './img/topic/monavtar.jpg',
+  img: './img/topic/monmain.jpg',
   category: "History"
 },
 {
   title: "GreatLeaders",
   subtitle: "Let's play a history quiz",
-  avatarImg: './SubTopics/imgs/leavtar.jpg',
-  img: './SubTopics/imgs/lemain.png',
+  avatarImg: './img/topic/leavtar.jpg',
+  img: './img/topic/lemain.png',
   category: "History"
 },
 {
   title: "WorldWars",
   subtitle: "Let's play a history quiz",
-  avatarImg: './SubTopics/imgs/waravtar.jpg',
-  img: './SubTopics/imgs/warmain.jpg',
+  avatarImg: './img/topic/waravtar.jpg',
+  img: './img/topic/warmain.jpg',
   category: "History"
 },
 {
   title: "TvCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarImg: './SubTopics/imgs/tvavtar.jpg',
-  img: './SubTopics/imgs/tvmain.jpg',
+  avatarImg: './img/topic/tvavtar.jpg',
+  img: './img/topic/tvmain.jpg',
   category: "Celebreties"
 },
 {
   title: "Hollywood",
   subtitle: "Let's play celeb quiz",
-  avatarImg: './SubTopics/imgs/hlavtar.jpg',
-  img: './SubTopics/imgs/hlmain.jpg',
+  avatarImg: './img/topic/hlavtar.jpg',
+  img: './img/topic/hlmain.jpg',
   category: "Celebreties"
 },
 {
   title: "IndianCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarImg: './SubTopics/imgs/inavtar.jpg',
-  img: './SubTopics/imgs/inmain.jpg',
+  avatarImg: './img/topic/inavtar.jpg',
+  img: './img/topic/inmain.jpg',
   category: "Celebreties"
 },
 {
   title: "PoliticalCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarImg: './SubTopics/imgs/poavtar.jpg',
-  img: './SubTopics/imgs/plmain.jpg',
+  avatarImg: './img/topic/poavtar.jpg',
+  img: './img/topic/plmain.jpg',
   category: "Celebreties"
 },{
   title: "Instruments",
   subtitle: "Let's play a music quiz",
-  avatarImg: './SubTopics/imgs/miavtar.jpg',
-  img: './SubTopics/imgs/mimain.gif',
+  avatarImg: './img/topic/miavtar.jpg',
+  img: './img/topic/mimain.gif',
   category: "Music"
 },
 {
   title: "Albums",
   subtitle: "Let's play a music quiz",
-  avatarImg: './SubTopics/imgs/maavtar.jpg',
-  img: './SubTopics/imgs/mamain.jpg',
+  avatarImg: './img/topic/maavtar.jpg',
+  img: './img/topic/mamain.jpg',
   category: "Music"
 },
 {
   title: "Singers",
   subtitle: "Let's play a music quiz",
-  avatarImg: './SubTopics/imgs/siavtar.jpg',
-  img: './SubTopics/imgs/simain.jpg',
+  avatarImg: './img/topic/siavtar.jpg',
+  img: './img/topic/simain.jpg',
   category: "Music"
 },
 {
   title: "Directors",
   subtitle: "Let's play a music quiz",
-  avatarImg: './SubTopics/imgs/mdavtar.jpg',
-  img: './SubTopics/imgs/mdmain.jpg',
+  avatarImg: './img/topic/mdavtar.jpg',
+  img: './img/topic/mdmain.jpg',
   category: "Music"
 }
 ];
 var tournamentData =[
   {
     title: "Sports Quiz",
-  AvatarURL: './SubTournaments/images/tournamentAvatar.jpg',
-  URL: './SubTournaments/images/sports-balls.jpg',
+  AvatarURL: './img/tournaments/tournamentAvatar.jpg',
+  URL: './img/tournaments/sports-balls.jpg',
   OverlayTitle: 'Sports Battle 101',
   OverlaySubtitle: 'Let the sports battle begin.',
   TabContent:{
@@ -148,8 +147,8 @@ var tournamentData =[
 },
 {
   title: "Music Quiz",
-  AvatarURL: './SubTournaments/images/muavtar.png',
-  URL: './SubTournaments/images/mumain.jpg',
+  AvatarURL: './img/tournaments/muavtar.png',
+  URL: './img/tournaments/mumain.jpg',
   OverlayTitle: 'Musical feast',
   OverlaySubtitle: 'Let us enjoy the music.',
   TabContent:{
@@ -160,8 +159,8 @@ var tournamentData =[
 },
 {
   title: "Monuments Quiz",
-  AvatarURL: './SubTournaments/images/monavtar.jpg',
-  URL: './SubTournaments/images/monmain.jpeg',
+  AvatarURL: './img/tournaments/monavtar.jpg',
+  URL: './img/tournaments/monmain.jpeg',
   OverlayTitle: 'Great monuments',
   OverlaySubtitle: 'Let us explore the monuments.',
   TabContent:{
@@ -172,8 +171,8 @@ var tournamentData =[
 },
 {
   title: "Celeb Quiz",
-  AvatarURL: './SubTournaments/images/celavtar.jpg',
-  URL: './SubTournaments/images/celmain.jpg',
+  AvatarURL: './img/tournaments/celavtar.jpg',
+  URL: './img/tournaments/celmain.jpg',
   OverlayTitle: 'Celebreties',
   OverlaySubtitle: 'Let us play quiz on celebs.',
   TabContent:{
@@ -184,54 +183,13 @@ var tournamentData =[
 }
 ];
 
-var badgeData =[
-  {
-    title: "Badge1",
-    img:"imgb/1.jpg"
-},
-{
-title: "Badge2",
-img:"imgb/3.jpg"
-},
-{
-  title: "Badge3",
-  img:"imgb/1.jpg"
-},
-{
-  title: "Badge4",
-  img:"imgb/1.jpg"
-},
-{
-  title: "Badge5",
-  img:"imgb/1.jpg"
-},
-{
-  title: "Badge6",
-  img:"imgb/1.jpg"
-},
-{
-  title: "Badge7",
-  img:"imgb/1.jpg"
-},
-{
-  title: "Badge8",
-  img:"imgb/1.jpg"
-}
-];
-
-
-
-
-
-
-
 var muiTheme = getMuiTheme();
 
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
 
 
-<BadgesContainer badge={badgeData}/>
+<TournamentsSubContainer tournament={tournamentData}/>
 
 
 

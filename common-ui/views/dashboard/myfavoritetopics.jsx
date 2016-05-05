@@ -17,22 +17,21 @@ const card={
   textAlign:'left',
   fontSize: 20,
   marginLeft:20,
-  width:'80%',
 };
 
 var topicsData =[
 {
   title: "IndianCelebs",
   subtitle: "Let's play a celeb quiz",
-  avatarImg: './views/SubTopics/imgs/inavtar.jpg',
-  img: './views/SubTopics/imgs/inmain.jpg',
+  avatarimg: 'img/SubTopicImages/inavtar.jpg',
+  img: 'img/SubTopicImages/inmain.jpg',
   category: "Celebreties"
 },
 {
   title: "Singers",
   subtitle: "Let's play a music quiz",
-  avatarImg: './views/SubTopics/imgs/siavtar.jpg',
-  img: './views/SubTopics/imgs/simain.jpg',
+  avatarimg: 'img/SubTopicImages/siavtar.jpg',
+  img: 'img/SubTopicImages/simain.jpg',
   category: "Music"
 }
 ];

@@ -32,6 +32,10 @@ const style={
   textAlign: 'center',
 };
 
+const listtext={
+  textAlign:'left',
+};
+
 const imgstyle={
   height:'auto',
   width:'auto',
@@ -82,11 +86,11 @@ var ProfileHero = React.createClass({
           <MenuItem onTouchTap={this.handleClose} style={style}> RANK: 21#</MenuItem>
           <Divider />
           <List>
-            <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} />
-            <ListItem primaryText="SETTINGS" leftIcon={<ActionSettings />} />
-            <ListItem primaryText="RECENT ACTIVITY" leftIcon={<ImageBurstmode />} />
-            <ListItem primaryText="BADGES" leftIcon={<ActionTurnedin />} />
-            <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} />
+            <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} style={listtext}/>
+            <ListItem primaryText="SETTINGS" leftIcon={<ActionSettings />} style={listtext}/>
+            <ListItem primaryText="RECENT ACTIVITY" leftIcon={<ImageBurstmode />} style={listtext}/>
+            <ListItem primaryText="BADGES" leftIcon={<ActionTurnedin />} style={listtext}/>
+            <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} style={listtext}/>
           </List>
         </Drawer>
       </div>

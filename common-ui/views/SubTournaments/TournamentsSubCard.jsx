@@ -13,7 +13,6 @@ import SwipeableViews from 'react-swipeable-views';
 
 const styleCard ={
   margin:10,
-  float:'left'
 }
 var title1={
   "font-size":"25"

@@ -12,10 +12,6 @@ import SwipeableViews from 'react-swipeable-views';
 
 
 const styleCard ={
-  width:"80%",
-  //height:"35%",
-  //margin:'auto',
-  //padding:10,
   margin:10,
   float:'left'
 }

@@ -5,11 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
 const style = {
-  height: '40%',
-  width: '98%',
   margin: 20,
   textAlign: 'center',
-  display: 'inline-block',
 };
 
 const stylebtn={

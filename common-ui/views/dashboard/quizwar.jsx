@@ -8,11 +8,8 @@ const cardHeader={
 };
 
 const quizstyle={
-  height: '20%',
-  width: '98%',
   margin: 20,
   textAlign: 'center',
-  display: 'inline-block',
 };
 
 var QuizWar=React.createClass({

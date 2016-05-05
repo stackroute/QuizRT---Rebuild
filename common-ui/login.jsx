@@ -3,7 +3,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 
-<<<<<<< HEAD:common-ui/login.jsx
 var Login = React.createClass({
   render: function() {
     return (
@@ -27,7 +26,7 @@ var Login = React.createClass({
     	</div>
    </div>
   </div>
-=======
+
 
 export default class LoginForm extends React.Component{
   render() {
@@ -52,7 +51,7 @@ export default class LoginForm extends React.Component{
       </div>
       </div>
       </div>
->>>>>>> new commit:common-ui/components/Login/login.jsx
+
 
     );
   }

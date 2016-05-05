@@ -12,9 +12,18 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
  import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import LoginView from './views/LoginView';
-import SignupView from './views/SignupView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
+<<<<<<< HEAD
+=======
+import {Router, Route, hashHistory} from 'react-router';
+import LoginForm from './views/LoginView';
+import ForgotPswd from './views/LoginView/forgotPswd';
+import VerifyOTP from './views/LoginView/verifyOTP';
+import SetNewPswd from './views/LoginView/setNewPswd';
+import Badges from './views/Badges/Badges';
+injectTapEventPlugin();
+>>>>>>> Error Correction
 
 
 const DashboardView = () => <div>This is the dashboard.</div>
@@ -22,6 +31,7 @@ export class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
+<<<<<<< HEAD
 
         <Router history={hashHistory}>
           <Route path="/" component={LoginView} />
@@ -34,6 +44,19 @@ export class App extends React.Component {
 
       </Router>
 
+=======
+        <Router history={hashHistory}>
+          <Route path="/dashboard" component={DashboardView} />
+          <Route path="/" component={LoginView} />
+          <Route path="/login" component={LoginView} />
+          <Route path="/tournament" component={TournamentView} />
+          <Route path="/topics" component={TopicsView} />
+          <Route path = '/' component = {LoginForm} />
+          <Route path = '/forgotPswd' component = {ForgotPswd} />
+          <Route path = '/setNewPswd' component = {SetNewPswd} />
+          <Route path = '/verifyOTP' component = {VerifyOTP} />
+        </Router>
+>>>>>>> Error Correction
       </MuiThemeProvider>
     );
   }

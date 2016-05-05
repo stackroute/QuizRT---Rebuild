@@ -32,7 +32,7 @@ var SubCategoryCard = React.createClass({
             <RaisedButton label="Register" secondary={true}  />
             <RaisedButton label="Play" primary ={true}   />
           </CardActions>
-          
+
         </div>
       </Card>
     );

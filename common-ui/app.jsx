@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { Router, Route, hashHistory } from 'react-router';
-
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
-import ResultView from './views/ResultView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
-//import ResultView from './views/ResultView';
+import {Router, Route, hashHistory} from 'react-router';
+import LoginForm from './views/LoginView';
+import ForgotPswd from './views/LoginView/forgotPswd';
+import VerifyOTP from './views/LoginView/verifyOTP';
+import SetNewPswd from './views/LoginView/setNewPswd';
 injectTapEventPlugin();
 
 const DashboardView = () => <div>This is the dashboard.</div>
@@ -27,9 +27,15 @@ export class App extends React.Component {
         <Route path="/signup" component={SignupView} />
         <Route path="/tournament" component={TournamentView} />
         <Route path="/topics" component={TopicsView} />
+        <Route path = '/' component = {LoginForm} />
+    	<Route path = '/forgotPswd' component = {ForgotPswd} />
+    	<Route path = '/setNewPswd' component = {SetNewPswd} />
+    	<Route path = '/verifyOTP' component = {VerifyOTP} />
       </Router>
       </MuiThemeProvider>
     );
   }
 };
+
+
 ReactDOM.render(<App />, document.getElementById('content'));

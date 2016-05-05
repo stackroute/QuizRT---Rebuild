@@ -1,0 +1,172 @@
+{
+  "Categories": [
+    {
+      "id": 1,
+      "title": "Sports category",
+      "category": "Sports",
+      "subtitle": "This is the sports category",
+      "text": "Welcome to the Sports category. Here you will find various sub categories to play quizzes in."
+    },
+    {
+      "id": 2,
+      "title": "Celebrities category",
+      "category": "Celebrities",
+      "subtitle": "This is the tv series category",
+      "text": "Welcome to the tv series category. Here you will find various sub categories to play quizzes in."
+    },
+    {
+      "id": 3,
+      "title": "History category",
+      "category": "History",
+      "subtitle": "This is the history category",
+      "text": "Welcome to the history category. Here you will find various sub categories to play quizzes in."
+    },
+    {
+      "id": 4,
+      "title": "Music category",
+      "category": "Music",
+      "subtitle": "This is the music category",
+      "text": "Welcome to the Music category. Here you will find various sub categories to play quizzes in."
+    },
+    {
+      "id": 5
+    },
+    {
+      "title": "Technology",
+      "category": "Technology",
+      "subtitle": "This is the sports category",
+      "text": "Welcome to the Sports category. Here you will find various sub categories to play quizzes in.",
+      "id": 6
+    }
+  ],
+  "Topics": [
+    {
+      "id": 1,
+      "title": "Cricket",
+      "subtitle": "Let's play a cricket quiz",
+      "avatarimg": "./views/SubTopics/imgs/avtar.jpg",
+      "img": "./views/SubTopics/imgs/main.jpg",
+      "category": "Sports"
+    },
+    {
+      "id": 2,
+      "title": "Chess",
+      "subtitle": "Let's play a chess quiz",
+      "avatarimg": "./views/SubTopics/imgs/chavtar.jpg",
+      "img": "./views/SubTopics/imgs/chesmain.jpg",
+      "category": "Sports"
+    },
+    {
+      "id": 3,
+      "title": "Football",
+      "subtitle": "Let's play a football quiz",
+      "avatarimg": "./views/SubTopics/imgs/foavtar.jpeg",
+      "img": "./views/SubTopics/imgs/footmain.jpg",
+      "category": "Sports"
+    },
+    {
+      "id": 4,
+      "title": "Hockey",
+      "subtitle": "Let's play a hockey quiz",
+      "avatarimg": "./views/SubTopics/imgs/hoavtar.jpg",
+      "img": "./views/SubTopics/imgs/homain.jpg",
+      "category": "Sports"
+    },
+    {
+      "id": 5,
+      "title": "Indian History",
+      "subtitle": "Let's play history quiz",
+      "avatarimg": "./views/SubTopics/imgs/hisavtar.jpg",
+      "img": "./views/SubTopics/imgs/hismain.jpg",
+      "category": "History"
+    },
+    {
+      "id": 6,
+      "title": "Monuments",
+      "subtitle": "Let's play a history quiz",
+      "avatarimg": "./views/SubTopics/imgs/monavtar.jpg",
+      "img": "./views/SubTopics/imgs/monmain.jpg",
+      "category": "History"
+    },
+    {
+      "id": 7,
+      "title": "Great Leaders",
+      "subtitle": "Let's play a history quiz",
+      "avatarimg": "./views/SubTopics/imgs/leavtar.jpg",
+      "img": "./views/SubTopics/imgs/lemain.png",
+      "category": "History"
+    },
+    {
+      "id": 8,
+      "title": "World Wars",
+      "subtitle": "Let's play a history quiz",
+      "avatarimg": "./views/SubTopics/imgs/waravtar.jpg",
+      "img": "./views/SubTopics/imgs/warmain.jpg",
+      "category": "History"
+    },
+    {
+      "id": 9,
+      "title": "Tv Celebs",
+      "subtitle": "Let's play a celeb quiz",
+      "avatarimg": "./views/SubTopics/imgs/tvavtar.jpg",
+      "img": "./views/SubTopics/imgs/tvmain.jpg",
+      "category": "Celebrities"
+    },
+    {
+      "id": 10,
+      "title": "Hollywood Celebs",
+      "subtitle": "Let's play a celeb quiz",
+      "avatarimg": "./views/SubTopics/imgs/hlavtar.jpg",
+      "img": "./views/SubTopics/imgs/hlmain.jpg",
+      "category": "Celebrities"
+    },
+    {
+      "id": 11,
+      "title": "Indian Celebs",
+      "subtitle": "Let's play a celeb quiz",
+      "avatarimg": "./views/SubTopics/imgs/inavtar.jpg",
+      "img": "./views/SubTopics/imgs/inmain.jpg",
+      "category": "Celebrities"
+    },
+    {
+      "id": 12,
+      "title": "Political Celebs",
+      "subtitle": "Let's play a celeb quiz",
+      "avatarimg": "./views/SubTopics/imgs/poavtar.jpg",
+      "img": "./views/SubTopics/imgs/plmain.jpg",
+      "category": "Celebrities"
+    },
+    {
+      "id": 13,
+      "title": "Instruments",
+      "subtitle": "Let's play a music quiz",
+      "avatarimg": "./views/SubTopics/imgs/miavtar.jpg",
+      "img": "./views/SubTopics/imgs/mimain.gif",
+      "category": "Music"
+    },
+    {
+      "id": 14,
+      "title": "Albums",
+      "subtitle": "Let's play a music quiz",
+      "avatarimg": "./views/SubTopics/imgs/maavtar.jpg",
+      "img": "./views/SubTopics/imgs/mamain.jpg",
+      "category": "Music"
+    },
+    {
+      "id": 15,
+      "title": "Singers",
+      "subtitle": "Let's play a music quiz",
+      "avatarimg": "./views/SubTopics/imgs/siavtar.jpg",
+      "img": "./views/SubTopics/imgs/simain.jpg",
+      "category": "Music"
+    },
+    {
+      "id": 16,
+      "title": "Directors",
+      "subtitle": "Let's play a music quiz",
+      "avatarimg": "./views/SubTopics/imgs/mdavtar.jpg",
+      "img": "./views/SubTopics/imgs/mdmain.jpg",
+      "category": "Music"
+    }
+  ]
+}

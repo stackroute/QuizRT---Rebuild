@@ -17,35 +17,21 @@ const card={
   textAlign:'left',
   fontSize: 20,
   marginLeft:20,
-<<<<<<< HEAD
-  width:'80%',
-=======
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
 };
 
 var topicsData =[
 {
   title: "IndianCelebs",
   subtitle: "Let's play a celeb quiz",
-<<<<<<< HEAD
-  avatarImg: './views/SubTopics/imgs/inavtar.jpg',
-  img: './views/SubTopics/imgs/inmain.jpg',
-=======
   avatarimg: 'img/SubTopicImages/inavtar.jpg',
   img: 'img/SubTopicImages/inmain.jpg',
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
   category: "Celebreties"
 },
 {
   title: "Singers",
   subtitle: "Let's play a music quiz",
-<<<<<<< HEAD
-  avatarImg: './views/SubTopics/imgs/siavtar.jpg',
-  img: './views/SubTopics/imgs/simain.jpg',
-=======
   avatarimg: 'img/SubTopicImages/siavtar.jpg',
   img: 'img/SubTopicImages/simain.jpg',
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
   category: "Music"
 }
 ];

@@ -20,19 +20,13 @@
     "material-ui": "^0.15.0-beta.2",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-<<<<<<< HEAD
-
     "react-router": "^2.4.0",
     "react-swipeable-views": "^0.5.3",
-      "react-motion": "^0.4.3",
-
-
-     "react-tap-event-plugin": "^1.0.0",
-    "webpack": "^1.13.0"
-=======
+    "react-motion": "^0.4.3",
+	"react-tap-event-plugin": "^1.0.0",
+    "webpack": "^1.13.0",
     "react-motion": "^0.4.3",
     "react-swipeable-views": "^0.5.3",
     "react-tap-event-plugin": "^1.0.0"
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
   }
 }

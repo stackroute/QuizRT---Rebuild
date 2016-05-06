@@ -1,33 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-import { Router, Route, hashHistory } from 'react-router';
-
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-=======
-
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
->>>>>>> bb2fcdeb142ce1e62dddb7e81008ce3048495069
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-<<<<<<< HEAD
-injectTapEventPlugin();
-
-// import LoginView from './views/LoginView';
-import TournamentView from './views/Tournament';
-import TopicsView from './views/TopicsPage';
-// import ForgotPswd from './views/LoginView/forgotPswd';
-// import VerifyOTP from './views/LoginView/verifyOTP';
-// import SetNewPswd from './views/LoginView/setNewPswd';
-import Badges from './views/Badges/Badges';
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
 import LoginView from './views/LoginView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
@@ -37,99 +12,32 @@ import ForgotPswd from './views/LoginView/forgotPswd';
 import VerifyOTP from './views/LoginView/verifyOTP';
 import SetNewPswd from './views/LoginView/setNewPswd';
 import Badges from './views/Badges/Badges';
-=======
->>>>>>> bb2fcdeb142ce1e62dddb7e81008ce3048495069
-injectTapEventPlugin();
-=======
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import Dashboard from './views/dashboard/dashboard';
+import TopicDetails from './views/EachTopic/EachTopic';
 injectTapEventPlugin();
 
-import Config from './views/QuizPlay'
-var muiTheme = getMuiTheme();
->>>>>>> 450f09f... Cleaned and refactored code
 
-<<<<<<< HEAD
-const App = () => (
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <Config />
-  </MuiThemeProvider>
-);
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
-
-<<<<<<< HEAD
-=======
-import { Router, Route, hashHistory} from 'react-router';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import SignUP from './views/SignUP';
-import Quiz from './views/QuizPlay';
-import Result from './views/Result';
-import Pro from './pro';
-injectTapEventPlugin();
->>>>>>> 7811a1c... commit the changes
 export class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-<<<<<<< HEAD
-         <Router history={hashHistory}>
-
-
-          <Route path="/topics" component={TopicsView} />
-          <Route path="/tournament" component={TournamentView} />
-            <Route path="/dashboard" component={DashboardView} />
-
-         </Router>
-       </MuiThemeProvider>
-    );
-  }
-}
- ReactDOM.render(<App />, document.getElementById('content'));
-=======
-<<<<<<< HEAD
-        <Router history={hashHistory}>
-          <Route path="/dashboard" component={DashboardView} />
-          <Route path="/" component={LoginView} />
-          <Route path="/login" component={LoginView} />
-          <Route path="/tournament" component={TournamentView} />
-          <Route path="/topics" component={TopicsView} />
-          <Route path = '/' component = {LoginForm} />
-          <Route path = '/forgotPswd' component = {ForgotPswd} />
-          <Route path = '/setNewPswd' component = {SetNewPswd} />
-          <Route path = '/verifyOTP' component = {VerifyOTP} />
-        </Router>
-=======
       <Router history={hashHistory}>
-        <Route path="/signup" component={SignUP} />
-        <Route path="/quiz" component={Quiz} />
-        <Route path="/result" component={Result} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/" component={LoginView} />
+      <Route path="/login" component={LoginView} />
+      <Route path="/tournament" component={TournamentView} />
+      <Route path="/topics" component={TopicsView} />
+      <Route path = '/' component = {LoginForm} />
+    	<Route path = '/forgotPswd' component = {ForgotPswd} />
+    	<Route path = '/setNewPswd' component = {SetNewPswd} />
+    	<Route path = '/verifyOTP' component = {VerifyOTP} />
+      <Route path = '/badges' component = {Badges} />
+      <Route path='/eachtopic' component={TopicDetails} />
       </Router>
->>>>>>> 7e03cac... Refactor
       </MuiThemeProvider>
     );
   }
 };
-=======
-import RecentPage from './views/recent_activity/index';
-import Dashboard from './views/dashboard/dashboard';
-import TopicSection from './views/dashboard/mostpopular';
-
-var muiTheme = getMuiTheme();
-
-const App = () => (
-  <MuiThemeProvider muiTheme={muiTheme}>
-
-      <Dashboard />
-
-  </MuiThemeProvider>
-);
->>>>>>> bb2fcdeb142ce1e62dddb7e81008ce3048495069
 
 
-=======
-
->>>>>>> 450f09f... Cleaned and refactored code
 ReactDOM.render(<App />, document.getElementById('content'));
->>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37

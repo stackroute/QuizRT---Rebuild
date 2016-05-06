@@ -14,9 +14,16 @@ export default class LoginForm extends React.Component{
 
   render() {
     return (
+<<<<<<< HEAD
           <div className="row">
             <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">
 
+=======
+      <div className = "container-fluid">
+        <div className="row">
+            <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">
+            
+>>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
               <h1>Login</h1>
               <h1>QuizRT</h1>
   				    <p>Login here to play the game</p>
@@ -36,8 +43,12 @@ export default class LoginForm extends React.Component{
               <RaisedButton label = "Create Account" primary = {true} style = {styles}/><br/>
       	    </div>
         </div>
+<<<<<<< HEAD
      
 
+=======
+      </div>
+>>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
 
     );
   }

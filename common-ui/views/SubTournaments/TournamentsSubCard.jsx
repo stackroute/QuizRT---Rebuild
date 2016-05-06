@@ -13,17 +13,26 @@ import SwipeableViews from 'react-swipeable-views';
 
 const styleCard ={
   margin:10,
+<<<<<<< HEAD
   float:'left'
 }
 var title1={
     "font-size":"25"
+=======
+}
+var title1={
+  "font-size":"25"
+>>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
 }
 const styleImg={
   height:"200px"
 }
 
 const btnFontColor ={
+<<<<<<< HEAD
   //"background-color": "red"
+=======
+>>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
   margin:'auto',
   width:"50%"
 }

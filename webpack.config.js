@@ -13,11 +13,14 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react']
-
         },
+<<<<<<< HEAD
 
         exclude: /(node_modules|bower_components)/
 
+=======
+        exclude: /(node_modules|bower_components)/
+>>>>>>> 462e3e3d5a2dd3d6b6a34200406b0c8784112e37
       }
     ]
   },

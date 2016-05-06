@@ -1,5 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
+
 
 import { Card, CardText, CardHeader } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -28,8 +28,8 @@ export default class LoginView extends React.Component {
         </CardText>
       </Card>
 
-    <LoginForm/>
- 
+
+
     );
   }
 };

@@ -149,6 +149,7 @@ var NewTopicCard = React.createClass({
       topics.push(subtopic);
     });
     this.setState({subtopics:topics});
+    console.log(this.state.subtopics)
   },
 
   render: function(){

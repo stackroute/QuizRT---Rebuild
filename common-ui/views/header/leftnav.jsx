@@ -12,8 +12,7 @@ import ActionPowersettingsnew from 'material-ui/svg-icons/action/power-settings-
 import ActionAccountbox from 'material-ui/svg-icons/action/account-box';
 import ActionTurnedin from 'material-ui/svg-icons/action/turned-in';
 
-<<<<<<< HEAD
-=======
+
 const avatarstyle={
   backgroundSize:'cover',
   marginTop:10,
@@ -37,7 +36,7 @@ const imgstyle={
   height:'auto',
   width:'auto',
 };
->>>>>>> dashboard commit
+
 
 var ProfileHero = React.createClass({
   getInitialState: function () {
@@ -57,23 +56,24 @@ var ProfileHero = React.createClass({
 
   render: function() {
     return (
-      <div>
 
+      <div>
       <AppBar
         title={<span>QuizRT</span>}
         onTitleTouchTap={this.handleTouchTap}
         onLeftIconButtonTouchTap={this.handleToggle}
         iconElementRight={
-<<<<<<< HEAD
+
           <div>
             <FlatButton label="Topics" />
             <FlatButton label="Tournaments" />
             <Avatar src="img/photo.jpg"/>
-=======
+
           <div style={iconstyle}>
             <Avatar src="img/photo.jpg" style={avatarstyle}/>
->>>>>>> dashboard commit
+
           </div>
+        </div>
           }
       />
 
@@ -85,10 +85,11 @@ var ProfileHero = React.createClass({
           onRequestChange={(open) => this.setState({open})}
         >
 
-          <MenuItem onTouchTap={this.handleClose}>
+        <MenuItem onTouchTap={this.handleClose}>
           <div><Avatar src="img/photo.jpg"/></div>
-          Display Name</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}>RANK: 21#</MenuItem>
+          Display Name
+        </MenuItem>
+        <MenuItem onTouchTap={this.handleClose}>RANK: 21#</MenuItem>
           <Divider />
           <List>
             <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} />
@@ -98,7 +99,7 @@ var ProfileHero = React.createClass({
             <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} />
           </List>
         </Drawer>
-      </div>
+        </div>
     );
   }
 });

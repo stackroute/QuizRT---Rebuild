@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
- 
+
 import { Router, Route, hashHistory } from 'react-router';
 
  import Login from './login';
@@ -13,11 +13,18 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 
 
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
  import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import LoginView from './views/LoginView';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+
+
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
  import {Router, Route, hashHistory} from 'react-router';
@@ -37,6 +44,7 @@ export class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
 
 
+
         <Router history={hashHistory}>
           <Route path="/" component={LoginView} />
           <Route path="/signup" component={SignupView} />
@@ -49,10 +57,10 @@ export class App extends React.Component {
       </Router>
 
 
-        <Router history={hashHistory}>
+         <Router history={hashHistory}>
           <Route path="/dashboard" component={DashboardView} />
-          <Route path="/" component={LoginView} />
-          <Route path="/login" component={LoginView} />
+
+
           <Route path="/tournament" component={TournamentView} />
           <Route path="/topics" component={TopicsView} />
           <Route path = '/' component = {LoginForm} />

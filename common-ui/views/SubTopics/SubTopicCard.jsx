@@ -5,34 +5,25 @@ import {orange500} from 'material-ui/styles/colors';
 
 const TitleStyle={
   "font-size":"1em",
-  width:"100%",
+    width:"100%",
   "font-weight":"1em"
 
 }
 const SubtitleStyle={
   "font-size":"0.8em",
-  width:"100%"
+    width:"100%"
 }
 var style1= {
-
-  width:"100%",
-
-  float:'left',
-  margin:"5px"
+  margin:"5px",
 
 }
 var imgStyle={
   height:"50%",
-  width:"80%",
   margin:"auto"
 }
-const CardHeaderStyle = {
-  width:"100%"
-}
+
 const BtnStyle ={
   width:"50%"
-
-
 }
 
 var SubTopicCard = React.createClass({

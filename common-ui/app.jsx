@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+=======
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+>>>>>>> bb2fcdeb142ce1e62dddb7e81008ce3048495069
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
+<<<<<<< HEAD
 <<<<<<< HEAD
 import LoginView from './views/LoginView';
 import TournamentView from './views/Tournament';
@@ -14,6 +21,8 @@ import ForgotPswd from './views/LoginView/forgotPswd';
 import VerifyOTP from './views/LoginView/verifyOTP';
 import SetNewPswd from './views/LoginView/setNewPswd';
 import Badges from './views/Badges/Badges';
+=======
+>>>>>>> bb2fcdeb142ce1e62dddb7e81008ce3048495069
 injectTapEventPlugin();
 =======
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -25,6 +34,7 @@ import Config from './views/QuizPlay'
 var muiTheme = getMuiTheme();
 >>>>>>> 450f09f... Cleaned and refactored code
 
+<<<<<<< HEAD
 const App = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <Config />
@@ -69,6 +79,21 @@ export class App extends React.Component {
     );
   }
 };
+=======
+import RecentPage from './views/recent_activity/index';
+import Dashboard from './views/dashboard/dashboard';
+import TopicSection from './views/dashboard/mostpopular';
+
+var muiTheme = getMuiTheme();
+
+const App = () => (
+  <MuiThemeProvider muiTheme={muiTheme}>
+
+      <Dashboard />
+
+  </MuiThemeProvider>
+);
+>>>>>>> bb2fcdeb142ce1e62dddb7e81008ce3048495069
 
 
 =======

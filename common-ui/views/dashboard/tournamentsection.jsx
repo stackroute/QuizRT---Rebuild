@@ -21,8 +21,8 @@ const card={
 var tournamentData =[
   {
     title: "Sports Quiz",
-  AvatarURL: './SubTournaments/images/tournamentAvatar.jpg',
-  URL: './SubTournaments/images/sports-balls.jpg',
+  AvatarURL: './img/tournaments/tournamentAvatar.jpg',
+  URL: './img/tournaments/sports-balls.jpg',
   OverlayTitle: 'Sports Battle 101',
   OverlaySubtitle: 'Let the sports battle begin.',
   TabContent:{
@@ -33,8 +33,8 @@ var tournamentData =[
 },
 {
   title: "Music Quiz",
-  AvatarURL: './SubTournaments/images/muavtar.png',
-  URL: './SubTournaments/images/mumain.jpg',
+  AvatarURL: './img/tournaments/muavtar.png',
+  URL: './img/tournaments/mumain.jpg',
   OverlayTitle: 'Musical feast',
   OverlaySubtitle: 'Let us enjoy the music.',
   TabContent:{
@@ -45,8 +45,8 @@ var tournamentData =[
 },
 {
   title: "Monuments Quiz",
-  AvatarURL: '../SubTournaments/images/monavtar.jpg',
-  URL: '../SubTournaments/images/monmain.jpeg',
+  AvatarURL: '../img/tournaments/monavtar.jpg',
+  URL: '../img/tournaments/monmain.jpeg',
   OverlayTitle: 'Great monuments',
   OverlaySubtitle: 'Let us explore the monuments.',
   TabContent:{

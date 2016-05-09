@@ -4,8 +4,8 @@ import TournamentCard from './TournamentCard';
 //Dummy data for tournament.
 var tournamentData ={
   title: "Sports Quiz",
-  AvatarURL: './images/tournamentAvatar.jpg',
-  URL: './images/sports-balls.jpg',
+  AvatarURL: './img/tournaments/tournamentAvatar.jpg',
+  URL: './img/tournaments/sports-balls.jpg',
   OverlayTitle: 'Sports Battle 101',
   OverlaySubtitle: 'Let the sports battle begin.',
   TabContent:{

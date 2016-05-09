@@ -20,7 +20,7 @@ var title1={
 
 }
 var title1={
-  "font-size":"25"
+  "font-size":"25",
   width:"90%",
   //height:"35%",
   //margin:'auto',

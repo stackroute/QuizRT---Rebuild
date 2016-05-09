@@ -1,6 +1,3 @@
-import React from 'react';
-import SubTopicCard from './SubTopicCard';
-
 //Sample Data to be passed. Put it inside the parent container of this.
 // var topicsData =[{
 //   title: "Cricket",
@@ -119,9 +116,6 @@ import SubTopicCard from './SubTopicCard';
 
 
 import React from 'react';
-//import SubTopicCard from './SubTopicCard';
-//import SubTopicCard2 from './SubTopicCard2';
-//import SubTopicCard3 from './SubTopicCard3';
 
 import SubTopicCard from './SubTopicCard';
 
@@ -147,33 +141,9 @@ var SubTopicContainer = React.createClass({
               {allTheTopics}
 
      </div>
-      this.props.topics.forEach(function(topic){
-
-
-
-        allTheTopics.push(
-          <div className="col-xs-12 col-lg-4 col-md-6 col-sm-6">
-          <SubTopicCard topic={topic} key={topic.title}/>
-          </div>
-        );
-
-      })
-    return(
-
-        <div className="container-fluid">
-          <div className="row">
-        {allTheTopics}
-
-        </div>
-
-         </div>
-
-
-    );
+  ); 
   }
-});
-
-})
+  });
 
 
 module.exports = SubTopicContainer;

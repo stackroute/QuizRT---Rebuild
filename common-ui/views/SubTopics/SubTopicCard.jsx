@@ -1,7 +1,6 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-<<<<<<< HEAD
 import {orange500} from 'material-ui/styles/colors';
 
 const TitleStyle={
@@ -142,9 +141,6 @@ var topicsData =[{
 }
 ];
 
-=======
-//import {orange500} from 'material-ui/styles/colors';
-
 
 var style1= {
 
@@ -176,27 +172,10 @@ var title4={
 
      margin:'auto'
    }
->>>>>>> SubTopicsPage
 var SubTopicCard = React.createClass({
   render: function(){
     return(
-
-<<<<<<< HEAD
-<Card style={style1}>
-
-    <CardHeader
-      title={this.props.topic.title}
-
-      titleStyle={TitleStyle}
-      subtitle={this.props.topic.subtitle}
-      avatar={this.props.topic.avatarimg}
-      subtitleStyle={SubtitleStyle}
-
-    />
-
-    <CardMedia style={imgStyle}>
-      <img src={this.props.topic.img}  />
-=======
+  
 
 <Card style ={cardDivStyle}>
 
@@ -210,12 +189,10 @@ var SubTopicCard = React.createClass({
 
     <CardMedia style={title3}>
       <img src={this.props.topic.img} />
->>>>>>> SubTopicsPage
     </CardMedia>
 
 
     <CardActions >
-<<<<<<< HEAD
       <div className="col-md col-xs col-lg col-sm">
       <RaisedButton label="+Fav"  primary={true} style={BtnStyle} />
 
@@ -226,18 +203,6 @@ var SubTopicCard = React.createClass({
     </Card>
 
    );
-=======
-
-        <div className="col-xs col-md col-lg col-sm">
-        <RaisedButton label="+Fav" primary={true} style={title4}   />
-        <RaisedButton label="Play" style={title4} secondary={true}  />
-        </div>
-  </CardActions>
-
-    </Card>
-
-  );
->>>>>>> SubTopicsPage
 }
 });
 

@@ -10,12 +10,8 @@ var style = {
   width:'100%'
 };
 
- var styles = {
-   width:'100%'
- };
-
  var para = {
-   textalign :'center'
+   "text-align" :'center'
  };
 
  export default class ForgotPswd extends React.Component{
@@ -25,12 +21,12 @@ var style = {
       <div className = "container-fluid">
       <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">
-         <h1>Please provide Information</h1>
+         <h1 style = {para}>Please provide Information</h1>
       <TextField hintText = "+91-"	floatingLabelText = "Enter Mob no"	type = "text" style = {style} />
-      <RaisedButton label = "Send OTP" primary = {true} style = {styles} /><br/><br/>
+      <RaisedButton label = "Send OTP" primary = {true} style = {style} /><br/><br/>
       <p style = {para}>OR</p>
       <TextField hintText = "abc@example.com"	floatingLabelText = " Enter your Mail"	type = "text" style = {style}/>
-      <RaisedButton label = "Verify Email" primary = {true} style = {styles} /><br/>
+      <RaisedButton label = "Verify Email" primary = {true} style = {style} /><br/>
     	</div>
       </div>
       </div>

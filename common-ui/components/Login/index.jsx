@@ -1,13 +1,20 @@
 import React from 'react';
-import { Card, CardText } from 'material-ui/Card';
-import LoginForm from './LoginForm';
 import LoginForm from './login';
+import ForgotPasswordForm from './forgotPswd.jsx'
 
 export default class Login extends React.Component {
   render() {
     return (
       <LoginForm />
+
     );
   }
-}
+};
+
+export default class ForgotPassword extends React.Component{
+  render(){
+    return(
+      <ForgotPasswordForm />
+    );
+  }
 };

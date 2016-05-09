@@ -20,7 +20,6 @@ export default class LoginForm extends React.Component{
 
       <RaisedButton label = "Login" primary = {true} style = {{width:'100%'}}/><br/>
 
-      <p><a href="#" >Forgot Password</a></p>
       <p>OR</p>
       <RaisedButton label = "Login With Facebook" secondary = {true} style = {{width:'100%'}}/><br/>
       <RaisedButton label = "Login With Google" secondary = {true} style = {{width:'100%'}}/><br/>

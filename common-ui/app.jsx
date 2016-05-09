@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import LoginView from './views/LoginView';
 import TournamentView from './views/Tournament';
 import TopicsView from './views/TopicsPage';
 import {Router, Route, hashHistory} from 'react-router';
-import LoginForm from './views/LoginView';
-import ForgotPswd from './views/LoginView/forgotPswd';
-import VerifyOTP from './views/LoginView/verifyOTP';
-import SetNewPswd from './views/LoginView/setNewPswd';
+import LoginForm from './views/Login';
+import ForgotPswd from './views/Forgot';
+import VerifyOTP from './views/OTP';
+import SetNewPswd from './views/SetPswd';
 import Badges from './views/Badges/Badges';
 import Dashboard from './views/dashboard/dashboard';
 import TopicDetails from './views/EachTopic/EachTopic';
@@ -191,14 +190,12 @@ export class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/" component={LoginView} />
-      <Route path="/login" component={LoginView} />
       <Route path="/tournament" component={TournamentView} />
       <Route path="/topics" component={TopicsView} />
       <Route path = '/' component = {LoginForm} />
-    	<Route path = '/forgotPswd' component = {ForgotPswd} />
-    	<Route path = '/setNewPswd' component = {SetNewPswd} />
-    	<Route path = '/verifyOTP' component = {VerifyOTP} />
+      <Route path = '/forgotPswd' component = {ForgotPswd} />
+      <Route path = '/setNewPswd' component = {SetNewPswd} />
+      <Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/badges' component = {Badges} />
       <Route path = '/signup' component = {SignUp} />
       <Route path= '/eachtopic' component={TopicDetails} />

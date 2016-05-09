@@ -9,9 +9,9 @@ const style = {
 };
 
 const img_style ={
-	height:"100%",
-	width:"100%",
-	borderRadius:"50% 50% 50% 50%"
+	height:"80%",
+	width:"80%",
+	borderRadius:"50%"
 };
 
 
@@ -132,7 +132,7 @@ var TopicDetails = React.createClass({
 				<div className="container" style={feedStyle}>
 					<div className="row">
 						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="./img/photo.jpg" style={img_style}/>
+							<img src="./img/photo_1.jpg" style={img_style}/>
 						</div>
 						<div className="col-lg-7 col-md-7 col-sm-7 col-xs-7">
 							<h5>MarshMellow</h5>
@@ -171,7 +171,7 @@ var TopicDetails = React.createClass({
 				<div className="container" style={feedStyle}>
 					<div className="row">
 						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="./img/photo.jpg" style={img_style}/>
+							<img src="./img/photo_1.jpg" style={img_style}/>
 						</div>
 						<div className="col-lg-7 col-md-7 col-sm-7 col-xs-7">
 							<h5>MarshMellow</h5>

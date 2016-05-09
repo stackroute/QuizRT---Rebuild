@@ -48,7 +48,7 @@ var MyFavoriteSection = React.createClass({
             <CardHeader style={card}
                title="My Favorite Topics"
             />
-            <SubTopicContainer topic ={topicsData} />
+            <SubTopicContainer topics ={topicsData} />
 
           </Card>
         </Paper>

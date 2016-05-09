@@ -201,7 +201,7 @@ export class App extends React.Component {
     	<Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/badges' component = {Badges} />
       <Route path = '/signup' component = {SignUp} />
-      <Route path='/eachtopic' component={TopicDetails} />
+      <Route path= '/eachtopic' component={TopicDetails} />
       </Router>
       </MuiThemeProvider>
     );

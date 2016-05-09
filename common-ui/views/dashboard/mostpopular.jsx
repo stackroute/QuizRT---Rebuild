@@ -63,7 +63,7 @@ var MostPopularSection = React.createClass({
             <CardHeader style={card}
                title="Most Popular Topics"
             />
-            <SubTopicContainer topic ={topicsData} />
+            <SubTopicContainer topics ={topicsData} />
 
           </Card>
         </Paper>

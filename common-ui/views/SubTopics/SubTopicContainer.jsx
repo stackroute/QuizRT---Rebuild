@@ -6,7 +6,8 @@ var SubTopicContainer = React.createClass({
 
   getDefaultProps: function(){
     return{
-     topics :[{
+
+topics :[{
 
   title: "Cricket",
   subtitle: "Let's play a cricket quiz",

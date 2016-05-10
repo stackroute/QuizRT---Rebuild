@@ -51,129 +51,167 @@
       "id": 1,
       "title": "Cricket",
       "subtitle": "Let's play a cricket quiz",
-      "avatarimg": "./views/SubTopics/imgs/avtar.jpg",
-      "img": "./views/SubTopics/imgs/main.jpg",
+      "avatarimg": "./img/SubTopicImages/avtar.jpg",
+      "img": "./img/SubTopicImages/main.jpg",
       "category": "Sports"
     },
     {
       "id": 2,
       "title": "Chess",
       "subtitle": "Let's play a chess quiz",
-      "avatarimg": "./views/SubTopics/imgs/chavtar.jpg",
-      "img": "./views/SubTopics/imgs/chesmain.jpg",
+      "avatarimg": "./img/SubTopicImages/chavtar.jpg",
+      "img": "./img/SubTopicImages/chesmain.jpg",
       "category": "Sports"
     },
     {
       "id": 3,
       "title": "Football",
       "subtitle": "Let's play a football quiz",
-      "avatarimg": "./views/SubTopics/imgs/foavtar.jpeg",
-      "img": "./views/SubTopics/imgs/footmain.jpg",
+      "avatarimg": "./img/SubTopicImages/foavtar.jpeg",
+      "img": "./img/SubTopicImages/footmain.jpg",
       "category": "Sports"
     },
     {
       "id": 4,
       "title": "Hockey",
       "subtitle": "Let's play a hockey quiz",
-      "avatarimg": "./views/SubTopics/imgs/hoavtar.jpg",
-      "img": "./views/SubTopics/imgs/homain.jpg",
+      "avatarimg": "./img/SubTopicImages/hoavtar.jpg",
+      "img": "./img/SubTopicImages/homain.jpg",
       "category": "Sports"
     },
     {
       "id": 5,
       "title": "Indian History",
       "subtitle": "Let's play history quiz",
-      "avatarimg": "./views/SubTopics/imgs/hisavtar.jpg",
-      "img": "./views/SubTopics/imgs/hismain.jpg",
+      "avatarimg": "./img/SubTopicImages/hisavtar.jpg",
+      "img": "./img/SubTopicImages/hismain.jpg",
       "category": "History"
     },
     {
       "id": 6,
       "title": "Monuments",
       "subtitle": "Let's play a history quiz",
-      "avatarimg": "./views/SubTopics/imgs/monavtar.jpg",
-      "img": "./views/SubTopics/imgs/monmain.jpg",
+      "avatarimg": "./img/SubTopicImages/monavtar.jpg",
+      "img": "./img/SubTopicImages/monmain.jpg",
       "category": "History"
     },
     {
       "id": 7,
       "title": "Great Leaders",
       "subtitle": "Let's play a history quiz",
-      "avatarimg": "./views/SubTopics/imgs/leavtar.jpg",
-      "img": "./views/SubTopics/imgs/lemain.png",
+      "avatarimg": "./img/SubTopicImages/leavtar.jpg",
+      "img": "./img/SubTopicImages/lemain.png",
       "category": "History"
     },
     {
       "id": 8,
       "title": "World Wars",
       "subtitle": "Let's play a history quiz",
-      "avatarimg": "./views/SubTopics/imgs/waravtar.jpg",
-      "img": "./views/SubTopics/imgs/warmain.jpg",
+      "avatarimg": "./img/SubTopicImages/waravtar.jpg",
+      "img": "./img/SubTopicImages/warmain.jpg",
       "category": "History"
     },
     {
       "id": 9,
       "title": "Tv Celebs",
       "subtitle": "Let's play a celeb quiz",
-      "avatarimg": "./views/SubTopics/imgs/tvavtar.jpg",
-      "img": "./views/SubTopics/imgs/tvmain.jpg",
+      "avatarimg": "./img/SubTopicImages/tvavtar.jpg",
+      "img": "./img/SubTopicImages/tvmain.jpg",
       "category": "Celebrities"
     },
     {
       "id": 10,
       "title": "Hollywood Celebs",
       "subtitle": "Let's play a celeb quiz",
-      "avatarimg": "./views/SubTopics/imgs/hlavtar.jpg",
-      "img": "./views/SubTopics/imgs/hlmain.jpg",
+      "avatarimg": "./img/SubTopicImages/hlavtar.jpg",
+      "img": "./img/SubTopicImages/hlmain.jpg",
       "category": "Celebrities"
     },
     {
       "id": 11,
       "title": "Indian Celebs",
       "subtitle": "Let's play a celeb quiz",
-      "avatarimg": "./views/SubTopics/imgs/inavtar.jpg",
-      "img": "./views/SubTopics/imgs/inmain.jpg",
+      "avatarimg": "./img/SubTopicImages/inavtar.jpg",
+      "img": "./img/SubTopicImages/inmain.jpg",
       "category": "Celebrities"
     },
     {
       "id": 12,
       "title": "Political Celebs",
       "subtitle": "Let's play a celeb quiz",
-      "avatarimg": "./views/SubTopics/imgs/poavtar.jpg",
-      "img": "./views/SubTopics/imgs/plmain.jpg",
+      "avatarimg": "./img/SubTopicImages/poavtar.jpg",
+      "img": "./img/SubTopicImages/plmain.jpg",
       "category": "Celebrities"
     },
     {
       "id": 13,
       "title": "Instruments",
       "subtitle": "Let's play a music quiz",
-      "avatarimg": "./views/SubTopics/imgs/miavtar.jpg",
-      "img": "./views/SubTopics/imgs/mimain.gif",
+      "avatarimg": "./img/SubTopicImages/miavtar.jpg",
+      "img": "./img/SubTopicImages/mimain.gif",
       "category": "Music"
     },
     {
       "id": 14,
       "title": "Albums",
       "subtitle": "Let's play a music quiz",
-      "avatarimg": "./views/SubTopics/imgs/maavtar.jpg",
-      "img": "./views/SubTopics/imgs/mamain.jpg",
+      "avatarimg": "./img/SubTopicImages/maavtar.jpg",
+      "img": "./img/SubTopicImages/mamain.jpg",
       "category": "Music"
     },
     {
       "id": 15,
       "title": "Singers",
       "subtitle": "Let's play a music quiz",
-      "avatarimg": "./views/SubTopics/imgs/siavtar.jpg",
-      "img": "./views/SubTopics/imgs/simain.jpg",
+      "avatarimg": "./img/SubTopicImages/siavtar.jpg",
+      "img": "./img/SubTopicImages/simain.jpg",
       "category": "Music"
     },
     {
       "id": 16,
       "title": "Directors",
       "subtitle": "Let's play a music quiz",
-      "avatarimg": "./views/SubTopics/imgs/mdavtar.jpg",
-      "img": "./views/SubTopics/imgs/mdmain.jpg",
+      "avatarimg": "./img/SubTopicImages/mdavtar.jpg",
+      "img": "./img/SubTopicImages/mdmain.jpg",
       "category": "Music"
+    }
+  ],
+  "Tournaments": [
+    {
+      "title": "Sports Quiz",
+      "AvatarURL": "./img/tournaments/tournamentAvatar.jpg",
+      "URL": "./img/tournaments/sports-balls.jpg",
+      "Overlaytitle": "Sports Battle 101",
+      "OverlaySubtitle": "Let the sports battle begin.",
+      "TabContent": {
+        "description": "This is a sports quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various sports and games.",
+        "rules": "The quiz consists of 20 questions. Quicker answers get you more marks.",
+        "prizes": "Rs. 2000"
+      }
+    },
+    {
+      "title": "Music Quiz",
+      "AvatarURL": "./img/tournaments/muavtar.png",
+      "URL": "./img/tournaments/mumain.jpg",
+      "Overlaytitle": "Musical feast",
+      "OverlaySubtitle": "Let us enjoy the music.",
+      "TabContent": {
+        "description": "This is a music quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
+        "rules": "The quiz consists of 20 questions. Quicker answers get you more marks.",
+        "prizes": "Rs. 2000"
+      }
+    },
+    {
+      "title": "Monuments Quiz",
+      "AvatarURL": "./img/tournaments/monavtar.jpg",
+      "URL": "./img/tournaments/monmain.jpg",
+      "Overlaytitle": "Great monuments",
+      "OverlaySubtitle": "Let us explore the monuments.",
+      "TabContent": {
+        "description": "This is a monuments quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
+        "rules": "The quiz consists of 20 questions. Quicker answers get you more marks.",
+        "prizes": "Rs. 2000"
+      }
     }
   ]
 }

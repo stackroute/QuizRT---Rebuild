@@ -14,6 +14,10 @@ var title1={
   "font-size":"25"
 }
 const styleImg={
+  height:"200px",
+  width:"100%"
+}
+const tabHeight={
   height:"200px"
 }
 

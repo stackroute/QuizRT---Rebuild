@@ -1,11 +1,45 @@
-var jsonServer = require('json-server');
-var server = jsonServer.create();
+var superagent = require('superagent');
+var urls = require('../config.js');
 
-server.use(jsonServer.defaults());
+var getAllTopics = function(callback){
+  superagent.get(urls.topicsUrl,function(err,response){
+    if(err)
+    {
+      console.log(err);
+    }
+    else{
+      callback(response.body);
+    }
+  })
+}
 
-var router = jsonServer.router('./db.json');
-server.use(router);
+var getAllCategories = function(callback){
+  superagent.get(urls.categoriesUrl,function(err,response){
+    if(err)
+    {
+      console.log(err);
+    }
+    else{
 
-server.listen(3000,function(){
-  console.log('JSON Server listening on 3000');
-});
+      callback(response.body)
+    }
+  })
+}
+
+var getAllTournaments = function(callback){
+  superagent.get(urls.tournamentUrl,function(err,response){
+    if(err){
+      throw err
+    }
+    else {
+      {
+        callback(response.body)
+      }
+    }
+  })
+}
+
+
+module.exports ={
+  getAllTopics, getAllCategories,getAllTournaments
+}

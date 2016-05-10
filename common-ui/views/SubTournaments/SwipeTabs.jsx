@@ -12,8 +12,11 @@ const styles = {
   },
   slide: {
     padding: 10,
-    height:"100px",
+    height:100
   },
+
+
+
 };
 
 var SwipeTabs = React.createClass({
@@ -42,6 +45,7 @@ return (
       onChangeIndex={this.handleChange}
     >
         <div style={styles.slide}>{this.props.TabContent.description}</div>
+
       <div style={styles.slide}>
         {this.props.TabContent.rules}
       </div>

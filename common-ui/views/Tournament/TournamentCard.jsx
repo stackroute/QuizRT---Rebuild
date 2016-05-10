@@ -10,7 +10,7 @@ import SwipeableViews from 'react-swipeable-views';
 const styleCard ={
   width:"60%",
   height:"20%",
-  margin:'auto'
+  margin:0
 }
 const styleImg={
   height:"200px"
@@ -39,7 +39,7 @@ var TournamentCard = React.createClass({
             <img src={this.props.tournament.URL} style={styleImg}  />
           </CardMedia>
         </div>
-        <SwipeableTabs TabContent={this.props.tournament.TabContent} />
+        <SwipeableTabs TabContent={this.props.tournament.TabContent} style={tabHeight} />
         <div>
           <CardActions>
 

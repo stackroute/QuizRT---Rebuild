@@ -22,9 +22,7 @@ var title1={
 var title1={
   "font-size":"25",
   width:"90%",
-  //height:"35%",
-  //margin:'auto',
-  //padding:10,
+
   margin:10,
   float:'left'
 }
@@ -32,6 +30,10 @@ var title1={
     "font-size":"25"
 }
 const styleImg={
+  height:"200px",
+  width:"100%"
+}
+const tabHeight={
   height:"200px"
 }
 

@@ -11,6 +11,12 @@ const style = {
   marginRight:0,
 };
 
+const tour_header={
+  margin:20,
+  textAlign:'center',
+  paddingTop:20,
+}
+
 const stylebtn={
   float:'none',
   width:'100%',
@@ -57,9 +63,8 @@ var MostPopularSection = React.createClass({
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-            <CardHeader style={cardHeader}
-               title="Most Popular Topics"
-            />
+          <h1 style={tour_header}>Most Popular topics</h1>
+
             <SubTopicContainer topics ={topicsData} />
             <FlatButton label="See More" style={stylebtn}/>
 

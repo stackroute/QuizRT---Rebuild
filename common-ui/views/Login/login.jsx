@@ -30,13 +30,18 @@ export default class LoginForm extends React.Component{
 
         <Checkbox label = "Remember Me" /><br/><br/>
 
-        <RaisedButton label = "Login" primary = {true} style = {styles}/><br/>
+        <Link to ='/dashboard'>
+          <RaisedButton label = "Login" primary = {true} style = {styles}/><br/>
+        </Link>
         <Link to ='/forgotPswd'>
         <p style = {para}>Forgot Password</p>
         </Link>
 				<p style = {para}>OR</p>
         <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles}/><br/><br/>
         <RaisedButton label = "Login With Google" secondary = {true} style = {styles}/><br/><br/>
+        <Link to ='/SignUP'>
+          <RaisedButton label = "Sign Up" secondary = {true} style = {styles}/><br/><br/>
+        </Link>
 
     	</div>
    </div>

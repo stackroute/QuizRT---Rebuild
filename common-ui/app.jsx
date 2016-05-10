@@ -15,7 +15,9 @@ import Dashboard from './views/dashboard';
 import RecentPage from './views/recent_activity';
 import TopicDetails from './views/EachTopic/EachTopic';
 import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
+import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
+
 injectTapEventPlugin();
 
 
@@ -192,15 +194,17 @@ export class App extends React.Component {
       <Router history={hashHistory}>
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/tournament" component={TournamentView} />
+      <Route path="/" component={LoginForm} />
       <Route path="/topics" component={TopicsView} />
-      <Route path = '/' component = {LoginForm} />
+      <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/badges' component = {Badges} />
       <Route path = '/signup' component = {SignUp} />
       <Route path= '/eachtopic' component={TopicDetails} />
-      <Route path= '/recent' component={RecentPage}/>
+      <Route path= '/alltopics' component={SubTopicContainer} />
+      <Route path = '/recent' component={RecentPage} />
       </Router>
       </MuiThemeProvider>
     );

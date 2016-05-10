@@ -72,7 +72,7 @@ var TournamentSection = React.createClass({
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-            <h1 style={tour_header}>Tournaments</h1>
+          <h1 style={tour_header}>Tournaments</h1>
             <TournamentsSubContainer tournament={tournamentData}/>
             <FlatButton label="See More" style={stylebtn}/>
           </Card>

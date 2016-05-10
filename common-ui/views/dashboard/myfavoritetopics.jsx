@@ -11,6 +11,12 @@ const style = {
   marginRight:0,
 };
 
+const tour_header={
+  margin:20,
+  textAlign:'center',
+  paddingTop:20,
+}
+
 const stylebtn={
   float:'none',
   width:'50%',
@@ -44,9 +50,7 @@ var MyFavoriteSection = React.createClass({
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-            <CardHeader style={cardHeader}
-               title="My Favorite Topics"
-            />
+          <h1 style={tour_header}>My Favorite Topics</h1>
             <SubTopicContainer topics ={topicsData} />
             <FlatButton label="See More" style={stylebtn}/>
             <FlatButton label="Add More" style={stylebtn}/>

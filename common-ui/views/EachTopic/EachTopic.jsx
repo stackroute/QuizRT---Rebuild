@@ -5,15 +5,24 @@ import Divider from 'material-ui/Divider';
 
 const style = {
 	float : "left",
-	marginTop:20,
+	margin : "auto"
 };
 
 const img_style ={
-	height:"80%",
-	width:"80%",
-	borderRadius:"50%"
+	height:"50%",
+	width:"50%",
+	borderRadius:"50%",
+	"margin-left" : "25%"
 };
 
+var feedImgStyle = {
+	height:"20%",
+	width : "100%"
+}
+
+const feedAvatar ={
+	margin : "auto"
+}
 
 const btnStyle = {
 	margin : 5,
@@ -43,51 +52,34 @@ const feedImg = {
 const feedBtnStyle = {
 	backgroundColor : "#00bcd4",
 	color : "#fff",
-	marginBottom:"4%"
+	marginBottom:"4%",
+	width : "95%"
+}
+
+var feedBtn = {
+	textAlign : "-webkit-center"
 }
 
 const feedStyle = {
-	marginTop : "3%",
+	margin : "2% auto"
 }
 
 const feedTitleStyle ={
 	textAlign : "-webkit-center",
-	fontSize:"15",
 }
-
-var Feeddata = [
-	{
-		title:"MarshMellow",
-		subtitle : "The Third Wheel",
-		imgSrc : "./img/photo.jpg",
-		feedImage : "./img/Animated-head-bobbing-cat-with-headphones-3.gif"
-	},
-	{
-		title:"MarshMellow",
-		subtitle : "The Third Wheel",
-		imgSrc : "./img/photo.jpg",
-		feedImage : "./img/Animated-head-bobbing-cat-with-headphones-3.gif"
-	},
-	{
-		title:"MarshMellow",
-		subtitle : "The Third Wheel",
-		imgSrc : "./img/photo.jpg",
-		feedImage : "./img/Animated-head-bobbing-cat-with-headphones-3.gif"
-	},
-]
 
 var TopicDetails = React.createClass({
 	render : function(){
 		return ( 
 
-		<Paper>	
-			<div className="container">
+		<div>	
+			<div className="container" style={feedStyle}>
 			
 				<h2 style={hStyle}>Cricket</h2>
 				<h4 style = {hStyle}>Let's play a cricket quiz</h4>	
 				<div className="row">
 					<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={style}>
-						<img src="./img/photo.jpg" style={img_style}/>
+						<img src="./img/EachTopic/photo.jpg" style={img_style}/>
 					</div>
 					<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={style}>
 						   
@@ -127,39 +119,38 @@ var TopicDetails = React.createClass({
 			</div>
 			<Divider />
 			<div>
-				<h4 style={feedTitleStyle}>Feed</h4>
+				<h2 style={feedTitleStyle}>Feed</h2>
 				<Divider/>
 				<div className="container" style={feedStyle}>
 					<div className="row">
-						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="./img/photo_1.jpg" style={img_style}/>
+						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3" style={feedAvatar}>
+							<img src="./img/EachTopic/photo_1.jpg" style={img_style}/>
 						</div>
 						<div className="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-							<h5>MarshMellow</h5>
-							<h6>The Third Wheel</h6>
+							<h4>MarshMellow</h4>
+							<h5>The Third Wheel</h5>
 						</div>
 						<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 							<h6>8 hrs ago</h6>
 						</div>
 					</div>
 					<div className="row" style={feedImg}>
-						<img src="./img/Animated-head-bobbing-cat-with-headphones-3.gif"/>
+						<img src="./img/EachTopic/dancing_man.gif" style={feedImgStyle}/>
 					</div>
-					<Divider/>
 					<div className="row">
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" style={feedBtn} >
 							<FlatButton
 						      label="Like"
 						      primary="true" 
 						      style={feedBtnStyle}/>
 						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" style={feedBtn}>
 							<FlatButton
 						      label="Comment"
 						      primary="true" 
 						      style={feedBtnStyle}/>
 						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" style={feedBtn}>
 							<FlatButton
 						      label="Play"
 						      primary="true" 
@@ -170,34 +161,34 @@ var TopicDetails = React.createClass({
 				<Divider/>
 				<div className="container" style={feedStyle}>
 					<div className="row">
-						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="./img/photo_1.jpg" style={img_style}/>
+						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3" style={feedAvatar}>
+							<img src="./img/EachTopic/photo_1.jpg" style={img_style}/>
 						</div>
 						<div className="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-							<h5>MarshMellow</h5>
-							<h6>The Third Wheel</h6>
+							<h4>MarshMellow</h4>
+							<h5>The Third Wheel</h5>
 						</div>
 						<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 							<h6>8 hrs ago</h6>
 						</div>
 					</div> 
 					<div className="row" style={feedImg}>
-						<img src="./img/Animated-head-bobbing-cat-with-headphones-3.gif"/>
+						<img src="./img/EachTopic/giphy.gif" style={feedImgStyle}/>
 					</div>
 					<div className="row">
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" style={feedBtn}>
 							<FlatButton
 						      label="Like"
 						      primary="true" 
 						      style={feedBtnStyle}/>
 						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" style={feedBtn}>
 							<FlatButton
 						      label="Comment"
 						      primary="true" 
 						      style={feedBtnStyle}/>
 						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" style={feedBtn}>
 							<FlatButton
 						      label="Play"
 						      primary="true" 
@@ -207,7 +198,7 @@ var TopicDetails = React.createClass({
 					<Divider/>
 				</div>
 			</div>
-		</Paper>
+		</div>
 		);
 	}
 });

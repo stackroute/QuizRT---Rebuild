@@ -23,14 +23,12 @@
     "react-router": "^2.4.0",
     "react-swipeable-views": "^0.5.3",
     "react-motion": "^0.4.3",
-	  "react-tap-event-plugin": "^1.0.0",
-    "webpack": "^1.13.0",
-    "react-motion": "^0.4.3",
-    "react-swipeable-views": "^0.5.3",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-tap-event-plugin": "^1.0.0",
+    "webpack": "^1.13.0"
   },
   "dependencies": {
     "react-motion": "^0.4.3",
-    "react-swipeable-views": "^0.5.4"
+    "react-swipeable-views": "^0.5.4",
+    "superagent": "^1.8.3"
   }
 }

@@ -11,7 +11,8 @@ import ForgotPswd from './views/Forgot';
 import VerifyOTP from './views/OTP';
 import SetNewPswd from './views/SetPswd';
 import Badges from './views/Badges/Badges';
-import Dashboard from './views/dashboard/dashboard';
+import Dashboard from './views/dashboard';
+import RecentPage from './views/recent_activity';
 import TopicDetails from './views/EachTopic/EachTopic';
 import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
 import SignUp from './views/SignUP';
@@ -199,6 +200,7 @@ export class App extends React.Component {
       <Route path = '/badges' component = {Badges} />
       <Route path = '/signup' component = {SignUp} />
       <Route path= '/eachtopic' component={TopicDetails} />
+      <Route path= '/recent' component={RecentPage}/>
       </Router>
       </MuiThemeProvider>
     );

@@ -4,13 +4,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {orange500} from 'material-ui/styles/colors';
 
 const TitleStyle={
-  "font-size":"1em",
+  fontSize:"1em",
     width:"100%",
-  "font-weight":"1em"
-
+  fontWeight:"1em"
 }
+
 const SubtitleStyle={
-  "font-size":"0.8em",
+  fontSize:"0.8em",
     width:"100%"
 }
 var style1= {
@@ -25,6 +25,28 @@ var imgStyle={
 const BtnStyle ={
   width:"50%"
 }
+
+var style1= {
+  background:'#c6ecc6'
+}
+
+var cardDivStyle={
+   margin:10,
+}
+
+var title1={
+    "font-size":"100%"
+}
+var title2={
+  "font-size":"95%"
+}
+var title3={
+    margin:'auto'
+}
+var title4={
+     width:"30%",
+     margin:'auto'
+   }
 
 var topicsData =[{
   title: "Cricket",
@@ -141,41 +163,10 @@ var topicsData =[{
 }
 ];
 
-
-var style1= {
-
-  background:'#c6ecc6'
-}
-
-var cardDivStyle={
-   width:"80%",
-   float:'left',
-
-   padding:10,
-   margin:10
-
-}
-
-var title1={
-    "font-size":"100%"
-}
-var title2={
-  "font-size":"95%"
-}
-var title3={
-
-    width:"80%",
-    margin:'auto'
-}
-var title4={
-     width:"30%",
-
-     margin:'auto'
-   }
 var SubTopicCard = React.createClass({
   render: function(){
     return(
-  
+
 
 <Card style ={cardDivStyle}>
 

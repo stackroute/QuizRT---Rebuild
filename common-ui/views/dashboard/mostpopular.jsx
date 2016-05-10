@@ -1,23 +1,23 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
 const style = {
-  margin: 20,
-  textAlign: 'center',
+  marginLeft:0,
+  marginTop:20,
+  marginBottom:20,
+  marginRight:0,
 };
 
 const stylebtn={
-  float:'right',
+  float:'none',
+  width:'100%',
 };
 
-const card={
+const cardHeader={
   textAlign:'left',
-  fontSize: 20,
-  marginLeft:20,
-  width:'80%',
 };
 
 var topicsData =[{
@@ -29,7 +29,7 @@ var topicsData =[{
 
 },
 {
-  title: "IndianHistory",
+  title: "Indian History",
   subtitle: "Let's play history quiz",
   avatarimg: 'img/SubTopicImages/hisavtar.jpg',
   img: 'img/SubTopicImages/hismain.jpg',
@@ -39,7 +39,7 @@ var topicsData =[{
   title: "TvCelebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: 'img/SubTopicImages/tvavtar.jpg',
-  img: 'img/SubTopicImages/tvmain.jpg',
+  img: 'img/SubTopicImages//tvmain.jpg',
   category: "Celebreties"
 },
 {
@@ -57,13 +57,11 @@ var MostPopularSection = React.createClass({
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-          <CardActions>
-            <RaisedButton label="See More >>" style={stylebtn}/>
-          </CardActions>
-            <CardHeader style={card}
+            <CardHeader style={cardHeader}
                title="Most Popular Topics"
             />
             <SubTopicContainer topics ={topicsData} />
+            <FlatButton label="See More" style={stylebtn}/>
 
           </Card>
         </Paper>

@@ -10,36 +10,20 @@ import SwipeableTabs from './SwipeTabs';
 import SwipeableViews from 'react-swipeable-views';
 
 
-
-const styleCard ={
-  margin:10,
-   float:'left'
-}
 var title1={
-    "font-size":"25"
-
-}
-var title1={
-  "font-size":"25",
-  width:"90%",
-  //height:"35%",
-  //margin:'auto',
-  //padding:10,
-  margin:10,
-  float:'left'
-}
-var title1={
-    "font-size":"25"
+  "font-size":"25"
 }
 const styleImg={
   height:"200px"
 }
 
 const btnFontColor ={
-   margin:'auto',
-  //"background-color": "red"
   margin:'auto',
   width:"50%"
+}
+
+const styleCard={
+  margin:5,
 }
 
  var TournamentsSubCard = React.createClass({

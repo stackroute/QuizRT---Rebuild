@@ -6,6 +6,7 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import Recentcard from './recentcard';
+import Avatar from 'material-ui/Avatar';
 
 
 const styles = {
@@ -14,6 +15,24 @@ const styles = {
 
 const style = {
   margin: 12,
+};
+
+const avatarstyle={
+  backgroundSize:'cover',
+  marginTop:10,
+  height:50,
+  width:50,
+};
+
+const exampleImageInput= {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
 };
 
 var PersonalInfo= React.createClass({
@@ -27,8 +46,16 @@ var PersonalInfo= React.createClass({
     return(
       <div>
             <div style={styles}>
-              <h2 style={styles.headline}>Profile</h2>
-              <br/>
+              <Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/>
+              <br />
+              <RaisedButton
+                label="Choose an Image"
+                labelPosition="before"
+                style={style}
+              >
+                <input type="file" style={exampleImageInput} />
+              </RaisedButton>
+              <br />
               <TextField
               hintText="Enter your name"
               floatingLabelText="Display Name"

@@ -8,7 +8,7 @@ var data=[
   {
     title:"Rohith",
     subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
+    avatar:"img/user_avatar/photo.jpg",
   }
 ];
 
@@ -43,7 +43,7 @@ var Recentcard = React.createClass({
       data:{
         title:"Rohith",
         subtitle: "My rules, So I don't care",
-        avatar:"img/photo.jpg",
+        avatar:"img/user_avatar/photo.jpg",
       }
     }
   },

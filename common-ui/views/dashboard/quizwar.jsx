@@ -8,7 +8,8 @@ const cardHeader={
 };
 
 const quizstyle={
-  margin: 20,
+  marginTop:20,
+  marginBottom:20,
   textAlign: 'center',
 };
 
@@ -20,7 +21,7 @@ var QuizWar=React.createClass({
           <Paper style={quizstyle} zDepth={2} >
             <Card>
                 <CardMedia>
-                  <img src="img/quizwar.jpg" />
+                  <img src="img/quizwar/quizwar.jpg" />
                 </CardMedia>
                   <CardTitle title="Quiz-War" subtitle="There's no charge for the AWESOMENESS, Play & Earn the reward of looking awesome."/>
                 <CardActions>

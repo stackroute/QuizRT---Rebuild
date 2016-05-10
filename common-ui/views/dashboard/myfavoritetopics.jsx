@@ -1,27 +1,29 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
 const style = {
-  margin: 20,
-  textAlign: 'center',
+  marginLeft:0,
+  marginTop:20,
+  marginBottom:20,
+  marginRight:0,
 };
 
 const stylebtn={
-  float:'right',
+  float:'none',
+  width:'50%',
+
 };
 
-const card={
+const cardHeader={
   textAlign:'left',
-  fontSize: 20,
-  marginLeft:20,
 };
 
 var topicsData =[
 {
-  title: "IndianCelebs",
+  title: "Indian Celebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: 'img/SubTopicImages/inavtar.jpg',
   img: 'img/SubTopicImages/inmain.jpg',
@@ -42,14 +44,12 @@ var MyFavoriteSection = React.createClass({
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-          <CardActions>
-            <RaisedButton label="Add More >>" style={stylebtn}/>
-          </CardActions>
-            <CardHeader style={card}
+            <CardHeader style={cardHeader}
                title="My Favorite Topics"
             />
             <SubTopicContainer topics ={topicsData} />
-
+            <FlatButton label="See More" style={stylebtn}/>
+            <FlatButton label="Add More" style={stylebtn}/>
           </Card>
         </Paper>
       </div>

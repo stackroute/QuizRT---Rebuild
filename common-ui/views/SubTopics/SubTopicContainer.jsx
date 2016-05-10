@@ -24,7 +24,7 @@ var SubTopicContainer = React.createClass({
               {allTheTopics}
 
      </div>
-  ); 
+  );
   }
   });
 

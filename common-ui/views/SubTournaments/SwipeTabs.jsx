@@ -12,6 +12,7 @@ const styles = {
   },
   slide: {
     padding: 10,
+    height:"100px",
   },
 };
 
@@ -40,10 +41,7 @@ return (
       index={this.state.slideIndex}
       onChangeIndex={this.handleChange}
     >
-      <div>
         <div style={styles.slide}>{this.props.TabContent.description}</div>
-        <br />
-      </div>
       <div style={styles.slide}>
         {this.props.TabContent.rules}
       </div>

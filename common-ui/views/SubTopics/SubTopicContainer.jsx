@@ -1,9 +1,9 @@
 import React from 'react';
 
 import SubTopicCard from './SubTopicCard';
-var API = require('../../../rest-server/json-server/api/api.js');
+
 var SubTopicContainer = React.createClass({
- 
+  
   render: function(){
       var allTheTopics = [];
       this.props.topics.forEach(function(topic){

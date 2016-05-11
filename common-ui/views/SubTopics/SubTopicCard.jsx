@@ -143,7 +143,7 @@ var imgStyle={
 }
 
 const BtnStyle ={
-  marginLeft:'37%'
+  marginLeft:'35%'
 }
 
 var style1= {
@@ -203,7 +203,7 @@ var SubTopicCard = React.createClass({
 
     <CardMedia style={title3} overlay={
       <div>
-        <ActionHome style={iconStyles} color={grey100}>3.5</ActionHome>
+        <ActionHome style={iconStyles} color={grey100} /> 3.5
         <ActionHome style={iconStyles} color={grey100}>102</ActionHome>
         <ActionHome style={iconStyles} color={grey100}>6</ActionHome>
       </div>}>

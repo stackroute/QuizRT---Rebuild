@@ -2,51 +2,11 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import {orange500} from 'material-ui/styles/colors';
-
-const TitleStyle={
-  fontSize:"1em",
-    width:"100%",
-  fontWeight:"1em"
-}
-
-const SubtitleStyle={
-  fontSize:"0.8em",
-    width:"100%"
-}
-var style1= {
-  margin:"5px",
-
-}
-var imgStyle={
-  height:"50%",
-  margin:"auto"
-}
-
-const BtnStyle ={
-  width:"50%"
-}
-
-var style1= {
-  background:'#c6ecc6'
-}
-
-var cardDivStyle={
-   margin:10,
-}
-
-var title1={
-    "font-size":"100%"
-}
-var title2={
-  "font-size":"95%"
-}
-var title3={
-    margin:'auto'
-}
-var title4={
-     width:"30%",
-     margin:'auto'
-   }
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import {grey500, grey100, red900} from 'material-ui/styles/colors';
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 var topicsData =[{
   title: "Cricket",
@@ -163,30 +123,96 @@ var topicsData =[{
 }
 ];
 
+const TitleStyle={
+  fontSize:"1em",
+    width:"100%",
+  fontWeight:"1em"
+}
+
+const SubtitleStyle={
+  fontSize:"0.8em",
+    width:"100%"
+}
+var style1= {
+  margin:"5px",
+
+}
+var imgStyle={
+  height:"50%",
+  margin:"auto"
+}
+
+const BtnStyle ={
+  marginLeft:'37%'
+}
+
+var style1= {
+  background:'#c6ecc6'
+}
+
+var cardDivStyle={
+   margin:10,
+}
+
+var title1={
+    paddingLeft:10,
+    paddingTop:10,
+    marginBottom:5
+}
+var title2={
+  paddingLeft:10,
+  marginTop:10,
+  marginBottom:10
+}
+var title3={
+    margin:'auto'
+}
+var title4={
+     width:"30%",
+     margin:'auto'
+}
+
+const style_fav={
+    width:'10%',
+    marginTop:10,
+    marginBottom:10,
+    float:'right',
+}
+const iconStyles = {
+  marginRight: 24,
+  height:60,
+  width:60,
+};
+
 var SubTopicCard = React.createClass({
   render: function(){
     return(
 
 
 <Card style ={cardDivStyle}>
-
-    <CardHeader
-      title={this.props.topic.title}
-      titleStyle ={title1}
-      subtitle={this.props.topic.subtitle}
-      subtitleStyle ={title2}
-      avatar={this.props.topic.avatarImg}
+    <Checkbox
+      checkedIcon={<ActionFavorite />}
+      uncheckedIcon={<ActionFavoriteBorder />}
+      style={style_fav}
+      iconStyle={{fill: '#B71C1C'}}
     />
+    <h4 style={title1}>
+      {this.props.topic.title}
+    </h4>
+    <h5 style={title2} color={grey500}>{this.props.topic.subtitle}</h5>
 
-    <CardMedia style={title3}>
+    <CardMedia style={title3} overlay={
+      <div>
+        <ActionHome style={iconStyles} color={grey100}>3.5</ActionHome>
+        <ActionHome style={iconStyles} color={grey100}>102</ActionHome>
+        <ActionHome style={iconStyles} color={grey100}>6</ActionHome>
+      </div>}>
       <img src={this.props.topic.img} />
     </CardMedia>
 
 
     <CardActions >
       <div className="col-md col-xs col-lg col-sm">
-      <RaisedButton label="+Fav"  primary={true} style={BtnStyle} />
-
         <RaisedButton label="Play" secondary={true} style={BtnStyle} />
         </div>
      </CardActions>

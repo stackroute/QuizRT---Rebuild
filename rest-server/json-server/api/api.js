@@ -39,7 +39,18 @@ var getAllTournaments = function(callback){
   })
 }
 
+var getAllFeeds = function(callback){
+  superagent.get(urls.feedUrl,function(err,response){
+    if(err){
+      throw err
+    }
+    else {
+      callback(response.body)
+    }
+  })
+}
+
 
 module.exports ={
-  getAllTopics, getAllCategories,getAllTournaments
+  getAllTopics, getAllCategories,getAllTournaments,getAllFeeds
 }

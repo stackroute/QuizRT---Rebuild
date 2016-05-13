@@ -1,4 +1,20 @@
 {
+  "FeedData": [
+    {
+      "title" : "Marshmellow",
+      "subtitle" : "Third Wheel",
+      "avatarImg" : "./img/EachTopic/photo_1.jpg",
+      "feedImg" : "./img/EachTopic/dancing_man.gif",
+      "time" : "8 hrs ago"
+    },
+    {
+      "title" : "Deadpool",
+      "subtitle" : "Bad Ass Smart Ass",
+      "avatarImg" : "./img/EachTopic/photo_1.jpg",
+      "feedImg" : "./img/EachTopic/giphy.gif",
+      "time" : "6 hrs ago"
+    }
+  ],
   "Categories": [
     {
       "id": 1,

@@ -25,17 +25,19 @@
     "react-router": "^2.4.0",
     "react-swipeable-views": "^0.5.3",
     "react-tap-event-plugin": "^1.0.0",
-
     "should": "^8.3.1",
     "supertest": "^1.2.0",
-
     "superagent": "^1.8.3",
- 
     "webpack": "^1.13.0"
   },
   "dependencies": {
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
     "react-motion": "^0.4.3",
     "react-swipeable-views": "^0.5.4",
+    "seneca-entity": "0.0.1",
+    "seneca-mongo-store": "^0.2.0",
+    "should": "^8.3.1",
     "superagent": "^1.8.3"
   }
 }

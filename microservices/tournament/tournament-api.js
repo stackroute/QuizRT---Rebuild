@@ -12,26 +12,31 @@ var tournamentPlugin = function(options){
 
   //update a tournament
   this.add({role:'tournament',action:'update'},function(msg,respond){
+
     this.act({role:'tournament',action:'get',id:msg.id},function(err,loaded_tournament){
-      this.make('tournament').loaded_tournament.data$({
-        name: msg.name,
-        desc: msg.desc,
-        rules: msg.rules,
-        prizes: msg.prizes,
-        startDateTime: msg.startDateTime,
-        endDateTime: msg.endDateTime,
-        registeredUsers : msg.registeredUsers,
-        usersPlayed: msg.usersPlayed,
-        category: msg.category,
-        hashtags: msg.hashtags,
-        maxLevel: msg.maxLevel,
-        minLevel: msg.minLevel,
-        imageUrl: msg.imageUrl,
-        avatarUrl: msg.avatarUrl
+
+
+      loaded_tournament.data$({
+        id:msg.id,
+        name: msg.data.name,
+        desc: msg.data.desc,
+        rules: msg.data.rules,
+        prizes: msg.data.prizes,
+        startDateTime: msg.data.startDateTime,
+        endDateTime: msg.data.endDateTime,
+        registeredUsers : msg.data.registeredUsers,
+        usersPlayed: msg.data.usersPlayed,
+        category: msg.data.category,
+        hashtags: msg.data.hashtags,
+        maxLevel: msg.data.maxLevel,
+        minLevel: msg.data.minLevel,
+        imageUrl: msg.data.imageUrl,
+        avatarUrl: msg.data.avatarUrl
       }).save$(respond);
 
     });
   })
+
 
   this.add({role:'tournament',action:'delete'},function(msg,respond){
     this.make('tournament').remove$(msg.id,respond);

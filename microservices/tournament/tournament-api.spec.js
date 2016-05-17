@@ -60,18 +60,21 @@ describe('Check Tournament Crud',function(){
 
       }
    })
+
+
   })
 
-   
 
-  // it('Check Tournament update',function(done){
-  //   seneca.act('role:tournament,action:get',{id:createdTournamentId},function(err,loaded_tournament){
-  //     this.act('role:tournament,action:update',{data:updatedTournament},function(err,updated_tournament){
-  //       if(err) done(err)
-  //       loaded_tournament.id.should.be.exactly(updated_tournament.id);
-  //       updated_tournament.name.should.be.exactly(updatedTournament.name);
-  //       done();
-  //     })
-  //   })
-  // })
+
+
+  it('Check Tournament update',function(done){
+    seneca.act({role:'tournament',action:'update', id:createdTournamentId,data:updatedTournament},function(err,loaded_tournament){
+         console.log(loaded_tournament);
+        if(err) done(err)
+
+        loaded_tournament.name.should.be.exactly(updatedTournament.name);
+        done();
+
+    })
+  })
 })

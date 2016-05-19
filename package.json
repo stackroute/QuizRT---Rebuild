@@ -28,8 +28,12 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
     "react-motion": "^0.4.3",
     "react-swipeable-views": "^0.5.4",
+    "seneca": "^2.0.1",
+    "seneca-entity": "^0.1.1",
     "superagent": "^1.8.3"
   }
 }

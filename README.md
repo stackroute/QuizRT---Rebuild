@@ -7,6 +7,11 @@ This project is a complete rebuild of QuizRT.
 After cloning the git repository, run
 
 ```shell
+# Install webpack and bower.
+$ sudo npm install -g webpack bower
+```
+
+```shell
 # Install Dependencies
 $ bower install & npm install
 

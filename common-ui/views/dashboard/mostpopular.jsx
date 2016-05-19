@@ -75,4 +75,4 @@ var MostPopularSection = React.createClass({
   }
 });
 
-module.exports= MostPopularSection;
+export default MostPopularSection;

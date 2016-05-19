@@ -5,8 +5,12 @@ import {orange500} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
-import {grey500, grey100, red900} from 'material-ui/styles/colors';
+import {grey600,grey500, grey100, red900, teal500} from 'material-ui/styles/colors';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
+import People from 'material-ui/svg-icons/social/people';
+import PeopleOutline from 'material-ui/svg-icons/social/people-outline';
+
 
 var topicsData =[{
   title: "Cricket",
@@ -165,7 +169,8 @@ var title2={
   marginBottom:10
 }
 var title3={
-    margin:'auto'
+    margin:'auto',
+    width:'60%'
 }
 var title4={
      width:"30%",
@@ -196,17 +201,23 @@ var SubTopicCard = React.createClass({
       style={style_fav}
       iconStyle={{fill: '#B71C1C'}}
     />
+    <Checkbox
+      checkedIcon={<People />}
+      uncheckedIcon={<PeopleOutline />}
+      style={style_fav}
+      iconStyle={{fill: '#009688'}}
+    />
     <h4 style={title1}>
       {this.props.topic.title}
     </h4>
     <h5 style={title2} color={grey500}>{this.props.topic.subtitle}</h5>
 
-    <CardMedia style={title3} overlay={
+    <CardMedia overlay={
       <div>
-        <ActionHome style={iconStyles} color={grey100} /> 3.5
-        <ActionHome style={iconStyles} color={grey100}>102</ActionHome>
-        <ActionHome style={iconStyles} color={grey100}>6</ActionHome>
-      </div>}>
+      <CardTitle subtitle="No of Users played:15" style={title3} color={grey100}/>
+      <MapsPersonPin color={grey100}/>
+      </div>
+     }>
       <img src={this.props.topic.img} />
     </CardMedia>
 

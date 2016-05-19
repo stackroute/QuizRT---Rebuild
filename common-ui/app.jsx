@@ -17,6 +17,7 @@ import TopicDetails from './views/EachTopic/EachTopic';
 import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
+import SocialPlugins from './components/social-icons/socialplugins';
 
 injectTapEventPlugin();
 
@@ -33,7 +34,7 @@ export class App extends React.Component {
       <Route path="/tournament" component={TournamentsSubContainer} />
 
       <Route path="/" component={LoginForm} />
-
+      <Route path="/social" component={SocialPlugins}/>
       <Route path="/topics" component={TopicsView} />
       <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />

@@ -60,5 +60,4 @@ var MyFavoriteSection = React.createClass({
     );
   }
 });
-
-module.exports= MyFavoriteSection;
+export default MyFavoriteSection;

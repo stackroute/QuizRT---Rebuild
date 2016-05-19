@@ -14,7 +14,6 @@ import ActionAccountbox from 'material-ui/svg-icons/action/account-box';
 import ActionTurnedin from 'material-ui/svg-icons/action/turned-in';
 import ActionViewmodule from 'material-ui/svg-icons/action/view-module';
 import ActionViewquilt from 'material-ui/svg-icons/action/view-quilt';
-import {Link} from 'react-router';
 
 const avatarstyle={
   backgroundSize:'cover',
@@ -95,24 +94,13 @@ var ProfileHero = React.createClass({
           <MenuItem onTouchTap={this.handleClose} style={style}> RANK: 21#</MenuItem>
           <Divider />
           <List>
-            <Link to ='/recent'>
             <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} style={listtext}/>
-            </Link>
-            <Link to ='/recent'>
+            <ListItem primaryText="SETTINGS" leftIcon={<ActionSettings />} style={listtext}/>
             <ListItem primaryText="RECENT ACTIVITY" leftIcon={<ImageBurstmode />} style={listtext}/>
-            </Link>
-            <Link to ='/topics'>
             <ListItem primaryText="TOPICS" leftIcon={<ActionViewmodule />} style={listtext}/>
-            </Link>
-            <Link to ='/tournament'>
             <ListItem primaryText="TOURNAMENTS" leftIcon={<ActionViewquilt />} style={listtext}/>
-            </Link>
-            <Link to ='/badges'>
             <ListItem primaryText="BADGES" leftIcon={<ActionTurnedin />} style={listtext}/>
-            </Link>
-            <Link to ='/login'>
             <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} style={listtext}/>
-            </Link>
           </List>
         </Drawer>
       </div>
@@ -120,4 +108,4 @@ var ProfileHero = React.createClass({
   }
 });
 
-module.exports = ProfileHero;
+export default ProfileHero;

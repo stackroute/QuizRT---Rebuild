@@ -82,4 +82,4 @@ var TournamentSection = React.createClass({
   }
 });
 
-module.exports= TournamentSection;
+export default TournamentSection;

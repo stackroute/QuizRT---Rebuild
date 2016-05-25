@@ -1,26 +1,10 @@
 var React = require('react');
 var Slider = require('react-slick');
 import Paper from 'material-ui/Paper';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
-import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import ProgressBar from './progressBar';
-import Timer from './timer';
-import Questions from './questions';
-
-import {
-blue300,
-indigo900,
-orange200,
-deepOrange300,
-pink400,
-purple500,
-} from 'material-ui/styles/colors';
 
 const style = {
-  height: 100,
-  width: 100,
+  height: 120,
+  width: 120,
   margin: 20,
   textAlign: 'center',
   display: 'inline-block',
@@ -67,21 +51,20 @@ export default class Rank extends React.Component{
               breakpoint: 600,
               settings: {
                   dots: false,
-                  slidesToShow: 3,
+                  slidesToShow: 4,
                   slidesToScroll: 3
               }
           }, {
               breakpoint: 480,
               settings: {
                   dots: false,
-                  slidesToShow: 2,
-                  slidesToScroll: 2
+                  slidesToShow: 4,
+                  slidesToScroll: 3
               }
           }]
       };
     return (
-      <div className="container-fluid">
-      <div style={{"marginBottom":0}}>
+      <div>
         <Slider {...settings}>
           <div><Paper style={style} zDepth={2} >1 <p>First</p> 24</Paper></div>
           <div><Paper style={style} zDepth={2} /></div>
@@ -111,30 +94,8 @@ export default class Rank extends React.Component{
           <div><Paper style={style} zDepth={2} /></div>
           <div><Paper style={style} zDepth={2} /></div>
           <div><Paper style={style} zDepth={2} >35 <p>Last</p> 100</Paper></div>
+
         </Slider>
-      </div>
-      <hr/>
-      <ProgressBar seconds={10} height={15} />
-      <div className='row'  >
-        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-          <List>
-            <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange300} backgroundColor={purple500} >D</Avatar>}>
-            </ListItem>
-          </List>
-        </div>
-        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-          <div className='row center-xs'><Timer seconds={10} /></div>
-        </div>
-        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-          <div className='row end-xs'>
-          <List>
-            <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-            </ListItem>
-          </List>
-          </div>
-        </div>
-      </div>
-      <Questions />
       </div>
     );
   }

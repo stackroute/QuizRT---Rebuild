@@ -17,11 +17,9 @@ import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContai
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
 import RecentPage from './views/recent_activity';
-
+import Quiz from './views/QuizPlay'
+import Rank from './views/Rank';
 injectTapEventPlugin();
-
-
-
 
 export class App extends React.Component {
   render() {
@@ -29,10 +27,12 @@ export class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/rank" component={Rank} />
 
       <Route path="/tournament" component={TournamentsSubContainer} />
 
       <Route path="/" component={LoginForm} />
+      <Route path="/quiz" component={Quiz} />
 
       <Route path="/topics" component={TopicsView} />
       <Route path = '/login' component = {LoginForm} />

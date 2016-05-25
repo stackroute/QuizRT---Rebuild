@@ -1,6 +1,5 @@
 import Paper from 'material-ui/Paper';
 import React from 'react';
-
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -26,6 +25,17 @@ export default class Test extends React.Component{
   handleSubmit(event) {
     event.preventDefault();
     console.log('FormData: ' + this.state.formInput.username);
+    $.ajax({
+      type: "POST",
+      url: '/signup',
+      data: JSON.stringify(this.state.formInput),
+      success: function(data){
+        console.log('lfdkg');
+      },
+      error:function(xhr,status,err){
+        console.error(this.props.url,status,err.toString());
+      }
+     });
   }
   usernameChanged(event) {
     this.state.formInput.username = event.target.value;

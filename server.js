@@ -4,23 +4,40 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var seneca = require('seneca')();
 
-var questions;
+var questions,count=1,random;
 
 
+seneca    .use('entity')
+          .use('mesh',{auto:true})
+          .ready(function(){
+              seneca.act('role:question,action:all',function(err,result){
+
+               questions = result;
+
+
+
+
+          })
+        })  ;
 io.on('connection',function(socket){
-    // app.get('/api/questions/all',function(req,res){
-    //     res.io =io;
-         seneca 
-                    .use('mesh',{auto:true,pin:'role:question'})
-                    .ready(function(){
-                     seneca.act('role:question,action:all',function(err,result){
 
-                        console.log(result);
+        socket.emit('new question',questions[0]);
 
-                    })
-                  });
+          socket.on('give new question',function(){
 
-    // });
+                if(count==questions.length){
+                  socket.emit('end quiz',"The quiz has ended. Thank you for playing");
+                  count=0;
+                  socket.emit('new question');
+                }
+                else{
+                  // random = Math.floor(Math.random() * questions.length);
+                  // console.log(random);
+                socket.emit('new question',questions[count]);
+                count++;
+              }
+          })
+
 });
 app.use(seneca.export('web'));
 

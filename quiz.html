@@ -35,14 +35,14 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
         var socket = io();
-        var question,correct=0,incorrect=0;
+        var question,correct=0,incorrect=0,quesCount=0;
 
 
         socket.on('new question',function(ques){
-            question = JSON.parse(ques);
 
-
-           quesContainer = $('#container');
+          quesCount++;
+          question = ques;
+          quesContainer = $('#container');
 
           quesContainer.append('<p class="remove">'+question.text+'</p>');
           var count=1;
@@ -61,19 +61,24 @@
            if(button.value===question.correct){
                   correct++;
 
+
            }
            else
              incorrect++;
           $('.remove').remove();
 
-          if(question.id+1==3){
-            alert('End of quiz. Thanks for playing. Your score is '+ correct+ ' out of '+(correct+incorrect) );
-            question.id -= 2;
-            correct=incorrect=0;
-          }
-           socket.emit('give new question',question.id+1);
-           console.log('Requested new question');
+
+           socket.emit('give new question');
+
         }
+        socket.on('end quiz',function(msg){
+          alert(msg);
+          alert('Your score is '+correct+' out of '+quesCount);
+          correct=0;incorrect=0;
+          quesCount=0;
+          
+
+        })
 
     </script>
   </body>

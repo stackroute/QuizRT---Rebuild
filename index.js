@@ -4,7 +4,6 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var questions;
 var seneca = require('seneca')()
-            .use('microservices/micro/data')
             .use('microservices/ques')
             .use('entity')
             .use('mongo-store',{

@@ -17,16 +17,51 @@ server.listen(3000,function(){
   console.log('Server is running at the port 3000');
 })
 app.use(express.static(__dirname+'/common-ui'));
-seneca.ready(function(){
-    seneca.act('role:question,action:all',function(err,result){
-     questions = result;
+seneca.act('role:question,action:all',function(err,result){
+  questions = result;
+}).ready(function(){
+  var count =0;
+  io.on('connection',function(socket){
+   socket.emit('new question',questions[0]);
+   socket.on('give new question',function(){
+     if(count==questions.length){
+       socket.emit('end quiz',"The quiz has ended. Thank you for playing");
+       // count=0;
+       // socket.emit('new question');
+     }
+     else{
+       // random = Math.floor(Math.random() * questions.length);
+       // console.log(random);
+     socket.emit('new question',questions[count]);
+     count++;
+   }
+ })
+})
+})
 
-   io.on('connection',function(socket){
-     socket.emit('new question',questions[0]);
-   });
-   
-   });
-  });
+// seneca.ready(function(){
+//     seneca.act('role:question,action:all',function(err,result){
+//      questions = result;
+//      var count =0;
+//      io.on('connection',function(socket){
+//       socket.emit('new question',questions[0]);
+//       socket.on('give new question',function(){
+//         if(count==questions.length){
+//           socket.emit('end quiz',"The quiz has ended. Thank you for playing");
+//           // count=0;
+//           // socket.emit('new question');
+//         }
+//         else{
+//           // random = Math.floor(Math.random() * questions.length);
+//           // console.log(random);
+//         socket.emit('new question',questions[count]);
+//         count++;
+//       }
+//     })
+//   });
+//
+//    });
+//   });
 // app.post('/signup',function(req,res){
 //   console.log('post request');
 //   res.send('dlsf')

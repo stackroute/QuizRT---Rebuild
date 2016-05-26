@@ -9,6 +9,7 @@ import ProgressBar from './progressBar';
 import Timer from './timer';
 import Questions from './questions';
 
+
 import {
 blue300,
 indigo900,
@@ -44,6 +45,25 @@ class SamplePrevArrow extends React.Component{
 
 
 export default class Rank extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      ques:{}
+    };
+  }
+  componentDidMount(){
+    this.socket = io();
+    var that = this;
+    this.socket.on('new question',function(data){
+      console.log(data);
+      that.setState({ques:data})
+    })
+    setTimeout(function(){
+      console.log('from settimeout');
+      this.socket.emit('give new question');
+    }.bind(this),5000);
+  }
+
   render(){
     var settings = {
           dots: false,
@@ -61,7 +81,7 @@ export default class Rank extends React.Component{
                   slidesToShow: 5,
                   slidesToScroll: 3,
                   infinite: true,
-                  dots: true
+
               }
           }, {
               breakpoint: 600,
@@ -81,7 +101,7 @@ export default class Rank extends React.Component{
       };
     return (
       <div className="container-fluid">
-      <div style={{"marginBottom":0}}>
+      <div >
         <Slider {...settings}>
           <div><Paper style={style} zDepth={2} >1 <p>First</p> 24</Paper></div>
           <div><Paper style={style} zDepth={2} /></div>
@@ -134,7 +154,7 @@ export default class Rank extends React.Component{
           </div>
         </div>
       </div>
-      <Questions />
+      <Questions data={this.state.ques} />
       </div>
     );
   }

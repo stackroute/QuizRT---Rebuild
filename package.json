@@ -40,9 +40,11 @@
     "react-scrollbars": "0.0.5",
     "react-slick": "^0.12.2",
     "react-swipeable-views": "^0.5.4",
+    "seneca": "^2.1.0",
     "seneca-entity": "0.0.1",
     "seneca-mongo-store": "^0.2.0",
     "should": "^8.3.1",
+    "socket.io": "^1.4.6",
     "superagent": "^1.8.3"
   }
 }

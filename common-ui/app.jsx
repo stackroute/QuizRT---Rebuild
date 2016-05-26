@@ -11,6 +11,7 @@ import ForgotPswd from './views/Forgot';
 import VerifyOTP from './views/OTP';
 import SetNewPswd from './views/SetPswd';
 import Badges from './views/Badges/Badges';
+import Result from './views/Result'
 import Dashboard from './views/dashboard/dashboard';
 import TopicDetails from './views/EachTopic/EachTopic';
 import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
@@ -30,6 +31,7 @@ export class App extends React.Component {
       <Route path="/rank" component={Rank} />
 
       <Route path="/tournament" component={TournamentsSubContainer} />
+      <Route path="/result" component={Result} />
 
       <Route path="/" component={LoginForm} />
       <Route path="/quiz" component={Quiz} />

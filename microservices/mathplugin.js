@@ -1,6 +1,6 @@
 module.exports = function math(){
   this.add('role:math,cmd:sum',function(msg,res){
-    var sum = msg.left+msg.right;
+    var sum = parseInt(msg.left)+parseInt(msg.right);
     res(null, {sum: sum})
   })
 }

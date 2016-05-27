@@ -12,41 +12,57 @@ seneca.use('mongo-store', {
 describe('Check LeaderBoard Crud',function(){
   var leaderBoardId;
   var updatedBoard = {
-    name: 'BhargavReddy',
-
+    name: 'Samuel',
+    status:8
   }
   var newBoard ={
-    name:'Vijayalakshmi',
-    creationTime: '20/5/2016',
-    rankingTable:[]
+    name:'Jobs',
+    status:4
   }
+  var id;
   it('Check leaderBoard Add',function(done){
     seneca.act('role:board,action:add',{data:newBoard},function(err,saved_board){
-      if(err) done(err);
-      else {
-        console.log(saved_board);
-        this.act('role:board,action:get',{id:saved_board.id},function(err,loaded_board){
-          if(err) done(err)
-          leaderBoardId= loaded_board.id;
-          done();
-        })
+      if(err) done(err)
+      id = saved_board.id;
+       saved_board.name.should.be.exactly(newBoard.name);
+       done();
+     })
+ })
 
-      }
-   })
-
-
+ it('Check leaderBoard Get',function(done){
+  seneca.act('role:board,action:get',{id:id},function(err,result){
+    if(err) done(err);
+    else{
+      result.name.should.be.exactly(newBoard.name);
+      done();
+    }
   })
+})
 
-
-
-
-  it('Check Board update',function(done){
-    seneca.act({role:'board',action:'update', id:leaderBoardId,data:updatedBoard},function(err,loaded_board){
-         console.log(loaded_board);
-        if(err) done(err)
-        loaded_board.name.should.be.exactly(updatedBoard.name);
-        done();
-
+it('Update the board by id',function(done){
+    seneca.act('role:board,action:update',{id:id,data:updatedBoard},function(err,loaded_board){
+      if(err) done(err)
+      loaded_board.name.should.be.exactly(updatedBoard.name);
+      done();
     })
   })
+
+
+
+  it('Check Board delete',function(done){
+    seneca.act({role:'board',action:'delete',id:leaderBoardId,data:updatedBoard},function(err,deleted_board){
+      console.log(deleted_board);
+      // if(err)done(err)
+      // deleted_board.name.sould.be.exactly(Null);
+      done();
+    })
+})
+
+
+
+
+
+
+
+
 })

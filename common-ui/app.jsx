@@ -17,6 +17,7 @@ import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContai
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
 import RecentPage from './views/recent_activity';
+import Result from './views/result';
 
 injectTapEventPlugin();
 
@@ -44,6 +45,7 @@ export class App extends React.Component {
       <Route path= '/eachtopic' component={TopicDetails} />
       <Route path= '/alltopics' component={SubTopicContainer} />
       <Route path = '/recent' component={RecentPage} />
+      <Route path = '/result' component={Result} />
       </Router>
       </MuiThemeProvider>
     );

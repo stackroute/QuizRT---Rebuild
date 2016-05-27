@@ -2,7 +2,9 @@ var leaderBoard = function(options){
 
   //load a board based on id.
   this.add({role:'board',action:'get'},function(msg,respond){
-    this.make('board').load$(msg.id,respond);
+    this.make('board').load$(msg.id,function(err,result){
+      respond(null,result)
+    });
   });
 
   //create a new board
@@ -24,7 +26,7 @@ var leaderBoard = function(options){
     });
   })
 
-// delete a board
+//delete a board
   this.add({role:'board',action:'delete'},function(msg,respond){
     this.make('board').remove$(msg.id,respond);
   })

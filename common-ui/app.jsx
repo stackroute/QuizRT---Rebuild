@@ -17,33 +17,45 @@ import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContai
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
 import RecentPage from './views/recent_activity';
+import cookie from 'react-cookie';
 
-injectTapEventPlugin();
-
-
+injectTapEventPlugin(); 
 
 
 export class App extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+
+  requireAuth(nextState, replace) {
+    var token = cookie.load('auth_cookie');
+    if(token == undefined){
+      replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    });
+    }
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
-      <Route path="/dashboard" component={Dashboard} />
-
-      <Route path="/tournament" component={TournamentsSubContainer} />
-
       <Route path="/" component={LoginForm} />
-
-      <Route path="/topics" component={TopicsView} />
       <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />
-      <Route path = '/badges' component = {Badges} />
       <Route path = '/signup' component = {SignUp} />
-      <Route path= '/eachtopic' component={TopicDetails} />
-      <Route path= '/alltopics' component={SubTopicContainer} />
-      <Route path = '/recent' component={RecentPage} />
+      
+      <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
+      <Route path="/tournament" component={TournamentsSubContainer} onEnter={this.requireAuth}/>
+      <Route path="/topics" component={TopicsView} onEnter={this.requireAuth}/>
+      <Route path = '/badges' component = {Badges} onEnter={this.requireAuth}/>
+      <Route path= '/eachtopic' component={TopicDetails} onEnter={this.requireAuth}/>
+      <Route path= '/alltopics' component={SubTopicContainer} onEnter={this.requireAuth}/>
+      <Route path = '/recent' component={RecentPage} onEnter={this.requireAuth}/>
       </Router>
       </MuiThemeProvider>
     );

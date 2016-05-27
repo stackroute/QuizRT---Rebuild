@@ -3,6 +3,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import Feed from './feed';
+import cookie from 'react-cookie';
 
 var API = require('../../../rest-server/json-server/api/api.js');
 
@@ -91,7 +92,15 @@ const feedTitleStyle ={
 }
 
 var TopicDetails = React.createClass({
+	contextTypes :{
+	  router : React.PropTypes.object
+	},
 	getInitialState: function(){
+		var token = cookie.load('auth_cookie');
+		if(token == undefined){
+			console.log("inside undefined");
+			this.context.router.push('/login');
+		}
 		return	{topicFeeds:[],fullfeeds:[]}
 	},
 	componentWillMount:function(){

@@ -1,0 +1,85 @@
+
+<html>
+  <head>
+    <title>Quiz with one player</title>
+
+  </head>
+  <style>
+    .optionDiv{
+      float:left;
+      margin-left:40px;
+
+    }
+    .questionDiv{
+      width:400px;
+      margin-left:20%;
+
+    }
+  </style>
+  <body>
+
+      <div id="container" class='questionDiv'>
+
+      </div>
+
+      <div class='optionDiv' id="option1"></div>
+      <div class='optionDiv' id="option2"></div>
+      <div class='optionDiv' id="option3"></div>
+      <div class='optionDiv' id="option4"></div>
+
+
+
+
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket = io();
+        var question,correct=0,incorrect=0,quesCount=0;
+
+
+        socket.on('new question',function(ques){
+
+          quesCount++;
+          question = ques;
+          quesContainer = $('#container');
+
+          quesContainer.append('<p class="remove">'+question.text+'</p>');
+          var count=1;
+          for(var i of question.options)
+          {
+
+             option = 'option'+count;
+
+            $('#'+option).append('<p class="remove"><button onclick="sendAnswer(this)" value="'+i+'">'+i+'</button></p>');
+            count++;
+          }
+
+
+        });
+        function sendAnswer(button){
+           if(button.value===question.correct){
+                  correct++;
+
+
+           }
+           else
+             incorrect++;
+          $('.remove').remove();
+
+
+           socket.emit('give new question');
+
+        }
+        socket.on('end quiz',function(msg){
+          alert(msg);
+          alert('Your score is '+correct+' out of '+quesCount);
+          correct=0;incorrect=0;
+          quesCount=0;
+          
+
+        })
+
+    </script>
+  </body>
+</html>

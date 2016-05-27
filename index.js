@@ -1,19 +1,19 @@
 var express = require('express');
 var app = express();
-var server = require('http').createServer(app);
+var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var questions;
 var seneca = require('seneca')()
-            .use('microservices/ques')
             .use('entity')
             .use('mongo-store',{
               name:'quizRT4',
               host:'127.0.0.1',
               port:27017
             })
+            .use('mesh',{auto:true});
 
-server.listen(3000,function(){
-  console.log('Server is running at the port 3000');
+server.listen(8080,function(){
+  console.log('Server is running at the port 8080');
 })
 app.use(express.static(__dirname+'/common-ui'));
 seneca.act('role:question,action:all',function(err,result){

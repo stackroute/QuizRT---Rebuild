@@ -22,6 +22,7 @@ import Quiz from './views/QuizPlay'
 import Rank from './views/Rank';
 injectTapEventPlugin();
 
+import Result from './views/result';
 import cookie from 'react-cookie';
 
 

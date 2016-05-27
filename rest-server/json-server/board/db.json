@@ -1,0 +1,33 @@
+{
+  "tableData": [
+    {
+      "name" : "smith",
+      "status" : 1
+    },
+    {
+      "name": "Randal White",
+      "status": 2
+    },
+    {
+      "name": "Stephanie Sanders",
+      "status": 3
+    },
+    {
+      "name": "Steve Brown",
+      "status": 4
+    },
+    {
+      "name": "Joyce Whitten",
+      "status": 5
+    },
+    {
+      "name": "Samuel Roberts",
+      "status": 6
+    },
+    {
+      "name": "Adam Moore",
+      "status": 7
+    }
+  ]
+
+  }

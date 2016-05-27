@@ -6,7 +6,7 @@
   "scripts": {
     "json-server": "json-server --watch ./rest-server/json-server/db.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/webpack"
+    "build": "webpack"
   },
   "author": "Sagar Patke <sagarpatke@gmail.com>",
   "license": "MIT",
@@ -31,12 +31,22 @@
 
   },
   "dependencies": {
-    "express": "^4.13.4",
     "gulp": "^3.9.1",
-    "seneca": "^2.1.0",
-    "seneca-entity": "0.0.1",
-    "seneca-mongo-store": "^0.2.0",
     "socket.io": "^1.4.6",
-
+    "mocha": "^2.4.5",
+    "should": "^8.3.1",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^7.0.0",
+    "react-cookie": "^0.4.6",
+    "react-motion": "^0.4.3",
+    "react-swipeable-views": "^0.5.4",
+    "seneca": "^2.1.0",
+    "seneca-balance-client": "^0.5.0",
+    "seneca-entity": "^0.1.1",
+    "seneca-mesh": "^0.7.0",
+    "seneca-mongo-store": "^0.2.0",
+    "superagent": "^1.8.3"
   }
 }

@@ -13,20 +13,23 @@ export default class ProgressBar extends React.Component{
     var outerThis = this;
     var sec = this.props.seconds;
     var diff = (100/sec);
-
+    var i =0;
 
     var t = setInterval(function(){
-
+      i=i+1;
       outerThis.setState({completed:outerThis.state.completed-diff});
       if(outerThis.state.completed===0 ){
-      outerThis.setState({completed:100});
+        if(i === 2){
+          clearInterval(t);
+
+        }
+        outerThis.setState({completed:100});
+
       }
     },1000)
   }
   render(){
-    if(this.props.seconds==1) return null;
   return(
-
     <div>
       <LinearProgress mode="determinate" value={this.state.completed} style={{height:this.props.height}} />
   </div>

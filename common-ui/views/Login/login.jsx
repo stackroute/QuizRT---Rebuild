@@ -74,9 +74,9 @@ export default class LoginForm extends React.Component{
 				<p style = {para}>Login here to play the game</p>
 
         <form onSubmit={this.handleLogin.bind(this)} >
-            <TextField hintText="username" floatingLabelText="Username" fullWidth={true} 
+            <TextField hintText="username" floatingLabelText="Username" fullWidth={true}
               onChange={this.usernameChanged.bind(this)} type="text" />
-            <TextField fullWidth={true}  floatingLabelText="Password" type="password" 
+            <TextField fullWidth={true}  floatingLabelText="Password" type="password"
               onChange={this.passwordChanged.bind(this)} />
             <RaisedButton type="submit" label="Login" primary={true} style={styles} />
         </form>

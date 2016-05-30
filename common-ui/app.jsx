@@ -22,7 +22,6 @@ import Quiz from './views/QuizPlay'
 import Rank from './views/Rank';
 injectTapEventPlugin();
 
-import Result from './views/result';
 import cookie from 'react-cookie';
 
 
@@ -51,7 +50,7 @@ export class App extends React.Component {
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/signup' component = {SignUp} />
-      
+
       <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} onEnter={this.requireAuth} />

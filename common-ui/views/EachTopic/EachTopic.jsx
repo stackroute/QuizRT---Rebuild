@@ -2,7 +2,7 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
-import Feed from './feed';
+import Feed from './Feed';
 import cookie from 'react-cookie';
 
 var API = require('../../../rest-server/json-server/api/api.js');

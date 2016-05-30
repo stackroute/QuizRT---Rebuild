@@ -45,7 +45,7 @@ app.use(express.static(__dirname+'/../common-ui'));
 // To mongo://localhost:27017/quizART-test when in test
 // To mongo://localhost:27017/quizART-production when in production
 
-var env = process.ev.NODE_ENV || 'dev'
+var env = process.env.NODE_ENV || 'dev'
 if(env==='dev'){
   // To mongo://localhost:27017/quizART-dev
 }
@@ -54,7 +54,7 @@ else if(env === 'test'){
   //Clear database.
 }
 else if(env === 'production'){
-  To mongo://localhost:27017/quizART-production
+  //To mongo://localhost:27017/quizART-production
 }
 
 app.use(require('body-parser').json());
@@ -80,4 +80,4 @@ app.post('/api/v1/user/:id',function(req,res){
   req.body._id= newId;
   return userMap[newId]
 })
-export = module.exports = app;
+exports = module.exports = app;

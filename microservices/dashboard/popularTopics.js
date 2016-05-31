@@ -1,1 +1,0 @@
-var popularTopics = function(options)

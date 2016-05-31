@@ -60,7 +60,7 @@ export class App extends React.Component {
       <Route path="/topics" component={TopicsView} onEnter={this.requireAuth}/>
       <Route path = '/badges' component = {Badges} onEnter={this.requireAuth}/>
       <Route path= '/eachtopic' component={TopicDetails} onEnter={this.requireAuth}/>
-      <Route path= '/alltopics' component={SubTopicContainer} onEnter={this.requireAuth}/>
+      <Route path= '/alltopics' component={SubTopicContainer}/>
       <Route path = '/recent' component={RecentPage} />
       </Router>
       </MuiThemeProvider>

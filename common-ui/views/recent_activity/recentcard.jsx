@@ -64,7 +64,7 @@ var Recentcard = React.createClass({
           {this.props.activity.description}
         </p>
         <CardMedia>
-          <Badge />
+          <Badge data={data}/>
         </CardMedia>
 
         <CardActions >

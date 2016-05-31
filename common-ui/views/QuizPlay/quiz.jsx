@@ -1,13 +1,15 @@
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+var React = require('react');
+var Slider = require('react-slick');
+import Paper from 'material-ui/Paper';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
-// import Timer from '../../components/Timer';
-//import ProgressBar from '../../components/ProgressBar';
 import ProgressBar from './progressBar';
 import Timer from './timer';
+import Questions from './questions';
+
+
 import {
 blue300,
 indigo900,
@@ -17,84 +19,143 @@ pink400,
 purple500,
 } from 'material-ui/styles/colors';
 
-
 const style = {
-  width:'100%',
-  margin:12,
-  height:'400%'
-
-}
-const space = {
-  marginBottom:100
-}
-
-const style1 = {
-  marginBottom:50
-}
-export default class Quiz extends React.Component{
-  render (){
-  return (
-  <div>
-    <div className='container-fluid'>
-    <div className='row'>
-      <div className='col-xs-12'>
-        <div className='row center-xs'>
-          <h1>QuizRT</h1>
-        </div>
-      </div>
-    </div>
-    <hr/>
-    <ProgressBar seconds={30} height={15} />
-    <div className='row' style={space} >
-      <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-        <List>
-          <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange300} backgroundColor={purple500} >D</Avatar>}>
-          </ListItem>
-        </List>
-      </div>
-      <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-        <div className='row center-xs'><Timer seconds={30} /></div>
-      </div>
-      <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-        <div className='row end-xs'>
-        <List>
-          <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-          </ListItem>
-        </List>
-        </div>
-      </div>
-    </div>
-    <div className='row' style={style1} >
-      <div className='col-xs-12'>
-        <div className='row center-xs'>
-          <p>Which Tagore play, featuring a mother and a son, is set against the backdrop of Kurukshetra war?</p>
-        </div>
-      </div>
-    </div>
-    <div className='row' >
-      <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style} />
-      </div>
-      <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style} />
-      </div>
-      <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style} />
-      </div>
-      <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style} />
-      </div>
-      <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style} />
-      </div>
-      <div className='col-xs-6 col-sm-6 col-lg-4 col-md-4'>
-          <RaisedButton label='Kolkata' primary={true} style={style} />
-      </div>
-
-    </div>
-    </div>
-
-  </div>
-  );
-  }
+  height: 100,
+  width: 100,
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block',
 };
+
+class SampleNextArrow extends React.Component{
+  render(){
+    return(
+      <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
+    );
+  }
+}
+
+class SamplePrevArrow extends React.Component{
+  render(){
+    return(
+      <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
+    );
+  }
+}
+
+
+export default class Rank extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      ques:{}
+    };
+  }
+  componentDidMount(){
+    this.socket = io();
+    var that = this;
+    this.socket.on('new question',function(data){
+      console.log(data);
+      that.setState({ques:data})
+    })
+    setTimeout(function(){
+      console.log('from settimeout');
+      this.socket.emit('give new question');
+    }.bind(this),5000);
+  }
+
+  render(){
+    var settings = {
+          dots: false,
+          nextArrow:<SampleNextArrow />,
+          prevArrow:<SamplePrevArrow />,
+          infinite:false,
+          speed: 500,
+          slidesToShow: 9,
+          slidesToScroll: 5,
+          touchMove:true,
+          responsive: [{
+              breakpoint: 1024,
+              settings: {
+                  dots: false,
+                  slidesToShow: 5,
+                  slidesToScroll: 3,
+                  infinite: true,
+
+              }
+          }, {
+              breakpoint: 600,
+              settings: {
+                  dots: false,
+                  slidesToShow: 3,
+                  slidesToScroll: 3
+              }
+          }, {
+              breakpoint: 480,
+              settings: {
+                  dots: false,
+                  slidesToShow: 2,
+                  slidesToScroll: 2
+              }
+          }]
+      };
+    return (
+      <div className="container-fluid">
+      <div >
+        <Slider {...settings}>
+          <div><Paper style={style} zDepth={2} >1 <p>First</p> 24</Paper></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} >35 <p>Last</p> 100</Paper></div>
+        </Slider>
+      </div>
+      <hr/>
+      <ProgressBar seconds={10} height={15} />
+      <div className='row'  >
+        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+          <List>
+            <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange300} backgroundColor={purple500} >D</Avatar>}>
+            </ListItem>
+          </List>
+        </div>
+        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+          <div className='row center-xs'><Timer seconds={10} /></div>
+        </div>
+        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+          <div className='row end-xs'>
+          <List>
+            <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
+            </ListItem>
+          </List>
+          </div>
+        </div>
+      </div>
+      <Questions data={this.state.ques} />
+      </div>
+    );
+  }
+}

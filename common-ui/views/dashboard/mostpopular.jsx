@@ -31,7 +31,9 @@ var topicsData =[{
   subtitle: "Let's play a cricket quiz",
   avatarimg: 'img/SubTopicImages/avtar.jpg',
   img: 'img/SubTopicImages/main.jpg',
-  category: "Sports"
+  category: "Sports",
+  favorite:23,
+  followers:6453
 
 },
 {
@@ -39,21 +41,27 @@ var topicsData =[{
   subtitle: "Let's play history quiz",
   avatarimg: 'img/SubTopicImages/hisavtar.jpg',
   img: 'img/SubTopicImages/hismain.jpg',
-  category: "History"
+  category: "History",
+  favorite:15,
+  followers:3327
 },
 {
   title: "TvCelebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: 'img/SubTopicImages/tvavtar.jpg',
   img: 'img/SubTopicImages//tvmain.jpg',
-  category: "Celebreties"
+  category: "Celebreties",
+  favorite:21,
+  followers:8532
 },
 {
   title: "Instruments",
   subtitle: "Let's play a music quiz",
   avatarimg: 'img/SubTopicImages/miavtar.jpg',
   img: 'img/SubTopicImages/mimain.gif',
-  category: "Music"
+  category: "Music",
+  favorite:33,
+  followers:9910
 }
 ];
 

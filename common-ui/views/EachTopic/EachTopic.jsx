@@ -2,18 +2,50 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
+import Feed from './Feed';
+import cookie from 'react-cookie';
+
+var API = require('../../../rest-server/json-server/api/api.js');
+
+var FeedData = [
+    {
+      "title" : "Marshmellow",
+      "subtitle" : "Third Wheel",
+      "avatarImg" : "./img/EachTopic/photo_1.jpg",
+      "feedImg" : "./img/EachTopic/dancing_man.gif",
+      "time" : "8 hrs ago"
+    },
+    {
+      "title" : "Deadpool",
+      "subtitle" : "Bad Ass Smart Ass",
+      "avatarImg" : "./img/EachTopic/photo_1.jpg",
+      "feedImg" : "./img/EachTopic/giphy.gif",
+      "time" : "6 hrs ago"
+    }
+];
+
+var feeds=[];
 
 const style = {
 	float : "left",
-	marginTop:20,
+	margin : "auto"
 };
 
 const img_style ={
-	height:"80%",
-	width:"80%",
-	borderRadius:"50%"
+	height:"50%",
+	width:"50%",
+	borderRadius:"50%",
+	marginLeft : "25%"
 };
 
+var feedImgStyle = {
+	height:"20%",
+	width : "100%"
+}
+
+const feedAvatar ={
+	margin : "auto"
+}
 
 const btnStyle = {
 	margin : 5,
@@ -43,69 +75,94 @@ const feedImg = {
 const feedBtnStyle = {
 	backgroundColor : "#00bcd4",
 	color : "#fff",
-	marginBottom:"4%"
+	marginBottom:"4%",
+	width : "95%"
+}
+
+var feedBtn = {
+	textAlign : "-webkit-center"
 }
 
 const feedStyle = {
-	marginTop : "3%",
+	margin : "2% auto"
 }
 
 const feedTitleStyle ={
 	textAlign : "-webkit-center",
-	fontSize:"15",
 }
 
-var Feeddata = [
-	{
-		title:"MarshMellow",
-		subtitle : "The Third Wheel",
-		imgSrc : "./img/photo.jpg",
-		feedImage : "./img/Animated-head-bobbing-cat-with-headphones-3.gif"
-	},
-	{
-		title:"MarshMellow",
-		subtitle : "The Third Wheel",
-		imgSrc : "./img/photo.jpg",
-		feedImage : "./img/Animated-head-bobbing-cat-with-headphones-3.gif"
-	},
-	{
-		title:"MarshMellow",
-		subtitle : "The Third Wheel",
-		imgSrc : "./img/photo.jpg",
-		feedImage : "./img/Animated-head-bobbing-cat-with-headphones-3.gif"
-	},
-]
-
 var TopicDetails = React.createClass({
-	render : function(){
-		return ( 
+	contextTypes :{
+	  router : React.PropTypes.object
+	},
+	getInitialState: function(){
+		var token = cookie.load('auth_cookie');
+		if(token == undefined){
+			this.context.router.push('/login');
+		}
+		return	{topicFeeds:[],fullfeeds:[],topics:[]}
+	},
+  componentDidMount:function(){
+    $.ajax({
+      url: '/eachtopic',
+      dataType:'json',
+      success: function(data){
+        this.setState({topics:data})
+      }.bind(this)
+    })
+  },
+	componentWillMount:function(){
 
-		<Paper>	
-			<div className="container">
-			
+      API.getAllFeeds(function(data){
+         this.setState({topicFeeds:data});
+         console.log(this.state.topicFeeds);
+         this.state.topicFeeds.forEach(function(eachFeed){
+           console.log(eachFeed);
+           feeds.push(
+           		<div>
+	       			<Divider />
+	       			<Feed feed={eachFeed} />
+	       		</div>
+           );
+         });
+         this.setState({fullfeeds:feeds});
+
+         console.log(feeds.length);
+     }.bind(this));
+   	},
+
+	render : function(){
+
+
+
+		return (
+
+		<div>
+			<div className="container" style={feedStyle}>
+
 				<h2 style={hStyle}>Cricket</h2>
-				<h4 style = {hStyle}>Let's play a cricket quiz</h4>	
+				<h4 style = {hStyle}>Let's play a cricket quiz</h4>
 				<div className="row">
 					<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={style}>
-						<img src="./img/photo.jpg" style={img_style}/>
+						<img src="./img/EachTopic/photo.jpg" style={img_style}/>
 					</div>
 					<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={style}>
-						   
+
 							<FlatButton
 						      label="Play"
-						      primary="true" 
+						      primary={true}
 						      style={btnStyle}/>
-					       
+
 						    <FlatButton
 						      label="+Fav"
-						      primary="true"
+						      primary={true}
 						      style={btnStyle} />
 
 						    <FlatButton
 						      label="Follow"
-						      primary="true"
+						      primary={true}
 						      style={btnStyle} />
-					      
+
 					</div>
 				</div>
 
@@ -123,91 +180,14 @@ var TopicDetails = React.createClass({
 						<p style={factStyle}>10</p>
 					</div>
 				</div>
-				
+
 			</div>
 			<Divider />
 			<div>
-				<h4 style={feedTitleStyle}>Feed</h4>
-				<Divider/>
-				<div className="container" style={feedStyle}>
-					<div className="row">
-						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="./img/photo_1.jpg" style={img_style}/>
-						</div>
-						<div className="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-							<h5>MarshMellow</h5>
-							<h6>The Third Wheel</h6>
-						</div>
-						<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-							<h6>8 hrs ago</h6>
-						</div>
-					</div>
-					<div className="row" style={feedImg}>
-						<img src="./img/Animated-head-bobbing-cat-with-headphones-3.gif"/>
-					</div>
-					<Divider/>
-					<div className="row">
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<FlatButton
-						      label="Like"
-						      primary="true" 
-						      style={feedBtnStyle}/>
-						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<FlatButton
-						      label="Comment"
-						      primary="true" 
-						      style={feedBtnStyle}/>
-						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<FlatButton
-						      label="Play"
-						      primary="true" 
-						      style={feedBtnStyle}/>
-						</div>
-					</div>
-				</div>
-				<Divider/>
-				<div className="container" style={feedStyle}>
-					<div className="row">
-						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="./img/photo_1.jpg" style={img_style}/>
-						</div>
-						<div className="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-							<h5>MarshMellow</h5>
-							<h6>The Third Wheel</h6>
-						</div>
-						<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-							<h6>8 hrs ago</h6>
-						</div>
-					</div> 
-					<div className="row" style={feedImg}>
-						<img src="./img/Animated-head-bobbing-cat-with-headphones-3.gif"/>
-					</div>
-					<div className="row">
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<FlatButton
-						      label="Like"
-						      primary="true" 
-						      style={feedBtnStyle}/>
-						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<FlatButton
-						      label="Comment"
-						      primary="true" 
-						      style={feedBtnStyle}/>
-						</div>
-						<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<FlatButton
-						      label="Play"
-						      primary="true" 
-						      style={feedBtnStyle}/>
-						</div>
-					</div>
-					<Divider/>
-				</div>
+				<h2 style={feedTitleStyle}>Feed</h2>
+				{this.state.fullfeeds}
 			</div>
-		</Paper>
+		</div>
 		);
 	}
 });

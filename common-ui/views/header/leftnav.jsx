@@ -14,6 +14,7 @@ import ActionAccountbox from 'material-ui/svg-icons/action/account-box';
 import ActionTurnedin from 'material-ui/svg-icons/action/turned-in';
 import ActionViewmodule from 'material-ui/svg-icons/action/view-module';
 import ActionViewquilt from 'material-ui/svg-icons/action/view-quilt';
+import cookie from 'react-cookie';
 
 const avatarstyle={
   backgroundSize:'cover',
@@ -54,6 +55,10 @@ var ProfileHero = React.createClass({
     return({open: false});
   },
 
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
   handleToggle: function () {
     this.setState({open: !this.state.open});
   },
@@ -63,6 +68,45 @@ var ProfileHero = React.createClass({
   },
   handleTouchTap: function() {
     alert('You are Redirected to Dashboard');
+  },
+
+  handleRecentTouch : function(){
+    event.preventDefault();
+
+    var token = {token : cookie.load('auth_cookie')}
+
+    $.ajax({
+      type : 'POST',
+      data :  JSON.stringify(token),
+      contentType : 'application/json',
+      url : '/RecentPage',
+      success: (function(data) {
+        if(data['success'] == true){
+            this.context.router.push('/recent');
+
+        }
+
+      }).bind(this)
+    });
+  },
+  handleLogout : function(){
+    event.preventDefault();
+
+    var token = {token : cookie.load('auth_cookie')}
+
+    $.ajax({
+      type : 'POST',
+      data :  JSON.stringify(token),
+      contentType : 'application/json',
+      url : '/Logout',
+      success: (function(data) {
+        if(data['success'] == true){
+            this.context.router.push('/login');
+
+        }
+
+      }).bind(this)
+    });
   },
 
   render: function() {
@@ -97,10 +141,12 @@ var ProfileHero = React.createClass({
             <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} style={listtext}/>
             <ListItem primaryText="SETTINGS" leftIcon={<ActionSettings />} style={listtext}/>
             <ListItem primaryText="RECENT ACTIVITY" leftIcon={<ImageBurstmode />} style={listtext}/>
+              onTouchTap={this.handleRecentTouch.bind(this)}/>
+            <ListItem primaryText="BADGES" leftIcon={<ActionTurnedin />}  style={listtext}/>
             <ListItem primaryText="TOPICS" leftIcon={<ActionViewmodule />} style={listtext}/>
             <ListItem primaryText="TOURNAMENTS" leftIcon={<ActionViewquilt />} style={listtext}/>
-            <ListItem primaryText="BADGES" leftIcon={<ActionTurnedin />} style={listtext}/>
             <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} style={listtext}/>
+              onTouchTap={this.handleLogout.bind(this)} />
           </List>
         </Drawer>
       </div>

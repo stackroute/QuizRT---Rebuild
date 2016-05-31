@@ -7,6 +7,7 @@ const style = {
   marginTop:12
 }
 export default class Result extends React.Component{
+
   render(){
     return(
       <div className='container-fluid'>

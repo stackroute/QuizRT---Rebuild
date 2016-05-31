@@ -18,7 +18,6 @@ var topicsData =[{
   avatarImg: './img/topic/avtar.jpg',
   img: './img/topic/main.jpg',
   category: "Sports"
-
 },
 {
   title: "Chess",
@@ -26,7 +25,6 @@ var topicsData =[{
   avatarImg: './img/topic/chavtar.jpg',
   img: './img/topic/chesmain.jpg',
   category: "Sports"
-
 },
 {
   title: "Football",
@@ -178,10 +176,26 @@ var title4={
 }
 
 const style_fav={
-    width:'10%',
+    width:'5%',
     marginTop:10,
     marginBottom:10,
     float:'right',
+}
+const style_followers={
+    width:'12%',
+    marginTop:15,
+    marginBottom:10,
+    float:'right',
+    fontWeight:'bold',
+    fontSize:'small'
+}
+const style_favorite={
+    width:'10%',
+    marginTop:15,
+    marginBottom:10,
+    float:'right',
+    fontWeight:'bold',
+    fontSize:'small'
 }
 const iconStyles = {
   marginRight: 24,
@@ -195,12 +209,14 @@ var SubTopicCard = React.createClass({
 
 
 <Card style ={cardDivStyle}>
+    <p style={style_favorite}>{this.props.topic.favorite} </p>
     <Checkbox
       checkedIcon={<ActionFavorite />}
       uncheckedIcon={<ActionFavoriteBorder />}
       style={style_fav}
       iconStyle={{fill: '#B71C1C'}}
     />
+    <p style={style_followers}>{this.props.topic.followers} </p>
     <Checkbox
       checkedIcon={<People />}
       uncheckedIcon={<PeopleOutline />}

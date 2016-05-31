@@ -1,0 +1,23 @@
+{
+  "name": "question_service",
+  "version": "1.0.0",
+  "description": "A microservice that fetches questions from the database.",
+  "main": "questionService.js",
+  "scripts": {
+    "test": "mocha tests.js"
+  },
+  "keywords": [
+    "question",
+    "microservice",
+    "seneca"
+  ],
+  "author": "Anshul Chanchlani",
+  "license": "ISC",
+  "dependencies": {
+    "seneca": "^2.1.0",
+    "seneca-balance-client": "^0.5.0",
+    "seneca-entity": "^0.1.1",
+    "seneca-mesh": "^0.7.0",
+    "seneca-mongo-store": "^0.2.0"
+  }
+}

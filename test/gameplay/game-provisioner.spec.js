@@ -18,15 +18,15 @@ describe('Basic Acknowledgement Flow', function() {
       msgKey.should.be.exactly('tournamentQueue');
       obj.should.have.property('msg');
       obj.msg.should.be.exactly('wait');
+      count.should.be.exactly(1);
       done();
     };
 
     var p1Middleware = seneca();
-    p1Middleware.use(getProvisionerMiddleware(p1Id,tournamentId,p1SocketMock));
-    p1Middleware.act('role:joinTournament,tournamentId:' + tournamentId, function(err, response) {
+    p1Middleware.use(gameplayMiddlewarePlugin,{user:p1Id,tournamentId:tournamentId,socket:p1SocketMock});
+    p1Middleware.act('cmd:joinTournament', function(err, response) {
       response.should.have.property('answer');
       response.answer.should.be.exactly('success');
-      count.should.be.exactly(1);
       count++;
     });
   });

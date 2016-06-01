@@ -1,12 +1,22 @@
 var should = require('should');
 var seneca = require('seneca');
 
-describe('Basic Acknowledgement Flow', function() {
-  var tournamentId = Math.random()*1378481293;
+var tournamentId = Math.random()*1378481293;
 
-  var p1Id = Math.random()*118238,p1Middleware,p1Socket;
-  var p2Id = Math.random()*118238,p2Middleware,p2Socket;
-  var p3Id = Math.random()*118238,p3Middleware,p3Socket;
+describe('Gameplay Socket Middleware Setup', function() {
+  var gameplayProvisioner;
+
+  var p1Username = Math.random()*118238,p1Middleware,p1Socket;
+
+  it('Setup Gameplay Provisioner', function(done) {
+    gameplayProvisioner = seneca();
+    gameplayProvisioner.use('redis-transport')
+    gameplayProvisioner.use('gameplayProvisionerPlugin');
+    gameplayProvisioner.listen({type:'redis',pin:'role:join,type:tournament'});
+    gameplayProvisioner.ready(done);
+  });
+
+
 
   it('Setup Client Middleware for P1', function(done) {
     var count = 0;
@@ -20,12 +30,25 @@ describe('Basic Acknowledgement Flow', function() {
       done();
     };
 
-    var p1Middleware = seneca();
-    p1Middleware.use('gameplayMiddlewarePlugin',{username:p1Id,tournamentId:tournamentId,socket:p1SocketMock});
+    p1Middleware = seneca();
+    p1Middleware.use('gameplayMiddlewarePlugin',{username:p1Username,tournamentId:tournamentId,socket:p1SocketMock});
     p1Middleware.act('cmd:joinTournament', function(err, response) {
       response.should.have.property('answer');
-      response.answer.should.be.exactly('success');
+      response.answer.should.be.exactly('queued');
       count++;
+    });
+  });
+
+  it('Setup Consumer to Provisioner', function(done) {
+    p1Middleware.use('redis-transport');
+    p1Middleware.client({type:'redis',pin:'role:join,type:tournament'});
+
+    p1Middleware.ready(function() {
+      p1Middleware.act('role:join,type:tournament,username:'+p1Username+'tournamentId:' + tournamentId, function(err, response) {
+        response.should.have.property('answer');
+        response.answer.should.be.exactly('queued');
+        done();
+      });
     });
   });
 });

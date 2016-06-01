@@ -7,13 +7,15 @@ var bodyparser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var config = require('./microservices/LoginAuthentication/config'); 
 var cookie = require('react-cookie');
+var cors = require('cors');
 var questions;
 var seneca = require('seneca')()
             .use('entity')
             .use('mesh',{auto:true});
+app.use(cors());
 
-server.listen(8080,function(){
-  console.log('Server is running at the port 8080');
+server.listen(3000,function(){
+  console.log('Server is running at the port 3000');
 })
 app.use(express.static(__dirname+'/common-ui'));
 
@@ -53,7 +55,7 @@ seneca.act('role:question,action:all',function(err,result){
 
 //var port = process.env.PORT || 8080;
 
-app.post('/signup',function(req,res){
+app.post('/api/signup',function(req,res){
     var data = {
       name : req.body.name,
       password : req.body.password
@@ -78,11 +80,11 @@ app.post('/signup',function(req,res){
 
 //Route To Authenticate A User
 
-app.post('/authenticate',function(req,res){
+app.post('/api/authenticate',function(req,res){
   var data = {
     name : req.body.name,
     password : req.body.password
-  }
+  }     
   seneca.act('role:user,action:get',{data:data.name},function(err,respond){
     if(err) { return res.status(500).json(err); }
     if(respond == null){
@@ -106,7 +108,8 @@ app.post('/authenticate',function(req,res){
 
 // route middleware to verify a token
 app.use(function(req, res, next) {
-
+  console.log(req.url);
+  console.log(res.url); 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   var secret = app.get('secret');
@@ -121,21 +124,21 @@ app.use(function(req, res, next) {
       next();
     }
     else {
-      return res.status(404).send({ 
+      return res.status(404).send({   
         success: false, 
-        message: 'No token provided.' 
+        message: 'Yolo.' 
       });
     }
   })
 });
 
-app.post('/RecentPage',function(req,res){
+app.post('/api/RecentPage',function(req,res){
 	res.json({
 		success : true
 	});
 });
 
-app.post('/Logout',function(req,res){
+app.post('/api/Logout',function(req,res){
 	res.json({
 		success : true
 	});

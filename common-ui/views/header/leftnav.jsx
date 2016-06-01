@@ -12,6 +12,7 @@ import ActionPowersettingsnew from 'material-ui/svg-icons/action/power-settings-
 import ActionAccountbox from 'material-ui/svg-icons/action/account-box';
 import ActionTurnedin from 'material-ui/svg-icons/action/turned-in';
 import cookie from 'react-cookie';
+var baseURL = 'http://localhost:3000/';
 
 
 var ProfileHero = React.createClass({
@@ -43,7 +44,7 @@ var ProfileHero = React.createClass({
       type : 'POST',
       data :  JSON.stringify(token),
       contentType : 'application/json',
-      url : '/RecentPage',
+      url : baseURL + 'api/RecentPage',
       success: (function(data) {
         if(data['success'] == true){
             this.context.router.push('/recent');
@@ -62,7 +63,7 @@ var ProfileHero = React.createClass({
       type : 'POST',
       data :  JSON.stringify(token),
       contentType : 'application/json',
-      url : '/Logout',
+      url : baseURL + 'api/Logout',
       success: (function(data) {
         if(data['success'] == true){
             this.context.router.push('/login');

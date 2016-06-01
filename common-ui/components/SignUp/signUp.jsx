@@ -4,6 +4,8 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router';
 
+var baseURL = 'http://localhost:3000/';
+
 const style = {
   marginBottom:12,
   width:'100%',
@@ -31,16 +33,6 @@ export default class Test extends React.Component{
 
   handleSubmit(event) {
     event.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: '/signup',
-      data: JSON.stringify(this.state.formInput),
-      success: function(data){
-      },
-      error:function(xhr,status,err){
-        console.error(this.props.url,status,err.toString());
-      }
-     });
     var pass = this.state.formInput.password;
     var username = this.state.formInput.username;
     var router = this.context.router;
@@ -56,7 +48,7 @@ export default class Test extends React.Component{
               type : 'POST',
               data :  JSON.stringify(data),
               contentType : 'application/json',
-              url : '/signup',
+              url : baseURL + 'api/signup',
               success: (function(data) {
                 if(data['success'] == false){
                   alert(data['message']);

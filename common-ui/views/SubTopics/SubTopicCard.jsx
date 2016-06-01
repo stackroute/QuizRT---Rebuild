@@ -172,10 +172,31 @@ var title4={
 
      margin:'auto'
    }
-var SubTopicCard = React.createClass({
-  render: function(){
+export default class SubTopicCard extends React.Component{
+  static get contextTypes() {
+      return {
+        router: React.PropTypes.object
+      }
+    }
+  handleClick(){
+    console.log("function is called hurrey");
+    $.ajax({
+      url:'/alltopics',
+      dataType:'json',
+      data:JSON.stringify(topicsData[0]),
+      success:(function(data){
+        if(data==true){
+          console.log('got success');
+          this.context.router.push('/quiz');
+        } else {
+          console.log('got failure');
+        }
+      }).bind(this)
+    })
+  }
+  render(){
     return(
-  
+
 
 <Card style ={cardDivStyle}>
 
@@ -196,7 +217,7 @@ var SubTopicCard = React.createClass({
       <div className="col-md col-xs col-lg col-sm">
       <RaisedButton label="+Fav"  primary={true} style={BtnStyle} />
 
-        <RaisedButton label="Play" secondary={true} style={BtnStyle} />
+        <RaisedButton label="Play" onClick={this.handleClick.bind(this)} secondary={true} style={BtnStyle} />
         </div>
      </CardActions>
 
@@ -204,6 +225,4 @@ var SubTopicCard = React.createClass({
 
    );
 }
-});
-
-module.exports= SubTopicCard;
+}

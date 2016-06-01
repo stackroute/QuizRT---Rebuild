@@ -68,7 +68,7 @@ seneca.act('role:question,action:all',function(err,result){
 });
 });
 
-app.get('/',function(req,res){
-  console.log('from quiz');
-  res.send(obj)
+app.get('/alltopics',function(req,res){
+  console.log('from all topics');
+  res.send(true)
 })

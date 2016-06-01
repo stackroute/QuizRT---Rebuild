@@ -29,13 +29,10 @@ export class App extends React.Component {
       <Router history={hashHistory}>
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/rank" component={Rank} />
-
       <Route path="/tournament" component={TournamentsSubContainer} />
       <Route path="/result" component={Result} />
-
       <Route path="/" component={LoginForm} />
       <Route path="/quiz" component={Quiz} />
-
       <Route path="/topics" component={TopicsView} />
       <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />

@@ -1,15 +1,9 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-
-
 import {Tabs, Tab} from 'material-ui/Tabs';
-
-
 import SwipeableTabs from './SwipeTabs';
 import SwipeableViews from 'react-swipeable-views';
-
-
 
 const styleCard ={
   margin:10,

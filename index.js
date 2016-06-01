@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-<<<<<<< HEAD
 var io = require('socket.io')(server);
 var bodyparser = require('body-parser');
 
@@ -126,13 +125,12 @@ app.post('/api/signup',function(req,res){
   })
 })
 });
-});
 
 app.get('/',function(req,res){
   console.log('from quiz');
   res.send(obj)
 })
-
+//
 //Route To Authenticate A User
 
 app.post('/authenticate',function(req,res){
@@ -159,11 +157,23 @@ app.post('/authenticate',function(req,res){
 
     }
   })
-})
+});
+
+app.get('/topics/mostPopular',function(req,res) {
+  console.log('form express');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:popularTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
 
 // route middleware to verify a token
 app.use(function(req, res, next) {
-
+  console.log('Coming inside token middleware')
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   var secret = app.get('secret');

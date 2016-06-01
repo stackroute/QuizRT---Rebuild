@@ -209,14 +209,14 @@ var SubTopicCard = React.createClass({
 
 
 <Card style ={cardDivStyle}>
-    <p style={style_favorite}>{this.props.topic.favorite} </p>
+    <p style={style_favorite}>{this.props.topics.playersPerMatch} </p>
     <Checkbox
       checkedIcon={<ActionFavorite />}
       uncheckedIcon={<ActionFavoriteBorder />}
       style={style_fav}
       iconStyle={{fill: '#B71C1C'}}
     />
-    <p style={style_followers}>{this.props.topic.followers} </p>
+    <p style={style_followers}>{this.props.topics.topicFollowers} </p>
     <Checkbox
       checkedIcon={<People />}
       uncheckedIcon={<PeopleOutline />}
@@ -224,9 +224,9 @@ var SubTopicCard = React.createClass({
       iconStyle={{fill: '#009688'}}
     />
     <h4 style={title1}>
-      {this.props.topic.title}
+      {this.props.topics.topicName}
     </h4>
-    <h5 style={title2} color={grey500}>{this.props.topic.subtitle}</h5>
+    <h5 style={title2} color={grey500}>{this.props.topics.topicDescription}</h5>
 
     <CardMedia overlay={
       <div>
@@ -234,7 +234,7 @@ var SubTopicCard = React.createClass({
       <MapsPersonPin color={grey100}/>
       </div>
      }>
-      <img src={this.props.topic.img} />
+      <img src={this.props.topics.topicIcon} />
     </CardMedia>
 
 

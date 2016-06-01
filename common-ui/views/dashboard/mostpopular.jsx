@@ -4,6 +4,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
+var baseurl='http://localhost:8080';
+
 const style = {
   marginLeft:0,
   marginTop:20,
@@ -66,6 +68,28 @@ var topicsData =[{
 ];
 
 var MostPopularSection = React.createClass({
+
+getInitialState:function(){
+    return{topics:[]}
+},
+
+  componentDidMount:function(){
+    $.ajax({
+      url: baseurl+'/topics/mostPopular',
+      dataType:'json',
+      success: function(data){
+        // console.log('got success---------------------');
+        console.log(JSON.stringify(data));
+        this.setState({topics:data})
+        // console.log('------------------------'+data+'----------------------');
+      }.bind(this),
+      error:function(err){
+        console.log(err);
+        console.log('error');
+      }
+    })
+  },
+
   render: function () {
     return (
       <div>
@@ -73,7 +97,7 @@ var MostPopularSection = React.createClass({
           <Card>
           <h1 style={tour_header}>Most Popular topics</h1>
 
-            <SubTopicContainer topics ={topicsData} />
+             <SubTopicContainer topics ={this.state.topics} />
             <FlatButton label="See More" style={stylebtn}/>
 
           </Card>

@@ -6,7 +6,7 @@ module.exports = function(){
         collection.count({topicName:"Animals"},function(err,res){
           var r = Math.floor(Math.random() * res);
           console.log("number of recoreds"+res+"number of records will be skip -- "+r);
-          collection.find({}).limit(4).skip(r).toArray(function(err, documents) {
+          collection.find({}).limit(4).toArray(function(err, documents) {
             if(err) return respond(err);
             respond(null,documents);
           })

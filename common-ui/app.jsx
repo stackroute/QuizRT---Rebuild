@@ -54,8 +54,9 @@ export class App extends React.Component {
       <Route path = '/signup' component = {SignUp} />
       <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
-      <Route path="/quiz" component={Quiz} onEnter={this.requireAuth} />
+      <Route path="/quiz" component={Quiz} />
       <Route path="/dashboard" component={Dashboard}  />
+      <Route path="/topics/mostPopular" component={Dashboard}  />
       <Route path="/tournament" component={TournamentsSubContainer} onEnter={this.requireAuth}/>
       <Route path="/topics" component={TopicsView} onEnter={this.requireAuth}/>
       <Route path = '/badges' component = {Badges} onEnter={this.requireAuth}/>

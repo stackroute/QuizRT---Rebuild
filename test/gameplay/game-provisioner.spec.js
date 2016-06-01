@@ -1,8 +1,6 @@
 var should = require('should');
 var seneca = require('seneca');
 
-var provisionerMiddleware = require('../provisioner-middleware');
-
 describe('Basic Acknowledgement Flow', function() {
   var tournamentId = Math.random()*1378481293;
 
@@ -23,7 +21,7 @@ describe('Basic Acknowledgement Flow', function() {
     };
 
     var p1Middleware = seneca();
-    p1Middleware.use(gameplayMiddlewarePlugin,{user:p1Id,tournamentId:tournamentId,socket:p1SocketMock});
+    p1Middleware.use('gameplayMiddlewarePlugin',{username:p1Id,tournamentId:tournamentId,socket:p1SocketMock});
     p1Middleware.act('cmd:joinTournament', function(err, response) {
       response.should.have.property('answer');
       response.answer.should.be.exactly('success');

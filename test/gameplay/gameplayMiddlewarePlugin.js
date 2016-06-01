@@ -1,7 +1,12 @@
 module.exports = function gamePlayMiddleware(options){
+  var self = this;
 
-  this.add('role:joinTournament',function(msg,respond){
-    options.socket.emit('tournamentQueue',{msg:'wait'});
+  self.username = options.username;
+  self.tournamentId = options.tournamentId;
+  self.socket = options.socket;
+
+  this.add('cmd:joinTournament',function(msg,respond){
     respond(null,{answer:'success'});
+    self.socket.emit('tournamentQueue',{msg:'wait'});
   })
 }

@@ -6,7 +6,11 @@ module.exports = function gamePlayMiddleware(options){
   self.socket = options.socket;
 
   this.add('cmd:joinTournament',function(msg,respond){
-    respond(null,{answer:'success'});
+    respond(null,{answer:'queued'});
     self.socket.emit('tournamentQueue',{msg:'wait'});
   })
+
+  
+
+
 }

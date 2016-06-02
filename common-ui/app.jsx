@@ -21,6 +21,7 @@ import SignUp from './views/SignUP';
 import SocialPlugins from './components/social-icons/socialplugins';
 import Quiz from './views/QuizPlay'
 import Rank from './views/Rank';
+import AllTopics from './views/allTopics/allTopics';
 injectTapEventPlugin();
 
 import cookie from 'react-cookie';
@@ -56,12 +57,11 @@ export class App extends React.Component {
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} />
       <Route path="/dashboard" component={Dashboard}  />
-      <Route path="/topics/mostPopular" component={Dashboard}  />
+      <Route path="/alltopics" component={AllTopics} />
       <Route path="/tournament" component={TournamentsSubContainer} onEnter={this.requireAuth}/>
       <Route path="/topics" component={TopicsView} onEnter={this.requireAuth}/>
       <Route path = '/badges' component = {Badges} onEnter={this.requireAuth}/>
-      <Route path= '/eachtopic' component={TopicDetails} onEnter={this.requireAuth}/>
-      <Route path= '/alltopics' component={SubTopicContainer}/>
+      <Route path= '/eachtopic' component={TopicDetails} />
       <Route path = '/recent' component={RecentPage} />
       </Router>
       </MuiThemeProvider>

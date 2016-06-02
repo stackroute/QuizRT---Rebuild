@@ -97,7 +97,7 @@ getInitialState:function(){
           <Card>
           <h1 style={tour_header}>Most Popular topics</h1>
 
-             <SubTopicContainer topics ={this.state.topics} />
+          <SubTopicContainer topics ={this.state.topics} />
             <FlatButton label="See More" style={stylebtn}/>
 
           </Card>

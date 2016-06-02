@@ -126,11 +126,7 @@ app.post('/api/signup',function(req,res){
 })
 });
 
-app.get('/',function(req,res){
-  console.log('from quiz');
-  res.send(obj)
-})
-//
+
 //Route To Authenticate A User
 
 app.post('/authenticate',function(req,res){
@@ -164,6 +160,18 @@ app.get('/topics/mostPopular',function(req,res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:popularTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/topics/allTopics',function(req,res) {
+  console.log('form express');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTopics,action:retrive',function(err,result){
     if (err) return console.error(err)
   console.log('-----------------'+result+'------------------------')
   res.send(result)

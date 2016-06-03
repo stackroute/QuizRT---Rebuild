@@ -57,6 +57,7 @@ export class App extends React.Component {
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} />
       <Route path="/dashboard" component={Dashboard}  />
+      <Route path="/topics/mostPopular" component={Dashboard}  />
       <Route path="/alltopics" component={AllTopics} />
       <Route path="/tournament" component={TournamentsSubContainer} onEnter={this.requireAuth}/>
       <Route path="/topics" component={TopicsView} onEnter={this.requireAuth}/>

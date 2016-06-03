@@ -1,17 +1,18 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var io = require('socket.io').listen(server);
 var bodyparser = require('body-parser');
 
 var jwt = require('jsonwebtoken');
 var config = require('./microservices/LoginAuthentication/config');
 var cookie = require('react-cookie');
-var io = require('socket.io').listen(server);
+var cors = require('cors');
 var questions;
 var seneca = require('seneca')()
             .use('entity')
             .use('mesh',{auto:true});
+app.use(cors());
 
 server.listen(8080,function(){
   console.log('Server is running at the port 8080');
@@ -129,7 +130,7 @@ app.post('/api/signup',function(req,res){
 
 //Route To Authenticate A User
 
-app.post('/authenticate',function(req,res){
+app.post('/api/authenticate',function(req,res){
   var data = {
     name : req.body.name,
     password : req.body.password
@@ -156,7 +157,7 @@ app.post('/authenticate',function(req,res){
 });
 
 app.get('/topics/mostPopular',function(req,res) {
-  console.log('form express');
+  console.log('form express-mostpopular');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:popularTopics,action:retrive',function(err,result){
@@ -168,7 +169,7 @@ app.get('/topics/mostPopular',function(req,res) {
 });
 
 app.get('/topics/allTopics',function(req,res) {
-  console.log('form express');
+  console.log('form express-alltopics');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:allTopics,action:retrive',function(err,result){
@@ -179,9 +180,23 @@ app.get('/topics/allTopics',function(req,res) {
   console.log('send');
 });
 
+app.get('/tournamentSection',function(req,res) {
+  console.log('form express-tournamentSection');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:randTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
 // route middleware to verify a token
 app.use(function(req, res, next) {
   console.log('Coming inside token middleware')
+  console.log(req.url);
+  console.log(res.url);
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   var secret = app.get('secret');
@@ -196,21 +211,23 @@ app.use(function(req, res, next) {
       next();
     }
     else {
+
       return res.status(404).send({
         success: false,
         message: 'No token provided.'
+
       });
     }
   })
 });
 
-app.post('/RecentPage',function(req,res){
+app.post('/api/RecentPage',function(req,res){
 	res.json({
 		success : true
 	});
 });
 
-app.post('/Logout',function(req,res){
+app.post('/api/Logout',function(req,res){
 	res.json({
 		success : true
 	});

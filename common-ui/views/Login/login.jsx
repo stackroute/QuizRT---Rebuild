@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {Link} from 'react-router';
 import cookie from 'react-cookie';
-
+var baseURL = 'http://localhost:3000/';
 
 
 const styles = {
@@ -29,6 +29,7 @@ export default class LoginForm extends React.Component{
     }
   } // Used to provide property validation.Currently we are saying that we need a context prop of type "React.PropTypes.object"
 
+
   handleLogin(event) {
     event.preventDefault();
 
@@ -42,7 +43,7 @@ export default class LoginForm extends React.Component{
       type : 'POST',
       data :  JSON.stringify(data),
       contentType : 'application/json',
-      url : '/authenticate',
+      url : baseURL + 'api/authenticate',
       success: (function(data) {
         if(data['success'] === true){
             cookie.save('auth_cookie',data['token'],{path:'/'});

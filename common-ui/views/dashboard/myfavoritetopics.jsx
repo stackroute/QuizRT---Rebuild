@@ -45,6 +45,16 @@ var topicsData =[
 ];
 
 var MyFavoriteSection = React.createClass({
+
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
+  handleTopics : function(){
+    event.preventDefault();
+    this.context.router.push('/alltopics');
+  },
+
   render: function () {
     return (
       <div>
@@ -53,7 +63,8 @@ var MyFavoriteSection = React.createClass({
           <h1 style={tour_header}>My Favorite Topics</h1>
             <SubTopicContainer topics ={topicsData} />
             <FlatButton label="See More" style={stylebtn}/>
-            <FlatButton label="Add More" style={stylebtn}/>
+            <FlatButton label="Add More" style={stylebtn}
+              onTouchTap={this.handleTopics.bind(this)}/>
           </Card>
         </Paper>
       </div>

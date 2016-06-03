@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router';
 
-var baseurl = 'http://localhost:3000/';
+var baseURL = 'http://localhost:3000/';
 
 const style = {
   marginBottom:12,
@@ -48,7 +48,7 @@ export default class Test extends React.Component{
               type : 'POST',
               data :  JSON.stringify(data),
               contentType : 'application/json',
-              url: baseurl+'api/signup',
+              url : baseURL + 'api/signup',
               success: (function(data) {
                 if(data['success'] == false){
                   alert(data['message']);

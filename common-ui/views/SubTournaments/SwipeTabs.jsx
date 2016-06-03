@@ -1,5 +1,6 @@
 import {Tabs, Tab} from 'material-ui/Tabs';
 import React from 'react';
+import Divider from 'material-ui/Divider';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
 
@@ -14,9 +15,9 @@ const styles = {
     padding: 10,
     height:100
   },
-
-
-
+  date:{
+    paddingTop:10,
+  }
 };
 
 var SwipeTabs = React.createClass({
@@ -44,7 +45,10 @@ return (
       index={this.state.slideIndex}
       onChangeIndex={this.handleChange}
     >
-        <div style={styles.slide}>{this.props.TabContent.description}</div>
+        <div style={styles.slide}>{this.props.TabContent.description}
+          <div style={styles.date}>Start Date:{this.props.TabContent.startDate}</div>
+          <div style={styles.date}>End Date:{this.props.TabContent.endDate}</div>
+        </div>
 
       <div style={styles.slide}>
         {this.props.TabContent.rules}

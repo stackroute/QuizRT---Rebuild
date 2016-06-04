@@ -5,7 +5,7 @@ var tournamentId = Math.random()*1378481293;
 var requiredPlayers = 3;
 
 describe('Gameplay Middleware API', function() {
-  this.timeout(500000);
+  this.timeout(10000);
   var topicCreator;
 
   var p1Username = Math.random()*118238,p1Middleware,p1Socket;

@@ -70,7 +70,16 @@ describe('Messaging with Seneca Redis Transport', function() {
               if(err) { return done(err); }
               response.should.have.property('answer');
               response.answer.should.be.exactly(6);
-              done();
+              sumListenerMicroservice.close(function(err) {
+                if(err) { return done(err); }
+                productListenerMicroservice.close(function(err) {
+                  if(err) { return done(err); }
+                  sumClientMicroservice.close(function(err) {
+                    if(err) { return done(err); }
+                    done();
+                  });
+                });
+              });
             });
           });
         });
@@ -81,6 +90,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   it('Broadcasting over Redis Transport', function(done) {
     var subscriber1 = seneca(), subscriber1Called=false;
     var subscriber2 = seneca(), subscriber2Called=false;
+    var publisher = seneca();
 
     subscriber1.add('role:math', function(msg) {
       subscriber1Called = true;
@@ -96,7 +106,6 @@ describe('Messaging with Seneca Redis Transport', function() {
     subscriber2.use('redis-transport');
     subscriber2.listen({type:'redis',pin:'role:math'});
 
-    var publisher = seneca();
     publisher.use('redis-transport');
     publisher.client({type:'redis',pin:'role:math'});
 

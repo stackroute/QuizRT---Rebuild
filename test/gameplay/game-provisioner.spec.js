@@ -2,7 +2,7 @@ var should = require('should');
 var seneca = require('seneca');
 
 var tournamentId = Math.random()*1378481293;
-var requiredPlayers = 3;
+
 
 describe('Gameplay Middleware API', function() {
   this.timeout(500000);
@@ -27,7 +27,7 @@ describe('Gameplay Middleware API', function() {
     p1Middleware.act('role:tournament,cmd:queue', function(err, response) {
 
       response.should.have.property('answer');
-      response.answer.should.be.exactly('queued');
+      response.answer.should.have.lengthOf(1);
       count++;
     });
   });
@@ -48,9 +48,7 @@ describe('Gameplay Provisioner API', function() {
 
   it('Setup Consumer to Provisioner', function(done) {
     this.timeout(10000);
-
-    var count = 0;
-
+    var isGameIdReceived = false,isPlayerQueued=false;;
     var p1SocketMock = {};
     p1SocketMock.emit = function(msgKey,obj) {
 
@@ -61,20 +59,36 @@ describe('Gameplay Provisioner API', function() {
     p1Middleware.use('../.././microservices/gameplay/gameplayMiddlewarePlugin',{username:p1Username,tournamentId:tournamentId,socket:p1SocketMock});
     p1Middleware.client({type:'redis',pin:'role:tournament,cmd:queue'});
 
-    p1Middleware.add('role:tournament,id:' + tournamentId + ',username:' + p1Username, function(msg, respond) {
-      msg.should.have.property('gameId');
-      count.should.be.exactly(1);
-      done();
-    });
+
+      p1Middleware.add('role:tournament,id:' + tournamentId + ',username:' + p1Username, function(msg, respond) {
+        msg.should.have.property('gameId');
+         isGameIdReceived=true;
+         console.log("\n Game Id is Received "+ isGameIdReceived+" \n");
+         if(isPlayerQueued && isGameIdReceived)
+         {
+           done();
+         }
+      });
+
+
 
     p1Middleware.listen({type:'redis', pin:'role:tournament,id:' + tournamentId});
 
-    p1Middleware.ready(function() {
-      p1Middleware.act('role:tournament,cmd:queue,username:'+p1Username+'tournamentId:' + tournamentId, function(err, response) {
+
+
+      p1Middleware.act('role:tournament,cmd:queue,username:'+p1Username+',tournamentId:' + tournamentId, function(err, response) {
+
         response.should.have.property('answer');
-        response.answer.should.be.exactly('queued');
-        count++;
+        response.answer.should.be.exact;
+        isPlayerQueued=true;
+        console.log("\n Player is queued "+ isPlayerQueued+" \n");
+        if(isPlayerQueued)
+        {
+          done();
+        }
+
       });
-    });
+
+
   });
 });

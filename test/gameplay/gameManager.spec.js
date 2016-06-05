@@ -23,12 +23,12 @@ describe('Spawn Game Manager',function(){
     this.timeout(100000);
     var gameConsumer = seneca();
     gameConsumer.use('../.././microservices/gameplay/gameManagerPlugin',{player1:player1,player2:player2,player3:player3});
-    gameConsumer.act('role:gameManager,action:create'},function(err,response){
+    gameConsumer.act('role:gameManager,action:create',function(err,response){
       if(err) return done(err);
       response.should.have.property('gameId');
       done();
-    })
-  })
+    });
+  });
 
 
 })

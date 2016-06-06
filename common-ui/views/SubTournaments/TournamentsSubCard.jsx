@@ -1,27 +1,17 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+
+
 import {Tabs, Tab} from 'material-ui/Tabs';
+
+
 import SwipeableTabs from './SwipeTabs';
 import SwipeableViews from 'react-swipeable-views';
 
-const styleCard ={
-  margin:10,
-   float:'left'
-}
-var title1={
-    "font-size":"25"
 
-}
 var title1={
-  "font-size":"25",
-  width:"90%",
-
-  margin:10,
-  float:'left'
-}
-var title1={
-    "font-size":"25"
+  "font-size":"25"
 }
 const styleImg={
   height:"200px",
@@ -32,10 +22,12 @@ const tabHeight={
 }
 
 const btnFontColor ={
-   margin:'auto',
-  //"background-color": "red"
   margin:'auto',
   width:"50%"
+}
+
+const styleCard={
+  margin:5,
 }
 
  var TournamentsSubCard = React.createClass({

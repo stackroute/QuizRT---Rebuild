@@ -2,29 +2,15 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import {orange500} from 'material-ui/styles/colors';
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import {grey600,grey500, grey100, red900, teal500} from 'material-ui/styles/colors';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
+import People from 'material-ui/svg-icons/social/people';
+import PeopleOutline from 'material-ui/svg-icons/social/people-outline';
 
-const TitleStyle={
-  "font-size":"1em",
-    width:"100%",
-  "font-weight":"1em"
-
-}
-const SubtitleStyle={
-  "font-size":"0.8em",
-    width:"100%"
-}
-var style1= {
-  margin:"5px",
-
-}
-var imgStyle={
-  height:"50%",
-  margin:"auto"
-}
-
-const BtnStyle ={
-  width:"50%"
-}
 
 var topicsData =[{
   title: "Cricket",
@@ -32,7 +18,6 @@ var topicsData =[{
   avatarImg: './img/topic/avtar.jpg',
   img: './img/topic/main.jpg',
   category: "Sports"
-
 },
 {
   title: "Chess",
@@ -40,7 +25,6 @@ var topicsData =[{
   avatarImg: './img/topic/chavtar.jpg',
   img: './img/topic/chesmain.jpg',
   category: "Sports"
-
 },
 {
   title: "Football",
@@ -141,83 +125,122 @@ var topicsData =[{
 }
 ];
 
+const TitleStyle={
+  fontSize:"1em",
+    width:"100%",
+  fontWeight:"1em"
+}
+
+const SubtitleStyle={
+  fontSize:"0.8em",
+    width:"100%"
+}
+var style1= {
+  margin:"5px",
+
+}
+var imgStyle={
+  height:"50%",
+  margin:"auto"
+}
+
+const BtnStyle ={
+  marginLeft:'35%'
+}
 
 var style1= {
-
   background:'#c6ecc6'
 }
 
 var cardDivStyle={
-   width:"80%",
-   float:'left',
-
-   padding:10,
-   margin:10
-
+   margin:10,
 }
 
 var title1={
-    "font-size":"100%"
+    paddingLeft:10,
+    paddingTop:10,
+    marginBottom:5
 }
 var title2={
-  "font-size":"95%"
+  paddingLeft:10,
+  marginTop:10,
+  marginBottom:10
 }
 var title3={
-
-    width:"80%",
-    margin:'auto'
+    margin:'auto',
+    width:'60%'
 }
 var title4={
      width:"30%",
-
      margin:'auto'
-   }
-export default class SubTopicCard extends React.Component{
-  static get contextTypes() {
-      return {
-        router: React.PropTypes.object
-      }
-    }
-  handleClick(){
-    console.log("function is called hurrey");
-    $.ajax({
-      url:'/alltopics',
-      dataType:'json',
-      data:JSON.stringify(topicsData[0]),
-      success:(function(data){
-        if(data==true){
-          console.log('got success');
-          this.context.router.push('/quiz');
-        } else {
-          console.log('got failure');
-        }
-      }).bind(this)
-    })
-  }
-  render(){
+}
+
+const style_fav={
+    width:'5%',
+    marginTop:10,
+    marginBottom:10,
+    float:'right',
+}
+const style_followers={
+    width:'12%',
+    marginTop:15,
+    marginBottom:10,
+    float:'right',
+    fontWeight:'bold',
+    fontSize:'small'
+}
+const style_favorite={
+    width:'10%',
+    marginTop:15,
+    marginBottom:10,
+    float:'right',
+    fontWeight:'bold',
+    fontSize:'small'
+}
+const iconStyles = {
+  marginRight: 24,
+  height:60,
+  width:60,
+};
+
+var SubTopicCard = React.createClass({
+  render: function(){
     return(
 
 
 <Card style ={cardDivStyle}>
-
-    <CardHeader
-      title={this.props.topic.title}
-      titleStyle ={title1}
-      subtitle={this.props.topic.subtitle}
-      subtitleStyle ={title2}
-      avatar={this.props.topic.avatarImg}
+    <p style={style_favorite}>{this.props.topics.playersPerMatch} </p>
+    <Checkbox
+      checkedIcon={<ActionFavorite />}
+      uncheckedIcon={<ActionFavoriteBorder />}
+      style={style_fav}
+      iconStyle={{fill: '#B71C1C'}}
     />
+    <p style={style_followers}>{this.props.topics.topicFollowers} </p>
+    <Checkbox
+      checkedIcon={<People />}
+      uncheckedIcon={<PeopleOutline />}
+      style={style_fav}
+      iconStyle={{fill: '#009688'}}
+    />
+    <h4 style={title1}>
+      {this.props.topics.topicName}
+    </h4>
+    <h5 style={title2} color={grey500}>{this.props.topics.topicDescription}</h5>
 
-    <CardMedia style={title3}>
-      <img src={this.props.topic.img} />
+    <CardMedia overlay={
+      <div>
+      <CardTitle subtitle="No of Users played:15" style={title3} color={grey100}/>
+      <MapsPersonPin color={grey100}/>
+      </div>
+     }>
+      <img src={this.props.topics.topicIcon} />
     </CardMedia>
 
 
     <CardActions >
       <div className="col-md col-xs col-lg col-sm">
-      <RaisedButton label="+Fav"  primary={true} style={BtnStyle} />
-
-        <RaisedButton label="Play" onClick={this.handleClick.bind(this)} secondary={true} style={BtnStyle} />
+        <RaisedButton label="Play" secondary={true} style={BtnStyle} />
         </div>
      </CardActions>
 
@@ -225,4 +248,6 @@ export default class SubTopicCard extends React.Component{
 
    );
 }
-}
+});
+
+module.exports= SubTopicCard;

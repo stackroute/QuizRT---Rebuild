@@ -1,28 +1,37 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
 const style = {
-  margin: 20,
-  textAlign: 'center',
+  marginLeft:0,
+  marginTop:20,
+  marginBottom:20,
+  marginRight:0,
 };
 
 const stylebtn={
-  float:'right',
+  float:'none',
+  width:'100%',
+
+}
+
+const cardHeader={
+  textAlign:'left',
 };
 
-const card={
-  textAlign:'left',
-  fontSize: 20,
-  marginLeft:20,
-};
+const tour_header={
+  margin:20,
+  textAlign:'center',
+  paddingTop:20,
+}
+
 var tournamentData =[
   {
     title: "Sports Quiz",
-  AvatarURL: './img/tournaments/tournamentAvatar.jpg',
-  URL: './img/tournaments/sports-balls.jpg',
+  AvatarURL: 'img/tournaments/tournamentAvatar.jpg',
+  URL: 'img/tournaments/sports-balls.jpg',
   OverlayTitle: 'Sports Battle 101',
   OverlaySubtitle: 'Let the sports battle begin.',
   TabContent:{
@@ -33,8 +42,8 @@ var tournamentData =[
 },
 {
   title: "Music Quiz",
-  AvatarURL: './img/tournaments/muavtar.png',
-  URL: './img/tournaments/mumain.jpg',
+  AvatarURL: 'img/tournaments/muavtar.png',
+  URL: 'img/tournaments/mumain.jpg',
   OverlayTitle: 'Musical feast',
   OverlaySubtitle: 'Let us enjoy the music.',
   TabContent:{
@@ -45,8 +54,8 @@ var tournamentData =[
 },
 {
   title: "Monuments Quiz",
-  AvatarURL: '../img/tournaments/monavtar.jpg',
-  URL: '../img/tournaments/monmain.jpeg',
+  AvatarURL: 'img/tournaments/monavtar.jpg',
+  URL: 'img/tournaments/monmain.jpg',
   OverlayTitle: 'Great monuments',
   OverlaySubtitle: 'Let us explore the monuments.',
   TabContent:{
@@ -63,14 +72,9 @@ var TournamentSection = React.createClass({
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-          <CardActions>
-            <RaisedButton label="See More >>" style={stylebtn}/>
-          </CardActions>
-            <CardHeader style={card}
-               title="Tournaments"
-            />
+          <h1 style={tour_header}>Tournaments</h1>
             <TournamentsSubContainer tournament={tournamentData}/>
-
+            <FlatButton label="See More" style={stylebtn}/>
           </Card>
         </Paper>
       </div>
@@ -78,4 +82,4 @@ var TournamentSection = React.createClass({
   }
 });
 
-module.exports= TournamentSection;
+export default TournamentSection;

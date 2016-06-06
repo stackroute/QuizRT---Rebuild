@@ -3,45 +3,60 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
   from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-const tableData = [
-  {
-    name: 'smith',
-    status: 1,
-  },
-  {
-    name: 'Randal White',
-    status: 2,
-  },
-  {
-    name: 'Stephanie Sanders',
-    status: 3
-  },
-  {
-    name: 'Steve Brown',
-    status: 4
-  },
-  {
-    name: 'Joyce Whitten',
-    status: 5
-  },
-  {
-    name: 'Samuel Roberts',
-    status: 6,
-  },
-  {
-    name: 'Adam Moore',
-    status: 7,
-  },
-];
+// const tableData = [
+//   {
+//     name: 'smith',
+//     status: 1,
+//   },
+//   {
+//     name: 'Randal White',
+//     status: 2,
+//   },
+//   {
+//     name: 'Stephanie Sanders',
+//     status: 3
+//   },
+//   {
+//     name: 'Steve Brown',
+//     status: 4
+//   },
+//   {
+//     name: 'Joyce Whitten',
+//     status: 5
+//   },
+//   {
+//     name: 'Samuel Roberts',
+//     status: 6,
+//   },
+//   {
+//     name: 'Adam Moore',
+//     status: 7,
+//   },
+// ];
 
 export default class TableExampleComplex extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
+      data: []
     };
   }
+
+ componentDidMount() {
+   $.ajax({
+     url: '/result',
+     dataType: 'json',
+     success: function(tableData) {
+       this.setState({data: tableData});
+     }.bind(this),
+    //  error: function(xhr, status, err) {
+    //    console.error(this.props.url, status, err.toString());
+    //    //console.log(err);
+    //  }.bind(this)
+   });
+ }
+
 
   render() {
     return (
@@ -56,7 +71,7 @@ export default class TableExampleComplex extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody >
-          {tableData.map( (row, index) => (
+          {this.state.data.map( (row, index) => (
             <TableRow key={index} >
               <TableRowColumn>{index}</TableRowColumn>
               <TableRowColumn>{row.name}</TableRowColumn>

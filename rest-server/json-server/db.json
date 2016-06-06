@@ -220,23 +220,11 @@
     {
       "title": "Monuments Quiz",
       "AvatarURL": "./img/tournaments/monavtar.jpg",
-      "URL": "./img/tournaments/monmain.jpeg",
+      "URL": "./img/tournaments/monmain.jpg",
       "Overlaytitle": "Great monuments",
       "OverlaySubtitle": "Let us explore the monuments.",
       "TabContent": {
         "description": "This is a monuments quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
-        "rules": "The quiz consists of 20 questions. Quicker answers get you more marks.",
-        "prizes": "Rs. 2000"
-      }
-    },
-    {
-      "title": "Celeb Quiz",
-      "AvatarURL": "./img/tournaments/celavtar.jpg",
-      "URL": "./img/tournaments/celmain.jpg",
-      "Overlaytitle": "Celebreties",
-      "OverlaySubtitle": "Let us play quiz on celebs.",
-      "TabContent": {
-        "description": "This is a celebrety quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
         "rules": "The quiz consists of 20 questions. Quicker answers get you more marks.",
         "prizes": "Rs. 2000"
       }

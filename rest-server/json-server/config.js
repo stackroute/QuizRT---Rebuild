@@ -1,4 +1,4 @@
-var host = 'http://localhost:3000/';
+var host = 'http://192.168.47.51:3000/';
 var urls ={
   feedUrl : host+'FeedData/',
   categoriesURL: host+'Categories/',

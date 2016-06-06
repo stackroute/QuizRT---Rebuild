@@ -3,12 +3,13 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import Paper from 'material-ui/Paper';
+import Badge from '../Badges/Badge';
 
 var data=[
   {
     title:"Rohith",
     subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
+    avatar:"img/user_avatar/photo.jpg",
   }
 ];
 
@@ -43,7 +44,7 @@ var Recentcard = React.createClass({
       data:{
         title:"Rohith",
         subtitle: "My rules, So I don't care",
-        avatar:"img/photo.jpg",
+        avatar:"img/user_avatar/photo.jpg",
       }
     }
   },
@@ -63,7 +64,7 @@ var Recentcard = React.createClass({
           {this.props.activity.description}
         </p>
         <CardMedia>
-          <img src={this.props.activity.image} style={badge}/>
+          <Badge data={data}/>
         </CardMedia>
 
         <CardActions >

@@ -1,33 +1,27 @@
-
 import React from 'react';
 import TournamentsSubCard from './TournamentsSubCard';
-var API = require('../../../rest-server/json-server/api/api.js');
-var TournamentsSubContainer = React.createClass({
-  getInitialState: function(){
-    return { tournament:[],
-          allTheSubTopics:[]};
-  },
- componentWillMount: function(){
-   var temp=[];
-   API.getAllTournaments(function(data){
-     this.setState({tournament:data});
-     this.state.tournament.forEach(function(tournament){
-       temp.push(
-         <div className="col-xs-12 col-lg-4 col-md-6 col-sm-6">
-         <TournamentsSubCard tournament={tournament} key={tournament.title}/>
-         </div>);
 
-   })
-     this.setState({allTheSubTopics:temp});
- }.bind(this))
-},
+const container={
+  paddingLeft:15,
+  paddingRight:15,
+}
+
+
+var TournamentsSubContainer = React.createClass({
 
   render: function(){
-
+    var allTheSubTopics = [];
+    this.props.tournament.forEach(function(tournament){
+      allTheSubTopics.push(
+        <div className="col-xs-12 col-lg-4 col-md-6 col-sm-6" style={{paddingLeft:0, paddingRight:0}}>
+        <TournamentsSubCard tournament={tournament} key={tournament.title}/>
+        </div>
+      );
+    })
     return(
-      <div className="container-fluid">
+      <div className="container-fluid" style={container}>
       <div className="row">
-      {this.state.allTheSubTopics}
+      {allTheSubTopics}
       </div>
       </div>
     );

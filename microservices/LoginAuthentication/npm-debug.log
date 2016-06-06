@@ -1,0 +1,32 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'seneca-mesh',
+1 verbose cli   '--save' ]
+2 info using npm@3.8.6
+3 info using node@v5.11.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly rollbackFailedOptional Starting
+8 silly rollbackFailedOptional Finishing
+9 silly runTopLevelLifecycles Starting
+10 silly runTopLevelLifecycles Finishing
+11 silly install printInstalled
+12 verbose stack Error: ENOENT: no such file or directory, lstat '/vagrant/QuizRT-Rebuild/node_modules/babel-preset-es2015/node_modules/babel-plugin-transform-es2015-computed-properties/node_modules/babel-helper-define-map/node_modules/babel-helper-function-name/node_modules/babel-helper-get-function-arity'
+12 verbose stack     at Error (native)
+13 verbose cwd /vagrant/QuizRT-Rebuild/microservices/LoginAuthentication
+14 error Linux 4.2.0-22-generic
+15 error argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "seneca-mesh" "--save"
+16 error node v5.11.0
+17 error npm  v3.8.6
+18 error path /vagrant/QuizRT-Rebuild/node_modules/babel-preset-es2015/node_modules/babel-plugin-transform-es2015-computed-properties/node_modules/babel-helper-define-map/node_modules/babel-helper-function-name/node_modules/babel-helper-get-function-arity
+19 error code ENOENT
+20 error errno -2
+21 error syscall lstat
+22 error enoent ENOENT: no such file or directory, lstat '/vagrant/QuizRT-Rebuild/node_modules/babel-preset-es2015/node_modules/babel-plugin-transform-es2015-computed-properties/node_modules/babel-helper-define-map/node_modules/babel-helper-function-name/node_modules/babel-helper-get-function-arity'
+23 error enoent ENOENT: no such file or directory, lstat '/vagrant/QuizRT-Rebuild/node_modules/babel-preset-es2015/node_modules/babel-plugin-transform-es2015-computed-properties/node_modules/babel-helper-define-map/node_modules/babel-helper-function-name/node_modules/babel-helper-get-function-arity'
+23 error enoent This is most likely not a problem with npm itself
+23 error enoent and is related to npm not being able to find a file.
+24 verbose exit [ -2, true ]

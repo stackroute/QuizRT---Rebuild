@@ -2,7 +2,8 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
-import Feed from './feed';
+import Feed from './Feed';
+import cookie from 'react-cookie';
 
 var API = require('../../../rest-server/json-server/api/api.js');
 
@@ -91,7 +92,14 @@ const feedTitleStyle ={
 }
 
 var TopicDetails = React.createClass({
+	contextTypes :{
+	  router : React.PropTypes.object
+	},
 	getInitialState: function(){
+		var token = cookie.load('auth_cookie');
+		if(token == undefined){
+			this.context.router.push('/login');
+		}
 		return	{topicFeeds:[],fullfeeds:[],topics:[]}
 	},
   componentDidMount:function(){
@@ -100,9 +108,6 @@ var TopicDetails = React.createClass({
       dataType:'json',
       success: function(data){
         this.setState({topics:data})
-        // console.log(data);
-        // console.log('got data'+data[0].topicDescription);
-        // console.log("dlfkg  "+this.state.topics[0].topicDescription);
       }.bind(this)
     })
   },

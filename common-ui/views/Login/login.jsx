@@ -21,6 +21,7 @@ export default class LoginForm extends React.Component{
       formInput: { username: '', password: ''}
     };
     cookie.remove('auth_cookie');
+    cookie.remove('username');
   }
 
   static get contextTypes() {
@@ -28,6 +29,18 @@ export default class LoginForm extends React.Component{
       router: React.PropTypes.object
     }
   } // Used to provide property validation.Currently we are saying that we need a context prop of type "React.PropTypes.object"
+
+  googleLogin(){
+    $.ajax({
+      type: 'POST',
+      url : baseURL + 'api/authenticate/google',
+      success : (function(data){
+        if(data.redirect){
+          window.location.href = data.redirect;
+        }
+      }).bind(this)
+    })
+  }  
 
 
   handleLogin(event) {
@@ -47,6 +60,7 @@ export default class LoginForm extends React.Component{
       success: (function(data) {
         if(data['success'] === true){
             cookie.save('auth_cookie',data['token'],{path:'/'});
+            cookie.save('username',data.name);
             this.context.router.push('/dashboard');
         }
         else {
@@ -90,7 +104,7 @@ export default class LoginForm extends React.Component{
         </Link>
 				<p style = {para}>OR</p>
         <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles}/><br/><br/>
-        <RaisedButton label = "Login With Google" secondary = {true} style = {styles}/><br/><br/>
+        <RaisedButton label = "Login With Google" secondary = {true} style = {styles} onClick={this.googleLogin.bind(this) }/><br/><br/>
         <Link to ='/SignUP'>
           <RaisedButton label = "Sign Up" secondary = {true} style = {styles}/><br/><br/>
         </Link>

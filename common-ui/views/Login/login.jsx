@@ -60,7 +60,7 @@ export default class LoginForm extends React.Component{
       success: (function(data) {
         if(data['success'] === true){
             cookie.save('auth_cookie',data['token'],{path:'/'});
-            cookie.save('username',data.name);
+            cookie.save('username',data['userid']);
             this.context.router.push('/dashboard');
         }
         else {

@@ -6,6 +6,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   var productMicroservicePlugin;
 
   it('Define Sum Microservice Plugin', function() {
+    this.timeout(5000);
     sumMicroservicePlugin = function() {
       this.add('role:math,cmd:sum', function(msg, respond) {
         return respond(null, {answer: msg.left + msg.right});
@@ -14,6 +15,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   });
 
   it('Test Sum Microervice Plugin', function(done) {
+    this.timeout(5000);
     var sumMicroservice = seneca();
     sumMicroservice.use(sumMicroservicePlugin);
     sumMicroservice.act('role:math,cmd:sum,left:2,right:3', function(err, response) {
@@ -25,6 +27,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   });
 
   it('Define Product Microservice Plugin', function() {
+    this.timeout(5000);
     productMicroservicePlugin = function() {
       this.add('role:math,cmd:product', function(msg, respond) {
         return respond(null, {answer: msg.left * msg.right});
@@ -33,6 +36,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   });
 
   it('Test Product Microservice Plugin', function(done) {
+    this.timeout(5000);
     var productMicroservice = seneca();
     productMicroservice.use(productMicroservicePlugin);
     productMicroservice.act('role:math,cmd:product,left:2,right:3', function(err, response) {
@@ -44,6 +48,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   });
 
   it('Test Uni-Directional Messaging over Redis', function(done) {
+    this.timeout(5000);
     var sumListenerMicroservice = seneca();
     sumListenerMicroservice.use(sumMicroservicePlugin);
     sumListenerMicroservice.use('redis-transport');
@@ -79,6 +84,7 @@ describe('Messaging with Seneca Redis Transport', function() {
   });
 
   it('Broadcasting over Redis Transport', function(done) {
+    this.timeout(5000);
     var subscriber1 = seneca(), subscriber1Called=false;
     var subscriber2 = seneca(), subscriber2Called=false;
 

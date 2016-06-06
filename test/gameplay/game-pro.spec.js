@@ -31,11 +31,10 @@ describe('GamePlay Provisioner API',function(){
     obj.msg.should.be.exactly('queued');
     isSocketEmitted=true;
     if(isSocketEmitted && isQueued)
-    {
-      setTimeout(function(){
+
         done();
-      },10000)
-    }
+
+
 
   }
 
@@ -58,11 +57,9 @@ describe('GamePlay Provisioner API',function(){
       response.answer.should.be.exactly('queued');
       isQueued=true;
       if(isQueued && isSocketEmitted)
-      {
-        setTimeout(function(){
+
           done();
-        },100000)
-      }
+     
 
 
   })

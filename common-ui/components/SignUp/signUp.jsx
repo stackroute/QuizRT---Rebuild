@@ -33,7 +33,6 @@ export default class Test extends React.Component{
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("inside handleSubmit");
     var pass = this.state.formInput.password;
     var username = this.state.formInput.username;
     var router = this.context.router;

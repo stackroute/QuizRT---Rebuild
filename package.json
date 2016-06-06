@@ -60,6 +60,7 @@
     "seneca-entity": "^0.1.1",
     "seneca-mesh": "^0.7.0",
     "seneca-mongo-store": "^0.2.0",
+    "seneca-redis-transport": "^0.3.0",
     "should": "^8.3.1",
     "socket.io": "^1.4.6",
     "superagent": "^1.8.3"

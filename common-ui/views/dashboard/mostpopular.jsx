@@ -40,7 +40,7 @@ contextTypes :{
 
 handleTopics : function(){
   event.preventDefault();
-  this.context.router.push('/alltopics');
+  this.context.router.push('/topics');
 },
 
   componentDidMount:function(){

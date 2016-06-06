@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {Link} from 'react-router';
 import cookie from 'react-cookie';
-var baseURL = 'http://localhost:3000/';
+var baseURL = 'http://localhost:8080/';
 
 
 const styles = {

@@ -16,7 +16,7 @@ import ActionViewmodule from 'material-ui/svg-icons/action/view-module';
 import ActionViewquilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import cookie from 'react-cookie';
-var baseURL = 'http://localhost:3000/';
+var baseURL = 'http://localhost:8080/';
 
 const avatarstyle={
   backgroundSize:'cover',
@@ -90,17 +90,17 @@ var ProfileHero = React.createClass({
 
   handleProfile : function(){
     event.preventDefault();
-    this.context.router.push('/recent');
+    this.context.router.push('/profileinfo');
   },
 
   handleTopics : function(){
     event.preventDefault();
-    this.context.router.push('/alltopics');
+    this.context.router.push('/topics');
   },
 
   handleTournaments : function(){
     event.preventDefault();
-    this.context.router.push('/alltopics');
+    this.context.router.push('/tournaments');
   },
 
   handleLogout : function(){
@@ -149,20 +149,20 @@ var ProfileHero = React.createClass({
           <MenuItem onTouchTap={this.handleClose} style={style}>
           <div><Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/></div>
           Display Name</MenuItem>
-          <MenuItem onTouchTap={this.handleClose} style={style}> RANK: 21#</MenuItem>
+          <MenuItem onTouchTap={this.handleClose} style={style}> Rank: 21#</MenuItem>
           <Divider />
           <List>
-            <ListItem primaryText="DASHBOARD" leftIcon={<ActionHome />} style={listtext}
+            <ListItem primaryText="Dashboard" leftIcon={<ActionHome />} style={listtext}
               onTouchTap={this.handleDashboard.bind(this)}/>
-            <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} style={listtext}
+            <ListItem primaryText="View Profile" leftIcon={<ActionAccountbox />} style={listtext}
               onTouchTap={this.handleProfile.bind(this)}/>
-            <ListItem primaryText="RECENT ACTIVITY" leftIcon={<ImageBurstmode />} style={listtext}
+            <ListItem primaryText="Recent Activity" leftIcon={<ImageBurstmode />} style={listtext}
               onTouchTap={this.handleRecentTouch.bind(this)}/>
-            <ListItem primaryText="TOPICS" leftIcon={<ActionViewmodule />} style={listtext}
+            <ListItem primaryText="Topics" leftIcon={<ActionViewmodule />} style={listtext}
               onTouchTap={this.handleTopics.bind(this)}/>
-            <ListItem primaryText="TOURNAMENTS" leftIcon={<ActionViewquilt />} style={listtext}
+            <ListItem primaryText="Tournaments" leftIcon={<ActionViewquilt />} style={listtext}
               onTouchTap={this.handleTournaments.bind(this)}/>
-            <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} style={listtext}
+            <ListItem primaryText="Logout" leftIcon={<ActionPowersettingsnew />} style={listtext}
               onTouchTap={this.handleLogout.bind(this)} />
           </List>
         </Drawer>

@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router';
 
-var baseURL = 'http://localhost:3000/';
+var baseURL = 'http://localhost:8080/';
 
 const style = {
   marginBottom:12,
@@ -33,6 +33,7 @@ export default class Test extends React.Component{
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log("inside handleSubmit");
     var pass = this.state.formInput.password;
     var username = this.state.formInput.username;
     var router = this.context.router;

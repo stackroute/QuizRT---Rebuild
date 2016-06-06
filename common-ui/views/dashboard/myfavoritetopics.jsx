@@ -52,7 +52,7 @@ var MyFavoriteSection = React.createClass({
 
   handleTopics : function(){
     event.preventDefault();
-    this.context.router.push('/alltopics');
+    this.context.router.push('/topics');
   },
 
   render: function () {

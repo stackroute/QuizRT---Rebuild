@@ -1,5 +1,8 @@
+import {Tabs, Tab} from 'material-ui/Tabs';
 import React from 'react';
-import RecentcardInfo from './recent';
+import PersonalInfo from './personalinfo';
+import ProfileHero from '../header/leftnav';
+
 
 const styles = {
   headline: {
@@ -25,14 +28,17 @@ const style = {
   margin: 5,
 };
 
-var RecentTabs = React.createClass({
+var ProfileInfo = React.createClass({
 
 render: function(){
+
 return (
+
   <div>
-        <RecentcardInfo/>
+          <ProfileHero />
+          <PersonalInfo/>
   </div>
 );
 }
 });
-module.exports = RecentTabs;
+module.exports = ProfileInfo;

@@ -56,6 +56,7 @@ seneca.act('role:question,action:all',function(err,result){
 //var port = process.env.PORT || 8080;
 
 app.post('/api/signup',function(req,res){
+  console.log("inside /api/signup");
     var data = {
       name : req.body.name,
       password : req.body.password
@@ -64,6 +65,7 @@ app.post('/api/signup',function(req,res){
         if(err) { return res.status(500).json(err); }
         if(respond == null){
           seneca.act('role:user,action:add', {data:data}, function(err,saved_user){
+            console.log("saved user",saved_user);
             if(err) { return res.status(500).json(err); }
             res.json(saved_user);
           })
@@ -74,58 +76,59 @@ app.post('/api/signup',function(req,res){
             success : false
           })
         }
-      });
+      })
+    });
 
-    connectCounter++;
-    console.log("number of connections -------------"+connectCounter+"-----------------------------");
-    count=0;
-    seconds= 10;
-    socket.on('send first question',function(){
-      socket.emit('new question',questions[0]);
-      // socket.emit('timer',seconds);
-        // timer=  setInterval(function(){
-        //    socket.emit('timer',seconds);
-        //    seconds--;
-        //    if(seconds>=10){
-        //      seconds = 10;
-        //      clearInterval(timer);
-        //    }
-        //  },1000);
-    var questionSender =setInterval(function(){
-      console.log('count is ' + count++);
-      if(count>=questions.length)
-      {
-          clearInterval(questionSender);
-          clearInterval(timer);
-          socket.emit('end timer',"thanks");
-          socket.emit('end quiz',"thank you");
-      }
-      else{
-      socket.emit('new question',questions[count]);
-    }
-  },10000);
-  socket.on('disconnect', function() {
-     connectCounter--;
-
-     console.log("number of user disconnected 1");
-     console.log("now total connected-------"+connectCounter);
-   });
-
-  //  socket.emit('new question',questions[count]);
-   socket.on('my answer',function(msg){
-    console.log('user answered '+ msg);
-    console.log(questions[count].correct.indexOf(msg));
-    if(questions[count].correct.indexOf(msg)>-1)
-      {
-        console.log('Correct answer is '+ questions[count].correct);
-
-      }
-    else{
-        socket.emit('incorrect','You answered incorrectly');
-    }
-  })
-})
-});
+//     connectCounter++;
+//     console.log("number of connections -------------"+connectCounter+"-----------------------------");
+//     count=0;
+//     seconds= 10;
+//     socket.on('send first question',function(){
+//       socket.emit('new question',questions[0]);
+//       // socket.emit('timer',seconds);
+//         // timer=  setInterval(function(){
+//         //    socket.emit('timer',seconds);
+//         //    seconds--;
+//         //    if(seconds>=10){
+//         //      seconds = 10;
+//         //      clearInterval(timer);
+//         //    }
+//         //  },1000);
+//     var questionSender =setInterval(function(){
+//       console.log('count is ' + count++);
+//       if(count>=questions.length)
+//       {
+//           clearInterval(questionSender);
+//           clearInterval(timer);
+//           socket.emit('end timer',"thanks");
+//           socket.emit('end quiz',"thank you");
+//       }
+//       else{
+//       socket.emit('new question',questions[count]);
+//     }
+//   },10000);
+//   socket.on('disconnect', function() {
+//      connectCounter--;
+//
+//      console.log("number of user disconnected 1");
+//      console.log("now total connected-------"+connectCounter);
+//    });
+//
+//   //  socket.emit('new question',questions[count]);
+//    socket.on('my answer',function(msg){
+//     console.log('user answered '+ msg);
+//     console.log(questions[count].correct.indexOf(msg));
+//     if(questions[count].correct.indexOf(msg)>-1)
+//       {
+//         console.log('Correct answer is '+ questions[count].correct);
+//
+//       }
+//     else{
+//         socket.emit('incorrect','You answered incorrectly');
+//     }
+//   })
+// })
+//});
 
 
 //Route To Authenticate A User
@@ -168,7 +171,7 @@ app.get('/topics/mostPopular',function(req,res) {
   console.log('send');
 });
 
-app.get('/topics/allTopics',function(req,res) {
+app.get('/topics',function(req,res) {
   console.log('form express-alltopics');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -185,6 +188,18 @@ app.get('/tournamentSection',function(req,res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:randTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournaments',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTournaments,action:retrive',function(err,result){
     if (err) return console.error(err)
   console.log('-----------------'+result+'------------------------')
   res.send(result)

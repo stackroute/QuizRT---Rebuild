@@ -1,24 +1,23 @@
 import React from 'react';
 import ProfileHero from '../header/leftnav';
-import SubTopicContainer from '../SubTopics/SubTopicContainer';
-
+import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
 var baseurl='http://localhost:8080';
 
-var Topics = React.createClass({
+var Tournaments = React.createClass({
 
   getInitialState:function(){
-      return{topics:[]}
+      return{tournamentData:[]}
   },
 
     componentDidMount:function(){
       $.ajax({
-        url: baseurl+'/topics',
+        url: baseurl+'/tournaments',
         dataType:'json',
         success: function(data){
           console.log('got success---------------------');
           console.log(JSON.stringify(data));
-          this.setState({topics:data})
+          this.setState({tournamentData:data})
           console.log('------------------------'+data+'----------------------');
         }.bind(this),
         error:function(err){
@@ -32,10 +31,10 @@ var Topics = React.createClass({
     return(
       <div>
       <ProfileHero />
-        <SubTopicContainer topics ={this.state.topics} />
+        <TournamentsSubContainer tournament ={this.state.tournamentData} />
       </div>
     );
   }
 });
 
-export default Topics;
+export default Tournaments;

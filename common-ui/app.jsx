@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import TournamentView from './views/Tournament';
@@ -19,9 +19,11 @@ import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContai
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
 import SocialPlugins from './components/social-icons/socialplugins';
-import Quiz from './views/QuizPlay'
+import Quiz from './views/QuizPlay';
 import Rank from './views/Rank';
-import Button from './views/buttons';
+import Topics from './views/allTopics/alltopics';
+import Tournaments from './views/allTournaments/alltournaments';
+import ProfileInfo from './views/Profile';
 injectTapEventPlugin();
 
 import cookie from 'react-cookie';
@@ -47,8 +49,6 @@ export class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
       <Route path="/" component={LoginForm} />
-      <Route path="/buttons" component={Button} />
-
       <Route path="/social" component={SocialPlugins}/>
       <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />
@@ -58,14 +58,13 @@ export class App extends React.Component {
       <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} />
-      <Route path="/dashboard" component={Dashboard}  />
-      <Route path="/topics/mostPopular" component={Dashboard}  />
-      <Route path="/tournament" component={TournamentsSubContainer} onEnter={this.requireAuth}/>
-      <Route path="/topics" component={TopicsView} onEnter={this.requireAuth}/>
+      <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
+      <Route path="/topics" component={Topics} onEnter={this.requireAuth}/>
+      <Route path="/tournaments" component={Tournaments} onEnter={this.requireAuth}/>
       <Route path = '/badges' component = {Badges} onEnter={this.requireAuth}/>
-      <Route path= '/eachtopic' component={TopicDetails} onEnter={this.requireAuth}/>
-      <Route path= '/alltopics' component={SubTopicContainer}/>
-      <Route path = '/recent' component={RecentPage} />
+      <Route path= '/eachtopic' component={TopicDetails} />
+      <Route path= '/recent' component={RecentPage} onEnter={this.requireAuth}/>
+      <Route path= '/profileinfo' component={ProfileInfo} onEnter={this.requireAuth}/>
       </Router>
       </MuiThemeProvider>
     );

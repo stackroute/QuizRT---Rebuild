@@ -9,7 +9,7 @@ var Dashboard = React.createClass({
   render: function () {
     return (
       <div>
-        <ProfileHero />
+      <ProfileHero />
         <TournamentSection/>
         <QuizWar />
         <MostPopularSection />

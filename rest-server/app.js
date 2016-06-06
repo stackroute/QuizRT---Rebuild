@@ -24,7 +24,7 @@ var app = express();
       //app.set('views',__dirname + '/.././views');
 //app.set('view engine', 'jsx');
 //app.engine('jsx', require('express-react-views').createEngine());
-app.get('/result',function(req,res){
+app.get('/api/result',function(req,res){
   // res.send('<H1>HELLO</H1>')
   // seneca.act('role:math,cmd:sum',{left:10,right:20},function(err,result){
   //   res.send(result)
@@ -37,7 +37,7 @@ app.get('/result',function(req,res){
   console.log('call done');
 })
 app.use(express.static(__dirname+'/../common-ui'));
- app.use('/profile', require('./json-server/api/profile/profile.route'));
+ app.use('/api/profile', require('./json-server/api/profile/profile.route'));
 
 
 //Config db url

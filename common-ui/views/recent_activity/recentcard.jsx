@@ -3,7 +3,6 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import Paper from 'material-ui/Paper';
-import Badge from '../Badges/Badge';
 
 var data=[
   {
@@ -63,11 +62,7 @@ var Recentcard = React.createClass({
         <p>
           {this.props.activity.description}
         </p>
-        <CardMedia>
-          <Badge data={data}/>
-        </CardMedia>
 
-        <CardActions >
         <RaisedButton
           label="Fb"
           linkButton={true}
@@ -92,7 +87,6 @@ var Recentcard = React.createClass({
           style={styleshare}
         />
 
-        </CardActions>
       </Card>
       </Paper>
     </div>

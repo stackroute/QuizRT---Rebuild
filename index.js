@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var io = require('socket.io').listen(server);
 var bodyparser = require('body-parser');
 
 var jwt = require('jsonwebtoken');
@@ -14,8 +14,8 @@ var seneca = require('seneca')()
             .use('mesh',{auto:true});
 app.use(cors());
 
-server.listen(3000,function(){
-  console.log('Server is running at the port 3000');
+server.listen(8080,function(){
+  console.log('Server is running at the port 8080');
 })
 app.use(express.static(__dirname+'/common-ui'));
 
@@ -32,7 +32,7 @@ app.use(bodyparser.json());
 seneca.act('role:question,action:all',function(err,result){
   questions = result;
 }).ready(function(){
-  var count =0;
+  var count,seconds,timer,connectCounter=0;
   io.on('connection',function(socket){
    socket.emit('new question',questions[0]);
    socket.on('give new question',function(){
@@ -55,6 +55,7 @@ seneca.act('role:question,action:all',function(err,result){
 //var port = process.env.PORT || 8080;
 
 app.post('/api/signup',function(req,res){
+  console.log("inside /api/signup");
     var data = {
       name : req.body.name,
       password : req.body.password
@@ -63,6 +64,7 @@ app.post('/api/signup',function(req,res){
         if(err) { return res.status(500).json(err); }
         if(respond == null){
           seneca.act('role:user,action:add', {data:data}, function(err,saved_user){
+            console.log("saved user",saved_user);
             if(err) { return res.status(500).json(err); }
             res.json(saved_user);
           })
@@ -73,9 +75,60 @@ app.post('/api/signup',function(req,res){
             success : false
           })
         }
-      });
+      })
+    });
 
-})
+//     connectCounter++;
+//     console.log("number of connections -------------"+connectCounter+"-----------------------------");
+//     count=0;
+//     seconds= 10;
+//     socket.on('send first question',function(){
+//       socket.emit('new question',questions[0]);
+//       // socket.emit('timer',seconds);
+//         // timer=  setInterval(function(){
+//         //    socket.emit('timer',seconds);
+//         //    seconds--;
+//         //    if(seconds>=10){
+//         //      seconds = 10;
+//         //      clearInterval(timer);
+//         //    }
+//         //  },1000);
+//     var questionSender =setInterval(function(){
+//       console.log('count is ' + count++);
+//       if(count>=questions.length)
+//       {
+//           clearInterval(questionSender);
+//           clearInterval(timer);
+//           socket.emit('end timer',"thanks");
+//           socket.emit('end quiz',"thank you");
+//       }
+//       else{
+//       socket.emit('new question',questions[count]);
+//     }
+//   },10000);
+//   socket.on('disconnect', function() {
+//      connectCounter--;
+//
+//      console.log("number of user disconnected 1");
+//      console.log("now total connected-------"+connectCounter);
+//    });
+//
+//   //  socket.emit('new question',questions[count]);
+//    socket.on('my answer',function(msg){
+//     console.log('user answered '+ msg);
+//     console.log(questions[count].correct.indexOf(msg));
+//     if(questions[count].correct.indexOf(msg)>-1)
+//       {
+//         console.log('Correct answer is '+ questions[count].correct);
+//
+//       }
+//     else{
+//         socket.emit('incorrect','You answered incorrectly');
+//     }
+//   })
+// })
+//});
+
 
 //Route To Authenticate A User
 
@@ -103,10 +156,59 @@ app.post('/api/authenticate',function(req,res){
 
     }
   })
-})
+});
+
+app.get('/topics/mostPopular',function(req,res) {
+  console.log('form express-mostpopular');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:popularTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/topics',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournamentSection',function(req,res) {
+  console.log('form express-tournamentSection');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:randTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournaments',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
 
 // route middleware to verify a token
 app.use(function(req, res, next) {
+  console.log('Coming inside token middleware')
   console.log(req.url);
   console.log(res.url);
   // check header or url parameters or post parameters for token
@@ -123,9 +225,11 @@ app.use(function(req, res, next) {
       next();
     }
     else {
+
       return res.status(404).send({
         success: false,
-        message: 'Yolo.'
+        message: 'No token provided.'
+
       });
     }
   })

@@ -222,7 +222,7 @@ var SubTopicCard = React.createClass({
       uncheckedIcon={<PeopleOutline />}
       style={style_fav}
       iconStyle={{fill: '#009688'}}
-    />
+      />
     <h4 style={title1}>
       {this.props.topics.topicName}
     </h4>

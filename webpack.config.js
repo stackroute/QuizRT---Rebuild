@@ -1,32 +1,29 @@
+var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
-  entry: __dirname + '/common-ui/app.jsx',
+  entry: [
+    'webpack-dev-server/client?http://0.0.0.0:8081',
+    'webpack/hot/only-dev-server',
+    './common-ui/app.jsx'
+  ],
   output: {
-    filename: __dirname + '/common-ui/bundle.js'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        },
-        exclude: __dirname +'/node_modules'
-      }
-    ]
-  },
-  externals: {
-    "React": "React"
+    path: path.join(__dirname, 'common-ui', 'static'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
- /*new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),*/
-    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
+    new webpack.HotModuleReplacementPlugin()
   ],
+  module: {
+    loaders: [{
+      test: /\.jsx$/,
+      loaders: ['react-hot', 'babel'],
+      include: path.join(__dirname, 'common-ui')
+    }]
+  },
   resolve: {
     extensions: ['','.js','.jsx']
   }
-}
+};

@@ -8,7 +8,7 @@ var data=[
   {
     title:"Rohith",
     subtitle: "My rules, So I don't care",
-    avatar:"img/photo.jpg",
+    avatar:"img/user_avatar/photo.jpg",
   }
 ];
 
@@ -43,7 +43,7 @@ var Recentcard = React.createClass({
       data:{
         title:"Rohith",
         subtitle: "My rules, So I don't care",
-        avatar:"img/photo.jpg",
+        avatar:"img/user_avatar/photo.jpg",
       }
     }
   },
@@ -62,11 +62,7 @@ var Recentcard = React.createClass({
         <p>
           {this.props.activity.description}
         </p>
-        <CardMedia>
-          <img src={this.props.activity.image} style={badge}/>
-        </CardMedia>
 
-        <CardActions >
         <RaisedButton
           label="Fb"
           linkButton={true}
@@ -91,7 +87,6 @@ var Recentcard = React.createClass({
           style={styleshare}
         />
 
-        </CardActions>
       </Card>
       </Paper>
     </div>

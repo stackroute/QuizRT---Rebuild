@@ -4,8 +4,6 @@ import SubTopicContainer from '../SubTopics/SubTopicContainer';
 import {List, ListItem} from 'material-ui/List';
 
 
-
-
 //Styles.
 const Styles = {
   CardHeaderStyle:{

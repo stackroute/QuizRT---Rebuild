@@ -1,6 +1,13 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 
+var Data = [
+	{
+		title : "Hello",
+		imgSrc : "./img/badge.jpg",
+		description : "Pro"
+	}
+]
 const titleStyle = {
 	textAlign : "-webkit-center",
 	width : "inherit"
@@ -33,7 +40,7 @@ var Badge = React.createClass({
 		return (
 				<Paper style={paperStyle} zDepth={3}>
 					<div className = "container" style = {containerStyle}>
-						<h4 style = {titleStyle}>{this.props.data.title}</h4> 
+						<h4 style = {titleStyle}>{this.props.data.title}</h4>
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<img src={this.props.data.imgSrc} style={imgStyle}/>
 						</div>
@@ -44,12 +51,10 @@ var Badge = React.createClass({
 						</div>
 					</div>
 				</Paper>
-			
+
 
 		);
 	}
 });
 
 module.exports = Badge;
-
-

@@ -1,27 +1,35 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
 const style = {
-  margin: 20,
-  textAlign: 'center',
+  marginLeft:0,
+  marginTop:20,
+  marginBottom:20,
+  marginRight:0,
 };
+
+const tour_header={
+  margin:20,
+  textAlign:'center',
+  paddingTop:20,
+}
 
 const stylebtn={
-  float:'right',
+  float:'none',
+  width:'50%',
+
 };
 
-const card={
+const cardHeader={
   textAlign:'left',
-  fontSize: 20,
-  marginLeft:20,
 };
 
 var topicsData =[
 {
-  title: "IndianCelebs",
+  title: "Indian Celebs",
   subtitle: "Let's play a celeb quiz",
   avatarimg: 'img/SubTopicImages/inavtar.jpg',
   img: 'img/SubTopicImages/inmain.jpg',
@@ -37,24 +45,30 @@ var topicsData =[
 ];
 
 var MyFavoriteSection = React.createClass({
+
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
+  handleTopics : function(){
+    event.preventDefault();
+    this.context.router.push('/topics');
+  },
+
   render: function () {
     return (
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
-          <CardActions>
-            <RaisedButton label="Add More >>" style={stylebtn}/>
-          </CardActions>
-            <CardHeader style={card}
-               title="My Favorite Topics"
-            />
+          <h1 style={tour_header}>My Favorite Topics</h1>
             <SubTopicContainer topics ={topicsData} />
-
+            <FlatButton label="See More" style={stylebtn}/>
+            <FlatButton label="Add More" style={stylebtn}
+              onTouchTap={this.handleTopics.bind(this)}/>
           </Card>
         </Paper>
       </div>
     );
   }
 });
-
-module.exports= MyFavoriteSection;
+export default MyFavoriteSection;

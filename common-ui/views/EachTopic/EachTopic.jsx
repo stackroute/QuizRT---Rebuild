@@ -2,7 +2,8 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
-import Feed from './feed';
+import Feed from './Feed';
+import cookie from 'react-cookie';
 
 var API = require('../../../rest-server/json-server/api/api.js');
 
@@ -91,10 +92,27 @@ const feedTitleStyle ={
 }
 
 var TopicDetails = React.createClass({
-	getInitialState: function(){
-		return	{topicFeeds:[],fullfeeds:[]}
+	contextTypes :{
+	  router : React.PropTypes.object
 	},
+	getInitialState: function(){
+		var token = cookie.load('auth_cookie');
+		if(token == undefined){
+			this.context.router.push('/login');
+		}
+		return	{topicFeeds:[],fullfeeds:[],topics:[]}
+	},
+  componentDidMount:function(){
+    $.ajax({
+      url: '/eachtopic',
+      dataType:'json',
+      success: function(data){
+        this.setState({topics:data})
+      }.bind(this)
+    })
+  },
 	componentWillMount:function(){
+
       API.getAllFeeds(function(data){
          this.setState({topicFeeds:data});
          console.log(this.state.topicFeeds);
@@ -112,29 +130,29 @@ var TopicDetails = React.createClass({
          console.log(feeds.length);
      }.bind(this));
    	},
-	
+
 	render : function(){
-		
 
 
-		return ( 
 
-		<div>	
+		return (
+
+		<div>
 			<div className="container" style={feedStyle}>
-			
+
 				<h2 style={hStyle}>Cricket</h2>
-				<h4 style = {hStyle}>Let's play a cricket quiz</h4>	
+				<h4 style = {hStyle}>Let's play a cricket quiz</h4>
 				<div className="row">
 					<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={style}>
 						<img src="./img/EachTopic/photo.jpg" style={img_style}/>
 					</div>
 					<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={style}>
-						   
+
 							<FlatButton
 						      label="Play"
-						      primary={true} 
+						      primary={true}
 						      style={btnStyle}/>
-					       
+
 						    <FlatButton
 						      label="+Fav"
 						      primary={true}
@@ -144,7 +162,7 @@ var TopicDetails = React.createClass({
 						      label="Follow"
 						      primary={true}
 						      style={btnStyle} />
-					      
+
 					</div>
 				</div>
 
@@ -162,7 +180,7 @@ var TopicDetails = React.createClass({
 						<p style={factStyle}>10</p>
 					</div>
 				</div>
-				
+
 			</div>
 			<Divider />
 			<div>

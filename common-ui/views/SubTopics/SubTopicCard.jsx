@@ -10,6 +10,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
 import People from 'material-ui/svg-icons/social/people';
 import PeopleOutline from 'material-ui/svg-icons/social/people-outline';
+import Cookie from 'react-cookie';
 var baseUrl = 'http://localhost:8080/';
 
 const TitleStyle={
@@ -96,6 +97,8 @@ var SubTopicCard = React.createClass({
  },
  handleCheck:function(){
 console.log('hiii');
+var username = Cookie.load("username");
+console.log(username);
 this.state.incre=!this.state.incre;
 console.log(this.state.incre+'---');
 console.log(this.props.topics.topicName+'-------------');

@@ -1,5 +1,4 @@
 module.exports = function(options){
-
   var self = this;
   self.username = options.username;
   self.tournamentId = options.tournamentId;
@@ -8,63 +7,55 @@ module.exports = function(options){
   var broadcastListener = require('seneca')();
   broadcastListener.use('redis-transport');
 
-  var gameInitiateClient = require('seneca')();
-  gameInitiateClient.use('redis-transport');
-
   var provisionerClient = require('seneca')();
   provisionerClient.use('redis-transport');
 
-  var gamePingClient = require('seneca')();
-  gamePingClient.use('redis-transport');
+  var responseClient = require('seneca')();
+  responseClient.use('redis-transport');
+
+  var readyCount=0;
+  var requestProvisioner=0;
+
+   var provisonerCalledByClient =0;
+  provisionerClient.client({type:'redis',pin:'role:provisioner,action:queue'})
+    .act('role:provisioner,action:queue',{username:self.username,tournamentId:self.tournamentId},function(err,response){
+        self.socket.emit('queued',{answer:++provisonerCalledByClient});
+  })
+    .close();
 
 
-  this.add('role:tournament,cmd:queue',function(msg,respond){
 
-    console.log('\n Sending request to provisioner to queue the player. \n')
+  // console.log('\n Initialized count to 0 for socket id'+options.socket.id+'\n')
+  var count =0;
 
-    provisionerClient.client({type:'redis',pin:'role:provisioner,action:queue'})
-                     .act('role:provisioner,action:queue',{username:self.username,tournamentId:self.tournamentId},function(err,response){
-                        console.log('\n Provisioner responded with '+response.answer+'\n')
-                        respond(null,{answer:'queued'});
-                        self.socket.emit('queued','you are queued');
-                     })
-
-  });
-
-  //Receive game Id.
-
-  gameInitiateClient.add('role:'+self.username+',action:gameInitiated',function(msg,respond){
-
-    console.log('\n Received game id as :'+msg.gameId+'\n');
+  self.add('role:'+self.username+',action:gameInitiated',function(msg,respond){
+    // // console.log('\n========Calling the provisioner '+(++count)+' times ==========\n')
     var gameId = msg.gameId;
 
-    respond(null,{answer:'listeningToBroadcast'});
+    // // console.log('\n=====RECEIVED GAME ID: '+gameId+'====\n');
+
+    respond(null,{answer:'received'});
 
     //Create a broadcast listener for this game.
-    console.log('\n Creating broadcast listener for :' +self.username+'\n');
-
-
-      broadcastListener.add('gameId:'+gameId+',action:broadcast',function(msg,done){
-          console.log('\n Broadcast listener received question as : '+ msg.question+ ' \n');
-          self.socket.emit('newQuestion',{msg:msg.question});
-          done(null,{answer:'QuestionReceived'})
-
-
-      })
-     .listen({type:'redis',pin:'gameId:'+gameId+',action:broadcast'})
-     .ready(function(){
-
+    broadcastListener.add('gameId:'+gameId+',role:broadcast,action:newQuestion',function(msg,done){
+      // // console.log('\n=====RECEIVED QUESTION: '+ msg.question + ' with game id: '+gameId+'=====\n');
+      self.socket.emit('newQuestion',{msg:msg.question});
+      done(null,{answer:'QuestionReceived'})
+    })
+    .listen({type:'redis',pin:'gameId:'+gameId+',role:broadcast,action:*'})
+    .ready(function(){
        //Ping the game manager.
-       console.log('\n Pinging the game manager now.\n')
+       // console.log('\n========INSIDE READY BEFORE PINGING '+(++readyCount)+' times=====\n')
+       responseClient.client({type:'redis',pin:'role:'+self.username+',gameId:'+gameId+',action:*'})
+         .ready(function() {
+           // console.log('\n=====Sending the ping at '+ Date.now() +'=======\n');
+           responseClient.act('role:'+self.username+',gameId:'+gameId+',action:ping',function(err,response){
+             if(err) return // console.log(err);
+             // console.log('\n Received '+response.answer+' from game manager.\n');
 
-       gamePingClient.client({type:'redis',pin:'role:gameManager,action:ping,gameId:'+gameId})
-                     .ready(function(){
-                       gamePingClient.act('role:gameManager,action:ping,gameId:'+gameId,{user:self.username},function(err,response){
-                         console.log('\n Received '+response.answer+' from game manager.\n');
-
-                       })
-                     })
-     })
+           })
+         });
+     });
 
   })
   .listen({type:'redis',pin:'role:'+self.username+',action:gameInitiated'});

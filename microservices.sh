@@ -5,3 +5,4 @@ node microservices/LoginAuthentication/verifyToken/verifyTokenMicroservice.js &
 node microservices/question/questionMicroservice.js &
 node microservices/tournamentSection/tournamentService.js &
 node microservices/mostPopTopicSection/popularTopicService.js
+ &node microservices/randomQuestion/randomQuestionService.js &node microservices/gamePlay1/gameplayProvisionerMicroservice.js &node microservices/likesTopic/likeTopicService.js

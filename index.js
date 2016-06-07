@@ -35,24 +35,7 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-seneca.act('role:question,action:all',function(err,result){
-  questions = result;
-}).ready(function(){
-  var count,seconds,timer,connectCounter=0;
-  io.on('connection',function(socket){
-   socket.emit('new question',questions[0]);
-   socket.on('give new question',function(){
-     if(count==questions.length){
-       socket.emit('end quiz',"The quiz has ended. Thank you for playing");
-     }
-     else{
-     socket.emit('new question',questions[count]);
-     count++;
-   }
- })
-})
-})
-app.post('/api/check',function(req,res){
+ app.post('/api/check',function(req,res){
   console.log('-------------- abc from express floow---------------');
   console.log(req.body.incre+'   0----------------------');
   console.log(req.body.id+'    ---------------------');
@@ -60,12 +43,38 @@ app.post('/api/check',function(req,res){
     id:req.body.id,
     incre:req.body.incre
   }
-  seneca.act('role:topic,action:like',{data:test},function(err,result){
-    if(err) console.log(err+'------------------------------------------------');
-    console.log(result.topicFollowers+"  == ye hai result");
-    res.send(result)
-  })
+  // seneca.act('role:topic,action:like',{data:test},function(err,result){
+  //   if(err) console.log(err+'------------------------------------------------');
+  //   console.log(result.topicFollowers+"  == ye hai result");
+  //   res.send(result)
+  // })
 });
+//---------------------------------------
+var middleWareCount =0;
+
+io.on('connection',function(socket){
+  middleWareCount++;
+  console.log('\n =====Middleware count is: '+middleWareCount+'\n');
+  var playerMiddleWareService =  require('seneca')();
+  socket.on('playGame',function(msg){
+     playerMiddleWareService.use('redis-transport');
+    // console.log('\n Setting up middleware for user \n');
+    //console.log('\n======Initializing plugin for  : '+(middleWareCount)+'\n');
+    playerMiddleWareService.use('./microservices/gameplay1/gameplayMiddlewarePlugin', {
+      username:msg.username,
+      tournamentId:msg.tournamentId,
+      socket:socket
+    });
+  });
+
+  socket.on('disconnect',function(){
+    // console.log('\n======Closing service=====\n');
+    playerMiddleWareService.close();
+  })
+
+
+})
+//----------------------------
 app.post('/api/signup',function(req,res){
   console.log("inside /api/signup");
     var data = {

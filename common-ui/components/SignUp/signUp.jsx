@@ -79,7 +79,7 @@ export default class Test extends React.Component{
             <h1 style={text}>QuizRT</h1><br/>
             <p style={text}>Sign-Up to continue with QuizRT</p>
             <form onSubmit={this.handleSubmit.bind(this)} id='signup' >
-                  <TextField hintText="name001" floatingLabelText="Username" fullWidth={true} onChange={this.usernameChanged.bind(this)} type="text" />
+                  <TextField hintText="name001" floatingLabelText="Username" fullWidth={true} onChange={this.usernameChanged.bind(this)} type="email" errorText="Please enter email like abc@def.com" />
                   <TextField fullWidth={true}  floatingLabelText="Password" type="password" onChange={this.passwordChanged.bind(this)} />
                   <RaisedButton type="submit" label="Sign Up" primary={true} style={style} />
             </form>

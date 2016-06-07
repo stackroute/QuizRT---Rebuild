@@ -11,7 +11,7 @@ var cors = require('cors');
 var googlecredentials = require('./common-ui/views/Login/googlecredentials');
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
- 
+
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
 var questions;
 var request = require('request');
@@ -52,7 +52,20 @@ seneca.act('role:question,action:all',function(err,result){
  })
 })
 })
-
+app.post('/api/check',function(req,res){
+  console.log('-------------- abc from express floow---------------');
+  console.log(req.body.incre+'   0----------------------');
+  console.log(req.body.id+'    ---------------------');
+  var test = {
+    id:req.body.id,
+    incre:req.body.incre
+  }
+  seneca.act('role:topic,action:like',{data:test},function(err,result){
+    if(err) console.log(err+'------------------------------------------------');
+    console.log(result.topicFollowers+"  == ye hai result");
+    res.send(result)
+  })
+});
 app.post('/api/signup',function(req,res){
   console.log("inside /api/signup");
     var data = {
@@ -228,7 +241,7 @@ app.get('/api/auth/success/google',function(req,res){
       oauth2Client.setCredentials(tokens);
     }
 
-    var access_token = tokens['access_token'];    
+    var access_token = tokens['access_token'];
     var user_profile = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+access_token;
       request({
         url: user_profile,
@@ -259,11 +272,11 @@ app.get('/api/auth/success/google',function(req,res){
       }
     })
   });
-  
+
 })
 
 // route middleware to verify a tokens
-app.use(function(req, res, next) { 
+app.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   var secret = app.get('secret');

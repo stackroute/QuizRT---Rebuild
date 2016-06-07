@@ -40,7 +40,7 @@ export default class LoginForm extends React.Component{
         }
       }).bind(this)
     })
-  }  
+  }
 
 
   handleLogin(event) {
@@ -90,7 +90,7 @@ export default class LoginForm extends React.Component{
 
         <form onSubmit={this.handleLogin.bind(this)} >
             <TextField hintText="username" floatingLabelText="Username" fullWidth={true}
-              onChange={this.usernameChanged.bind(this)} type="text" />
+              onChange={this.usernameChanged.bind(this)} type="email" errorText="Please enter email like abc@def.com" />
             <TextField fullWidth={true}  floatingLabelText="Password" type="password"
               onChange={this.passwordChanged.bind(this)} />
             <RaisedButton type="submit" label="Login" primary={true} style={styles} />

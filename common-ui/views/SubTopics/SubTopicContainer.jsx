@@ -3,7 +3,7 @@ import React from 'react';
 import SubTopicCard from './SubTopicCard';
 
 var SubTopicContainer = React.createClass({
-  
+
   render: function(){
       var allTheTopics = [];
       this.props.topics.forEach(function(topics){

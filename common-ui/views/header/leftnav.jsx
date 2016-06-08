@@ -14,6 +14,9 @@ import ActionAccountbox from 'material-ui/svg-icons/action/account-box';
 import ActionTurnedin from 'material-ui/svg-icons/action/turned-in';
 import ActionViewmodule from 'material-ui/svg-icons/action/view-module';
 import ActionViewquilt from 'material-ui/svg-icons/action/view-quilt';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import cookie from 'react-cookie';
+var baseURL = 'http://localhost:8080/';
 
 const avatarstyle={
   backgroundSize:'cover',
@@ -54,6 +57,16 @@ var ProfileHero = React.createClass({
     return({open: false});
   },
 
+  // static get contextTypes() {
+  //   return {
+  //     router: React.PropTypes.object
+  //   }
+  // }
+
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
   handleToggle: function () {
     this.setState({open: !this.state.open});
   },
@@ -63,6 +76,51 @@ var ProfileHero = React.createClass({
   },
   handleTouchTap: function() {
     alert('You are Redirected to Dashboard');
+  },
+
+  handleRecentTouch : function(){
+    event.preventDefault();
+    this.context.router.push('/recent');
+  },
+
+  handleDashboard : function(){
+    event.preventDefault();
+    this.context.router.push('/dashboard');
+  },
+
+  handleProfile : function(){
+    event.preventDefault();
+    this.context.router.push('/profileinfo');
+  },
+
+  handleTopics : function(){
+    event.preventDefault();
+    this.context.router.push('/topics');
+  },
+
+  handleTournaments : function(){
+    event.preventDefault();
+    this.context.router.push('/tournaments');
+  },
+
+  handleLogout : function(){
+    event.preventDefault();
+
+    var token = {token : cookie.load('auth_cookie')}
+
+    $.ajax({
+      type : 'POST',
+      data :  JSON.stringify(token),
+      contentType : 'application/json',
+      url : baseURL + 'api/Logout',
+      success: (function(data) {
+        if(data['success'] == true){
+            this.context.router.push('/login');
+
+        }
+
+      }).bind(this)
+    });
   },
 
   render: function() {
@@ -91,17 +149,21 @@ var ProfileHero = React.createClass({
           <MenuItem onTouchTap={this.handleClose} style={style}>
           <div><Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/></div>
           Display Name</MenuItem>
-          <MenuItem onTouchTap={this.handleClose} style={style}> RANK: 21#</MenuItem>
+          <MenuItem onTouchTap={this.handleClose} style={style}> Rank: 21#</MenuItem>
           <Divider />
           <List>
-            <ListItem primaryText="VIEW PROFILE" leftIcon={<ActionAccountbox />} style={listtext}/>
-            <ListItem primaryText="SETTINGS" leftIcon={<ActionSettings />} style={listtext}/>
-            <ListItem primaryText="RECENT ACTIVITY" leftIcon={<ImageBurstmode />} style={listtext}/>
-            <ListItem primaryText="TOPICS" leftIcon={<ActionViewmodule />} style={listtext}/>
-            <ListItem primaryText="TOURNAMENTS" leftIcon={<ActionViewquilt />} style={listtext}/>
-            <ListItem primaryText="BADGES" leftIcon={<ActionTurnedin />} style={listtext}/>
-            <ListItem primaryText="LOGOUT" leftIcon={<ActionPowersettingsnew />} style={listtext}/>
-
+            <ListItem primaryText="Dashboard" leftIcon={<ActionHome />} style={listtext}
+              onTouchTap={this.handleDashboard.bind(this)}/>
+            <ListItem primaryText="View Profile" leftIcon={<ActionAccountbox />} style={listtext}
+              onTouchTap={this.handleProfile.bind(this)}/>
+            <ListItem primaryText="Recent Activity" leftIcon={<ImageBurstmode />} style={listtext}
+              onTouchTap={this.handleRecentTouch.bind(this)}/>
+            <ListItem primaryText="Topics" leftIcon={<ActionViewmodule />} style={listtext}
+              onTouchTap={this.handleTopics.bind(this)}/>
+            <ListItem primaryText="Tournaments" leftIcon={<ActionViewquilt />} style={listtext}
+              onTouchTap={this.handleTournaments.bind(this)}/>
+            <ListItem primaryText="Logout" leftIcon={<ActionPowersettingsnew />} style={listtext}
+              onTouchTap={this.handleLogout.bind(this)} />
           </List>
         </Drawer>
       </div>
@@ -109,4 +171,4 @@ var ProfileHero = React.createClass({
   }
 });
 
-module.exports = ProfileHero;
+export default ProfileHero;

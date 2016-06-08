@@ -1,0 +1,5 @@
+require('seneca')()
+  .use('redis-transport')
+  .add('foo:two',function(args,done){ done(null,{bar:args.bar}) })
+  .client({type:'redis',pin:'foo:one,bar:*'})
+  .listen()

@@ -1,7 +1,4 @@
-import {Tabs, Tab} from 'material-ui/Tabs';
 import React from 'react';
-import Recentcard from './recentcard';
-import PersonalInfo from './personalinfo';
 import RecentcardInfo from './recent';
 
 const styles = {
@@ -31,18 +28,9 @@ const style = {
 var RecentTabs = React.createClass({
 
 render: function(){
-
 return (
-
   <div>
-    <Tabs>
-      <Tab label="Recent Activity">
-          <RecentcardInfo/>
-      </Tab>
-      <Tab label="Personal Info">
-          <PersonalInfo/>
-      </Tab>
-    </Tabs>
+        <RecentcardInfo/>
   </div>
 );
 }

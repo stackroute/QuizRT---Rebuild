@@ -4,6 +4,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
+var baseurl='http://localhost:8080';
+
 const style = {
   marginLeft:0,
   marginTop:20,
@@ -27,54 +29,47 @@ const tour_header={
   paddingTop:20,
 }
 
-var tournamentData =[
-  {
-    title: "Sports Quiz",
-  AvatarURL: 'img/tournaments/tournamentAvatar.jpg',
-  URL: 'img/tournaments/sports-balls.jpg',
-  OverlayTitle: 'Sports Battle 101',
-  OverlaySubtitle: 'Let the sports battle begin.',
-  TabContent:{
-  description: "This is a sports quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various sports and games.",
-  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
-  prizes: "Rs. 2000"
-}
-},
-{
-  title: "Music Quiz",
-  AvatarURL: 'img/tournaments/muavtar.png',
-  URL: 'img/tournaments/mumain.jpg',
-  OverlayTitle: 'Musical feast',
-  OverlaySubtitle: 'Let us enjoy the music.',
-  TabContent:{
-  description: "This is a music quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
-  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
-  prizes: "Rs. 2000"
-}
-},
-{
-  title: "Monuments Quiz",
-  AvatarURL: 'img/tournaments/monavtar.jpg',
-  URL: 'img/tournaments/monmain.jpg',
-  OverlayTitle: 'Great monuments',
-  OverlaySubtitle: 'Let us explore the monuments.',
-  TabContent:{
-  description: "This is a monuments quiz. Battle with other players to achieve glory.The quiz contains of 20 questions from various categories in music.",
-  rules: "The quiz consists of 20 questions. Quicker answers get you more marks.",
-  prizes: "Rs. 2000"
-}
-}
-];
-
 var TournamentSection = React.createClass({
+
+  getInitialState:function(){
+      return{tournamentData:[]}
+  },
+
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
+  handleTournaments : function(){
+    event.preventDefault();
+    this.context.router.push('/tournaments');
+  },
+
+  componentDidMount:function(){
+    $.ajax({
+      url: baseurl+'/tournamentSection',
+      dataType:'json',
+      success: function(data){
+        console.log('got success---------------------');
+        console.log(JSON.stringify(data));
+        this.setState({tournamentData:data})
+        console.log('------------------------'+data+'----------------------');
+      }.bind(this),
+      error:function(err){
+        console.log(err);
+        console.log('error');
+      }
+    })
+  },
+
   render: function () {
     return (
       <div>
         <Paper style={style} zDepth={2} >
           <Card>
           <h1 style={tour_header}>Tournaments</h1>
-            <TournamentsSubContainer tournament={tournamentData}/>
-            <FlatButton label="See More" style={stylebtn}/>
+            <TournamentsSubContainer tournament={this.state.tournamentData}/>
+            <FlatButton label="See More" style={stylebtn}
+              onTouchTap={this.handleTournaments.bind(this)}/>
           </Card>
         </Paper>
       </div>
@@ -82,4 +77,4 @@ var TournamentSection = React.createClass({
   }
 });
 
-module.exports= TournamentSection;
+export default TournamentSection;

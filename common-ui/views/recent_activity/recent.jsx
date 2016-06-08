@@ -10,6 +10,18 @@ var description=[
     description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
     image:"img/dharmashala.jpg",
   },
+  {
+    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
+    image:"img/dharmashala.jpg",
+  },
+  {
+    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
+    image:"img/dharmashala.jpg",
+  },
+  {
+    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
+    image:"img/dharmashala.jpg",
+  },
 ];
 
 const styles = {

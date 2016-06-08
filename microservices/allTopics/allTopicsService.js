@@ -8,8 +8,8 @@ var seneca = require('seneca')();
     port: 27017
   })
   .use('./allTopics')
-  .act('role:allTopics,action:retrive',function(err,result){
-    if(err) return console.error(err)
-    console.log(result)
-  })
-  // .use('mesh', { auto:true, pin:'role:allTopics' })
+  // .act('role:allTopics,action:retrive',function(err,result){
+  //   if(err) return console.error(err)
+  //   console.log(result)
+  // })
+  .use('mesh', { auto:true, pin:'role:allTopics' })

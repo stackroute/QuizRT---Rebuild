@@ -231,7 +231,6 @@ var SubTopicCard = React.createClass({
     <CardMedia overlay={
       <div>
       <CardTitle subtitle="No of Users played:15" style={title3} color={grey100}/>
-      <MapsPersonPin color={grey100}/>
       </div>
      }>
       <img src={this.props.topics.topicIcon} />

@@ -7,9 +7,7 @@ import People from 'material-ui/svg-icons/social/people';
 import PeopleOutline from 'material-ui/svg-icons/social/people-outline';
 import {grey600,grey500, grey100, red900, teal500} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
-
-
-
+import Avatar from 'material-ui/Avatar';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 
@@ -18,7 +16,11 @@ import SwipeableViews from 'react-swipeable-views';
 
 
 var title1={
-  "font-size":"25"
+      width: '45%',
+      paddingRight:"0px",
+      marginTop: "10px",
+      marginBottom: "0px",
+      float: 'left',
 }
 const styleImg={
   height:"200px",
@@ -29,7 +31,7 @@ const tabHeight={
 }
 
 const btnFontColor ={
-  margin:'auto',
+  marginLeft:'25%',
   width:"50%"
 }
 
@@ -38,7 +40,7 @@ const styleCard={
 }
 
 const style_followers={
-    width:'12%',
+    width:'5%',
     marginTop:15,
     marginBottom:10,
     float:'right',
@@ -46,7 +48,7 @@ const style_followers={
     fontSize:'small'
 }
 const style_favorite={
-    width:'10%',
+    width:'5%',
     marginTop:15,
     marginBottom:10,
     float:'right',
@@ -67,19 +69,61 @@ const style_sd={
     fontWeight:'bold',
     fontSize:'small'
 }
+const avatarstyle={
+  margin: "5px",
+  float:'left',
+}
 
- var TournamentsSubCard = React.createClass({
-   render: function(){
+
+class TournamentsSubCard extends React.Component {
+
+  state = {
+    finished: false,
+    stepIndex: 0,
+  };
+
+  handleNext = () => {
+    const {stepIndex} = this.state;
+    this.setState({
+      stepIndex: stepIndex + 1,
+      finished: true,
+    });
+  };
+
+  handlePrev = () => {
+  const {stepIndex} = this.state;
+  this.setState({
+    stepIndex: stepIndex - 1,
+    finished: false,
+  });
+  };
+
+   render (){
+       const {finished, stepIndex} = this.state;
      return(
   <Card style={styleCard} >
 
     <div>
-    <CardHeader
-      title={this.props.tournament.title}
-      titleStyle ={title1}
-      avatar={this.props.tournament.AvatarURL}
-    />
 
+    <Avatar style={avatarstyle} src={this.props.tournament.AvatarURL} />
+
+    <h2 style={title1}>{this.props.tournament.title}</h2>
+    <p style={style_favorite}>45</p>
+
+    <Checkbox
+      checkedIcon={<ActionFavorite />}
+      uncheckedIcon={<ActionFavoriteBorder />}
+      style={style_fav}
+      iconStyle={{fill: '#B71C1C'}}
+    />
+    <p style={style_followers}>12 </p>
+
+    <Checkbox
+      checkedIcon={<People />}
+      uncheckedIcon={<PeopleOutline />}
+      style={style_fav}
+      iconStyle={{fill: '#009688'}}
+      />
 
     <CardMedia style
       overlay={<CardTitle title={this.props.tournament.OverlayTitle} subtitle={this.props.tournament.OverlaySubtitle} />}
@@ -93,8 +137,29 @@ const style_sd={
 
     <CardActions>
       <div className="col-xs col-md col-lg col-sm">
-      <RaisedButton label="Register" secondary={true} style={btnFontColor}  />
-      <RaisedButton label="Play" primary ={true}  style={btnFontColor} />
+      <div>
+        {finished ? (
+          <div>
+            <RaisedButton
+              style={btnFontColor}
+              label={'UnRegister'}
+              primary={true}
+              onClick={this.handlePrev}
+            />
+          </div>
+        ) : (
+          <div>
+            <div>
+              <RaisedButton
+                style={btnFontColor}
+                label={'Register'}
+                secondary={true}
+                onClick={this.handleNext}
+              />
+            </div>
+          </div>
+        )}
+      </div>
       </div>
     </CardActions>
 
@@ -102,5 +167,5 @@ const style_sd={
 
 );
 }
-});
+}
 export default TournamentsSubCard;

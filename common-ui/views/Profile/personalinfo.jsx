@@ -46,14 +46,7 @@ var PersonalInfo= React.createClass({
       <div>
             <div style={styles}>
               <Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/>
-              <br />
-              <RaisedButton
-                label="Choose an Image"
-                labelPosition="before"
-                style={style}
-              >
-                <input type="file" style={exampleImageInput} />
-              </RaisedButton>
+              
               <br />
               <TextField
               hintText="Enter your name"

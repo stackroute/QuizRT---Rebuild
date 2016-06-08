@@ -24,6 +24,8 @@ import Rank from './views/Rank';
 import Topics from './views/allTopics/alltopics';
 import Tournaments from './views/allTournaments/alltournaments';
 import ProfileInfo from './views/Profile';
+import HorizontalLinearStepper from './views/check/check';
+
 injectTapEventPlugin();
 
 import cookie from 'react-cookie';
@@ -65,6 +67,7 @@ export class App extends React.Component {
       <Route path= '/eachtopic' component={TopicDetails} />
       <Route path= '/recent' component={RecentPage} onEnter={this.requireAuth}/>
       <Route path= '/profileinfo' component={ProfileInfo} onEnter={this.requireAuth}/>
+      <Route path= '/check' component={HorizontalLinearStepper}/>
       </Router>
       </MuiThemeProvider>
     );

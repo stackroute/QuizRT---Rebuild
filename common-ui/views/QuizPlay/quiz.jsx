@@ -1,21 +1,14 @@
 var React = require('react');
 var Slider = require('react-slick');
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
 import List from 'material-ui/List/List';
-import {PropTypes} from 'react';
 import ListItem from 'material-ui/List/ListItem';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import ProgressBar from './progressBar';
 import Timer from './timer';
-import Piechart from '../piechart';
+import Questions from './questions';
 
-
-const optionStyle = {
-  margin:12,
-  width:'100%'
-}
 
 import {
 blue300,
@@ -49,55 +42,34 @@ class SamplePrevArrow extends React.Component{
     );
   }
 }
-
+var countMount=0;
 
 export default class Rank extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      ques:{},
-      seconds:0,
-      progress: 10
+      ques:{}
     };
   }
   static get contextTypes(){
-    return {
-      socket: PropTypes.object
-    }
-  }
-
-  onClick(value,e){
-    this.context.socket.emit('my answer',value);
-    this.setState({answered:true});
-
+    router: React.PropTypes.object
   }
   componentDidMount(){
-     this.context.socket = io();
-     var that = this;
-    this.context.socket.on('end quiz',function(msg){
-      that.setState({seconds:0});
-      that.setState({progress:1});
+    this.socket = io('http://localhost:8080');
+    var that = this;
+    this.socket.on('newQuestion',function(data){
+       console.log((data.msg));
+      that.setState({ques:data.msg})
     })
-    this.context.socket.on('new question',function(data){
-      console.log('receiving question');
-      that.setState({ques:data});
-      that.setState({enabled:true});
-      that.setState({answered:false});
-      that.setState({seconds:0})
+    // console.log('Mounting the component: ', (++countMount));
+    this.socket.emit('playGame',{username:'anshul',tournamentId:'1234'});
+    this.socket.on('queued',function(msg){
+      // console.log('called the provisioner: '+msg.answer);
     })
-    this.context.socket.emit('send first question');
-    this.context.socket.on('timer',function(msg){
-      that.setState({seconds:msg});
-      console.log(that.state.seconds);
-    })
-    this.context.socket.on('end timer',function(msg){
-      that.setState({seconds:0});
-      console.log(that.state.seconds);
-    })
+
   }
 
   render(){
-    if(!this.state.ques.options) return null;
     var settings = {
           dots: false,
           nextArrow:<SampleNextArrow />,
@@ -133,93 +105,61 @@ export default class Rank extends React.Component{
           }]
       };
     return (
-      <div>
-        <div className="container-fluid">
-          <div >
-            <Slider {...settings}>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-            <div><Paper style={style} zDepth={2} ><Piechart /></Paper></div>
-          </Slider>
-          </div>
-          <hr/>
-          <ProgressBar seconds={this.state.progress}  height={15} />
-          <div className='row'  >
-            <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-              <List>
-                <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange300} backgroundColor={purple500} >D</Avatar>}>
-                </ListItem>
-              </List>
-            </div>
-            <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-              <div className='row center-xs'><Timer seconds = {this.state.progress} /></div>
-            </div>
-            <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-              <div className='row end-xs'>
-                <List>
-                  <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-                  </ListItem>
-                </List>
-              </div>
-            </div>
-          </div>
-
-          <div class="ques">
-            <div >
-              <div className='row' >
-                <div className='col-xs-12'>
-                  <div className='row center-xs'>
-                    <p>{this.state.ques.question}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='row' >
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[0]} onClick={this.onClick.bind(this,this.state.ques.options[0])} primary={true} style={optionStyle} />
-
-
-              </div>
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[1]} onClick={this.onClick.bind(this,this.state.ques.options[1])} primary={true} style={optionStyle} />
-              </div>
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[2]} onClick={this.onClick.bind(this,this.state.ques.options[2])} primary={true} style={optionStyle} />
-              </div>
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[3]} onClick={this.onClick.bind(this,this.state.ques.options[3])} primary={true} style={optionStyle} />
-              </div>
-
-            </div>
-
-          </div>
+      <div className="container-fluid">
+      <div >
+        <Slider {...settings}>
+          <div><Paper style={style} zDepth={2} >1 <p>First</p> 24</Paper></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} /></div>
+          <div><Paper style={style} zDepth={2} >35 <p>Last</p> 100</Paper></div>
+        </Slider>
+      </div>
+      <hr/>
+      <ProgressBar seconds={10} height={15} />
+      <div className='row'  >
+        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+          <List>
+            <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange300} backgroundColor={purple500} >D</Avatar>}>
+            </ListItem>
+          </List>
+        </div>
+        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
 
         </div>
+        <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+          <div className='row end-xs'>
+          <List>
+            <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
+            </ListItem>
+          </List>
+          </div>
+        </div>
+      </div>
+      <Questions data={this.state.ques} />
       </div>
     );
   }

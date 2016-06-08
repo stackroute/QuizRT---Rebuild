@@ -2,11 +2,12 @@ module.exports = function register(options){
 
   //load an Users based on id.
     this.add({role:'user',action:'get'},function(msg,respond){
-      this.make('newUser').load$({name:msg.data},respond);
+      this.make('users').load$({name:msg.data},respond);
     });
     //create a new user
     this.add({role:'user',action:'add'},function(msg,respond){
-      this.make('newUser').data$(msg.data).save$(respond);
+      console.log('from add---------------'+msg.data+'------------------');
+      this.make('users').data$(msg.data).save$(respond);
     });
 
     //update an user
@@ -18,6 +19,6 @@ module.exports = function register(options){
 
     //delete an user
     this.add('role:user,action:delete',function(msg,respond){
-      this.make('newUser').remove$(msg.id,respond);
+      this.make('users').remove$(msg.id,respond);
     });
 }

@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 
 module.exports = function verify(options){
+	//To generate tokens for normal users
 	this.add('role:user,action:generatetoken',function(msg,respond){
 		var bcrypt = require('bcryptjs');
       	// check if password matches
@@ -23,14 +24,24 @@ module.exports = function verify(options){
       	});
 	});
 
+	//To generate tokens for Google Authentication
+	this.add('role:user,action:generateGoogleToken',function(msg,respond){
+		var token = jwt.sign(msg.data.user,msg.data.secret);
+
+		respond(null,{
+			token : token,
+			success : true
+		});
+	});
+
 	this.add('role:user,action:verifytoken',function(msg,respond){
 		if (msg.data.token) {
 
 		    // verifies secret and checks exp
-		    jwt.verify(msg.data.token, msg.data.secret, function(err, decoded) {      
+		    jwt.verify(msg.data.token, msg.data.secret, function(err, decoded) {
 		      if (err) {
-		      	respond(null,{success:false, message: 'Failed to authenticate token.' });    
-		      } else { 
+		      	respond(null,{success:false, message: 'Failed to authenticate token.' });
+		      } else {
 		        respond(null,{success:true});
 		      }
 		    });

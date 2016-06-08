@@ -6,8 +6,7 @@ new WebpackDevServer(webpack(config), {
   contentBase: __dirname + '/common-ui',
   publicPath: config.output.publicPath,
   hot: true,
-  historyApiFallback: true
-
+  historyApiFallback: true,
 }).listen(8081, '0.0.0.0', function (err, result) {
   if (err) {
     return console.log(err);

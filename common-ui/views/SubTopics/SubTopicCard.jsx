@@ -52,7 +52,8 @@ var title1={
 var title2={
   paddingLeft:10,
   marginTop:10,
-  marginBottom:10
+  marginBottom:10,
+  height:'30px'
 }
 var title3={
     margin:'auto',

@@ -31,8 +31,8 @@ const tabHeight={
 }
 
 const btnFontColor ={
-  marginLeft:'25%',
-  width:"50%"
+  marginLeft:'12.5%',
+  width:"75%"
 }
 
 const styleCard={
@@ -142,9 +142,9 @@ class TournamentsSubCard extends React.Component {
           <div>
             <RaisedButton
               style={btnFontColor}
-              label={'UnRegister'}
+              label={"You're Registered"}
               primary={true}
-              onClick={this.handlePrev}
+              disabled={true}
             />
           </div>
         ) : (

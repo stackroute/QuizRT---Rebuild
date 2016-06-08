@@ -10,6 +10,7 @@ const style = {
   marginBottom:12,
   width:'100%',
 };
+
 const text = {
   margin:0,
   padding:0,

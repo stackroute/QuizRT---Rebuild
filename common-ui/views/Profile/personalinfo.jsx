@@ -6,6 +6,8 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
+import DropDownMenu from 'material-ui/DropDownMenu';
+
 
 
 const styles = {
@@ -34,53 +36,63 @@ const exampleImageInput= {
     opacity: 0,
 };
 
-var PersonalInfo= React.createClass({
+export default class PersonalInfo extends React.Component {
 
-  getInitialState: function () {
-    return {value:1};
-  },
+  constructor(props) {
+    super(props);
+    this.state = {value: 1,enable:true};
+  }
 
-  render: function () {
+  handleChange = (event, index, value) => this.setState({value});
+  enable(){
+    this.setState({enable:false})
+  }
+  render() {
 
     return(
       <div>
             <div style={styles}>
               <Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/>
-              
               <br />
               <TextField
+              disabled={this.state.enable}
               hintText="Enter your name"
               floatingLabelText="Display Name"
               /><br />
               <TextField
+              disabled={true}
               hintText="abc@example.com"
               floatingLabelText="Email ID"
               /><br />
-              <DatePicker hintText="Date of Birth" />
+              <DatePicker hintText="Date of Birth" disabled={this.state.enable} />
               <TextField
+              disabled={this.state.enable}
               hintText="Contact Number"
               floatingLabelText="Enter 10-digit mobile number"
               /><br />
               <div>
-                <SelectField value={this.state.value} onChange={this.handleChange}>
-                <MenuItem value={1} primaryText="Male" />
-                <MenuItem value={2} primaryText="Female" />
-                <MenuItem value={3} primaryText="Others" />
-                </SelectField>
+              <DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={false} disabled={this.state.enable}>
+              <MenuItem value={1} primaryText="Male" />
+              <MenuItem value={2} primaryText="Female" />
+              <MenuItem value={3} primaryText="Others" />
+              </DropDownMenu>
+
+
               </div>
               <TextField
+              disabled={this.state.enable}
               hintText="Country"
               floatingLabelText="Country"
               /><br />
               <div>
-                <RaisedButton label="Edit" primary={true} style={style} />
+                <RaisedButton label="Edit" primary={true} style={style} onClick={this.enable.bind(this)} />
                 <RaisedButton label="Save" secondary={true} style={style} />
               </div>
             </div>
           </div>
     );
   }
-});
+}
 
 
 module.exports=PersonalInfo;

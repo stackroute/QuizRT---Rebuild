@@ -3,6 +3,8 @@ import Paper from 'material-ui/Paper';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const style = {
   marginLeft:0,
@@ -23,26 +25,29 @@ const stylebtn={
 
 };
 
+const style_addbtn={
+    float:'right'
+}
+
+const style_addbtn1={
+    height:'50%',
+    width:'50%'
+}
+
+
 const cardHeader={
   textAlign:'left',
 };
+ const style_add={
+   height:"200px",
+   width:"200px",
+   margin: 20,
+   paddingBottom:10,
+ }
 
-var topicsData =[
-{
-  title: "Indian Celebs",
-  subtitle: "Let's play a celeb quiz",
-  avatarimg: 'img/SubTopicImages/inavtar.jpg',
-  img: 'img/SubTopicImages/inmain.jpg',
-  category: "Celebreties"
-},
-{
-  title: "Singers",
-  subtitle: "Let's play a music quiz",
-  avatarimg: 'img/SubTopicImages/siavtar.jpg',
-  img: 'img/SubTopicImages/simain.jpg',
-  category: "Music"
+const btn={
+  marginTop:"25px"
 }
-];
 
 var MyFavoriteSection = React.createClass({
 
@@ -58,14 +63,13 @@ var MyFavoriteSection = React.createClass({
   render: function () {
     return (
       <div>
-        <Paper style={style} zDepth={2} >
-          <Card>
-          <h1 style={tour_header}>My Favorite Topics</h1>
-            <SubTopicContainer topics ={topicsData} />
-            <FlatButton label="See More" style={stylebtn}/>
-            <FlatButton label="Add More" style={stylebtn}
-              onTouchTap={this.handleTopics.bind(this)}/>
-          </Card>
+        <Paper style={btn} zDepth={2} >
+          <div>
+            <FloatingActionButton style={style_addbtn} onTouchTap={this.handleTopics.bind(this)}>
+                <ContentAdd/>
+            </FloatingActionButton>
+            <h1 style={tour_header}>My Favorite Topics</h1>
+          </div>
         </Paper>
       </div>
     );

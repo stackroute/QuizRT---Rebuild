@@ -34,7 +34,23 @@ export default class LoginForm extends React.Component{
     $.ajax({
       type: 'POST',
       url : baseURL + 'api/authenticate/google',
+      contentType : 'application/json',
       success : (function(data){
+        if(data.redirect){
+          window.location.href = data.redirect;
+        }
+      }).bind(this)
+    })
+  }
+
+  facebookLogin(){
+    console.log("inside facebookLogin");
+    $.ajax({
+      type: 'POST',
+      url : baseURL + 'api/authenticate/facebook',
+      contentType : 'application/json',
+      success : (function(data){
+        console.log("success");
         if(data.redirect){
           window.location.href = data.redirect;
         }
@@ -60,7 +76,7 @@ export default class LoginForm extends React.Component{
       success: (function(data) {
         if(data['success'] === true){
             cookie.save('auth_cookie',data['token'],{path:'/'});
-            cookie.save('username',data['userid']);
+            cookie.save('username',data['userid'],{path:'/'});
             this.context.router.push('/dashboard');
         }
         else {
@@ -103,7 +119,7 @@ export default class LoginForm extends React.Component{
         <p style = {para}>Forgot Password</p>
         </Link>
 				<p style = {para}>OR</p>
-        <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles}/><br/><br/>
+        <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles} onClick={this.facebookLogin.bind(this) }/><br/><br/>
         <RaisedButton label = "Login With Google" secondary = {true} style = {styles} onClick={this.googleLogin.bind(this) }/><br/><br/>
         <Link to ='/SignUP'>
           <RaisedButton label = "Sign Up" secondary = {true} style = {styles}/><br/><br/>

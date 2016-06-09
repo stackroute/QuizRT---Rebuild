@@ -13,6 +13,7 @@ var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
+var facebookcredentials = require('./common-ui/views/Login/facebookcredentials');
 var questions;
 var request = require('request');
 var seneca = require('seneca')()
@@ -169,6 +170,57 @@ app.post('/api/authenticate',function(req,res){
     }
   })
 });
+
+app.post('/api/authenticate/facebook',function(req,res){
+  var app_id = facebookcredentials.CLIENT_ID;
+  var url ='https://www.facebook.com/dialog/oauth?'+
+    'client_id='+app_id+'&redirect_uri=http://localhost:8080/api/authenticate/facebook/success'+
+    '&scope=email';
+  res.send({ redirect: url });
+})
+
+app.get('/api/authenticate/facebook/success',function(req,res){
+  var code = req.query.code;
+  var app_id = facebookcredentials.CLIENT_ID;
+  var app_secret = facebookcredentials.CLIENT_SECRET;
+  var token_url ='https://graph.facebook.com/v2.6/oauth/access_token?'+
+                  'client_id='+app_id+
+                 '&redirect_uri=http://localhost:8080/api/authenticate/facebook/success'+
+                 '&client_secret='+app_secret+
+                 '&code='+code;
+  request(token_url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var myBody = JSON.parse(body);
+      var access_token = myBody['access_token'];
+      var user_profile = 'https://graph.facebook.com/me?fields=name,email&access_token='+access_token;
+      request(user_profile,function(error,response,body){
+        if(!error && response.statusCode == 200){
+          var userinfo = JSON.parse(body);
+          var email = userinfo['email'];
+           var tokendata = {
+            user : email,
+            secret : app.get('secret')
+          }
+          seneca.act('role:user,action:generateGoogleToken',{data:tokendata},function(err,tokenresponse){
+            var data = {
+              name:email
+            }
+            seneca.act('role:user,action:get',{data:data.name},function(err,respond){
+              if(err) { return res.status(500).json(err); }
+                if(respond == null){
+                  seneca.act('role:user,action:add', {data:data}, function(err,saved_user){
+                    if(err) { return res.status(500).json(err); }
+                  })
+                }
+            })
+            res.cookie('username',data.name);
+            res.cookie('auth_cookie',tokenresponse.token).redirect(301,'http://localhost:8081/#/dashboard');
+          })
+        }
+      })
+     }
+  })
+})
 
 app.get('/topics/mostPopular',function(req,res) {
   console.log('form express-mostpopular');

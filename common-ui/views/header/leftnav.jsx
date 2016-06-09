@@ -54,14 +54,17 @@ const imgstyle={
 
 var ProfileHero = React.createClass({
   getInitialState: function () {
-    return({open: false});
+    return({
+      open: false,
+      username : ''
+    });
   },
 
-  // static get contextTypes() {
-  //   return {
-  //     router: React.PropTypes.object
-  //   }
-  // }
+  componentDidMount : function(){
+    var display_name = cookie.load('username');
+    console.log(display_name);
+    this.state.username = display_name;
+  },
 
   contextTypes :{
     router : React.PropTypes.object
@@ -148,7 +151,7 @@ var ProfileHero = React.createClass({
 
           <MenuItem onTouchTap={this.handleClose} style={style}>
           <div><Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/></div>
-          Display Name</MenuItem>
+          {this.state.username}</MenuItem>
           <MenuItem onTouchTap={this.handleClose} style={style}> Rank: 21#</MenuItem>
           <Divider />
           <List>

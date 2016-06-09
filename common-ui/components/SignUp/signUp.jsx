@@ -80,7 +80,6 @@ export default class Test extends React.Component{
     let signedUp = <div style={{color: '#0F0',fontSize : 'medium'}}>User Successfully Signed up</div>;
     return (
       <div>
-
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-lg-4 col-xs-12 col-sm-6 col-md-6 col-lg-offset-4 col-sm-offset-3 col-md-offset-3'>

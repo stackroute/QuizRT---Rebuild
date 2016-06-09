@@ -36,24 +36,18 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-seneca.act('role:question,action:all',function(err,result){
-  questions = result;
-}).ready(function(){
-  var count,seconds,timer,connectCounter=0;
-  io.on('connection',function(socket){
-   socket.emit('new question',questions[0]);
-   socket.on('give new question',function(){
-     if(count==questions.length){
-       socket.emit('end quiz',"The quiz has ended. Thank you for playing");
-     }
-     else{
-     socket.emit('new question',questions[count]);
-     count++;
-   }
- })
-})
-})
-app.post('/api/check',function(req,res){
+app.get('/topics/myfav',function(req,res) {
+  console.log('form tpics dfgkmy fav-myfav000000000000000000000000000000000000000000000000000)))))))))))))))))');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:myFav,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('------------yahi to hai result-----'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+ app.post('/api/check',function(req,res){
   console.log('-------------- abc from express floow---------------');
   console.log(req.body.incre+'   0----------------------');
   console.log(req.body.id+'    ---------------------');
@@ -61,12 +55,59 @@ app.post('/api/check',function(req,res){
     id:req.body.id,
     incre:req.body.incre
   }
+  console.log('==============111111111111111111111111'+req.body.id);
+  var username = req.body.uName;
   seneca.act('role:topic,action:like',{data:test},function(err,result){
     if(err) console.log(err+'------------------------------------------------');
-    console.log(result.topicFollowers+"  == ye hai result");
-    res.send(result)
+    // var newObj = {
+    //   topicId:username,
+    //   topic:{result}
+    // }
+    // console.log(newObj.id);
+    console.log(result+'yaha thak hai');
+    if(req.body.incre==true){
+      seneca.act('role:topic,action:create',{data:result},function(err,result2){
+        if(err) console.log(err+' ========================');
+        console.log(result2+' saved  46546-------------------------------------------');
+        res.send(result)
+      })
+    } else {
+      seneca.act('role:topic,action:delete',{id:req.body.id},function(err,result2){
+        if(err) console.log(err+' ========================');
+        console.log(result2+' saved deleted 000000000000000-------------------------------------------');
+        res.send(result)
+      })
+    }
+      //  res.send(result);
   })
 });
+//---------------------------------------
+var middleWareCount =0;
+
+io.on('connection',function(socket){
+  console.log('\n==============INSIDE SOCKET\n')
+  middleWareCount++;
+  console.log('\n =====Middleware count is: '+middleWareCount+'\n');
+  var playerMiddleWareService =  require('seneca')();
+  socket.on('playGame',function(msg){
+     playerMiddleWareService.use('redis-transport');
+    // console.log('\n Setting up middleware for user \n');
+    //console.log('\n======Initializing plugin for  : '+(middleWareCount)+'\n');
+    playerMiddleWareService.use('./microservices/gameplay1/gameplayMiddlewarePlugin', {
+      username:msg.username,
+      tournamentId:msg.tournamentId,
+      socket:socket
+    });
+  });
+
+  socket.on('disconnect',function(){
+    // console.log('\n======Closing service=====\n');
+    playerMiddleWareService.close();
+  })
+
+
+})
+//----------------------------
 app.post('/api/signup',function(req,res){
   console.log("inside /api/signup");
     var data = {

@@ -7,9 +7,9 @@ var seneca = require('seneca')();
     host: "127.0.0.1",
     port: 27017
   })
-  .use('./allTopics')
-  // .act('role:allTopics,action:retrive',function(err,result){
+  .use('./myFav')
+  // .act('role:popularTopics,action:retrive',function(err,result){
   //   if(err) return console.error(err)
   //   console.log(result)
   // })
-  .use('mesh', { auto:true, pin:'role:allTopics' })
+  .use('mesh', { auto:true, pin:'role:myFav,action:retrive' })

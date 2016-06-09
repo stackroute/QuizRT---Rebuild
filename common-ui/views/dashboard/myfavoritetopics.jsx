@@ -61,7 +61,7 @@ var MyFavoriteSection = React.createClass({
         <Paper style={style} zDepth={2} >
           <Card>
           <h1 style={tour_header}>My Favorite Topics</h1>
-            <SubTopicContainer topics ={topicsData} />
+            <SubTopicContainer topics ={this.props.topics} />
             <FlatButton label="See More" style={stylebtn}/>
             <FlatButton label="Add More" style={stylebtn}
               onTouchTap={this.handleTopics.bind(this)}/>

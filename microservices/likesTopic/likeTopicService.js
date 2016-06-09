@@ -10,7 +10,7 @@ seneca.use('mongo-store',{
 	.use('mesh',{auto:true,pin:'role:topic,action:like'});
   //
   // var test = {
-  //   id:"Animals",
+  //   id:"1Basketball Players",
   //   incre:false
   // }
   // seneca.act('role:topic,action:like',{data:test},console.log);

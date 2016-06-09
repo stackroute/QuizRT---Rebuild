@@ -10,7 +10,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
 import People from 'material-ui/svg-icons/social/people';
 import PeopleOutline from 'material-ui/svg-icons/social/people-outline';
-var baseUrl = 'http://localhost:8080/';
+import Cookie from 'react-cookie';
 
 const TitleStyle={
   fontSize:"1em",
@@ -90,60 +90,39 @@ const iconStyles = {
   width:60,
 };
 
-var SubTopicCard = React.createClass({
+var SubtopicCard = React.createClass({
   getInitialState:function(){
-     return{incre:false,no:this.props.topics.topicFollower}
- },
- handleCheck:function(){
-console.log('hiii');
-this.state.incre=!this.state.incre;
-console.log(this.state.incre+'---');
-console.log(this.props.topics.topicName+'-------------');
-var data1 = {
-  incre: this.state.incre,
-  id:this.props.topics.topicName
-}
-$.ajax({
-  type:'POST',
-  data :JSON.stringify(data1),
-  contentType : 'application/json',
-  url:baseUrl+'api/check',
-  success:(function(data){
-    console.log('folowers increamented--------------'+data.topicFollowers+'now -----------');
-    this.setState({no:data.topicFollowers})
-  }).bind(this),
-  error:function(err){
-    console.log(err);
-    console.log('error hai');
-  }
-})
-},
+      return{incre:-1, no:this.props.topic.topicFollowers}
+  },
+  handleOnCheck: function(topicName) {
+    this.state.incre=-this.state.incre;
+    this.setState({no:this.props.topic.topicFollowers+this.state.incre})
+    this.props.fun(topicName,this.props.topic);
+  },
   render: function(){
     return(
 
-
 <Card style ={cardDivStyle}>
-    <p style={style_favorite}>{this.props.topics.playersPerMatch}</p>
-    <Checkbox
-      checkedIcon={<ActionFavorite />}
-      uncheckedIcon={<ActionFavoriteBorder />}
-      style={style_fav}
-      iconStyle={{fill: '#B71C1C'}}
-      onCheck={this.handleCheck.bind(this)}
-
-    />
-    <p style={style_followers}>{this.state.no} </p>
+    <p style={style_favorite}>{this.props.topic.playersPerMatch}</p>
     <Checkbox
       checkedIcon={<People />}
       uncheckedIcon={<PeopleOutline />}
       style={style_fav}
       iconStyle={{fill: '#009688'}}
+      />
+    <p style={style_followers}>{this.state.no} </p>
 
+      <Checkbox
+        checkedIcon={<ActionFavorite />}
+        uncheckedIcon={<ActionFavoriteBorder />}
+        style={style_fav}
+        iconStyle={{fill: '#B71C1C'}}
+        onCheck={this.handleOnCheck.bind(this,this.props.topic._id)}
       />
     <h4 style={title1}>
-      {this.props.topics.topicName}
+      {this.props.topic.topicName}
     </h4>
-    <h5 style={title2} color={grey500}>{this.props.topics.topicDescription}</h5>
+    <h5 style={title2} color={grey500}>{this.props.topic.topicDescription}</h5>
 
     <CardMedia overlay={
       <div>
@@ -151,7 +130,7 @@ $.ajax({
       <MapsPersonPin color={grey100}/>
       </div>
      }>
-      <img src={this.props.topics.topicIcon} />
+      <img src={this.props.topic.topicIcon} />
     </CardMedia>
 
 
@@ -167,4 +146,4 @@ $.ajax({
 }
 });
 
-module.exports= SubTopicCard;
+module.exports= SubtopicCard;

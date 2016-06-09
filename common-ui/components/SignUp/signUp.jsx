@@ -31,12 +31,18 @@ export default class Test extends React.Component{
     }
   } // Used to provide property validation.Currently we are saying that we need a context prop of type "React.PropTypes.object"
 
+  componentIsMounting() {
+   this.setState({$invalid: false});
+   this.setState({$signedUp: false});
+  }  
+
   handleSubmit(event) {
     event.preventDefault();
     var pass = this.state.formInput.password;
     var username = this.state.formInput.username;
     var router = this.context.router;
     var bcrypt = require('bcryptjs');
+    var x = this;
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(pass, salt, function(err, hash) {
             var data = {
@@ -51,11 +57,11 @@ export default class Test extends React.Component{
               url : baseURL + 'api/signup',
               success: (function(data) {
                 if(data['success'] == false){
-                  alert(data['message']);
                   router.push('/SignUP');
+                  x.setState({$invalid: true});
                 }
                 else{
-                  alert("User Successfully Signed Up");
+                  x.setState({$signedUp:true});
                   router.push('/login'); // This uses a react router to configure the link provided in router
                 }
               }).bind(this)
@@ -70,6 +76,8 @@ export default class Test extends React.Component{
     this.state.formInput.password = event.target.value;
   }
   render (){
+    let invalid = <div style={{color: '#F00',fontSize : 'medium'}}>Username already exists.Try with another email</div>;
+    let signedUp = <div style={{color: '#0F0',fontSize : 'medium'}}>User Successfully Signed up</div>;
     return (
       <div>
         <div className='container-fluid'>
@@ -82,6 +90,8 @@ export default class Test extends React.Component{
                   <TextField fullWidth={true}  floatingLabelText="Password" type="password" onChange={this.passwordChanged.bind(this)} />
                   <RaisedButton type="submit" label="Sign Up" primary={true} style={style} />
             </form>
+            { this.state && this.state.$invalid ? invalid : null }
+            { this.state && this.state.$signedUp ? signedUp : null }
             <div className='row'>
               <div className='col-xs-12'>
                 <div className='center-xs'>

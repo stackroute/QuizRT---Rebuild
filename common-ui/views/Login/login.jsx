@@ -24,6 +24,10 @@ export default class LoginForm extends React.Component{
     cookie.remove('username');
   }
 
+  componentIsMounting() {
+    this.setState({$invalid: false});
+  }
+
   static get contextTypes() {
     return {
       router: React.PropTypes.object
@@ -34,7 +38,23 @@ export default class LoginForm extends React.Component{
     $.ajax({
       type: 'POST',
       url : baseURL + 'api/authenticate/google',
+      contentType : 'application/json',
       success : (function(data){
+        if(data.redirect){
+          window.location.href = data.redirect;
+        }
+      }).bind(this)
+    })
+  }
+
+  facebookLogin(){
+    console.log("inside facebookLogin");
+    $.ajax({
+      type: 'POST',
+      url : baseURL + 'api/authenticate/facebook',
+      contentType : 'application/json',
+      success : (function(data){
+        console.log("success");
         if(data.redirect){
           window.location.href = data.redirect;
         }
@@ -60,12 +80,12 @@ export default class LoginForm extends React.Component{
       success: (function(data) {
         if(data['success'] === true){
             cookie.save('auth_cookie',data['token'],{path:'/'});
-            cookie.save('username',data['userid']);
+            cookie.save('username',data['userid'],{path:'/'});
             this.context.router.push('/dashboard');
         }
         else {
-            alert(data['message']);
             this.context.router.push('/login');
+            this.setState({$invalid: true});
         }
 
       }).bind(this)
@@ -79,6 +99,7 @@ export default class LoginForm extends React.Component{
   }
 
   render() {
+    let invalid = <div style={{color: '#F00',fontSize : 'medium'}}>Wrong Username/Password.</div>;
     return (
       <div className = "container-fluid">
       <div className="row">
@@ -87,7 +108,6 @@ export default class LoginForm extends React.Component{
         <h1 style = {para}>Login</h1>
         <h1 style = {para}>QuizRT</h1>
 				<p style = {para}>Login here to play the game</p>
-
         <form onSubmit={this.handleLogin.bind(this)} >
             <TextField hintText="username" floatingLabelText="Username" fullWidth={true}
               onChange={this.usernameChanged.bind(this)} type="email" errorText="Please enter email like abc@def.com" />
@@ -98,12 +118,13 @@ export default class LoginForm extends React.Component{
 
 
         <Checkbox label = "Remember Me" /><br/><br/>
+        { this.state && this.state.$invalid ? invalid : null }
 
         <Link to ='/forgotPswd'>
         <p style = {para}>Forgot Password</p>
         </Link>
 				<p style = {para}>OR</p>
-        <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles}/><br/><br/>
+        <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles} onClick={this.facebookLogin.bind(this) }/><br/><br/>
         <RaisedButton label = "Login With Google" secondary = {true} style = {styles} onClick={this.googleLogin.bind(this) }/><br/><br/>
         <Link to ='/SignUP'>
           <RaisedButton label = "Sign Up" secondary = {true} style = {styles}/><br/><br/>

@@ -30,9 +30,10 @@ const cardHeader={
 
 var MostPopularSection = React.createClass({
 
-getInitialState:function(){
-    return{topics:[]}
-},
+    getInitialState:function(){
+        return{topics:[]}
+    },
+
 
 contextTypes :{
   router : React.PropTypes.object
@@ -67,7 +68,7 @@ handleTopics : function(){
           <Card>
           <h1 style={tour_header}>Most Popular topics</h1>
 
-          <SubTopicContainer topics ={this.state.topics} />
+          <SubTopicContainer {...this.props} topics ={this.state.topics}   />
             <FlatButton label="See More" style={stylebtn}
               onTouchTap={this.handleTopics.bind(this)}/>
 

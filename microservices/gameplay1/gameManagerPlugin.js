@@ -64,14 +64,13 @@ module.exports = function(options){
             }
             questionCount--;
             var questionObject ={
-
+              timer: 10
               question: questions[questionCount].question,
               options: questions[questionCount].options
             }
               self.broadcast.act('gameId:'+self.gameId+',role:broadcast,action:newQuestion',{question:questionObject},function(err,response){
-
             });
-          },10005)
+          },10500)
 
         });
       };

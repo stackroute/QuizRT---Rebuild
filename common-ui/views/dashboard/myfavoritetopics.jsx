@@ -17,6 +17,7 @@ const tour_header={
   margin:20,
   textAlign:'center',
   paddingTop:20,
+  paddingBottom:20,
 }
 
 const stylebtn={
@@ -26,14 +27,10 @@ const stylebtn={
 };
 
 const style_addbtn={
-    float:'right'
+    float:'right',
+    marginTop:10,
+    marginRight:10
 }
-
-const style_addbtn1={
-    height:'50%',
-    width:'50%'
-}
-
 
 const cardHeader={
   textAlign:'left',

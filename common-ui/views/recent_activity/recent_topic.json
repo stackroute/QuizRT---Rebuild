@@ -1,0 +1,16 @@
+{
+  "avatar":"Topics",
+  "title": "topics",
+  "cardType":"topics",
+  "image":"",
+  "description":"",
+  "analytics":[
+    {
+      "topicPlayed":"",
+      "noOfPlayers":"",
+      "rank":"",
+      "score":"",
+      "winnigStreak":""
+    }
+  ]
+}

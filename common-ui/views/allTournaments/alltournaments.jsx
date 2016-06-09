@@ -2,6 +2,10 @@ import React from 'react';
 import ProfileHero from '../header/leftnav';
 import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
+const title={
+  textAlign:'center'
+}
+
 var baseurl='http://localhost:8080';
 
 var Tournaments = React.createClass({
@@ -31,6 +35,7 @@ var Tournaments = React.createClass({
     return(
       <div>
       <ProfileHero />
+        <h1 style={title}>Tournaments</h1>
         <TournamentsSubContainer tournament ={this.state.tournamentData} />
       </div>
     );

@@ -1,0 +1,17 @@
+{
+  "avatar":"tournaments",
+  "title":"Tournaments",
+  "cardType":"tournamnet",
+  "image":"",
+  "description":"",
+  "analytics":[
+    {
+      "tournamnetPlayed":"",
+      "noOfPlayers":"",
+      "rank":"",
+      "level":"",
+      "score":"",
+      "winnigStreak":""
+    }
+  ]
+}

@@ -4,8 +4,7 @@ module.exports = function(){
       console.log(res.topicFollowers+'--------'+res.topicName);
       if(msg.data.incre==true) res.topicFollowers++;
       else res.topicFollowers--;
-      console.log(res.topicFollowers+'----------------followers');
-      this.make('topics_collection')
+      console.log(res.topicFollowers+'------------------------------===============-followers');
       res.data$({
         topicFollowers:res.topicFollowers
       }).save$(result)

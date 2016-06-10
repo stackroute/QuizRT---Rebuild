@@ -24,6 +24,7 @@ import Rank from './views/Rank';
 import Topics from './views/allTopics/alltopics';
 import Tournaments from './views/allTournaments/alltournaments';
 import ProfileInfo from './views/Profile';
+import WPage from './views/WaitingPage';
 injectTapEventPlugin();
 
 import cookie from 'react-cookie';
@@ -55,6 +56,7 @@ export class App extends React.Component {
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/signup' component = {SignUp} />
+      <Route path ="/waiting" component= {WPage} />
       <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} />

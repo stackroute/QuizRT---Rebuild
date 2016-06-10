@@ -84,14 +84,14 @@ app.get('/topics/myfav',function(req,res) {
 var middleWareCount =0;
 
 io.on('connection',function(socket){
-  console.log('\n==============INSIDE SOCKET\n')
   middleWareCount++;
   console.log('\n =====Middleware count is: '+middleWareCount+'\n');
-  var playerMiddleWareService =  require('seneca')();
+  var playerMiddleWareService =  seneca;
   socket.on('playGame',function(msg){
+
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
-    //console.log('\n======Initializing plugin for  : '+(middleWareCount)+'\n');
+    console.log('\n======Initializing plugin for  : '+(msg.username)+'\n');
     playerMiddleWareService.use('./microservices/gameplay1/gameplayMiddlewarePlugin', {
       username:msg.username,
       tournamentId:msg.tournamentId,
@@ -100,9 +100,16 @@ io.on('connection',function(socket){
   });
 
   socket.on('disconnect',function(){
-    // console.log('\n======Closing service=====\n');
-    playerMiddleWareService.close();
+    console.log('\n======Closing service=====\n');
+
   })
+
+  socket.on('myAnswer',function(socketObj){
+    console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');
+     playerMiddleWareService.act('role:user,action:answer',{answer:socketObj.answer},function(err,response){
+
+     })
+  });
 
 
 })

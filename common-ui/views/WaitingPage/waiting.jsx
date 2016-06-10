@@ -14,6 +14,9 @@ export default class Test extends React.Component{
   constructor(props){
     super(props);
   }
+  componentDidMount(){
+    alert("hello");
+  }
 
   render (){
     return(

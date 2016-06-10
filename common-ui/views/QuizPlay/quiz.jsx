@@ -9,8 +9,7 @@ import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import ProgressBar from './progressBar';
 import Timer from './timer';
-import Wait from '../WaitingPage';
-
+import CircularProgress from 'material-ui/CircularProgress';
 
 const optionStyle = {
   margin:12,
@@ -48,7 +47,6 @@ class SampleNextArrow extends React.Component{
     );
   }
 }
-
 class SamplePrevArrow extends React.Component{
   render(){
     return(
@@ -57,12 +55,10 @@ class SamplePrevArrow extends React.Component{
   }
 }
 export default class Rank extends React.Component{
-  state = {
-   check:true
- };
   constructor(props){
     super(props);
     this.state = {
+      check:true,
       ques:{},
       seconds:0,
       progress: 10,
@@ -72,17 +68,13 @@ export default class Rank extends React.Component{
       option3Color: grey100
 
     };
-    console.log('form constructror ----------------');
-
   }
   static get contextTypes(){
     return {
       socket: PropTypes.object
     }
   }
-  componentWillMount(){
-    console.log('tis form componentWillMount');
-  }
+
   componentDidMount(){
     console.log('this is componentDidMount in quiz page98-----------------------');
         this.context.socket = io('http://localhost:8080');
@@ -103,8 +95,8 @@ export default class Rank extends React.Component{
 
         })
         this.context.socket.on('gameStarting',function(msg){
-        that.state.check=false;
         console.log('its a game starting ------------------------'+that.state.check+'its ending ============');
+        this.setState('{check:false}');
         })
         this.context.socket.on('yourAnswer',function(obj){
             alert('getting the right answer');
@@ -138,8 +130,9 @@ export default class Rank extends React.Component{
       switch(value){
       }
     }
+
   render(){
-    if(!this.state.ques.options) return null;
+    // if(!this.state.ques.options) return null;
     var settings = {
           dots: false,
           nextArrow:<SampleNextArrow />,
@@ -174,14 +167,31 @@ export default class Rank extends React.Component{
               }
           }]
       };
-      const {check} = this.state;
+      const Style1= {
+          "text-align": "center",
+          //"margin-top":'18%',
+          //"height":'100%',
+          "margin":"auto",
 
+        }
+        const Style2= {
+          "margin-top":'12%'
+        }
+      var check = true;
     return (
       <div>
       {check ?(
-        <Wait />
-                ):(
-      <div className="container-fluid">
+        <div style={Style1}>
+        <div>
+        <h2>Waiting for the opponents</h2>
+      </div>
+      <div style={Style2}>
+          <CircularProgress size={1.8}  />
+
+        </div>
+        </div>
+      ):(
+        <div className="container-fluid">
           <div >
             <Slider {...settings}>
               <div><Paper style={style} zDepth={2} >1 <p></p> 24</Paper></div>
@@ -265,8 +275,8 @@ export default class Rank extends React.Component{
           </div>
 
         </div>
-        )
-      }
+      )}
+
       </div>
     );
   }

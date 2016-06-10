@@ -1,3 +1,4 @@
+  
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -109,8 +110,8 @@ export default class LoginForm extends React.Component{
         <h1 style = {para}>QuizRT</h1>
 				<p style = {para}>Login here to play the game</p>
         <form onSubmit={this.handleLogin.bind(this)} >
-            <TextField hintText="username" floatingLabelText="Username" fullWidth={true}
-              onChange={this.usernameChanged.bind(this)} type="email" errorText="Please enter email like abc@def.com" />
+            <TextField hintText="abc@def.com" floatingLabelText="Email" fullWidth={true}
+              onChange={this.usernameChanged.bind(this)} type="email" />
             <TextField fullWidth={true}  floatingLabelText="Password" type="password"
               onChange={this.passwordChanged.bind(this)} />
             <RaisedButton type="submit" label="Login" primary={true} style={styles} />

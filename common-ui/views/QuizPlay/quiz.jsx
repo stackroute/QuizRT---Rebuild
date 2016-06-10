@@ -111,6 +111,7 @@ export default class Rank extends React.Component{
 
         this.context.socket.on('leaderboard',function(leaderboard){
           alert('final score is: '+leaderboard['anshul']);
+          this.context.socket.close();
         })
 
 

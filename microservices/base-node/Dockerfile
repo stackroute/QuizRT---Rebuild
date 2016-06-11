@@ -8,7 +8,7 @@ WORKDIR /usr/src/base-node
 
 # Copy and install dependencies
 COPY package.json /usr/src/base-node
-RUN npm install
+RUN npm install --production
 
 # Bundle app source
 COPY baseMicroservice.js /usr/src/base-node

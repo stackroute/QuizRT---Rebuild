@@ -55,16 +55,16 @@ export class App extends React.Component {
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/signup' component = {SignUp} />
-      <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
-      <Route path="/result" component={Result} onEnter={this.requireAuth} />
+      <Route path="/rank" component={Rank}   />
+      <Route path="/result" component={Result}   />
       <Route path="/quiz" component={Quiz} />
-      <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
-      <Route path="/topics" component={Topics} onEnter={this.requireAuth}/>
-      <Route path="/tournaments" component={Tournaments} onEnter={this.requireAuth}/>
-      <Route path = '/badges' component = {Badges} onEnter={this.requireAuth}/>
+      <Route path="/dashboard" component={Dashboard}  />
+      <Route path="/topics" component={Topics}  />
+      <Route path="/tournaments" component={Tournaments}  />
+      <Route path = '/badges' component = {Badges}  />
       <Route path= '/eachtopic' component={TopicDetails} />
-      <Route path= '/recent' component={RecentPage} onEnter={this.requireAuth}/>
-      <Route path= '/profileinfo' component={ProfileInfo} onEnter={this.requireAuth}/>
+      <Route path= '/recent' component={RecentPage}  />
+      <Route path= '/profileinfo' component={ProfileInfo}  />
       </Router>
       </MuiThemeProvider>
     );

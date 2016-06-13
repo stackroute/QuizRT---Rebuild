@@ -1,0 +1,12 @@
+microservice-gameplay:
+  container_name: microservice-gameplay
+  build: ./microservices/gameplay
+  image: quizrt/microservice-gameplay:0.1.0
+  network_mode: host
+  restart: always
+  environment:
+    REDIS_HOST: localhost
+    REDIS_PORT: 27017
+  depends_on:
+    - redis
+    - microservice-random-question

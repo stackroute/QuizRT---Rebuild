@@ -118,7 +118,7 @@ var ProfileHero = React.createClass({
       url : baseURL + 'api/Logout',
       success: (function(data) {
         if(data['success'] == true){
-            this.context.router.push('/login');
+            this.context.router.push('/');
 
         }
 

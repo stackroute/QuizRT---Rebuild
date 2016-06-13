@@ -3,14 +3,15 @@ FROM quizrt/base-image:0.1.0
 
 
 # Create app directory
-RUN mkdir -p /usr/src/common-ui
-WORKDIR /usr/src/common-ui
+RUN mkdir -p /usr/src/express-server
+WORKDIR /usr/src/express-server
 
 # Copy and install dependencies
-COPY package.json /usr/src/common-ui
+COPY package.json /usr/src/express-server
+
 RUN npm install --production
 
 # Bundle app source
-COPY . /usr/src/ common-ui
+COPY index.js /usr/src/express-server
 
 CMD ["npm", "start"]

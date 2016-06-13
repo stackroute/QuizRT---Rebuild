@@ -1,10 +1,10 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: __dirname + '/common-ui/app.jsx',
   output: {
-    filename: __dirname + '/common-ui/static/bundle.js'
+    filename: __dirname + '/common-ui/bundle.js'
   },
   module: {
     loaders: [
@@ -14,7 +14,7 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         },
-        exclude: /(node_modules|bower_components)/
+        exclude: __dirname +'/node_modules'
       }
     ]
   },
@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),
+ /*new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),*/
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}})
   ],
   resolve: {

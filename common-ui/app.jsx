@@ -1,12 +1,10 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import TournamentView from './views/Tournament';
-import TopicsView from './views/TopicsPage';
+ 
 import {Router, Route, hashHistory} from 'react-router';
 import LoginForm from './views/Login';
 import ForgotPswd from './views/Forgot';
@@ -76,7 +74,5 @@ export class App extends React.Component {
     );
   }
 };
-
-
 
 ReactDOM.render(<App />, document.getElementById('content'));

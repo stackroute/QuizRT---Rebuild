@@ -39,7 +39,7 @@ export class App extends React.Component {
     var token = cookie.load('auth_cookie');
     if(token == undefined){
       replace({
-      pathname: '/login',
+      pathname: '/',
       state: { nextPathname: nextState.location.pathname }
     });
     }
@@ -50,7 +50,6 @@ export class App extends React.Component {
       <Router history={hashHistory}>
       <Route path="/" component={LoginForm} />
       <Route path="/social" component={SocialPlugins}/>
-      <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />

@@ -1,73 +1,85 @@
-var globalQueue = {};
 
+// var globalQueueClient = require('seneca')();
+//  globalQueueClient.use('redis-store',{
+//    uri:'redis://localhost:6379'
+//  });
+  var globalQueue = {};
 
 module.exports = function(options){
 
+  var self= this;
+  self.add('role:provisioner,action:queue',function(msg,respond){
+    console.log('\n Inside role provisioner action queue \n');
+   var provisionerResponseChannelMicroservice = require('seneca')()
+                      .use('redis-transport')
+                      .client({type:'redis',pin:'role:*,action:gameInitiated'});
+    // console.log('\n ==========Game Provisioner Initialized=========== \n')
+    var tournamentId = msg.tournamentId;
 
-var id = Math.ceil(Math.random()*23423);
+    //add the users to a global queue with tournament id
 
-  //Middleware comes and sits in the queue.
-  this.add('role:provisioner,action:queue',function(msg,respond){
-    var key = msg.tournamentId;
-    var users =[];
-
-
-    //add the users to a global queue with the game or tournament as key.
-
-     if(!globalQueue[msg.tournamentId]){
-       globalQueue[msg.tournamentId] = [msg.username];
-     }
-
-     //globalQueue[msg.tournamentId].push('anshul');
-
-      console.log("\n Key is "+ msg.tournamentId);
-
-      console.log("\n Users in Queue are: +"+globalQueue[msg.tournamentId]+"\n");
-
-
-
-
-    if(globalQueue[msg.tournamentId].length>=1)
+    if(!globalQueue[tournamentId])
     {
+      globalQueue[tournamentId] = [msg.username]
+    }
+    else{
+      globalQueue[tournamentId].push(msg.username);
+    }
+    console.log('\n Tournament Id : '+msg.tournamentId+'\n');
+    console.log('\n Users are : '+globalQueue[msg.tournamentId]+'\n')
+    //If found x or more members
+    if(globalQueue[tournamentId].length>=2){
+      var gameManager = require('seneca')();
+      var gameId = Math.ceil(Math.random()*1231);
+      // console.log(' \n Since players are more than 2, spawning game manager.')
+      respond(null,{answer:'gameInitiated'});
+      gameManager.use(require('./gameManagerPlugin'),
+                                {
+                                  gameId: gameId,
+                                  users: globalQueue[msg.tournamentId],
+                                  tournamentId: msg.tournamentId,
+                                  callback: gameManagerReady
+                                }
+                    );
 
-      this.act('role:provisioner,action:initiateGame',{users:users,tournamentId:msg.tournamentId},function(err,response){
-        // console.log('\n Gameplay provisioner responding now  with game id\n');
-        respond(null,response);
-      })
+
     }
-    else {
-      //console.log('\n Gameplay provisioner responding now \n');
-      respond(null,{answer:'queuedInProvisioner'}) ;
+    else{
+      respond(null,{answer:'queued'})
     }
+
+         function gameManagerReady(){
+           console.log('\n========== Inside game manager ready ======\n');
+            setTimeout(function(){
+              //Send ids back to players.
+              var count=0;
+
+              // console.log('\n====GLOBAL QUEUE '+JSON.stringify(globalQueue)+'\n')
+
+              // console.log('\n==========GLOBAL QUEUE CONTAINS: '+globalQueue[msg.tournamentId]+'\n')
+              for(var user of globalQueue[msg.tournamentId]){
+                // setTimeout(function(){
+                  console.log('\n========= Sending game id back to : '+user+' at '+Date.now()+' === \n');
+                  setTimeout(function(){},3000);
+                  provisionerResponseChannelMicroservice.act('role:'+user+',action:gameInitiated',{gameId:gameId},function(err,response){
+                    if(err) return console.log(err);
+                    // console.log('\n===Count after sending the game id'+(count)+'\n')
+                    // console.log('\n Game set up for user '+user+'\n');
+                  })
+                // },1000)
+                // console.log('\n===Count before sending the game id '+(++count)+'\n')
+
+              }
+
+              delete globalQueue[msg.tournamentId];
+               
+              // console.log('\n Global queue with the topic is now: '+globalQueue[msg.tournamentId]+'\n')
+              // console.log('\n Game Manager is ready now. \n');
+
+            },10000);
+
+
+        }
   })
 
-  // Tells the game manager to initiate a game.
-  // Passes id and users in option thus makes a unique game manager for each game.
-  this.add('role:provisioner,action:initiateGame',function(msg,respond){
-
-    var gameManager = require('seneca')();
-    console.log(' \n Since players are more than 2, spawning game manager.')
-    gameManager.use(require('./gameManagerPlugin'),
-                              {
-                                id: id,
-                                users: globalQueue[msg.tournamentId],
-                                tournamentId: msg.tournamentId
-                              }
-                  );
-                  //When game manager is ready send the gameId back to middleware.
-                  gameManager.ready(function() {
-                      console.log('\n Game manager is ready now \n');
-                    var provisioner = require('seneca')()
-                                      .use('redis-transport')
-                                      .client({type:'redis',pin:'role:*,action:gameInitiated'});
-                    for(var user of globalQueue[msg.tournamentId])
-                    {
-
-                      console.log('\n Sending game id to users \n')
-                      provisioner.act('role:'+user+',action:gameInitiated,'+'gameId:'+id,function(err,response){
-                        console.log('\n '+response.answer+' \n');
-                      })
-                    }
-                  });
-  })
 }

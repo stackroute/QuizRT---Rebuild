@@ -1,5 +1,11 @@
 version: '2'
 services:
+  microservice-base-node:
+    container_name: microservice-base-node
+    build: ./microservices/base-node
+    image: quizrt/microservice-base-node:0.1.0
+    network_mode: host
+    restart: always
   microservice-random-question:
     container_name: microservice-random-question
     build: ./microservices/randomQuestion
@@ -8,10 +14,23 @@ services:
     restart: always
     depends_on:
       - db
+      - microservice-base-node
     environment:
       MONGO_HOST: localhost
       MONGO_PORT: 27017
       MONGO_DB_NAME: quizRT
+  microservice-gameplay:
+    container_name: microservice-gameplay
+    build: ./microservices/gameplay
+    image: quizrt/microservice-gameplay:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-random-question
+      - redis
+    environment:
+      REDIS_URL: localhost
+      REDIS_PORT: 6379
   db:
     container_name: db
     image: mvertes/alpine-mongo

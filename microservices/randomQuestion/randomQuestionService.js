@@ -13,4 +13,4 @@ randomQuestionService.use('mongo-store',{
 });
 
 randomQuestionService.use('./randomQuestionPlugin');
-randomQuestionService.use('mesh',{base: true, auto:true,pin:'role:question,action:random'})
+randomQuestionService.use('mesh',{auto:true,pin:'role:question,action:random'})

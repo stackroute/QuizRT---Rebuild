@@ -4,8 +4,8 @@ module.exports = function(options){
      var leaderboardClient = require('seneca')();
      leaderboardClient.use('entity')
                        .use('redis-store',{
-                         uri:'redis://localhost:6379'
-                        //  uri:'redis://'+process.env.MONGO_URL+':'+process.env.MONGO_PORT
+                         // uri:'redis://localhost:6379'
+                         uri:'redis://'+process.env.REDIS_URL+':'+process.env.REDIS_PORT
                        })
      questionFetcherClient.use('mesh',{auto:true,pin:'role:question,action:fetch'})
 

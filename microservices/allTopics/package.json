@@ -1,0 +1,23 @@
+{
+  "name": "quizrt-rebuild",
+  "version": "0.0.0",
+  "description": "RT Quiz Game where you can play against one or more players.",
+  "main": "index.js",
+  "scripts": {
+    "json-server": "json-server --watch ./rest-server/json-server/db.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node allTopicsService.js",
+    "build": "webpack"
+  },
+  "author": "Sagar Patke <sagarpatke@gmail.com>",
+  "license": "MIT",
+
+  "dependencies": {
+
+    "seneca": "^2.1.0",
+    "seneca-balance-client": "^0.5.0",
+    "seneca-entity": "^0.1.1",
+    "seneca-mesh": "^0.7.0",
+    "seneca-mongo-store": "^0.2.0"
+   }
+}

@@ -51,7 +51,6 @@ var title1={
 var title2={
   paddingLeft:10,
   marginTop:10,
-<<<<<<< HEAD
   marginBottom:10,
   height:'30px'
 }
@@ -148,7 +147,7 @@ componentDidMount:function(){
 
     <CardMedia overlay={
       <div>
-      <CardTitle subtitle="Don't limit your Challenges, Challenge your Limits." style={title3} color={white100}/>
+      <CardTitle subtitle="Don't limit your Challenges, Challenge your Limits." style={title3} />
       </div>
      }>
       <img src={this.props.topic.topicIcon} />

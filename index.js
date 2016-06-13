@@ -36,14 +36,10 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-<<<<<<< HEAD
-app.get('/topics/myfav',function(req,res) {
 
-=======
 app.get('/topics/myfav/:uid',function(req,res) {
   console.log(req.params.uid+">>>>>>>>>>>>>>>>>>>>>");
   console.log('form tpics dfgkmy fav-myfav000000000000000000000000000000000000000000000000000)))))))))))))))))');
->>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
@@ -55,7 +51,7 @@ res.send(result);
   });
 
 
-
+var serverId = Math.ceil(Math.random()*2423);
  app.post('/api/check',function(req,res){
   console.log('-------------- abc from express floow---------------');
   console.log(req.body.incre+'   0----------------------');
@@ -69,29 +65,13 @@ res.send(result);
   var username = req.body.uName;
 
   seneca.act('role:topic,action:like',{data:test},function(err,result){
-<<<<<<< HEAD
-    if(err) console.log(err+'------------------------------------------------');
-    // var newObj = {
-    //   topicId:username,
-    //   topic:{result}
-    // }
-    // console.log(newObj.id);
 
-    if(req.body.incre==true){
-      seneca.act('role:topic,action:create',{data:result},function(err,result2){
-        if(err) console.log(err+' ========================');
-
-        res.send(result)
-      })
-    } else {
-      seneca.act('role:topic,action:delete',{id:req.body.id},function(err,result2){
-=======
     if(err) console.log(err+'---------------------------------------done liked---------');
 
     console.log(result+'yaha thak hai>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
     if(!req.body.incre) {
       seneca.act('role:topic,action:delete',{data:test},function(err,result2){
->>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
+
         if(err) console.log(err+' ========================');
 
         res.send(result)
@@ -108,12 +88,9 @@ var middleWareCount =0;
 io.on('connection',function(socket){
   middleWareCount++;
   console.log('\n =====Middleware count is: '+middleWareCount+'\n');
-<<<<<<< HEAD
+
   var playerMiddleWareService =  require('seneca')()
-=======
-  var playerMiddleWareService =  seneca;
->>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
-  socket.on('playGame',function(msg){
+   socket.on('playGame',function(msg){
 
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
@@ -127,8 +104,10 @@ io.on('connection',function(socket){
 
   socket.on('disconnect',function(){
     console.log('\n======Closing service=====\n');
-
+    playerMiddleWareService.close();
   })
+
+  socket.emit('serverId',serverId);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');
@@ -357,6 +336,34 @@ app.get('/recentActivity',function(req,res) {
   })
   console.log('send');
 });
+
+app.post('/accountInfo',function(req,res){
+  console.log("Cookie"+req.cookies);
+  var tempemail = req.body.email;
+    seneca.act('role:accountInfo,action:get',{email: tempemail},function(err,result){
+    if(!result){
+      accountInfo = {
+        email : tempemail,
+      }
+      seneca.act('role:accountInfo,action:add', {data:accountInfo}, function(err,result){
+      })
+      console.log('resultl is null');
+    }
+    res.send(result)
+
+  });
+  console.log('call done');
+})
+app.post('/accountInfoUpdate',function(req,res){
+  var updateaccountInfo = req.body;
+  console.log(req.body.id);
+    seneca.act('role:accountInfo,action:update',{id:req.body.id,data:updateaccountInfo},function(err,result){
+    console.log(updateaccountInfo);
+    console.log(updateaccountInfo.dob);
+    console.log(result);
+  })
+  console.log('call done');
+})
 
 app.post('/api/authenticate/google',function(req,res){
 

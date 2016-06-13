@@ -81,6 +81,8 @@ handleSave(event){
       this.setState({userdata :data,enable : true});
     }).bind(this),
   })
+  window.alert("Your Data saved Successfully");
+  this.setState({enable:true})
 }
 displaynameChanged(event) {
   var updateUserData = this.state.userdata;
@@ -109,10 +111,7 @@ handleDateChange = (event, date) => {
   }
   enable(){
     this.setState({enable:false})
-  }  disable(){
-    window.alert("Yor Data saved Successfully");
-      this.setState({enable:true})
-    }
+  }
   render() {
 
     return(
@@ -158,7 +157,7 @@ handleDateChange = (event, date) => {
               /><br />
               <div>
                 <RaisedButton label="Edit" primary={true} style={style} onClick={this.enable.bind(this)} />
-                <RaisedButton label="Save" secondary={true} style={style} onClick={this.handleSave.bind(this),this.disable.bind(this)} />
+                <RaisedButton label="Save" secondary={true} style={style} onClick={this.handleSave.bind(this)} />
               </div>
             </div>
           </div>

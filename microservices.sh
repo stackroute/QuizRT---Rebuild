@@ -10,4 +10,5 @@ node microservices/randomQuestion/randomQuestionService.js &
 node microservices/gamePlay1/gameplayProvisionerMicroservice.js &
 node microservices/likesTopic/likeTopicService.js &
 node microservices/likesTopic/saveLikeTopicService.js &
-node microservices/myFavTopics/popularTopicservice.js
+node microservices/myFavTopics/myFavService.js &
+node microservices/accountinfo/accountInfoService.js

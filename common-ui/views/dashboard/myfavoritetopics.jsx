@@ -67,6 +67,7 @@ var MyFavoriteSection = React.createClass({
             </FloatingActionButton>
             <h1 style={tour_header}>My Favorite Topics</h1>
           </div>
+          <SubTopicContainer topics ={this.props.topics} />
         </Paper>
       </div>
     );

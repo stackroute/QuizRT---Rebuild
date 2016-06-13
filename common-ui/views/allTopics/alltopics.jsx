@@ -1,12 +1,10 @@
+
 import React from 'react';
 import ProfileHero from '../header/leftnav';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
-const title={
-    textAlign:'center'
-}
 
-var baseurl='http://localhost:8080';
+var baseurl='/';
 
 var Topics = React.createClass({
 
@@ -42,7 +40,7 @@ var Topics = React.createClass({
         type:'POST',
         data :JSON.stringify(data1),
         contentType : 'application/json',
-        url:baseUrl+'api/check',
+        url:baseurl+'api/check',
         success:(function(data){
           console.log('folowers increamented--------------now -----------'+data);
         }).bind(this),
@@ -55,7 +53,7 @@ var Topics = React.createClass({
 
     componentDidMount:function(){
       $.ajax({
-        url: baseurl+'/topics',
+        url: baseurl+'topics',
         dataType:'json',
         success: function(data){
           console.log('got success---------------------');
@@ -74,8 +72,6 @@ var Topics = React.createClass({
     return(
       <div>
       <ProfileHero />
-        <h1 style={title}>Topics</h1>
-
         <SubTopicContainer topics ={this.state.topics} fun={this.handleCheck} />
       </div>
     );
@@ -83,3 +79,4 @@ var Topics = React.createClass({
 });
 
 export default Topics;
+ 

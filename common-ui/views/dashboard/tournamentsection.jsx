@@ -4,7 +4,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
-var baseurl='http://localhost:8080';
+var baseurl='/';
 
 const style = {
   marginLeft:0,
@@ -46,7 +46,7 @@ var TournamentSection = React.createClass({
 
   componentDidMount:function(){
     $.ajax({
-      url: baseurl+'/tournamentSection',
+      url: baseurl+'tournamentSection',
       dataType:'json',
       success: function(data){
         console.log('got success---------------------');

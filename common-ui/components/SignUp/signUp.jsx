@@ -5,7 +5,9 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router';
 
-var baseURL = 'http://172.23.238.167:8080/';
+
+var baseURL = '/';
+
 
 const style = {
   marginBottom:12,

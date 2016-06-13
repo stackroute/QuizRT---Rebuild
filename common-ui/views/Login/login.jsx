@@ -1,11 +1,11 @@
-  
+
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {Link} from 'react-router';
 import cookie from 'react-cookie';
-var baseURL = 'http://localhost:8080/';
+var baseURL = '/';
 
 
 const styles = {

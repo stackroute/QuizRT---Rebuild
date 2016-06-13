@@ -1,12 +1,11 @@
 version: '2'
 services:
-  microservices-mesh-base:
-    container_name: microservices-mesh-base
-    build: ./microservices/mesh-base
-    image: quizrt/microservice-mesh-base:0.1.0
+  microservice-base-node:
+    container_name: microservice-base-node
+    build: ./microservices/base-node
+    image: quizrt/microservice-base-node:0.1.0
     network_mode: host
     restart: always
-
   microservice-random-question:
     container_name: microservice-random-question
     build: ./microservices/randomQuestion
@@ -15,11 +14,68 @@ services:
     restart: always
     depends_on:
       - db
-      - mesh-base
+      - microservice-base-node
     environment:
       MONGO_HOST: localhost
       MONGO_PORT: 27017
-      MONGO_DB_NAME: quizRT
+      MONGO_DB_NAME: quizRT4
+  microservice-gameplay:
+    container_name: microservice-gameplay
+    build: ./microservices/gameplay
+    image: quizrt/microservice-gameplay:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-base-node
+      - microservice-random-question
+      - redis
+    environment:
+      REDIS_URL: localhost
+      REDIS_PORT: 6379
+  microservice-register-user:
+    container_name: microservice-register-user
+    build: ./microservices/LoginAuthentication/registerUser
+    image: quizrt/microservice-register-user:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-base-node
+      - db
+    environment:
+      MONGO_HOST: localhost
+      MONGO_PORT: 27017
+      MONGO_DB_NAME: quizRT4
+  microservice-verify-token:
+    container_name: microservice-verify-token
+    build: ./microservices/LoginAuthentication/verifyToken
+    image: quizrt/microservice-verify-token:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-base-node
+  microservice-all-topics:
+    container_name: microservice-all-topics
+    build: ./microservices/allTopics
+    image: quizrt/microservice-all-topics:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-base-node
+      - db
+    environment:
+      MONGO_HOST: localhost
+      MONGO_PORT: 27017
+      MONGO_DB_NAME: quizRT4
+  microservice-express-server:
+    container_name: microservice-express-server
+    build: .
+    image: quizrt/microservice-express-server:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - microservice-base-node
+    environment:
+      AUTH_SECRET: '38109230198'
   db:
     container_name: db
     image: mvertes/alpine-mongo

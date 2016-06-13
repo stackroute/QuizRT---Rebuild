@@ -1,15 +1,17 @@
+
 var seneca = require('seneca')();
 
   seneca
   .use('entity')
   .use('mongo-store',{
-    name: "quizRT4",
-    host: "127.0.0.1",
-    port: 27017
+    name: process.env.MONGO_DB_NAME,
+    host: process.env.MONGO_HOST,
+    port: process.env.PORT
   })
-  .use('./allTopicsPlugin')
+  .use('./allTopics')
   // .act('role:allTopics,action:retrive',function(err,result){
   //   if(err) return console.error(err)
   //   console.log(result)
   // })
   .use('mesh', { auto:true, pin:'role:allTopics' })
+ 

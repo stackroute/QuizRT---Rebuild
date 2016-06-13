@@ -14,6 +14,7 @@ var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
 var questions;
+app.use(compression());
 var request = require('request');
 var seneca = require('seneca')()
             .use('entity')
@@ -24,6 +25,8 @@ var serverId = Math.ceil(Math.random()*213);
 server.listen(8080,function(){
   console.log('Server is running at the port 8080');
 })
+
+
 app.use(express.static(__dirname+'/common-ui'));
 
 app.set('secret',config.secret);
@@ -144,7 +147,7 @@ app.post('/api/signup',function(req,res){
       })
     });
 
- 
+
 //Route To Authenticate A User
 
 app.post('/api/authenticate',function(req,res){

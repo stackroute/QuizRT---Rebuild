@@ -36,17 +36,8 @@
     "react-slick": "^0.12.2",
     "should": "^8.3.1",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.3.0",
-    "body-parser": "^1.15.1",
-    "cors": "^2.7.1",
-    "express": "^4.13.4",
-    "googleapis": "^7.1.0",
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
-    "jsonwebtoken": "^7.0.0",
     "mocha": "^2.4.5",
     "react": "^15.1.0",
     "react-cookie": "^0.4.6",
@@ -57,6 +48,18 @@
     "react-slick": "^0.12.2",
     "react-social-buttons": "^1.0.3",
     "react-swipeable-views": "^0.5.4",
+    "should": "^8.3.1",
+    "superagent": "^1.8.3",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "googleapis": "^7.1.0",
+    "jsonwebtoken": "^7.0.0",
+
     "request": "^2.72.0",
     "seneca": "^2.1.0",
     "seneca-balance-client": "^0.5.0",
@@ -64,8 +67,8 @@
     "seneca-mesh": "^0.7.0",
     "seneca-mongo-store": "^0.2.0",
     "seneca-redis-transport": "^0.3.0",
-    "should": "^8.3.1",
+
     "socket.io": "^1.4.6",
-    "superagent": "^1.8.3"
+
   }
 }

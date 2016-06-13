@@ -6,7 +6,6 @@ seneca.use('mongo-store',{
   port: 27017
 })
 	.use('entity')
-	.use('./saveLikeTopic')
   .use('./delTopic')
 	.use('mesh',{auto:true,pin:'role:topic'});
 

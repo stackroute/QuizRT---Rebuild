@@ -8,8 +8,9 @@ var seneca = require('seneca')();
     port: 27017
   })
   .use('./myFav')
-  // .act('role:popularTopics,action:retrive',function(err,result){
+  // .act('role:myFav,action:retrive',{user:"dp@dp.com"},function(err,result){
   //   if(err) return console.error(err)
   //   console.log(result)
+  //   console.log(">>>>>>>>>>"+result.like);
   // })
   .use('mesh', { auto:true, pin:'role:myFav,action:retrive' })

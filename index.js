@@ -13,6 +13,7 @@ var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
+var facebookcredentials = require('./common-ui/views/Login/facebookcredentials');
 var questions;
 var request = require('request');
 var seneca = require('seneca')()
@@ -123,6 +124,7 @@ app.post('/api/signup',function(req,res){
       name : req.body.name,
       password : req.body.password
     }
+    console.log(data);
       seneca.act('role:user,action:get',{data:data.name},function(err,respond){
         if(err) { return res.status(500).json(err); }
         if(respond == null){
@@ -272,3 +274,146 @@ app.get('/api/authenticate/facebook/success',function(req,res){
      }
   })
 })
+
+app.get('/topics/mostPopular',function(req,res) {
+  console.log('form express-mostpopular');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:popularTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/topics',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournamentSection',function(req,res) {
+  console.log('form express-tournamentSection');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:randTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournaments',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.post('/api/authenticate/google',function(req,res){
+
+  // generate a url that asks permissions for Google+ and Google Calendar scopes
+  var scopes = [
+    googlecredentials.SCOPE[0],
+    googlecredentials.SCOPE[1]
+  ];
+
+  var url = oauth2Client.generateAuthUrl({
+    access_type: 'online', // 'online' (default) or 'offline' (gets refresh_token)
+    scope: scopes // If you only need one scope you can pass it as string
+  });
+  res.send({ redirect: url });
+})
+
+app.get('/api/auth/success/google',function(req,res){
+  var code = req.query.code;
+  oauth2Client.getToken(code, function(err, tokens) {
+    // Now tokens contains an access_token and an optional refresh_token. Save them.
+    if(!err) {
+      oauth2Client.setCredentials(tokens);
+    }
+
+    var access_token = tokens['access_token'];
+    var user_profile = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+access_token;
+      request({
+        url: user_profile,
+        json: true
+      }, function (error, response, body) {
+        if (!error) {
+          var tokendata = {
+            user : body.email,
+            secret : app.get('secret')
+          }
+          seneca.act('role:user,action:generateGoogleToken',{data:tokendata},function(err,tokenresponse){
+            var data = {
+              name:body.email,
+            }
+            seneca.act('role:user,action:get',{data:data.name},function(err,respond){
+              if(err) { return res.status(500).json(err); }
+                if(respond == null){
+                  seneca.act('role:user,action:add', {data:data}, function(err,saved_user){
+                    if(err) { return res.status(500).json(err); }
+                  })
+                }
+            })
+            res.cookie('username',data.name);
+            res.cookie('auth_cookie',tokenresponse.token).redirect(301,'http://localhost:8081/#/dashboard');
+          })
+      } else {
+          console.log(error);
+      }
+    })
+  });
+
+})
+
+// route middleware to verify a tokens
+app.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  var secret = app.get('secret');
+
+  var data = {
+    token : token,
+    secret : secret
+  }
+
+  seneca.act('role:user,action:verifytoken',{data:data},function(err,respond){
+    if(respond['success'] == true){
+      next();
+    }
+    else {
+
+      return res.status(404).send({
+        success: false,
+        message: 'No token provided.'
+
+      });
+    }
+  })
+});
+
+app.post('/api/RecentPage',function(req,res){
+  res.json({
+    success : true
+  });
+});
+
+app.post('/api/Logout',function(req,res){
+  res.json({
+    success : true
+  });
+});

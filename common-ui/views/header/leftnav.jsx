@@ -16,7 +16,7 @@ import ActionViewmodule from 'material-ui/svg-icons/action/view-module';
 import ActionViewquilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import cookie from 'react-cookie';
-var baseURL = 'http://localhost:8080/';
+var baseURL = '/';
 
 const avatarstyle={
   backgroundSize:'cover',

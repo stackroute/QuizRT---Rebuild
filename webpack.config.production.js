@@ -4,7 +4,7 @@ module.exports = {
   devtool: 'source-map',
   entry: __dirname + '/common-ui/app.jsx',
   output: {
-    filename: __dirname + '/common-ui/bundle.js'
+    filename: __dirname + '/common-ui/static/bundle.js'
   },
   module: {
     loaders: [

@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileHero from '../header/leftnav';
 import TournamentsSubContainer from '../SubTournaments/TournamentsSubContainer';
 
-var baseurl='http://localhost:8080';
+var baseurl='/';
 
 var Tournaments = React.createClass({
 
@@ -12,7 +12,7 @@ var Tournaments = React.createClass({
 
     componentDidMount:function(){
       $.ajax({
-        url: baseurl+'/tournaments',
+        url: baseurl+'tournaments',
         dataType:'json',
         success: function(data){
           console.log('got success---------------------');

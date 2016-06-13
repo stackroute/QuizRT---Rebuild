@@ -4,7 +4,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
-var baseurl='http://localhost:8080';
+var baseurl='/';
 
 const style = {
   marginLeft:0,
@@ -46,7 +46,7 @@ handleTopics : function(){
 
   componentDidMount:function(){
     $.ajax({
-      url: baseurl+'/topics/mostPopular',
+      url: baseurl+'topics/mostPopular',
       dataType:'json',
       success: function(data){
         console.log('got success---------------------');

@@ -89,7 +89,7 @@ export default class Rank extends React.Component{
 
   componentDidMount(){
 
-        this.context.socket = io('http://172.23.238.162:8080');
+        this.context.socket = io();
         var that = this;
         this.context.socket.on('newQuestion',function(data){
 

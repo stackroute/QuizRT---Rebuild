@@ -5,7 +5,7 @@ import QuizWar from './quizwar';
 import MostPopularSection from './mostpopular';
 import MyFavoriteSection from './myfavoritetopics';
 import Cookie from 'react-cookie';
-var baseUrl = 'http://localhost:8080/';
+var baseUrl = '/';
 
 var Dashboard = React.createClass({
   getInitialState:function(){

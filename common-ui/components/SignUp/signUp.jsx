@@ -63,7 +63,7 @@ export default class Test extends React.Component{
                 }
                 else{
                   x.setState({$signedUp:true});
-                  router.push('/login'); // This uses a react router to configure the link provided in router
+                  router.push('/'); // This uses a react router to configure the link provided in router
                 }
               }).bind(this)
             });

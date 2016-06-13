@@ -20,4 +20,6 @@ node microservices/gamePlay1/gameplayProvisionerMicroservice.js &
 
 node microservices/likesTopic/likeTopicService.js &
 
-node microservices/likesTopic/saveLikeTopicService.js
+node microservices/likesTopic/saveLikeTopicService.js &
+
+node microservices/recentActivity/recentPageService.js

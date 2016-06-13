@@ -61,12 +61,6 @@ var ProfileHero = React.createClass({
     });
   },
 
-  // static get contextTypes() {
-  //   return {
-  //     router: React.PropTypes.object
-  //   }
-  // }
-
   contextTypes :{
     router : React.PropTypes.object
   },
@@ -77,9 +71,6 @@ var ProfileHero = React.createClass({
 
   handleClose: function () {
     this.setState({open: false});
-  },
-  handleTouchTap: function() {
-    alert('You are Redirected to Dashboard');
   },
 
   handleRecentTouch : function(){

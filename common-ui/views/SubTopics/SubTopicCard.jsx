@@ -5,7 +5,7 @@ import {orange500} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
-import {grey600,grey500, grey100, red900, teal500} from 'material-ui/styles/colors';
+import {grey600,grey500, white100, red900, teal500} from 'material-ui/styles/colors';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
 import People from 'material-ui/svg-icons/social/people';
@@ -55,6 +55,7 @@ var title2={
   height:'30px'
 }
 var title3={
+    textAlign:'center',
     margin:'auto',
     width:'60%'
 }
@@ -95,6 +96,16 @@ var SubtopicCard = React.createClass({
   getInitialState:function(){
       return{incre:-1, no:this.props.topic.topicFollowers}
   },
+
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
+  handleWaitingPage: function(){
+      event.preventDefault();
+      this.context.router.push('/waitingPage');
+  },
+
   handleOnCheck: function(topicName) {
     this.state.incre=-this.state.incre;
     this.setState({no:this.props.topic.topicFollowers+this.state.incre})
@@ -127,7 +138,7 @@ var SubtopicCard = React.createClass({
 
     <CardMedia overlay={
       <div>
-      <CardTitle subtitle="No of Users played:15" style={title3} color={grey100}/>
+      <CardTitle subtitle="Don't limit your Challenges, Challenge your Limits." style={title3} color={white100}/>
       </div>
      }>
       <img src={this.props.topic.topicIcon} />
@@ -136,7 +147,8 @@ var SubtopicCard = React.createClass({
 
     <CardActions >
       <div className="col-md col-xs col-lg col-sm">
-        <RaisedButton label="Play" secondary={true} style={BtnStyle} />
+        <RaisedButton label="Play" secondary={true} style={BtnStyle}
+          onTouchTap={this.handleWaitingPage.bind(this)}/>
         </div>
      </CardActions>
 

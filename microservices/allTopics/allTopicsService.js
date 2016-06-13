@@ -7,7 +7,7 @@ var seneca = require('seneca')();
     host: "127.0.0.1",
     port: 27017
   })
-  .use('./allTopics')
+  .use('./allTopicsPlugin')
   // .act('role:allTopics,action:retrive',function(err,result){
   //   if(err) return console.error(err)
   //   console.log(result)

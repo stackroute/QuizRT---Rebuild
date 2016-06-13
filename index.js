@@ -54,7 +54,7 @@ app.get('/topics/myfav',function(req,res) {
     id:req.body.id,
     incre:req.body.incre
   }
-  console.log('==============111111111111111111111111'+req.body.id);
+  console.log('==============111111111111111'+req.body.id);
   var username = req.body.uName;
   seneca.act('role:topic,action:like',{data:test},function(err,result){
     if(err) console.log(err+'------------------------------------------------');
@@ -252,6 +252,18 @@ app.get('/tournaments',function(req,res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:allTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/recentActivity',function(req,res) {
+  console.log('form express-mostpopular');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:recentPage,action:retrive',function(err,result){
     if (err) return console.error(err)
   console.log('-----------------'+result+'------------------------')
   res.send(result)

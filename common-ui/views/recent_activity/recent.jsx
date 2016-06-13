@@ -1,28 +1,78 @@
 import React from 'react';
 import Recentcard from './recentcard';
 
-var description=[
-  {
-    description:"Congratulations, You have won Star of the Week Badge in Cricket.",
-    image:"img/cricket.jpg",
-  },
-  {
-    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
-    image:"img/dharmashala.jpg",
-  },
-  {
-    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
-    image:"img/dharmashala.jpg",
-  },
-  {
-    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
-    image:"img/dharmashala.jpg",
-  },
-  {
-    description:"Whao..!!, You have been entitled with the Roockies Batch in Sports Tournament.",
-    image:"img/dharmashala.jpg",
-  },
-];
+// var description=[
+//   {
+//     username:"",
+//     title:"Topics",
+//     cardType:"topics",
+//     analytics:[
+//       {
+//         "contentPlayed":"Movies",
+//         "noOfPlayers":"15",
+//         "rank":"2",
+//         "score":"6",
+//         "winnigStreak":"12"
+//       }
+//     ]
+//   },
+//   {
+//     username:"",
+//     title:"Tournament",
+//     cardType:"tournaments",
+//     analytics:[
+//       {
+//         "contentPlayed":"Sports",
+//         "noOfPlayers":"20",
+//         "rank":"4",
+//         "score":"9",
+//         "winnigStreak":"14"
+//       }
+//     ]
+//   },
+//   {
+//     username:"",
+//     title:"Topics",
+//     cardType:"topics",
+//     analytics:[
+//       {
+//         "contentPlayed":"Sports",
+//         "noOfPlayers":"20",
+//         "rank":"4",
+//         "score":"9",
+//         "winnigStreak":"14"
+//       }
+//     ]
+//   },
+//   {
+//     username:"",
+//     title:"Tournament",
+//     cardType:"tournaments",
+//     analytics:[
+//       {
+//         contentPlayed:"Music",
+//         "noOfPlayers":"20",
+//         "rank":"4",
+//         "score":"9",
+//         "winnigStreak":"14"
+//       }
+//     ]
+//   },
+//   {
+//     username:"",
+//     title:"Topics",
+//     cardType:"topics",
+//     analytics:[
+//       {
+//         "contentPlayed":"Sports",
+//         "noOfPlayers":"20",
+//         "rank":"4",
+//         "score":"9",
+//         "winnigStreak":"14"
+//       }
+//     ]
+//   }
+// ];
 
 const styles = {
   textAlign : 'center',
@@ -38,11 +88,13 @@ const style = {
 
 var RecentcardInfo= React.createClass({
 
+
+
   render: function () {
 
-     var initialData = description;
+    //  var initialData = description;
      var rows = [];
-     initialData.forEach(function(activity){
+     this.props.activity.forEach(function(activity){
        rows.push(<div><Recentcard activity={activity}/></div>)
      });
 

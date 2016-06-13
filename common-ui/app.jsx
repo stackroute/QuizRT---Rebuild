@@ -18,13 +18,13 @@ import TopicDetails from './views/EachTopic/EachTopic';
 import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
-import SocialPlugins from './components/social-icons/socialplugins';
 import Quiz from './views/QuizPlay';
 import Rank from './views/Rank';
 import Topics from './views/allTopics/alltopics';
 import Tournaments from './views/allTournaments/alltournaments';
 import ProfileInfo from './views/Profile';
 import HorizontalLinearStepper from './views/check/check';
+import Waiting from './views/WaitingPage';
 
 injectTapEventPlugin();
 
@@ -51,7 +51,6 @@ export class App extends React.Component {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <Router history={hashHistory}>
       <Route path="/" component={LoginForm} />
-      <Route path="/social" component={SocialPlugins}/>
       <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />
       <Route path = '/setNewPswd' component = {SetNewPswd} />
@@ -68,6 +67,7 @@ export class App extends React.Component {
       <Route path= '/recent' component={RecentPage} onEnter={this.requireAuth}/>
       <Route path= '/profileinfo' component={ProfileInfo} onEnter={this.requireAuth}/>
       <Route path= '/check' component={HorizontalLinearStepper}/>
+      <Route path= '/waitingPage' component={Waiting}/>
       </Router>
       </MuiThemeProvider>
     );

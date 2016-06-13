@@ -7,9 +7,9 @@ var seneca = require('seneca')();
     host: "127.0.0.1",
     port: 27017
   })
-  .use('./allTournamentsPlugin')
-  // .act('role:allTournaments,action:retrive',function(err,result){
+  .use('./recentPagePlugin')
+  // .act('role:recentPage,action:retrive',function(err,result){
   //   if(err) return console.error(err)
   //   console.log(result)
   // })
-  .use('mesh', { auto:true, pin:'role:allTournaments' })
+  .use('mesh', { auto:true, pin:'role:recentPage' })

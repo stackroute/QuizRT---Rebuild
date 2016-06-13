@@ -13,14 +13,22 @@ var Dashboard = React.createClass({
   },
   componentDidMount:function(){
     console.log('-----------------------------------------00000compont did mount');
+    var username = Cookie.load("username");
+    console.log('ye hai username >>>>>>>>>>>>>>>>>>'+username);
+    var data ={
+      user:username
+    }
+    console.log("ye be hai dlfkg <<<<<<<<<<<<<<<<<<<"+data.user);
     $.ajax({
-      url: baseUrl+'topics/myfav',
-      dataType:'json',
+      type:'GET',
+      data :JSON.stringify(data),
+      contentType : 'application/json',
+      url: baseUrl+'topics/myfav/'+username,
       success: function(data){
         console.log('got successab to-------------------- in my fav999999-');
         console.log(JSON.stringify(data));
         this.setState({topics:data})
-        console.log('-----------------------data aa gya-'+JSON.stringify(data)+'----------------------');
+        console.log('-----------------------data aa gya-'+JSON.stringify(data)+'---------or ye hai likes topics -------------'+JSON.stringify(this.state.topics[0].like));
       }.bind(this),
       error:function(err){
         console.log(err);
@@ -32,12 +40,12 @@ var Dashboard = React.createClass({
   handleCheck:function(_id,topic){
     var username = Cookie.load("username");
     var newtopics;
-    console.log('handle check functi =----------------');
+    console.log('handle check functi =----------------'+_id+topic);
     var likedTopic = this.state.topics;
     var result = $.grep(likedTopic, function(e){ return e._id == topic._id; });
     if (result.length == 0) {
   // not found
-    topic.topicFollowers = topic.topicFollowers+1;
+    // topic.topicFollowers = topic.topicFollowers+1;
     newtopics = likedTopic.concat([topic]);
     } else if (result.length == 1) {
   // access the foo property using result[0].foo

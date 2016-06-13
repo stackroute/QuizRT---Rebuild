@@ -5,7 +5,7 @@ import {orange500} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
-import {grey600,grey500, white100, red900, teal500} from 'material-ui/styles/colors';
+import {grey600,grey500, grey100, red900, teal500} from 'material-ui/styles/colors';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
 import People from 'material-ui/svg-icons/social/people';
@@ -51,6 +51,7 @@ var title1={
 var title2={
   paddingLeft:10,
   marginTop:10,
+<<<<<<< HEAD
   marginBottom:10,
   height:'30px'
 }
@@ -97,19 +98,28 @@ var SubtopicCard = React.createClass({
       return{incre:-1, no:this.props.topic.topicFollowers}
   },
 
-  contextTypes :{
-    router : React.PropTypes.object
+  contextTypes : {
+  router: React.PropTypes.object
+} ,
+componentDidMount:function(){
+
+},
+  handleClike:function(tId){
+    Cookie.save("topicId",tId);
+    console.log('function called handleClike');
+    this.context.router.push({
+      pathname:'/quiz'
+    })
   },
 
-  handleWaitingPage: function(){
-      event.preventDefault();
-      this.context.router.push('/waitingPage');
-  },
-
-  handleOnCheck: function(topicName) {
+  handleOnCheck: function(topicId) {
+    console.log(">>>>>>>>...handleOnCheck");
     this.state.incre=-this.state.incre;
-    this.setState({no:this.props.topic.topicFollowers+this.state.incre})
-    this.props.fun(topicName,this.props.topic);
+    var sum = this.state.no+this.state.incre;
+    this.setState({no:sum})
+    var topic = this.props.topic;
+    topic.topicFollowers = sum;
+    this.props.fun(topicId,topic);
   },
   render: function(){
     return(
@@ -143,12 +153,10 @@ var SubtopicCard = React.createClass({
      }>
       <img src={this.props.topic.topicIcon} />
     </CardMedia>
-
-
     <CardActions >
       <div className="col-md col-xs col-lg col-sm">
-        <RaisedButton label="Play" secondary={true} style={BtnStyle}
-          onTouchTap={this.handleWaitingPage.bind(this)}/>
+        <RaisedButton label="Play" secondary={true} style={BtnStyle} onClick={this.handleClike.bind(this,this.props.topic._id)} />
+
         </div>
      </CardActions>
 

@@ -36,29 +36,40 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
+<<<<<<< HEAD
 app.get('/topics/myfav',function(req,res) {
 
+=======
+app.get('/topics/myfav/:uid',function(req,res) {
+  console.log(req.params.uid+">>>>>>>>>>>>>>>>>>>>>");
+  console.log('form tpics dfgkmy fav-myfav000000000000000000000000000000000000000000000000000)))))))))))))))))');
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  seneca.act('role:myFav,action:retrive',function(err,result){
-    if (err) return console.error(err)
-  console.log('------------yahi to hai result-----'+result+'------------------------')
-  res.send(result)
+  seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
+  if (err) return console.error(err)
+console.log('------------yahi to hai result-----'+result+'------------------------')
+res.send(result);
   })
-  console.log('send');
-});
+  console.log('agrt dfglca;lkg');
+  });
+
+
+
  app.post('/api/check',function(req,res){
   console.log('-------------- abc from express floow---------------');
   console.log(req.body.incre+'   0----------------------');
   console.log(req.body.id+'    ---------------------');
   var test = {
     id:req.body.id,
-    incre:req.body.incre
+    incre:req.body.incre,
+    username:req.body.uName
   }
 
   var username = req.body.uName;
 
   seneca.act('role:topic,action:like',{data:test},function(err,result){
+<<<<<<< HEAD
     if(err) console.log(err+'------------------------------------------------');
     // var newObj = {
     //   topicId:username,
@@ -74,6 +85,13 @@ app.get('/topics/myfav',function(req,res) {
       })
     } else {
       seneca.act('role:topic,action:delete',{id:req.body.id},function(err,result2){
+=======
+    if(err) console.log(err+'---------------------------------------done liked---------');
+
+    console.log(result+'yaha thak hai>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+    if(!req.body.incre) {
+      seneca.act('role:topic,action:delete',{data:test},function(err,result2){
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
         if(err) console.log(err+' ========================');
 
         res.send(result)
@@ -90,7 +108,11 @@ var middleWareCount =0;
 io.on('connection',function(socket){
   middleWareCount++;
   console.log('\n =====Middleware count is: '+middleWareCount+'\n');
+<<<<<<< HEAD
   var playerMiddleWareService =  require('seneca')()
+=======
+  var playerMiddleWareService =  seneca;
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
   socket.on('playGame',function(msg){
 
      playerMiddleWareService.use('redis-transport');
@@ -415,9 +437,12 @@ app.use(function(req, res, next) {
         message: 'No token provided.'
 
       });
-    }
-  })
+    };
+  });
 });
+
+
+
 
 app.post('/api/RecentPage',function(req,res){
   res.json({

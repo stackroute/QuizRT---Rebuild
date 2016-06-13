@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
     module.exports = function(options){
 
@@ -6,6 +7,11 @@
       var currentQuestion;
       var questionFetcherClient = require('seneca')();
 
+=======
+    module.exports = function(options){
+      var currentQuestion;
+      var questionFetcherClient = require('seneca')();
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
       var leaderboardClient = require('seneca')();
       leaderboardClient.use('entity')
                         .use('redis-store',{
@@ -28,6 +34,7 @@
           var pingCount = options.users.length;
 
           self.users = options.users.map(function(user){
+
             var userMicroservice = require('seneca')();
             userMicroservice.use('redis-transport');
             var count=0;
@@ -121,9 +128,21 @@
               question: questions[questionCount].question,
               options: questions[questionCount].options
             }
+<<<<<<< HEAD
               self.broadcast.act('gameId:'+self.gameId+',role:broadcast,action:newQuestion',{question:questionObject},function(err,response){
                 if(err) return console.log(err);
             });
+=======
+            self.broadcast.act('gameId:'+self.gameId+',role:broadcast,action:gameStarting',function(err,response){
+              if(err) return console.log(err);
+              setTimeout(function(){
+                self.broadcast.act('gameId:'+self.gameId+',role:broadcast,action:newQuestion',{question:questionObject},function(err,response){
+                  if(err) return console.log(err);
+                }); 
+              },5000)
+            })
+
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
           }
         },10050)
 

@@ -34,8 +34,15 @@ module.exports = function(options){
 
     respond(null,{answer:'received'});
 
+
     //Create a broadcast listener for this game.
     broadcastListener
+<<<<<<< HEAD
+=======
+    .add('gameId:'+gameId+',role:broadcast,action:gameStarting',function(msg,gameStartingCallback){
+      self.socket.emit('gameStarting',5);
+    })
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
     .add('gameId:'+gameId+',role:broadcast,action:newQuestion',function(msg,done){
       // // console.log('\n=====RECEIVED QUESTION: '+ msg.question + ' with game id: '+gameId+'=====\n');
 
@@ -74,13 +81,21 @@ module.exports = function(options){
     setTimeout(function(){
       provisionerClient.client({type:'redis',pin:'role:provisioner,action:queue'})
         .act('role:provisioner,action:queue',{username:self.username,tournamentId:self.tournamentId},function(err,response){
+<<<<<<< HEAD
            
+=======
+
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
           if(err) return console.log(err);
 
             self.socket.emit('queued','you are queued');
       })
 
+<<<<<<< HEAD
     },3000)
+=======
+    },2000)
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
 
 
 
@@ -89,6 +104,10 @@ module.exports = function(options){
   self.add('role:user,action:answer',function(msg,callbackToSocket){
     console.log('\n=====Sending answer to game manager as '+msg.answer+'\n ');
     responseClient.act('role:'+self.username+',gameId:'+gameId+',action:answer',{answer:msg.answer},function(err,response){
+<<<<<<< HEAD
+=======
+      console.log('\n=========Emitting right answer to socket as: '+response.answer+'\n')
+>>>>>>> 7b11cdf1814fe3394ecc0b2834bd57d2090f695a
       self.socket.emit('yourAnswer',{answer:response.answer})
       if(err) return console.log(err);
       callbackToSocket(null,{answer:response.answer});

@@ -7,7 +7,7 @@ module.exports = function(){
             if(err) return respond(err);
             respond(null,documents);
           })
-        })
+        // })
     });
   });
 }

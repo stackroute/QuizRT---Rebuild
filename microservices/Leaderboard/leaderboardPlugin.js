@@ -6,7 +6,11 @@ var leaderBoard = function(options){
       respond(null,result)
     });
   });
-
+ //To fetch the data
+  this.add({role:'board',action:'all'},function(msg,respond){
+    console.log('--------------------------------------');
+    this.make('board').list$({},respond);
+  })
   //create a new board
   this.add({role:'board',action:'add'},function(msg,respond){
     this.make('board').data$(msg.data).save$(respond);

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -51,9 +52,11 @@ var title1={
 var title2={
   paddingLeft:10,
   marginTop:10,
-  marginBottom:10
+  marginBottom:10,
+  height:'30px'
 }
 var title3={
+    textAlign:'center',
     margin:'auto',
     width:'60%'
 }
@@ -94,6 +97,7 @@ var SubtopicCard = React.createClass({
   getInitialState:function(){
       return{incre:-1, no:this.props.topic.topicFollowers}
   },
+
   contextTypes : {
   router: React.PropTypes.object
 } ,
@@ -144,8 +148,7 @@ componentDidMount:function(){
 
     <CardMedia overlay={
       <div>
-      <CardTitle subtitle="No of Users played:15" style={title3} color={grey100}/>
-      <MapsPersonPin color={grey100}/>
+      <CardTitle subtitle="Don't limit your Challenges, Challenge your Limits." style={title3} />
       </div>
      }>
       <img src={this.props.topic.topicIcon} />
@@ -153,6 +156,7 @@ componentDidMount:function(){
     <CardActions >
       <div className="col-md col-xs col-lg col-sm">
         <RaisedButton label="Play" secondary={true} style={BtnStyle} onClick={this.handleClike.bind(this,this.props.topic._id)} />
+
         </div>
      </CardActions>
 
@@ -163,3 +167,4 @@ componentDidMount:function(){
 });
 
 module.exports= SubtopicCard;
+ 

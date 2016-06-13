@@ -37,43 +37,42 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-app.get('/topics/myfav',function(req,res) {
 
+app.get('/topics/myfav/:uid',function(req,res) {
+  console.log(req.params.uid+">>>>>>>>>>>>>>>>>>>>>");
+  console.log('form tpics dfgkmy fav-myfav000000000000000000000000000000000000000000000000000)))))))))))))))))');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  seneca.act('role:myFav,action:retrive',function(err,result){
-    if (err) return console.error(err)
-  console.log('------------yahi to hai result-----'+result+'------------------------')
-  res.send(result)
+  seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
+  if (err) return console.error(err)
+console.log('------------yahi to hai result-----'+result+'------------------------')
+res.send(result);
   })
-  console.log('send');
-});
+  console.log('agrt dfglca;lkg');
+  });
+
+
+var serverId = Math.ceil(Math.random()*2423);
  app.post('/api/check',function(req,res){
   console.log('-------------- abc from express floow---------------');
   console.log(req.body.incre+'   0----------------------');
   console.log(req.body.id+'    ---------------------');
   var test = {
     id:req.body.id,
-    incre:req.body.incre
+    incre:req.body.incre,
+    username:req.body.uName
   }
+
   var username = req.body.uName;
 
   seneca.act('role:topic,action:like',{data:test},function(err,result){
-    if(err) console.log(err+'------------------------------------------------');
-    // var newObj = {
-    //   topicId:username,
-    //   topic:{result}
-    // }
-    // console.log(newObj.id);
 
-    if(req.body.incre==true){
-      seneca.act('role:topic,action:create',{data:result},function(err,result2){
-        if(err) console.log(err+' ========================');
+    if(err) console.log(err+'---------------------------------------done liked---------');
 
-        res.send(result)
-      })
-    } else {
-      seneca.act('role:topic,action:delete',{id:req.body.id},function(err,result2){
+    console.log(result+'yaha thak hai>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+    if(!req.body.incre) {
+      seneca.act('role:topic,action:delete',{data:test},function(err,result2){
+
         if(err) console.log(err+' ========================');
 
         res.send(result)
@@ -90,8 +89,9 @@ var middleWareCount =0;
 io.on('connection',function(socket){
   middleWareCount++;
   console.log('\n =====Middleware count is: '+middleWareCount+'\n');
+
   var playerMiddleWareService =  require('seneca')()
-  socket.on('playGame',function(msg){
+   socket.on('playGame',function(msg){
 
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
@@ -104,9 +104,11 @@ io.on('connection',function(socket){
   });
 
   socket.on('disconnect',function(){
+
     playerMiddleWareService.close();
 
-  })
+    console.log('\n======Closing service=====\n');
+   })
 
   socket.emit('serverId',serverId);
 
@@ -146,59 +148,7 @@ app.post('/api/signup',function(req,res){
       })
     });
 
-//     connectCounter++;
-//     console.log("number of connections -------------"+connectCounter+"-----------------------------");
-//     count=0;
-//     seconds= 10;
-//     socket.on('send first question',function(){
-//       socket.emit('new question',questions[0]);
-//       // socket.emit('timer',seconds);
-//         // timer=  setInterval(function(){
-//         //    socket.emit('timer',seconds);
-//         //    seconds--;
-//         //    if(seconds>=10){
-//         //      seconds = 10;
-//         //      clearInterval(timer);
-//         //    }
-//         //  },1000);
-//     var questionSender =setInterval(function(){
-//       console.log('count is ' + count++);
-//       if(count>=questions.length)
-//       {
-//           clearInterval(questionSender);
-//           clearInterval(timer);
-//           socket.emit('end timer',"thanks");
-//           socket.emit('end quiz',"thank you");
-//       }
-//       else{
-//       socket.emit('new question',questions[count]);
-//     }
-//   },10000);
-//   socket.on('disconnect', function() {
-//      connectCounter--;
-//
-//      console.log("number of user disconnected 1");
-//      console.log("now total connected-------"+connectCounter);
-//    });
-//
-//   //  socket.emit('new question',questions[count]);
-//    socket.on('my answer',function(msg){
-//     console.log('user answered '+ msg);
-//     console.log(questions[count].correct.indexOf(msg));
-//     if(questions[count].correct.indexOf(msg)>-1)
-//       {
-//         console.log('Correct answer is '+ questions[count].correct);
-//
-//       }
-//     else{
-//         socket.emit('incorrect','You answered incorrectly');
-//     }
-//   })
-// })
-//});
-
-
-//Route To Authenticate A User
+ //Route To Authenticate A User
 
 app.post('/api/authenticate',function(req,res){
   var data = {
@@ -326,6 +276,46 @@ app.get('/tournaments',function(req,res) {
   console.log('send');
 });
 
+app.get('/recentActivity',function(req,res) {
+  console.log('form express-mostpopular');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:recentPage,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.post('/accountInfo',function(req,res){
+  console.log("Cookie"+req.cookies);
+  var tempemail = req.body.email;
+    seneca.act('role:accountInfo,action:get',{email: tempemail},function(err,result){
+    if(!result){
+      accountInfo = {
+        email : tempemail,
+      }
+      seneca.act('role:accountInfo,action:add', {data:accountInfo}, function(err,result){
+      })
+      console.log('resultl is null');
+    }
+    res.send(result)
+
+  });
+  console.log('call done');
+})
+app.post('/accountInfoUpdate',function(req,res){
+  var updateaccountInfo = req.body;
+  console.log(req.body.id);
+    seneca.act('role:accountInfo,action:update',{id:req.body.id,data:updateaccountInfo},function(err,result){
+    console.log(updateaccountInfo);
+    console.log(updateaccountInfo.dob);
+    console.log(result);
+  })
+  console.log('call done');
+})
+
 app.post('/api/authenticate/google',function(req,res){
 
   // generate a url that asks permissions for Google+ and Google Calendar scopes
@@ -405,9 +395,12 @@ app.use(function(req, res, next) {
         message: 'No token provided.'
 
       });
-    }
-  })
+    };
+  });
 });
+
+
+
 
 app.post('/api/RecentPage',function(req,res){
   res.json({

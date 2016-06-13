@@ -6,7 +6,7 @@ seneca.use('mongo-store',{
   port: 27017
 })
 	.use('entity')
-	.use('./likesTopic')
+	.use('./likesTopicPlugin')
 	.use('mesh',{auto:true,pin:'role:topic,action:like'});
   //
   // var test = {

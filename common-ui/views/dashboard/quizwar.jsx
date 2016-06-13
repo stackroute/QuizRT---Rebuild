@@ -24,10 +24,6 @@ var QuizWar=React.createClass({
                   <img src="img/quizwar/quizwar.jpg" />
                 </CardMedia>
                   <CardTitle title="Quiz-War" subtitle="There's no charge for the AWESOMENESS, Play & Earn the reward of looking awesome."/>
-                <CardActions>
-                  <RaisedButton label="View" primary={true} />
-                  <RaisedButton label="Play" secondary={true} />
-                </CardActions>
               </Card>
             </Paper>
           </div>

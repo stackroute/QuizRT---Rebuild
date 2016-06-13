@@ -18,6 +18,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import cookie from 'react-cookie';
 var baseURL = 'http://localhost:8080/';
 
+
 const avatarstyle={
   backgroundSize:'cover',
   height:50,
@@ -56,14 +57,8 @@ var ProfileHero = React.createClass({
   getInitialState: function () {
     return({
       open: false,
-      username : ''
+      username : cookie.load('username')
     });
-  },
-
-  componentDidMount : function(){
-    var display_name = cookie.load('username');
-    console.log(display_name);
-    this.state.username = display_name;
   },
 
   contextTypes :{
@@ -77,9 +72,6 @@ var ProfileHero = React.createClass({
   handleClose: function () {
     this.setState({open: false});
   },
-  handleTouchTap: function() {
-    alert('You are Redirected to Dashboard');
-  },
 
   handleRecentTouch : function(){
     event.preventDefault();
@@ -88,6 +80,7 @@ var ProfileHero = React.createClass({
 
   handleDashboard : function(){
     event.preventDefault();
+    console.log(this.state.username);
     this.context.router.push('/dashboard');
   },
 
@@ -118,7 +111,7 @@ var ProfileHero = React.createClass({
       url : baseURL + 'api/Logout',
       success: (function(data) {
         if(data['success'] == true){
-            this.context.router.push('/');
+            this.context.router.push('/login');
 
         }
 
@@ -151,13 +144,13 @@ var ProfileHero = React.createClass({
 
           <MenuItem onTouchTap={this.handleClose} style={style}>
           <div><Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/></div>
-          {this.state.username}</MenuItem>
-          <MenuItem onTouchTap={this.handleClose} style={style}> Rank: 21#</MenuItem>
+          {this.state.username}
+          </MenuItem>
           <Divider />
           <List>
             <ListItem primaryText="Dashboard" leftIcon={<ActionHome />} style={listtext}
               onTouchTap={this.handleDashboard.bind(this)}/>
-            <ListItem primaryText="View Profile" leftIcon={<ActionAccountbox />} style={listtext}
+            <ListItem primaryText="Account Info" leftIcon={<ActionAccountbox />} style={listtext}
               onTouchTap={this.handleProfile.bind(this)}/>
             <ListItem primaryText="Recent Activity" leftIcon={<ImageBurstmode />} style={listtext}
               onTouchTap={this.handleRecentTouch.bind(this)}/>

@@ -12,7 +12,7 @@ const styles = {
     fontWeight: 400,
   },
   slide: {
-    padding: 10,
+    padding: 15,
     height:100
   },
   date:{

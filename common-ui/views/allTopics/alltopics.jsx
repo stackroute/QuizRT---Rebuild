@@ -2,6 +2,9 @@ import React from 'react';
 import ProfileHero from '../header/leftnav';
 import SubTopicContainer from '../SubTopics/SubTopicContainer';
 
+const title={
+    textAlign:'center'
+}
 
 var baseurl='http://localhost:8080';
 
@@ -71,6 +74,8 @@ var Topics = React.createClass({
     return(
       <div>
       <ProfileHero />
+        <h1 style={title}>Topics</h1>
+
         <SubTopicContainer topics ={this.state.topics} fun={this.handleCheck} />
       </div>
     );

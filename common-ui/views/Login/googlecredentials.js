@@ -1,3 +1,4 @@
+
 module.exports = {
 	OAUTHURL    :   'https://accounts.google.com/o/oauth2/auth?',
 	VALIDURL    :   'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=',

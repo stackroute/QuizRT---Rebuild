@@ -1,0 +1,16 @@
+{
+  "name": "base-image",
+  "version": "0.1.0",
+  "description": "Base image for all microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anshul Chanchlani",
+  "license": "ISC",
+  "dependencies": {
+    "seneca": "^2.1.0",
+    "seneca-balance-client": "^0.5.0",
+    "seneca-mesh": "^0.7.0"
+  }
+}

@@ -13,6 +13,7 @@ var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
+var facebookcredentials = require('./common-ui/views/Login/facebookcredentials');
 var questions;
 var request = require('request');
 var seneca = require('seneca')()
@@ -36,7 +37,7 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 app.get('/topics/myfav',function(req,res) {
-  console.log('form tpics dfgkmy fav-myfav000000000000000000000000000000000000000000000000000)))))))))))))))))');
+
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:myFav,action:retrive',function(err,result){
@@ -54,8 +55,9 @@ app.get('/topics/myfav',function(req,res) {
     id:req.body.id,
     incre:req.body.incre
   }
-  console.log('==============111111111111111'+req.body.id);
+
   var username = req.body.uName;
+
   seneca.act('role:topic,action:like',{data:test},function(err,result){
     if(err) console.log(err+'------------------------------------------------');
     // var newObj = {
@@ -63,17 +65,17 @@ app.get('/topics/myfav',function(req,res) {
     //   topic:{result}
     // }
     // console.log(newObj.id);
-    console.log(result+'yaha thak hai');
+
     if(req.body.incre==true){
       seneca.act('role:topic,action:create',{data:result},function(err,result2){
         if(err) console.log(err+' ========================');
-        console.log(result2+' saved  46546-------------------------------------------');
+
         res.send(result)
       })
     } else {
       seneca.act('role:topic,action:delete',{id:req.body.id},function(err,result2){
         if(err) console.log(err+' ========================');
-        console.log(result2+' saved deleted 000000000000000-------------------------------------------');
+
         res.send(result)
       })
     }
@@ -83,15 +85,17 @@ app.get('/topics/myfav',function(req,res) {
 //---------------------------------------
 var middleWareCount =0;
 
+
+
 io.on('connection',function(socket){
-  console.log('\n==============INSIDE SOCKET\n')
   middleWareCount++;
   console.log('\n =====Middleware count is: '+middleWareCount+'\n');
-  var playerMiddleWareService =  require('seneca')();
+  var playerMiddleWareService =  require('seneca')()
   socket.on('playGame',function(msg){
+
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
-    //console.log('\n======Initializing plugin for  : '+(middleWareCount)+'\n');
+    console.log('\n======Initializing plugin for  : '+(msg.username)+'\n');
     playerMiddleWareService.use('./microservices/gameplay1/gameplayMiddlewarePlugin', {
       username:msg.username,
       tournamentId:msg.tournamentId,
@@ -100,12 +104,20 @@ io.on('connection',function(socket){
   });
 
   socket.on('disconnect',function(){
-    // console.log('\n======Closing service=====\n');
-    playerMiddleWareService.close();
+    console.log('\n======Closing service=====\n');
+
   })
+
+  socket.on('myAnswer',function(socketObj){
+    console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');
+     playerMiddleWareService.act('role:user,action:answer',{answer:socketObj.answer},function(err,response){
+
+     })
+  });
 
 
 })
+
 //----------------------------
 app.post('/api/signup',function(req,res){
   console.log("inside /api/signup");
@@ -113,6 +125,7 @@ app.post('/api/signup',function(req,res){
       name : req.body.name,
       password : req.body.password
     }
+    console.log(data);
       seneca.act('role:user,action:get',{data:data.name},function(err,respond){
         if(err) { return res.status(500).json(err); }
         if(respond == null){
@@ -210,6 +223,58 @@ app.post('/api/authenticate',function(req,res){
     }
   })
 });
+
+
+app.post('/api/authenticate/facebook',function(req,res){
+  var app_id = facebookcredentials.CLIENT_ID;
+  var url ='https://www.facebook.com/dialog/oauth?'+
+    'client_id='+app_id+'&redirect_uri=http://localhost:8080/api/authenticate/facebook/success'+
+    '&scope=email';
+  res.send({ redirect: url });
+})
+
+app.get('/api/authenticate/facebook/success',function(req,res){
+  var code = req.query.code;
+  var app_id = facebookcredentials.CLIENT_ID;
+  var app_secret = facebookcredentials.CLIENT_SECRET;
+  var token_url ='https://graph.facebook.com/v2.6/oauth/access_token?'+
+                  'client_id='+app_id+
+                 '&redirect_uri=http://localhost:8080/api/authenticate/facebook/success'+
+                 '&client_secret='+app_secret+
+                 '&code='+code;
+  request(token_url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var myBody = JSON.parse(body);
+      var access_token = myBody['access_token'];
+      var user_profile = 'https://graph.facebook.com/me?fields=name,email&access_token='+access_token;
+      request(user_profile,function(error,response,body){
+        if(!error && response.statusCode == 200){
+          var userinfo = JSON.parse(body);
+          var email = userinfo['email'];
+           var tokendata = {
+            user : email,
+            secret : app.get('secret')
+          }
+          seneca.act('role:user,action:generateGoogleToken',{data:tokendata},function(err,tokenresponse){
+            var data = {
+              name:email
+            }
+            seneca.act('role:user,action:get',{data:data.name},function(err,respond){
+              if(err) { return res.status(500).json(err); }
+                if(respond == null){
+                  seneca.act('role:user,action:add', {data:data}, function(err,saved_user){
+                    if(err) { return res.status(500).json(err); }
+                  })
+                }
+            })
+            res.cookie('username',data.name);
+            res.cookie('auth_cookie',tokenresponse.token).redirect(301,'http://localhost:8081/#/dashboard');
+          })
+        }
+      })
+     }
+  })
+})
 
 app.get('/topics/mostPopular',function(req,res) {
   console.log('form express-mostpopular');
@@ -355,13 +420,13 @@ app.use(function(req, res, next) {
 });
 
 app.post('/api/RecentPage',function(req,res){
-	res.json({
-		success : true
-	});
+  res.json({
+    success : true
+  });
 });
 
 app.post('/api/Logout',function(req,res){
-	res.json({
-		success : true
-	});
+  res.json({
+    success : true
+  });
 });

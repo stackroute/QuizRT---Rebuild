@@ -31,6 +31,36 @@ services:
     environment:
       REDIS_URL: localhost
       REDIS_PORT: 6379
+  microservice-register-user:
+    container_name: microservice-register-user
+    build: ./microservices/LoginAuthentication/registerUser
+    image: quizrt/microservice-register-user:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - db
+    environment:
+      MONGO_HOST: localhost
+      MONGO_PORT: 27017
+      MONGO_DB_NAME: quizRT
+  microservice-verify-token:
+    container_name: microservice-verify-token
+    build: ./microservices/LoginAuthentication/verifyToken
+    image: quizrt/microservice-verify-token:0.1.0
+    network_mode: host
+    restart: always
+  microservice-all-topics:
+    container_name: microservice-all-topics
+    build: ./microservices/allTopics
+    image: quizrt/microservice-all-topics:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - db
+    environment:
+      MONGO_HOST: localhost
+      MONGO_PORT: 27017
+      MONGO_DB_NAME: quizRT
   db:
     container_name: db
     image: mvertes/alpine-mongo

@@ -4,7 +4,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import TournamentView from './views/Tournament';
-import TopicsView from './views/TopicsPage';
 import {Router, Route, hashHistory} from 'react-router';
 import LoginForm from './views/Login';
 import ForgotPswd from './views/Forgot';
@@ -14,7 +13,6 @@ import Badges from './views/Badges/Badges';
 import Dashboard from './views/dashboard';
 import RecentPage from './views/recent_activity';
 import Result from './views/Result';
-import TopicDetails from './views/EachTopic/EachTopic';
 import TournamentsSubContainer from './views/SubTournaments/TournamentsSubContainer';
 import SubTopicContainer from './views/SubTopics/SubTopicContainer';
 import SignUp from './views/SignUP';
@@ -61,7 +59,6 @@ export class App extends React.Component {
       <Route path="/topics" component={Topics}  />
       <Route path="/tournaments" component={Tournaments}  />
       <Route path = '/badges' component = {Badges}  />
-      <Route path= '/eachtopic' component={TopicDetails} />
       <Route path= '/recent' component={RecentPage}  />
       <Route path= '/profileinfo' component={ProfileInfo}  />
       </Router>

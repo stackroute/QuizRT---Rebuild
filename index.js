@@ -5,7 +5,7 @@ var io = require('socket.io').listen(server);
 var bodyparser = require('body-parser');
 
 var jwt = require('jsonwebtoken');
-var config = require('./microservices/LoginAuthentication/config');
+var secret = process.env.AUTH_SECRET || "the matrix";
 var cookie = require('react-cookie');
 var cors = require('cors');
 var googlecredentials = require('./common-ui/views/Login/googlecredentials');
@@ -27,7 +27,7 @@ server.listen(8080,function(){
 })
 app.use(express.static(__dirname+'/common-ui'));
 
-app.set('secret',config.secret);
+app.set('secret',secret);
 
 //use body-parser so we get info from POST and/or URL
 
@@ -96,7 +96,7 @@ io.on('connection',function(socket){
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
     console.log('\n======Initializing plugin for  : '+(msg.username)+'\n');
-    playerMiddleWareService.use('./microservices/gameplay/gameplayMiddlewarePlugin', {
+    playerMiddleWareService.use('gameplayMiddlewarePlugin', {
       username:msg.username,
       tournamentId:msg.tournamentId,
       socket:socket

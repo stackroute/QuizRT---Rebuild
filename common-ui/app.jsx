@@ -24,6 +24,7 @@ import Rank from './views/Rank';
 import Topics from './views/allTopics/alltopics';
 import Tournaments from './views/allTournaments/alltournaments';
 import ProfileInfo from './views/Profile';
+import WPage from './views/WaitingPage';
 injectTapEventPlugin();
 
 import cookie from 'react-cookie';
@@ -39,7 +40,7 @@ export class App extends React.Component {
     var token = cookie.load('auth_cookie');
     if(token == undefined){
       replace({
-      pathname: '/',
+      pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
     });
     }
@@ -50,10 +51,12 @@ export class App extends React.Component {
       <Router history={hashHistory}>
       <Route path="/" component={LoginForm} />
       <Route path="/social" component={SocialPlugins}/>
+      <Route path = '/login' component = {LoginForm} />
       <Route path = '/forgotPswd' component = {ForgotPswd} />
       <Route path = '/setNewPswd' component = {SetNewPswd} />
       <Route path = '/verifyOTP' component = {VerifyOTP} />
       <Route path = '/signup' component = {SignUp} />
+      <Route path ="/waiting" component= {WPage} />
       <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} />

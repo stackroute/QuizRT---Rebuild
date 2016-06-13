@@ -94,10 +94,28 @@ var SubtopicCard = React.createClass({
   getInitialState:function(){
       return{incre:-1, no:this.props.topic.topicFollowers}
   },
-  handleOnCheck: function(topicName) {
+  contextTypes : {
+  router: React.PropTypes.object
+} ,
+componentDidMount:function(){
+
+},
+  handleClike:function(tId){
+    Cookie.save("topicId",tId);
+    console.log('function called handleClike');
+    this.context.router.push({
+      pathname:'/quiz'
+    })
+  },
+
+  handleOnCheck: function(topicId) {
+    console.log(">>>>>>>>...handleOnCheck");
     this.state.incre=-this.state.incre;
-    this.setState({no:this.props.topic.topicFollowers+this.state.incre})
-    this.props.fun(topicName,this.props.topic);
+    var sum = this.state.no+this.state.incre;
+    this.setState({no:sum})
+    var topic = this.props.topic;
+    topic.topicFollowers = sum;
+    this.props.fun(topicId,topic);
   },
   render: function(){
     return(
@@ -132,11 +150,9 @@ var SubtopicCard = React.createClass({
      }>
       <img src={this.props.topic.topicIcon} />
     </CardMedia>
-
-
     <CardActions >
       <div className="col-md col-xs col-lg col-sm">
-        <RaisedButton label="Play" secondary={true} style={BtnStyle} />
+        <RaisedButton label="Play" secondary={true} style={BtnStyle} onClick={this.handleClike.bind(this,this.props.topic._id)} />
         </div>
      </CardActions>
 

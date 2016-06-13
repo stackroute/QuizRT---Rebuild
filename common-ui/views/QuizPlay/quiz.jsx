@@ -9,6 +9,7 @@ import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import ProgressBar from './progressBar';
 import Timer from './timer';
+import CircularProgress from 'material-ui/CircularProgress';
 
 const optionStyle = {
   margin:12,
@@ -29,7 +30,16 @@ grey100,
 purple500,
 } from 'material-ui/styles/colors';
 
+const Style1= {
+    "text-align": "center",
+    //"margin-top":'18%',
+    //"height":'100%',
+    "margin":"auto",
 
+  }
+  const Style2= {
+    "margin-top":'12%'
+  }
 
 const style = {
   height: 100,
@@ -46,7 +56,6 @@ class SampleNextArrow extends React.Component{
     );
   }
 }
-
 class SamplePrevArrow extends React.Component{
   render(){
     return(
@@ -54,12 +63,14 @@ class SamplePrevArrow extends React.Component{
     );
   }
 }
-
-
+var username = 'anshul'+(Math.ceil(Math.random()*12));
 export default class Rank extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      waiting:true,
+      serverId:0,
+      questionReceived: false,
       ques:{},
       seconds:0,
       progress: 10,
@@ -69,7 +80,6 @@ export default class Rank extends React.Component{
       option3Color: grey100
 
     };
-
   }
   static get contextTypes(){
     return {
@@ -77,17 +87,18 @@ export default class Rank extends React.Component{
     }
   }
 
-
-
   componentDidMount(){
 
-
-
-        this.context.socket = io('http://localhost:8080');
+        this.context.socket = io('http://172.23.238.162:8080');
         var that = this;
         this.context.socket.on('newQuestion',function(data){
+
+
+
            console.log((data.msg));
           that.setState({ques:data.msg})
+          if(that.state.waiting)
+            that.setState({waiting:false})
           that.setState({enabled:true});
           that.setState({answered:false});
           that.setState({option0Color:grey100})
@@ -96,32 +107,30 @@ export default class Rank extends React.Component{
           that.setState({option3Color:grey100})
         })
         // console.log('Mounting the component: ', (++countMount));
-        this.context.socket.emit('playGame',{username:'anshul',tournamentId:'1234'});
+
+        this.context.socket.emit('playGame',{username:username,tournamentId:'1234'});
         this.context.socket.on('queued',function(msg){
 
         })
+        this.context.socket.on('gameStarting',function(msg){
+          console.log('\n====Your game will start in 3 seconds....\n')
 
-
-
+         })
         this.context.socket.on('yourAnswer',function(obj){
 
             that.changeOptionColor(obj.answer.answerOfQuestion,green600);
-
         })
-
         this.context.socket.on('leaderboard',function(leaderboard){
-          alert('final score is: '+leaderboard['anshul']);
-          this.context.socket.close();
+          alert('final score is: '+leaderboard[username]);
         })
 
-
+        this.context.socket.on('serverId',function(msg){
+          that.setState({serverId:msg});
+        })
   }
   changeOptionColor(value,color){
-
     switch(value){
-
     case this.state.ques.options[0]: this.setState({option0Color:color})
-
     break;
     case this.state.ques.options[1]: this.setState({option1Color:color})
     break;
@@ -131,28 +140,21 @@ export default class Rank extends React.Component{
     break;
   }
   }
-
-
     onClick(value,e){
       this.setState({answered:true});
       this.setState({enabled:false});
       var socketObj ={
-
         answer: value
-
       }
       this.changeOptionColor(socketObj.answer,deepOrange500);
       console.log('Sending answer to server as '+ value)
       this.context.socket.emit('myAnswer',socketObj);
-
       switch(value){
-
       }
-
     }
 
   render(){
-    if(!this.state.ques.options) return null;
+
     var settings = {
           dots: false,
           nextArrow:<SampleNextArrow />,
@@ -187,93 +189,80 @@ export default class Rank extends React.Component{
               }
           }]
       };
-    return (
-      <div>
-        <div className="container-fluid">
-          <div >
-            <Slider {...settings}>
-              <div><Paper style={style} zDepth={2} >1 <p></p> 24</Paper></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} /></div>
-              <div><Paper style={style} zDepth={2} >35 <p>Last</p> 100</Paper></div>
-            </Slider>
-          </div>
-          <hr/>
 
-          <div className='row'  >
-            <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-              <List>
-                <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange500} backgroundColor={purple500} >D</Avatar>}>
-                </ListItem>
-              </List>
+
+      return (
+          <div>
+          {this.state.waiting ?(
+            <div style={Style1}>
+            <div>
+            <h2>Waiting for the opponents</h2>
+            <h6>You are being served by server : {this.state.serverId}</h6>
+          </div>
+          <div style={Style2}>
+              <CircularProgress size={1.8}  />
+
             </div>
-            <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-              <div className='row center-xs'> {this.state.seconds} </div>
             </div>
-            <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-              <div className='row end-xs'>
-                <List>
-                  <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-                  </ListItem>
-                </List>
+          ):(
+            <div className="container-fluid">
+              <div >
+                <h6>You are being served by server : {this.state.serverId}</h6>
               </div>
-            </div>
-          </div>
+              <hr/>
 
-          <div class="ques">
-            <div >
-              <div className='row' >
-                <div className='col-xs-12'>
-                  <div className='row center-xs'>
-                    <p>{this.state.ques.question}</p>
+              <div className='row'  >
+                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+                  <List>
+                    <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange500} backgroundColor={purple500} >D</Avatar>}>
+                    </ListItem>
+                  </List>
+                </div>
+                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+                  <div className='row center-xs'> {this.state.seconds} </div>
+                </div>
+                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+                  <div className='row end-xs'>
+                    <List>
+                      <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
+                      </ListItem>
+                    </List>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className='row' >
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6' >
-                <RaisedButton disabled={this.state.answered || !this.state.enabled}  label={this.state.ques.options[0]} onClick={this.onClick.bind(this,this.state.ques.options[0])} disabledBackgroundColor={this.state.option0Color} backgroundColor={cyan500}  style={optionStyle}/>
-              </div>
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[1]} onClick={this.onClick.bind(this,this.state.ques.options[1])}  disabledBackgroundColor={this.state.option1Color} backgroundColor={cyan500} style={optionStyle} />
-              </div>
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[2]} onClick={this.onClick.bind(this,this.state.ques.options[2])}  disabledBackgroundColor={this.state.option2Color} backgroundColor={cyan500} style={optionStyle} />
-              </div>
-              <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
-                <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[3]} onClick={this.onClick.bind(this,this.state.ques.options[3])}  disabledBackgroundColor={this.state.option3Color} backgroundColor={cyan500} style={optionStyle}/>
+
+              <div class="ques">
+                <div >
+                  <div className='row' >
+                    <div className='col-xs-12'>
+                      <div className='row center-xs'>
+                        <p>{this.state.ques.question}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='row' >
+                  <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6' >
+                    <RaisedButton disabled={this.state.answered || !this.state.enabled}  label={this.state.ques.options[0]} onClick={this.onClick.bind(this,this.state.ques.options[0])} disabledBackgroundColor={this.state.option0Color} backgroundColor={cyan500}  style={optionStyle}/>
+                  </div>
+                  <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
+                    <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[1]} onClick={this.onClick.bind(this,this.state.ques.options[1])}  disabledBackgroundColor={this.state.option1Color} backgroundColor={cyan500} style={optionStyle} />
+                  </div>
+                  <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
+                    <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[2]} onClick={this.onClick.bind(this,this.state.ques.options[2])}  disabledBackgroundColor={this.state.option2Color} backgroundColor={cyan500} style={optionStyle} />
+                  </div>
+                  <div className='col-xs-6 col-sm-6 col-lg-6 col-md-6'>
+                    <RaisedButton disabled={this.state.answered || !this.state.enabled} label={this.state.ques.options[3]} onClick={this.onClick.bind(this,this.state.ques.options[3])}  disabledBackgroundColor={this.state.option3Color} backgroundColor={cyan500} style={optionStyle}/>
+                  </div>
+
+                </div>
+
               </div>
 
             </div>
+          )}
 
           </div>
-
-        </div>
-      </div>
-    );
-  }
-}
+        );
+      }
+    }

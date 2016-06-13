@@ -1,4 +1,4 @@
- 
+
 import Paper from 'material-ui/Paper';
 import React from 'react';
 import TextField from 'material-ui/TextField';
@@ -113,4 +113,3 @@ export default class Test extends React.Component{
     );
   }
 };
->>>>>>> 98ef22d0212f9ad2b0a6feb65b2116c9cbcfeb1a

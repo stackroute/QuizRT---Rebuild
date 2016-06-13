@@ -20,6 +20,7 @@ var seneca = require('seneca')()
             .use('mesh',{auto:true});
 app.use(cors());
 
+var serverId = Math.ceil(Math.random()*213);
 server.listen(8080,function(){
   console.log('Server is running at the port 8080');
 })
@@ -94,7 +95,7 @@ io.on('connection',function(socket){
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
     console.log('\n======Initializing plugin for  : '+(msg.username)+'\n');
-    playerMiddleWareService.use('./microservices/gameplay1/gameplayMiddlewarePlugin', {
+    playerMiddleWareService.use('./microservices/gameplay/gameplayMiddlewarePlugin', {
       username:msg.username,
       tournamentId:msg.tournamentId,
       socket:socket
@@ -102,9 +103,11 @@ io.on('connection',function(socket){
   });
 
   socket.on('disconnect',function(){
-    console.log('\n======Closing service=====\n');
+    playerMiddleWareService.close();
 
   })
+
+  socket.emit('serverId',serverId);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');

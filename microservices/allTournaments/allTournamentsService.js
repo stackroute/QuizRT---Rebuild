@@ -3,9 +3,9 @@ var seneca = require('seneca')();
   seneca
   .use('entity')
   .use('mongo-store',{
-    name: "quizRT4",
-    host: "127.0.0.1",
-    port: 27017
+    name: process.env.MONGO_DB_NAME,
+    host: process.env.MONGO_HOST,
+    port: process.env.MONGO_PORT
   })
   .use('./allTournamentsPlugin')
   // .act('role:allTournaments,action:retrive',function(err,result){

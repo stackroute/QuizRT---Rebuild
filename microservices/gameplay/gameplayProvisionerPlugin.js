@@ -28,7 +28,7 @@ module.exports = function(options){
     console.log('\n Tournament Id : '+msg.tournamentId+'\n');
     console.log('\n Users are : '+globalQueue[msg.tournamentId]+'\n')
     //If found x or more members
-    if(globalQueue[tournamentId].length>=2){
+    if(globalQueue[tournamentId].length>=3){
       var gameManager = require('seneca')();
       var gameId = Math.ceil(Math.random()*1231);
       // console.log(' \n Since players are more than 2, spawning game manager.')
@@ -72,7 +72,7 @@ module.exports = function(options){
               }
 
               delete globalQueue[msg.tournamentId];
-               
+
               // console.log('\n Global queue with the topic is now: '+globalQueue[msg.tournamentId]+'\n')
               // console.log('\n Game Manager is ready now. \n');
 

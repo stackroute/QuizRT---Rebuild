@@ -12,6 +12,6 @@ RUN npm install --production
 
 # Bundle app source
 COPY mostPopularTopicPlugin.js /usr/src/mostpopular-topics
-COPY popularTopicService.js /usr/src/mostpopular-topics
+COPY popularTopicservice.js /usr/src/mostpopular-topics
 
 CMD npm start

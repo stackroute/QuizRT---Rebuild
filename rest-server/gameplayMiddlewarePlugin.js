@@ -1,4 +1,4 @@
-
+/*
 module.exports = function(options){
   var self = this;
   self.username = options.username;
@@ -24,13 +24,13 @@ module.exports = function(options){
   // console.log('\n Initialized count to 0 for socket id'+options.socket.id+'\n')
   var count =0;
   var gameId ;
-  console.log('\n=========Game Initiate Listener set for : '+self.username+ '=======\n');
+  console.log('\nGame Initiate Listener set for : '+self.username+ '\n');
   self.add('role:'+self.username+',action:gameInitiated',function(msg,respond){
-    // // console.log('\n========Calling the provisioner '+(++count)+' times ==========\n')
+    // // console.log('\nCalling the provisioner '+(++count)+' times \n')
 
     var pin = 'role:'+self.username+',action:gameInitiated';
-    console.log('\n===========Listening on Pin : '+pin+' at '+Date.now()+'=======\n')
-    console.log('\n==============Inside game initiated instance ============ with game id:'+msg.gameId+'\n')
+    console.log('\nListening on Pin : '+pin+' at '+Date.now()+'\n')
+    console.log('\nInside game initiated instance with game id:'+msg.gameId+'\n')
      gameId = msg.gameId;
 
     // // console.log('\n=====RECEIVED GAME ID: '+gameId+'====\n');
@@ -114,7 +114,7 @@ module.exports = function(options){
 
 
 }
-=======
+=======*/
 module.exports = function(options){
   var self = this;
   self.username = options.username;
@@ -224,4 +224,4 @@ module.exports = function(options){
 
 
 }
- 
+

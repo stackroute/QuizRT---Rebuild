@@ -8,10 +8,10 @@ var seneca = require('seneca')();
     host: process.env.MONGO_HOST,
     port: process.env.PORT
   })
-  .use('./allTopics')
+  .use('./allTopicsPlugin')
   // .act('role:allTopics,action:retrive',function(err,result){
   //   if(err) return console.error(err)
   //   console.log(result)
   // })
   .use('mesh', { auto:true, pin:'role:allTopics' })
- 
+

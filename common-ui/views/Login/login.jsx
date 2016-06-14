@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {Link} from 'react-router';
 import cookie from 'react-cookie';
-var baseURL = '/';
+var baseURL = 'http://192.168.99.100:8080/';
 
 
 const styles = {
@@ -71,7 +71,6 @@ export default class LoginForm extends React.Component{
       name : this.state.formInput.username,
       password : this.state.formInput.password
     }
-
 
     $.ajax({
       type : 'POST',

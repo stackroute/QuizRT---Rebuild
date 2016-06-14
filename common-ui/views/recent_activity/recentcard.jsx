@@ -5,7 +5,7 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import Paper from 'material-ui/Paper';
 import PaperTopic from '../Paper/paper_topic';
 import PaperTournament from '../Paper/paper_tournament';
-import SocialPlugin from '../SocialPlugins';
+import SocialPlugin from '../socialPlugins';
 import Avatar from 'material-ui/Avatar';
 import {indigo900,red400} from 'material-ui/styles/colors';
 

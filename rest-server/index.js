@@ -16,7 +16,10 @@ var OAuth2 = google.auth.OAuth2;
 var compression = require('compression');
 
 var redirectHost = process.env.REDIRECT_HOST || "localhost";
-var redirectPort = process.env.REDIRECT_PORT || "8080";
+var port = process.env.PORT || '8080';
+var redirectPort = port;
+
+var env = process.env.NODE_ENV || "dev";
 
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
 var questions;
@@ -25,11 +28,12 @@ var request = require('request');
 var seneca = require('seneca')()
             .use('entity')
             .use('mesh',{auto:true});
-app.use(cors());
+if(env === 'dev') {
+  app.use(cors());
+}
 
-var serverId = Math.ceil(Math.random()*213);
-server.listen(8080,function(){
-  console.log('Server is running at the port 8080');
+server.listen(port,function(){
+  console.log('Server is running at the port ' + port);
 })
 
 
@@ -46,9 +50,6 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 app.get('/topics/myfav',function(req,res) {
-
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
   if (err) return console.error(err)
 console.log('------------yahi to hai result-----'+result+'------------------------')
@@ -114,7 +115,7 @@ io.on('connection',function(socket){
     playerMiddleWareService.close();
   })
 
-  socket.emit('serverId',serverId);
+  socket.emit('serverId',port);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');
@@ -370,7 +371,7 @@ app.get('/api/auth/success/google',function(req,res){
                 }
             })
             res.cookie('username',data.name);
-            res.cookie('auth_cookie',tokenresponse.token).redirect(301,'http://localhost:8081/#/dashboard');
+            res.cookie('auth_cookie',tokenresponse.token).redirect(301,'http://'+redirectHost+':'+redirectPort+'/#/dashboard');
           })
       } else {
           console.log(error);
@@ -381,7 +382,8 @@ app.get('/api/auth/success/google',function(req,res){
 })
 
 // route middleware to verify a tokens
-app.use(function(req, res, next) {
+// TODO: Uncomment for production
+/*app.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   var secret = app.get('secret');
@@ -404,7 +406,7 @@ app.use(function(req, res, next) {
       });
     };
   });
-});
+});*/
 
 
 

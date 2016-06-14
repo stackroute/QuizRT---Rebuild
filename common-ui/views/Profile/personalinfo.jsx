@@ -103,7 +103,7 @@ handleDateChange = (event, date) => {
   var updateUserData = this.state.userdata;
   updateUserData.dob = date.toDateString();
   this.setState({userdata:updateUserData});
-};
+}
   handleDropChange = (event, index, value) => {
     var updateUserData = this.state.userdata;
     updateUserData.sex = value;

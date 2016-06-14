@@ -12,6 +12,8 @@ var googlecredentials = require('./common-ui/views/Login/googlecredentials');
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
+var env = process.env.NODE_ENV || "dev";
+
 var oauth2Client = new OAuth2(googlecredentials.CLIENT_ID, googlecredentials.CLIENT_SECRET, googlecredentials.REDIRECT_URL);
 var facebookcredentials = require('./common-ui/views/Login/facebookcredentials');
 var questions;
@@ -19,7 +21,9 @@ var request = require('request');
 var seneca = require('seneca')()
             .use('entity')
             .use('mesh',{auto:true});
-app.use(cors());
+if(env === 'dev') {
+  app.use(cors());
+}
 
 var serverId = Math.ceil(Math.random()*213);
 server.listen(8080,function(){
@@ -41,8 +45,10 @@ app.use(bodyparser.json());
 app.get('/topics/myfav/:uid',function(req,res) {
   console.log(req.params.uid+">>>>>>>>>>>>>>>>>>>>>");
   console.log('form tpics dfgkmy fav-myfav000000000000000000000000000000000000000000000000000)))))))))))))))))');
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  if(env === 'dev') {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  }
   seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
   if (err) return console.error(err)
 console.log('------------yahi to hai result-----'+result+'------------------------')

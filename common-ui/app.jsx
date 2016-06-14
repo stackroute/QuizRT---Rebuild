@@ -4,7 +4,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import TournamentView from './views/Tournament';
- 
+
 import {Router, Route, hashHistory} from 'react-router';
 import LoginForm from './views/Login';
 import ForgotPswd from './views/Forgot';
@@ -39,12 +39,12 @@ export class App extends React.Component {
 
   requireAuth(nextState, replace) {
     var token = cookie.load('auth_cookie');
-    if(token == undefined){
+    /*if(token == undefined){
       replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
     });
-    }
+    }*/
   }
   render() {
     return (

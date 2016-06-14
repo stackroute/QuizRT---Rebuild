@@ -1,5 +1,6 @@
 node_modules
 
 bower_components
-
-bundle.js*
+static
+bundle.js
+bundle.js.map

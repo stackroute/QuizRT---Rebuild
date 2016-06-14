@@ -5,10 +5,11 @@ var io = require('socket.io').listen(server);
 var bodyparser = require('body-parser');
 
 var jwt = require('jsonwebtoken');
-// var config = require('./microservices/LoginAuthentication/config');
+
 var secret = process.env.AUTH_SECRET || "the matrix";
 var cors = require('cors');
 var googlecredentials = require('./secrets/googlecredentials');
+var facebookcredentials = require('./secrets/facebookcredentials');
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
@@ -48,39 +49,36 @@ app.get('/topics/myfav',function(req,res) {
 
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  seneca.act('role:myFav,action:retrive',function(err,result){
-    if (err) return console.error(err)
-  console.log('------------yahi to hai result-----'+result+'------------------------')
-  res.send(result)
+  seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
+  if (err) return console.error(err)
+console.log('------------yahi to hai result-----'+result+'------------------------')
+res.send(result);
   })
-  console.log('send');
-});
+  console.log('agrt dfglca;lkg');
+  });
+
+
+
  app.post('/api/check',function(req,res){
   console.log('-------------- abc from express floow---------------');
   console.log(req.body.incre+'   0----------------------');
   console.log(req.body.id+'    ---------------------');
   var test = {
     id:req.body.id,
-    incre:req.body.incre
+    incre:req.body.incre,
+    username:req.body.uName
   }
+
   var username = req.body.uName;
 
   seneca.act('role:topic,action:like',{data:test},function(err,result){
-    if(err) console.log(err+'------------------------------------------------');
-    // var newObj = {
-    //   topicId:username,
-    //   topic:{result}
-    // }
-    // console.log(newObj.id);
 
-    if(req.body.incre==true){
-      seneca.act('role:topic,action:create',{data:result},function(err,result2){
-        if(err) console.log(err+' ========================');
+    if(err) console.log(err+'---------------------------------------done liked---------');
 
-        res.send(result)
-      })
-    } else {
-      seneca.act('role:topic,action:delete',{id:req.body.id},function(err,result2){
+    console.log(result+'yaha thak hai>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+    if(!req.body.incre) {
+      seneca.act('role:topic,action:delete',{data:test},function(err,result2){
+
         if(err) console.log(err+' ========================');
 
         res.send(result)
@@ -97,8 +95,9 @@ var middleWareCount =0;
 io.on('connection',function(socket){
   middleWareCount++;
   console.log('\n =====Middleware count is: '+middleWareCount+'\n');
+
   var playerMiddleWareService =  require('seneca')()
-  socket.on('playGame',function(msg){
+   socket.on('playGame',function(msg){
 
      playerMiddleWareService.use('redis-transport');
     // console.log('\n Setting up middleware for user \n');
@@ -111,8 +110,8 @@ io.on('connection',function(socket){
   });
 
   socket.on('disconnect',function(){
+    console.log('\n======Closing service=====\n');
     playerMiddleWareService.close();
-
   })
 
   socket.emit('serverId',serverId);
@@ -134,6 +133,7 @@ app.post('/api/signup',function(req,res){
       name : req.body.name,
       password : req.body.password
     }
+    console.log(data);
       seneca.act('role:user,action:get',{data:data.name},function(err,respond){
         if(err) { return res.status(500).json(err); }
         if(respond == null){
@@ -151,6 +151,8 @@ app.post('/api/signup',function(req,res){
         }
       })
     });
+
+
 
 
 //Route To Authenticate A User
@@ -232,3 +234,189 @@ app.get('/api/authenticate/facebook/success',function(req,res){
      }
   })
 })
+
+app.get('/topics/mostPopular',function(req,res) {
+  console.log('form express-mostpopular');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:popularTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/topics',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTopics,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournamentSection',function(req,res) {
+  console.log('form express-tournamentSection');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:randTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/tournaments',function(req,res) {
+  console.log('form express-alltopics');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:allTournaments,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.get('/recentActivity',function(req,res) {
+  console.log('form express-mostpopular');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  seneca.act('role:recentPage,action:retrive',function(err,result){
+    if (err) return console.error(err)
+  console.log('-----------------'+result+'------------------------')
+  res.send(result)
+  })
+  console.log('send');
+});
+
+app.post('/accountInfo',function(req,res){
+  console.log("Cookie"+req.cookies);
+  var tempemail = req.body.email;
+    seneca.act('role:accountInfo,action:get',{email: tempemail},function(err,result){
+    if(!result){
+      accountInfo = {
+        email : tempemail,
+      }
+      seneca.act('role:accountInfo,action:add', {data:accountInfo}, function(err,result){
+      })
+      console.log('resultl is null');
+    }
+    res.send(result)
+
+  });
+  console.log('call done');
+})
+app.post('/accountInfoUpdate',function(req,res){
+  var updateaccountInfo = req.body;
+  console.log(req.body.id);
+    seneca.act('role:accountInfo,action:update',{id:req.body.id,data:updateaccountInfo},function(err,result){
+    console.log(updateaccountInfo);
+    console.log(updateaccountInfo.dob);
+    console.log(result);
+  })
+  console.log('call done');
+})
+
+app.post('/api/authenticate/google',function(req,res){
+
+  // generate a url that asks permissions for Google+ and Google Calendar scopes
+  var scopes = [
+    googlecredentials.SCOPE[0],
+    googlecredentials.SCOPE[1]
+  ];
+
+  var url = oauth2Client.generateAuthUrl({
+    access_type: 'online', // 'online' (default) or 'offline' (gets refresh_token)
+    scope: scopes // If you only need one scope you can pass it as string
+  });
+  res.send({ redirect: url });
+})
+
+app.get('/api/auth/success/google',function(req,res){
+  var code = req.query.code;
+  oauth2Client.getToken(code, function(err, tokens) {
+    // Now tokens contains an access_token and an optional refresh_token. Save them.
+    if(!err) {
+      oauth2Client.setCredentials(tokens);
+    }
+
+    var access_token = tokens['access_token'];
+    var user_profile = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+access_token;
+      request({
+        url: user_profile,
+        json: true
+      }, function (error, response, body) {
+        if (!error) {
+          var tokendata = {
+            user : body.email,
+            secret : app.get('secret')
+          }
+          seneca.act('role:user,action:generateGoogleToken',{data:tokendata},function(err,tokenresponse){
+            var data = {
+              name:body.email,
+            }
+            seneca.act('role:user,action:get',{data:data.name},function(err,respond){
+              if(err) { return res.status(500).json(err); }
+                if(respond == null){
+                  seneca.act('role:user,action:add', {data:data}, function(err,saved_user){
+                    if(err) { return res.status(500).json(err); }
+                  })
+                }
+            })
+            res.cookie('username',data.name);
+            res.cookie('auth_cookie',tokenresponse.token).redirect(301,'http://localhost:8081/#/dashboard');
+          })
+      } else {
+          console.log(error);
+      }
+    })
+  });
+
+})
+
+// route middleware to verify a tokens
+app.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  var secret = app.get('secret');
+
+  var data = {
+    token : token,
+    secret : secret
+  }
+
+  seneca.act('role:user,action:verifytoken',{data:data},function(err,respond){
+    if(respond['success'] == true){
+      next();
+    }
+    else {
+
+      return res.status(404).send({
+        success: false,
+        message: 'No token provided.'
+
+      });
+    };
+  });
+});
+
+
+
+
+app.post('/api/RecentPage',function(req,res){
+  res.json({
+    success : true
+  });
+});
+
+app.post('/api/Logout',function(req,res){
+  res.json({
+    success : true
+  });
+});

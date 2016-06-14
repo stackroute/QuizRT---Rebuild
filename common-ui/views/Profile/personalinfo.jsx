@@ -9,7 +9,7 @@ import Avatar from 'material-ui/Avatar';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import cookie from 'react-cookie';
 
-var baseurl='http://localhost:8080';
+var baseurl='/';
 const styles = {
   textAlign : 'center',
 };
@@ -49,7 +49,7 @@ export default class PersonalInfo extends React.Component {
     $.ajax({
       type : 'POST',
       data : JSON.stringify(data),
-      url: baseurl+'/accountInfo',
+      url: baseurl+'accountInfo',
       contentType : 'application/json',
       success: (function(data){
         this.setState({userdata :data});
@@ -74,7 +74,7 @@ handleSave(event){
   }
   $.ajax({
     type : 'POST',
-    url: baseurl+'/accountInfoUpdate',
+    url: baseurl+'accountInfoUpdate',
     data : JSON.stringify(data),
     contentType : 'application/json',
     success: (function(data){

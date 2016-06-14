@@ -5,7 +5,7 @@ import RecentcardInfo from './recent';
 const title={
     textAlign:'center',
 }
-var baseurl='http://localhost:8080';
+var baseurl='/';
 
 var RecentPage = React.createClass({
 
@@ -15,7 +15,7 @@ var RecentPage = React.createClass({
 
     componentDidMount:function(){
       $.ajax({
-        url: baseurl+'/recentActivity',
+        url: baseurl+'recentActivity',
         dataType:'json',
         success: function(data){
           console.log('got success---------------------');

@@ -1,23 +1,53 @@
+var seneca = require('seneca')();
 var should = require ('should');
-var seneca = require ('seneca')();
-seneca.use('leaderboardPlugin');
+
+var data = {
+  gameId : 145,
+  scores : [
+    {
+      "name" : "Shikhar",
+      "score" : 20
+    },
+    {
+      "name" : "Arjun",
+      "score" : 30
+    },
+    {
+      "name" : "Karan",
+      "score" : 25
+    }
+  ]
+}
+
+seneca.use('mongo-store', {
+  name: 'quizRT4',
+  host: '127.0.0.1',
+  port: 27017
+});
 seneca.use('entity');
-// seneca.use('mongo-store', {
-//   name: 'quizart',
-//   host: '127.0.0.1',
-//   port: 27017
-// });
+seneca.use('./leaderboard-api');
+seneca.use('mesh',{auto:true,pin:'role:board'});
+/*seneca.act('role:board,action:get',{gameId : 123},function(err,result){
+  if(err) return console.error(err)
+  console.log(result);
+})*/
+
+/*seneca.act('role:board,action:add',{data:data},function(err,result){
+  if(err) return console.error(err)
+  console.log(result);
+})*/
 
 
-describe('Check LeaderBoard Crud',function(){
+
+/*describe('Check LeaderBoard Crud',function(){
   var leaderBoardId;
   var updatedBoard = {
-    name: 'Gale',
-    status:2
+    name: 'Samuel',
+    status:8
   }
   var newBoard ={
-    name:'Steve',
-    status:5
+    name:'Jobs',
+    status:4
   }
   var id;
   it('Check leaderBoard Add',function(done){
@@ -28,17 +58,15 @@ describe('Check LeaderBoard Crud',function(){
        done();
      })
  })
-
  it('Check leaderBoard Get',function(done){
-  seneca.act('role:board,action:get',{id:id},function(err,loaded_board){
+  seneca.act('role:board,action:get',{id:id},function(err,result){
     if(err) done(err);
-      leaderBoardId= loaded_board.id;
-      console.log(loaded_board)
+    else{
+      result.name.should.be.exactly(newBoard.name);
       done();
-
+    }
   })
 })
-
 it('Update the board by id',function(done){
     seneca.act('role:board,action:update',{id:id,data:updatedBoard},function(err,loaded_board){
       if(err) done(err)
@@ -46,23 +74,12 @@ it('Update the board by id',function(done){
       done();
     })
   })
-//
-//
-//
   it('Check Board delete',function(done){
     seneca.act({role:'board',action:'delete',id:leaderBoardId,data:updatedBoard},function(err,deleted_board){
       console.log(deleted_board);
-      //  if(err)done(err)
-      //  deleted_board.name.sould.be.exactly(Null);
+      // if(err)done(err)
+      // deleted_board.name.sould.be.exactly(Null);
       done();
     })
 })
-
-//
-//
-//
-//
-
-
-
-})
+})*/

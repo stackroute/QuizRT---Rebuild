@@ -50,12 +50,12 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json());
 
 app.get('/topics/myfav',function(req,res) {
-  seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
-  if (err) return console.error(err)
-console.log('------------yahi to hai result-----'+result+'------------------------')
-res.send(result);
-  })
-  console.log('agrt dfglca;lkg');
+//   seneca.act('role:myFav,action:retrive',{user:req.params.uid},function(err,result){
+//   if (err) return console.error(err)
+// console.log('------------yahi to hai result-----'+result+'------------------------')
+// res.send(result);
+//   })
+//   console.log('agrt dfglca;lkg');
   });
 
 
@@ -115,7 +115,9 @@ io.on('connection',function(socket){
     playerMiddleWareService.close();
   })
 
-  socket.emit('serverId',port);
+ var serverMessages = ["North of the wall","Casterly Rock","Westeros"]
+ var randomSelection = Math.floor(Math.random()*3)
+  socket.emit('serverId',"This question is coming from "+serverMessages[randomSelection]);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');
@@ -151,7 +153,14 @@ app.post('/api/signup',function(req,res){
       })
     });
 
+app.post('/api/table',function(req,res){
+  var gId = req.body.gameId;
+  seneca.act('role:board,action:get',{gameId : gId},function(err,result){
+    if(err) return console.error(err)
 
+    res.json(result);
+  })
+});
 
 
 //Route To Authenticate A User

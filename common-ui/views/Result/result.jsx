@@ -15,8 +15,6 @@ export default class Result extends React.Component{
           <div className='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
             <div className='center-xs center-lg center-md center-sm'>
               <h1>Quiz Result</h1>
-              <h2>Rank : ...</h2>
-              <h2>Experience Earned ...</h2>
             </div>
           </div>
         </div>

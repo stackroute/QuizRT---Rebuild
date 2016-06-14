@@ -11,6 +11,7 @@ import FileFolder from 'material-ui/svg-icons/file/folder';
 import ProgressBar from './progressBar';
 import Timer from './timer';
 import CircularProgress from 'material-ui/CircularProgress';
+import cookie from 'react-cookie';
 
 const optionStyle = {
   margin:12,
@@ -50,6 +51,8 @@ const style = {
   display: 'inline-block',
 };
 
+
+var user1,user2,user3,username1,username2,username3;
 class SampleNextArrow extends React.Component{
   render(){
     return(
@@ -64,7 +67,7 @@ class SamplePrevArrow extends React.Component{
     );
   }
 }
-var username = 'anshul'+(Math.ceil(Math.random()*12));
+
 export default class Rank extends React.Component{
   constructor(props){
     super(props);
@@ -73,6 +76,9 @@ export default class Rank extends React.Component{
       serverId:0,
       questionReceived: false,
       ques:{},
+      leaderboard:{
+
+      },
       seconds:0,
       progress: 10,
       option0Color: grey100,
@@ -90,14 +96,24 @@ export default class Rank extends React.Component{
 
   componentDidMount(){
 
+      console.log('\n\n===========Cookie says username as: '+cookie.load('username'));
 
         this.context.socket = io( );
    var that = this;
         this.context.socket.on('newQuestion',function(data){
 
+          console.log('\n User name from cookie is: '+cookie.load('username'));
 
 
            console.log((data.msg));
+           that.setState({seconds:10});
+           var seconds = 10;
+           var timer = setInterval(function(){
+            if(seconds===0)
+              clearInterval(timer);
+            else
+            that.setState({seconds:seconds--});
+           },1000)
           that.setState({ques:data.msg})
           if(that.state.waiting)
             that.setState({waiting:false})
@@ -110,7 +126,7 @@ export default class Rank extends React.Component{
         })
         // console.log('Mounting the component: ', (++countMount));
 
-        this.context.socket.emit('playGame',{username:username,tournamentId:'1234'});
+        this.context.socket.emit('playGame',{username:cookie.load('username'),tournamentId:'1234'});
         this.context.socket.on('queued',function(msg){
 
         })
@@ -120,10 +136,29 @@ export default class Rank extends React.Component{
          })
         this.context.socket.on('yourAnswer',function(obj){
 
-            that.changeOptionColor(obj.answer.answerOfQuestion,green600);
+            console.log('\n=======Received in your answer is : '+JSON.stringify(obj)+'\n')
+
+             that.changeOptionColor(obj.answer.answerOfQuestion,green600);
+
+             that.setState({leaderboard:obj.answer.leaderboard});
+             console.log('state leaderboard is: '+ JSON.stringify(that.state.leaderboard));
+             var keys = Object.keys(that.state.leaderboard) ;
+             user1 = keys[1];
+             user2 = keys[2];
+             user3 = keys[3];
+             username1 = user1.match(/^([^@]*)@/)[1];
+             username2 = user2.match(/^([^@]*)@/)[1];
+             username3 = user3.match(/^([^@]*)@/)[1];
+
+
+             console.log('Keys are: '+ keys);
+
+
+
         })
         this.context.socket.on('leaderboard',function(leaderboard){
-          alert('final score is: '+leaderboard[username]);
+          alert('final score is: '+leaderboard[cookie.load('username')]);
+
         })
 
         this.context.socket.on('serverId',function(msg){
@@ -199,7 +234,7 @@ export default class Rank extends React.Component{
             <div style={Style1}>
             <div>
             <h2>Waiting for the opponents</h2>
-            <h6>You are being served by server : {this.state.serverId}</h6>
+            <h6>Y {this.state.serverId}</h6>
           </div>
           <div style={Style2}>
               <CircularProgress size={1.8}  />
@@ -209,7 +244,27 @@ export default class Rank extends React.Component{
           ):(
             <div className="container-fluid">
               <div >
-                <h6>You are being served by server : {this.state.serverId}</h6>
+                <h6>{this.state.serverId}</h6>
+              </div>
+              <div>
+                            <Slider {...settings}>
+
+              <div><Paper style={style} zDepth={2} >
+                        <div>{username1} </div>
+                         <div> {this.state.leaderboard[username1]}</div>
+              </Paper></div>
+
+              <div><Paper style={style} zDepth={2} >
+                        <div>{username2} </div>
+                         <div> {this.state.leaderboard[user2]}</div>
+              </Paper></div>
+
+              <div><Paper style={style} zDepth={2} >
+                        <div>{username3} </div>
+                         <div> {this.state.leaderboard[user3]}</div>
+              </Paper></div>
+
+              </Slider>
               </div>
               <hr/>
 
@@ -238,7 +293,8 @@ export default class Rank extends React.Component{
                   <div className='row' >
                     <div className='col-xs-12'>
                       <div className='row center-xs'>
-                        <p>{this.state.ques.question}</p>
+                        <div><img src={this.state.ques.image} /></div>
+                        <div><p>{this.state.ques.question}</p></div>
                       </div>
                     </div>
                   </div>

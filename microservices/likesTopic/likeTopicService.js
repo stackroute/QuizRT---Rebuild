@@ -1,6 +1,6 @@
 var seneca = require('seneca')();
 
-.use('mongo-store',{
+seneca.use('mongo-store',{
   name: process.env.MONGO_DB_NAME || "quizRT4",
   host: process.env.MONGO_HOST || "127.0.0.1",
   port: process.env.PORT || 27017

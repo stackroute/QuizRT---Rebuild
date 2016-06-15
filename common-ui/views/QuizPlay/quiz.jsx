@@ -260,7 +260,7 @@ export default class Rank extends React.Component{
              <Slider {...settings}>
 
               <div><Paper style={style} zDepth={2} >
-                        <div>{username1.} </div>
+                        <div>{username1} </div>
                          <div> {this.state.leaderboard[user1]}</div>
               </Paper></div>
 

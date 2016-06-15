@@ -53,20 +53,20 @@ const style = {
 
 
 var user1,user2,user3,username1,username2,username3;
-class SampleNextArrow extends React.Component{
-  render(){
-    return(
-      <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
-    );
-  }
-}
-class SamplePrevArrow extends React.Component{
-  render(){
-    return(
-      <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
-    );
-  }
-}
+// class SampleNextArrow extends React.Component{
+//   render(){
+//     return(
+//       <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
+//     );
+//   }
+// }
+// class SamplePrevArrow extends React.Component{
+//   render(){
+//     return(
+//       <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
+//     );
+//   }
+// }
 
 export default class Rank extends React.Component{
   constructor(props){
@@ -194,8 +194,8 @@ export default class Rank extends React.Component{
 
     var settings = {
           dots: false,
-          nextArrow:<SampleNextArrow />,
-          prevArrow:<SamplePrevArrow />,
+          // nextArrow:<SampleNextArrow />,
+          // prevArrow:<SamplePrevArrow />,
           infinite:false,
           speed: 500,
           slidesToShow: 9,
@@ -234,7 +234,7 @@ export default class Rank extends React.Component{
             <div style={Style1}>
             <div>
             <h2>Waiting for the opponents</h2>
-            <h6>Y {this.state.serverId}</h6>
+            <h6>{this.state.serverId}</h6>
           </div>
           <div style={Style2}>
               <CircularProgress size={1.8}  />
@@ -251,7 +251,7 @@ export default class Rank extends React.Component{
 
               <div><Paper style={style} zDepth={2} >
                         <div>{username1} </div>
-                         <div> {this.state.leaderboard[username1]}</div>
+                         <div> {this.state.leaderboard[user1]}</div>
               </Paper></div>
 
               <div><Paper style={style} zDepth={2} >
@@ -270,20 +270,13 @@ export default class Rank extends React.Component{
 
               <div className='row'  >
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-                  <List>
-                    <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange500} backgroundColor={purple500} >D</Avatar>}>
-                    </ListItem>
-                  </List>
+
                 </div>
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
                   <div className='row center-xs'> {this.state.seconds} </div>
                 </div>
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
                   <div className='row end-xs'>
-                    <List>
-                      <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-                      </ListItem>
-                    </List>
                   </div>
                 </div>
               </div>

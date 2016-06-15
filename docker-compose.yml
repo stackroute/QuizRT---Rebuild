@@ -180,9 +180,7 @@ services:
     environment:
       AUTH_SECRET: '38109230198'
       PORT: 8002
-
       NAME: 'Winterfell'
-
       REDIRECT_PORT: 80
       REDIRECT_HOST: quizrt.stackroute.in
 

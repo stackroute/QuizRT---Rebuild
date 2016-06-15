@@ -18,6 +18,7 @@ var compression = require('compression');
 var redirectHost = process.env.REDIRECT_HOST || "localhost";
 var port = process.env.PORT || '8080';
 var redirectPort = process.env.REDIRECT_PORT || port;
+var name = process.env.NAME || "default";
 
 var env = process.env.NODE_ENV || "dev";
 

@@ -58,6 +58,7 @@ app.get('/topics/myfav',function(req,res) {
 //   console.log('agrt dfglca;lkg');
   });
 
+var name = process.env.NAME || "default";
 
 
  app.post('/api/check',function(req,res){
@@ -119,7 +120,7 @@ io.on('connection',function(socket){
  // var randomSelection = Math.floor(Math.random()*7)
 
 
-  socket.emit('serverId',"This question is coming from "+process.env.NAME);
+  socket.emit('serverId',"This question is coming from "+name);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');

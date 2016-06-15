@@ -8,7 +8,7 @@ services:
     restart: always
   microservice-account-info:
     container_name: microservice-account-info
-    build: ./microservices/accountInfo
+    build: ./microservices/accountinfo
     image: quizrt/microservice-account-info:0.1.0
     network_mode: host
     restart: always

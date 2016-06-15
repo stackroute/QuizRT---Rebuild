@@ -124,7 +124,6 @@ export default class LoginForm extends React.Component{
         <p style = {para}>Forgot Password</p>
         </Link>
 				<p style = {para}>OR</p>
-        <RaisedButton label = "Login With Facebook" secondary = {true} style = {styles} onClick={this.facebookLogin.bind(this) }/><br/><br/>
         <RaisedButton label = "Login With Google" secondary = {true} style = {styles} onClick={this.googleLogin.bind(this) }/><br/><br/>
         <Link to ='/SignUP'>
           <RaisedButton label = "Sign Up" secondary = {true} style = {styles}/><br/><br/>

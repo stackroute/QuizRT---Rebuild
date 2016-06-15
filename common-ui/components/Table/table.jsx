@@ -2,7 +2,7 @@ import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
   from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-var baseURL = 'http://localhost:8080/';
+var baseURL = '/';
 
 // const tableData = [
 //   {
@@ -55,33 +55,26 @@ export default class TableExampleComplex extends React.Component {
 
  componentDidMount() {
   console.log("------------------------>>>>>>>>>>>>>>>> inside table.jsx componentDidMount");
-  var data = {
-    gameId :145
-  };
-  var scores = [];
-   $.ajax({
-              type : 'POST',
-              data :  JSON.stringify(data),
-              contentType : 'application/json',
-              url : baseURL + 'api/table',
-              success: (function(data) {
-                console.log(data);
-                this.setState({data: data});
-                Object.keys(this.state.data).forEach(function(key) {
-                    if(key != 'gameId' && key != 'id' && key != 'entity$'){
-                      //console.log("-------------------->>>>>>>>>>>>>> "+data[key]);
-                      var scoreInfo = {
-                        'name' : key,
-                        'score' : data[key]
-                      }
-                      scores.push(scoreInfo)
-                    }
-                });
 
-                var sorted = scores.sort(compare);
-                this.setState({scores: sorted});
-              }).bind(this)
-    });
+
+  var scores = [];
+  this.setState({data: cookie.load('leaderboard')});
+  console.log('\n========Leaderboard from cookie is: '+cookie.load('leaderboard')+'===\n');
+  Object.keys(this.state.data).forEach(function(key) {
+      if(key != 'gameId' && key != 'id' && key != 'entity$'){
+        //console.log("-------------------->>>>>>>>>>>>>> "+data[key]);
+        var scoreInfo = {
+          'name' : key,
+          'score' : data[key]
+        }
+        scores.push(scoreInfo)
+      }
+  });
+
+  var sorted = scores.sort(compare);
+  this.setState({scores: sorted});
+
+
  }
 
 

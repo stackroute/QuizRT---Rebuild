@@ -16,7 +16,7 @@ export default class LoginForm extends React.Component{
       <TextField hintText = "Email Field"	floatingLabelText = "Email"	fullWidth = {true} type = "text" /><br/>
       <TextField hintText = "Password Field" floatingLabelText = "Password" fullWidth = {true} type = "password" /><br/><br/>
       </form>
-      <Checkbox label = "Remember Me" /><br/><br/>
+
 
       <RaisedButton label = "Login" primary = {true} style = {{width:'100%'}}/><br/>
 

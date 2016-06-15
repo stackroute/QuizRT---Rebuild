@@ -67,7 +67,7 @@ handleSave(event){
     id: this.state.userdata.id,
     email: this.state.userdata.email,
     displayname : this.state.userdata.displayname,
-    dob: this.state.userdata.dob,
+    age: this.state.userdata.age,
     mobile: this.state.userdata.mobile,
     country: this.state.userdata.country,
     sex: this.state.userdata.sex,
@@ -94,6 +94,11 @@ mobileChanged(event) {
   updateUserData.mobile = event.target.value
   this.setState({userdata:updateUserData})
 }
+ageChanged(event) {
+  var updateUserData = this.state.userdata;
+  updateUserData.age = event.target.value
+  this.setState({userdata:updateUserData})
+}
 countryChanged(event) {
   var updateUserData = this.state.userdata;
   updateUserData.country = event.target.value
@@ -117,7 +122,7 @@ handleDateChange = (event, date) => {
     return(
       <div>
             <div style={styles}>
-              <Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/>
+              <Avatar src="http://windowsten.info/core/images/default/default_avatar_large.png" style={avatarstyle}/>
               <br />
               <TextField
               disabled={this.state.enable}
@@ -138,6 +143,13 @@ handleDateChange = (event, date) => {
               floatingLabelText="Enter 10-digit mobile number"
               onChange={this.mobileChanged.bind(this)}
               value={this.state.userdata.mobile}
+              /><br />
+              <TextField
+              disabled={this.state.enable}
+              hintText="Age"
+              floatingLabelText="Please enter your age"
+              onChange={this.ageChanged.bind(this)}
+              value={this.state.userdata.age}
               /><br />
               <div>
               <DropDownMenu value={this.state.value} onChange={this.handleDropChange} openImmediately={false} hintText="select" disabled={this.state.enable}>

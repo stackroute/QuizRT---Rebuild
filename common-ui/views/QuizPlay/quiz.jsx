@@ -53,20 +53,20 @@ const style = {
 
 
 var user1,user2,user3,username1,username2,username3;
-class SampleNextArrow extends React.Component{
-  render(){
-    return(
-      <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
-    );
-  }
-}
-class SamplePrevArrow extends React.Component{
-  render(){
-    return(
-      <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
-    );
-  }
-}
+// class SampleNextArrow extends React.Component{
+//   render(){
+//     return(
+//       <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
+//     );
+//   }
+// }
+// class SamplePrevArrow extends React.Component{
+//   render(){
+//     return(
+//       <div {...this.props} style={{display: 'circle', background: 'blue'}}></div>
+//     );
+//   }
+// }
 
 export default class Rank extends React.Component{
   constructor(props){
@@ -90,9 +90,14 @@ export default class Rank extends React.Component{
   }
   static get contextTypes(){
     return {
-      socket: PropTypes.object
+      socket: PropTypes.object,
+      router: PropTypes.object
     }
   }
+ toTitleCase(str)
+    {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
 
   componentDidMount(){
 
@@ -130,6 +135,7 @@ export default class Rank extends React.Component{
         this.context.socket.on('queued',function(msg){
 
         })
+
         this.context.socket.on('gameStarting',function(msg){
           console.log('\n====Your game will start in 3 seconds....\n')
 
@@ -150,6 +156,9 @@ export default class Rank extends React.Component{
              username2 = user2.match(/^([^@]*)@/)[1];
              username3 = user3.match(/^([^@]*)@/)[1];
 
+             username1 = that.toTitleCase(username1)
+             username2 = that.toTitleCase(username2)
+             username3 = that.toTitleCase(username3)
 
              console.log('Keys are: '+ keys);
 
@@ -157,8 +166,9 @@ export default class Rank extends React.Component{
 
         })
         this.context.socket.on('leaderboard',function(leaderboard){
-          alert('final score is: '+leaderboard[cookie.load('username')]);
-
+          // alert('final score is: '+leaderboard[cookie.load('username')]);
+            cookie.save('leaderboard',leaderboard);
+            this.context.router.push('/result');
         })
 
         this.context.socket.on('serverId',function(msg){
@@ -194,8 +204,8 @@ export default class Rank extends React.Component{
 
     var settings = {
           dots: false,
-          nextArrow:<SampleNextArrow />,
-          prevArrow:<SamplePrevArrow />,
+          // nextArrow:<SampleNextArrow />,
+          // prevArrow:<SamplePrevArrow />,
           infinite:false,
           speed: 500,
           slidesToShow: 9,
@@ -234,7 +244,7 @@ export default class Rank extends React.Component{
             <div style={Style1}>
             <div>
             <h2>Waiting for the opponents</h2>
-            <h6>Y {this.state.serverId}</h6>
+            <h6>{this.state.serverId}</h6>
           </div>
           <div style={Style2}>
               <CircularProgress size={1.8}  />
@@ -247,11 +257,11 @@ export default class Rank extends React.Component{
                 <h6>{this.state.serverId}</h6>
               </div>
               <div>
-                            <Slider {...settings}>
+             <Slider {...settings}>
 
               <div><Paper style={style} zDepth={2} >
                         <div>{username1} </div>
-                         <div> {this.state.leaderboard[username1]}</div>
+                         <div> {this.state.leaderboard[user1]}</div>
               </Paper></div>
 
               <div><Paper style={style} zDepth={2} >
@@ -270,20 +280,13 @@ export default class Rank extends React.Component{
 
               <div className='row'  >
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
-                  <List>
-                    <ListItem disabled={true} leftAvatar={<Avatar color={deepOrange500} backgroundColor={purple500} >D</Avatar>}>
-                    </ListItem>
-                  </List>
+
                 </div>
-                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4 col-lg-offset-4 col-xs-offset-4 col-md-offset-4 col-sm-offset-4'>
                   <div className='row center-xs'> {this.state.seconds} </div>
                 </div>
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
                   <div className='row end-xs'>
-                    <List>
-                      <ListItem disabled={true} rightAvatar={<Avatar icon={<FileFolder />} color={orange200} backgroundColor={pink400} />  } >
-                      </ListItem>
-                    </List>
                   </div>
                 </div>
               </div>
@@ -294,6 +297,14 @@ export default class Rank extends React.Component{
                     <div className='col-xs-12'>
                       <div className='row center-xs'>
                         <div><img src={this.state.ques.image} /></div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div className='row' >
+                    <div className='col-xs-12'>
+                      <div className='row center-xs'>
+
                         <div><p>{this.state.ques.question}</p></div>
                       </div>
                     </div>

@@ -24,6 +24,7 @@ import Rank from './views/Rank';
 import Topics from './views/allTopics/alltopics';
 import Tournaments from './views/allTournaments/alltournaments';
 import ProfileInfo from './views/Profile';
+import Timer from './views/Profile/check';
 
 
 injectTapEventPlugin();
@@ -61,6 +62,7 @@ export class App extends React.Component {
       <Route path="/rank" component={Rank} onEnter={this.requireAuth} />
       <Route path="/result" component={Result} onEnter={this.requireAuth} />
       <Route path="/quiz" component={Quiz} />
+      <Route path="/check" component={Timer} />
       <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
       <Route path="/topics" component={Topics} onEnter={this.requireAuth}/>
       <Route path="/tournaments" component={Tournaments} onEnter={this.requireAuth}/>

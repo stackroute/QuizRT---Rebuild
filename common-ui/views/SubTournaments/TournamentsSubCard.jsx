@@ -125,7 +125,7 @@ class TournamentsSubCard extends React.Component {
       iconStyle={{fill: '#009688'}}
       />
 
-    <CardMedia style
+    <CardMedia 
       overlay={<CardTitle title={this.props.tournament.OverlayTitle} subtitle={this.props.tournament.OverlaySubtitle} />}
     >
       <img src={this.props.tournament.URL} style={styleImg}  />

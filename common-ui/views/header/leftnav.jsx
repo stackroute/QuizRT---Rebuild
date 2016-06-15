@@ -17,6 +17,7 @@ import ActionViewmodule from 'material-ui/svg-icons/action/view-module';
 import ActionViewquilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import cookie from 'react-cookie';
+
 var baseURL = '/';
 
 const avatarstyle={
@@ -137,7 +138,7 @@ var ProfileHero = React.createClass({
         onLeftIconButtonTouchTap={this.handleToggle}
         iconElementRight={
           <div style={iconstyle}>
-            <Avatar src="img/user_avatar/photo.jpg" style={AppBaravatarstyle}/>
+            <Avatar src="http://windowsten.info/core/images/default/default_avatar_large.png" style={AppBaravatarstyle}/>
           </div>
           }
       />
@@ -151,9 +152,9 @@ var ProfileHero = React.createClass({
         >
 
           <MenuItem onTouchTap={this.handleClose} style={style}>
-          <div><Avatar src="img/user_avatar/photo.jpg" style={avatarstyle}/></div>
-          {this.state.username}</MenuItem>
-          <MenuItem onTouchTap={this.handleClose} style={style}> Rank: 21#</MenuItem>
+          <div><Avatar src="http://windowsten.info/core/images/default/default_avatar_large.png" style={avatarstyle}/></div>
+          {this.state.username}
+          </MenuItem>
           <Divider />
           <List>
             <ListItem primaryText="Dashboard" leftIcon={<ActionHome />} style={listtext}
@@ -176,4 +177,3 @@ var ProfileHero = React.createClass({
 });
 
 export default ProfileHero;
- 

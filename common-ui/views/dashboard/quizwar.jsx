@@ -13,7 +13,22 @@ const quizstyle={
   textAlign: 'center',
 };
 
+const style_btn={
+  textAlign:'center',
+  margin:5
+}
+
 var QuizWar=React.createClass({
+
+  contextTypes :{
+    router : React.PropTypes.object
+  },
+
+  handleQuizwarTouch : function(){
+    event.preventDefault();
+    this.context.router.push('/quiz');
+  },
+
   render:function (){
     return (
       <div class="row">
@@ -24,6 +39,8 @@ var QuizWar=React.createClass({
                   <img src="img/quizwar/quizwar.jpg" />
                 </CardMedia>
                   <CardTitle title="Quiz-War" subtitle="There's no charge for the AWESOMENESS, Play & Earn the reward of looking awesome."/>
+                    <RaisedButton label="Play" secondary={true} style={style_btn}
+                      onTouchTap={this.handleQuizwarTouch.bind(this)}/>
               </Card>
             </Paper>
           </div>

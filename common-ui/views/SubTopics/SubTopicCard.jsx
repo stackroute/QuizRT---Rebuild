@@ -2,7 +2,7 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import {orange500} from 'material-ui/styles/colors';
+import {white100} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
@@ -58,7 +58,8 @@ var title2={
 var title3={
     textAlign:'center',
     margin:'auto',
-    width:'60%'
+    width:'60%',
+    color:'white100'
 }
 var title4={
      width:"30%",

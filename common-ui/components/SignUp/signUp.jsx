@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router';
 
 
+
 var baseURL = '/';
 
 
@@ -103,8 +104,6 @@ export default class Test extends React.Component{
                 </div>
               </div>
             </div>
-            <RaisedButton label="Sign-Up with Facebook" primary={true} style={style} />
-            <RaisedButton label="Sign-Up with google" primary={true} style={style} />
             <Link to = '/login' >
               <RaisedButton label="Login" style={style} />
             </Link>

@@ -11,7 +11,7 @@ COPY package.json /usr/src/account-info
 RUN npm install --production
 
 # Bundle app source
-COPY account-info.js /usr/src/account-info
-COPY account-infoService.js /usr/src/account-info
+COPY accountInfoPlugin.js /usr/src/account-info
+COPY accountInfoService.js /usr/src/account-info
 
 CMD npm start

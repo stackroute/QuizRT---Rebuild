@@ -17,7 +17,8 @@ var compression = require('compression');
 
 var redirectHost = process.env.REDIRECT_HOST || "localhost";
 var port = process.env.PORT || '8080';
-var redirectPort = port;
+var redirectPort = process.env.REDIRECT_PORT || port;
+var name = process.env.NAME || "default";
 
 var env = process.env.NODE_ENV || "dev";
 
@@ -58,6 +59,7 @@ app.get('/topics/myfav',function(req,res) {
 //   console.log('agrt dfglca;lkg');
   });
 
+var name = process.env.NAME || "default";
 
 
  app.post('/api/check',function(req,res){
@@ -115,9 +117,11 @@ io.on('connection',function(socket){
     playerMiddleWareService.close();
   })
 
- var serverMessages = ["North of the wall","Casterly Rock","Westeros"]
- var randomSelection = Math.floor(Math.random()*3)
-  socket.emit('serverId',"This question is coming from "+serverMessages[randomSelection]);
+ // var serverMessages = ["North of the wall","Casterly Rock","Westeros","Pentos","Bravos","Winterfell","Mereen"]
+ // var randomSelection = Math.floor(Math.random()*7)
+
+
+  socket.emit('serverId',"This question is coming from "+name);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');

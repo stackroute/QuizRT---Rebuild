@@ -4,7 +4,7 @@
   "description": "",
   "main": "likesTopic.js",
   "scripts": {
-    "start": "node delTopicService.js",
+    "start": "node likeTopicService.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

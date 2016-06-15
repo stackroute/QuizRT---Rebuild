@@ -3,9 +3,9 @@ var seneca = require('seneca')();
   seneca
   .use('entity')
   .use('mongo-store',{
-    name: process.env.MONGO_DB_NAME,
-    host: process.env.MONGO_HOST,
-    port: process.env.MONGO_PORT
+    name: process.env.MONGO_DB_NAME || "quizRT4",
+    host: process.env.MONGO_HOST || "127.0.0.1",
+    port: process.env.PORT || 27017
   })
   .use('./recentPagePlugin')
   // .act('role:recentPage,action:retrive',function(err,result){

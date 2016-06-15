@@ -3,9 +3,9 @@
     seneca
     .use('entity')
     .use('mongo-store',{
-      name: "quizRT4",
-      host: "127.0.0.1",
-      port: 27017
+      name: process.env.MONGO_DB_NAME || "quizRT4",
+      host: process.env.MONGO_HOST || "127.0.0.1",
+      port: process.env.PORT || 27017
     })
     .use('./accountInfoPlugin')
     // .act('role:accountInfo,action:retrive',function(err,result){

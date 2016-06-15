@@ -133,7 +133,7 @@ var ProfileHero = React.createClass({
       <div>
 
       <AppBar
-        title={<span>QuizRT</span>}
+        title={<span>QuizRT : {process.env.NAME}</span>}
         onTitleTouchTap={this.handleTouchTap}
         onLeftIconButtonTouchTap={this.handleToggle}
         iconElementRight={

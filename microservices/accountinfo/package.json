@@ -1,5 +1,5 @@
 {
-  "name": "Profile Updation",
+  "name": "profile-updation",
   "version": "0.1.0",
   "description": "update profile from ui and fetching data from backend",
   "main": "accountInfoPlugin.js",

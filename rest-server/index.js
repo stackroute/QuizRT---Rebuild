@@ -18,6 +18,7 @@ var compression = require('compression');
 var redirectHost = process.env.REDIRECT_HOST || "localhost";
 var port = process.env.PORT || '8080';
 var redirectPort = process.env.REDIRECT_PORT || port;
+var name = process.env.NAME || "default";
 
 var env = process.env.NODE_ENV || "dev";
 
@@ -119,7 +120,7 @@ io.on('connection',function(socket){
  // var randomSelection = Math.floor(Math.random()*7)
 
 
-  socket.emit('serverId',"This question is coming from "+process.env.NAME);
+  socket.emit('serverId',"This question is coming from "+name);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');

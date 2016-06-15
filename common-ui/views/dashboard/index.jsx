@@ -72,8 +72,9 @@ var Dashboard = React.createClass({
     return (
       <div>
       <ProfileHero />
-        <TournamentSection/>
-        <QuizWar />
+
+          <QuizWar />
+          <TournamentSection/>
         <MostPopularSection fun={this.handleCheck}  />
         <MyFavoriteSection topics={this.state.topics} />
       </div>
@@ -81,4 +82,3 @@ var Dashboard = React.createClass({
   }
 });
 export default Dashboard;
- 

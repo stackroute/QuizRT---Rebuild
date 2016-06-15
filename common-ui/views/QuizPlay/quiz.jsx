@@ -90,9 +90,14 @@ export default class Rank extends React.Component{
   }
   static get contextTypes(){
     return {
-      socket: PropTypes.object
+      socket: PropTypes.object,
+      router: PropTypes.object
     }
   }
+ toTitleCase(str)
+    {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
 
   componentDidMount(){
 
@@ -130,6 +135,7 @@ export default class Rank extends React.Component{
         this.context.socket.on('queued',function(msg){
 
         })
+
         this.context.socket.on('gameStarting',function(msg){
           console.log('\n====Your game will start in 3 seconds....\n')
 
@@ -150,6 +156,9 @@ export default class Rank extends React.Component{
              username2 = user2.match(/^([^@]*)@/)[1];
              username3 = user3.match(/^([^@]*)@/)[1];
 
+             username1 = that.toTitleCase(username1)
+             username2 = that.toTitleCase(username2)
+             username3 = that.toTitleCase(username3)
 
              console.log('Keys are: '+ keys);
 
@@ -157,8 +166,9 @@ export default class Rank extends React.Component{
 
         })
         this.context.socket.on('leaderboard',function(leaderboard){
-          alert('final score is: '+leaderboard[cookie.load('username')]);
-
+          // alert('final score is: '+leaderboard[cookie.load('username')]);
+            cookie.save('leaderboard',leaderboard);
+            this.context.router.push('/result');
         })
 
         this.context.socket.on('serverId',function(msg){
@@ -247,10 +257,10 @@ export default class Rank extends React.Component{
                 <h6>{this.state.serverId}</h6>
               </div>
               <div>
-                            <Slider {...settings}>
+             <Slider {...settings}>
 
               <div><Paper style={style} zDepth={2} >
-                        <div>{username1} </div>
+                        <div>{username1.} </div>
                          <div> {this.state.leaderboard[user1]}</div>
               </Paper></div>
 
@@ -272,7 +282,7 @@ export default class Rank extends React.Component{
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
 
                 </div>
-                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4 col-lg-offset-4 col-xs-offset-4 col-md-offset-4 col-sm-offset-4'>
                   <div className='row center-xs'> {this.state.seconds} </div>
                 </div>
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
@@ -287,6 +297,14 @@ export default class Rank extends React.Component{
                     <div className='col-xs-12'>
                       <div className='row center-xs'>
                         <div><img src={this.state.ques.image} /></div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div className='row' >
+                    <div className='col-xs-12'>
+                      <div className='row center-xs'>
+
                         <div><p>{this.state.ques.question}</p></div>
                       </div>
                     </div>

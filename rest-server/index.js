@@ -115,9 +115,11 @@ io.on('connection',function(socket){
     playerMiddleWareService.close();
   })
 
- var serverMessages = ["North of the wall","Casterly Rock","Westeros","Pentos","Bravos","Winterfell","Mereen"]
- var randomSelection = Math.floor(Math.random()*7)
-  socket.emit('serverId',"This question is coming from "+serverMessages[randomSelection]);
+ // var serverMessages = ["North of the wall","Casterly Rock","Westeros","Pentos","Bravos","Winterfell","Mereen"]
+ // var randomSelection = Math.floor(Math.random()*7)
+
+
+  socket.emit('serverId',"This question is coming from "+process.env.NAME);
 
   socket.on('myAnswer',function(socketObj){
     console.log('\n==========Answer received by server is: '+socketObj.answer+'\n');

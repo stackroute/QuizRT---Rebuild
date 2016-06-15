@@ -6,6 +6,42 @@ services:
     image: quizrt/microservice-base-node:0.1.0
     network_mode: host
     restart: always
+  microservice-account-info:
+    container_name: microservice-account-info
+    build: ./microservices/accountInfo
+    image: quizrt/microservice-account-info:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - db
+      - microservice-base-node
+  microservice-favourite-topic:
+    container_name: microservice-favourite-topic
+    build: ./microservices/myFavTopics
+    image: quizrt/microservice-favourite-topic:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - db
+      - microservice-base-node
+  microservice-like-topic:
+    container_name: microservice-like-topic
+    build: ./microservices/likesTopic
+    image: quizrt/microservice-like-topic:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - db
+      - microservice-base-node
+  microservice-delete-liked-topic:
+    container_name: microservice-delete-liked-topic
+    build: ./microservices/delLikedTopic
+    image: quizrt/microservice-delete-liked-topic:0.1.0
+    network_mode: host
+    restart: always
+    depends_on:
+      - db
+      - microservice-base-node
   microservice-random-question:
     container_name: microservice-random-question
     build: ./microservices/randomQuestion
@@ -129,6 +165,7 @@ services:
     environment:
       AUTH_SECRET: '38109230198'
       PORT: 8001
+      NAME: 'Bravos'
   microservice-express-server2:
     container_name: microservice-express-server2
     image: quizrt/microservice-express-server:0.1.0
@@ -140,6 +177,7 @@ services:
     environment:
       AUTH_SECRET: '38109230198'
       PORT: 8002
+      NAME: 'Winterfell'
   microservice-express-server3:
     container_name: microservice-express-server3
     image: quizrt/microservice-express-server:0.1.0
@@ -151,12 +189,12 @@ services:
     environment:
       AUTH_SECRET: '38109230198'
       PORT: 8003
+      NAME: ''
   db:
     container_name: db
-    image: mvertes/alpine-mongo
+    image: mongo
     restart: always
-    volumes:
-      - ~/quizrt_mongodb_vol:/data/db
+
     expose:
       - 27017
     ports:

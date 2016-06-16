@@ -166,9 +166,11 @@ export default class Rank extends React.Component{
 
         })
         this.context.socket.on('leaderboard',function(leaderboard){
-          // alert('final score is: '+leaderboard[cookie.load('username')]);
-            cookie.save('leaderboard',leaderboard);
-            this.context.router.push('/result');
+           alert(' Your game has ended ');
+
+
+            // cookie.save('leaderboard',leaderboard);
+            that.context.router.push('/dashboard');
         })
 
         this.context.socket.on('serverId',function(msg){
@@ -282,8 +284,8 @@ export default class Rank extends React.Component{
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
 
                 </div>
-                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4 col-lg-offset-4 col-xs-offset-4 col-md-offset-4 col-sm-offset-4'>
-                  <div className='row center-xs'> {this.state.seconds} </div>
+                <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
+                  <div className='row center-xs'> <h4>{this.state.seconds}</h4> </div>
                 </div>
                 <div className='col-lg-4 col-xs-4 col-md-4 col-sm-4'>
                   <div className='row end-xs'>

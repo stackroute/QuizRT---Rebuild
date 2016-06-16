@@ -2,6 +2,7 @@ import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
   from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
+import cookie from 'react-cookie';
 var baseURL = '/';
 
 // const tableData = [
@@ -58,14 +59,20 @@ export default class TableExampleComplex extends React.Component {
 
 
   var scores = [];
-  this.setState({data: cookie.load('leaderboard')});
-  console.log('\n========Leaderboard from cookie is: '+cookie.load('leaderboard')+'===\n');
-  Object.keys(this.state.data).forEach(function(key) {
-      if(key != 'gameId' && key != 'id' && key != 'entity$'){
+  console.log('\n========Leaderboard from cookie is: '+JSON.parse(cookie.load('leaderboard'))+'===\n');
+  var leaderboardData = JSON.parse(cookie.load('leaderboard'));
+  console.log('\n======leaderboardData is: '+ leaderboardData);
+  this.setState({data: leaderboardData});
+
+  console.log('\n======This state data is: '+this.state.data+'+\n');
+
+  Object.keys(JSON.parse(cookie.load('leaderboard'))).forEach(function(key) {
+      if(key != 'gameId'){
+        console.log('\n User is : '+ key);
         //console.log("-------------------->>>>>>>>>>>>>> "+data[key]);
         var scoreInfo = {
           'name' : key,
-          'score' : data[key]
+          'score' : cookie.load('leaderboard')[key]
         }
         scores.push(scoreInfo)
       }
@@ -73,7 +80,7 @@ export default class TableExampleComplex extends React.Component {
 
   var sorted = scores.sort(compare);
   this.setState({scores: sorted});
-
+  console.log('\n======Scores are: '+this.state.scores+'\n')
 
  }
 
@@ -104,3 +111,4 @@ export default class TableExampleComplex extends React.Component {
     );
   }
 }
+
